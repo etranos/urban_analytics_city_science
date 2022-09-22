@@ -25,7 +25,7 @@ bibliography: src/references.bib
 
 6.  [Network science, urban laws and scaling](src/network_science.qmd)
 
-    -   Practical: [Build and compare models](src/network_models) **TODO decide if I need to describe sample_ syntax**
+    -   Practical: [Build and compare models](src/network_models.Rmd) **TODO decide if I need to describe sample_ syntax**
 
 
 7.  [Diversity in cities](src/diversity.qmd)

@@ -73,7 +73,9 @@ C -- F
 
 ## 1st milestone: Random networks (RN)
 
--   20th Century: advances in mathematics and statistics  algorithmic network analysis
+-   20th Century: advances in mathematics and statistics 
+
+-   Algorithmic network analysis
 
 -   @erdHos1960evolution
 
@@ -520,15 +522,16 @@ $Y_i = Y_0P_i^\beta$
 }
 </style>
 ```
-
 ::: container
 ::: center
-   <big>Revisit economies of scale</big>
+<big>Revisit economies of scale</big>
 :::
 :::
 
 ## Epilogue
 
-> Cities, of course, do not really have their own dynamics; they depend on decisions made by people, corporations, governments, and others. The aggregate statistics of all their decisions will therefore emerge as key and provide another con- nection to the uses of information in urban science. @bettencourt2021introduction
+@bettencourt2021introduction:
+
+> Cities, of course, do not really have their own dynamics; they depend on decisions made by people, corporations, governments, and others. The aggregate statistics of all their decisions will therefore emerge as key and provide another con- nection to the uses of information in urban science. 
 
 ## References

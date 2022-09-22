@@ -9,7 +9,7 @@ project:
   - src/diversity.qmd
   - src/apis.Rmd
   - src/network_analysis.Rmd
-  - src/network_models
+  - src/network_models.Rmd
   - index.qmd
   - about.qmd
 
@@ -32,7 +32,7 @@ website:
         menu: 
           - src/apis.Rmd
           - src/network_analysis.Rmd
-          - src/network_models
+          - src/network_models.Rmd
 
 format:
   html:
