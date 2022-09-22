@@ -3,8 +3,13 @@ project:
   output-dir: docs
   render: 
   - src/smart_cities.qmd
-  - src/why_cities.qmd 
+  - src/why_cities.qmd
+  - src/intro_networks.qmd
+  - src/network_science.qmd
+  - src/diversity.qmd
   - src/apis.Rmd
+  - src/network_analysis.Rmd
+  - src/network_models
   - index.qmd
   - about.qmd
 
@@ -19,10 +24,15 @@ website:
         menu:
           - src/smart_cities.qmd
           - src/why_cities.qmd
+          - src/intro_networks.qmd
+          - src/network_science.qmd
+          - src/diversity.qmd
           
       - text: "Practicals"
         menu: 
           - src/apis.Rmd
+          - src/network_analysis.Rmd
+          - src/network_models
 
 format:
   html:
