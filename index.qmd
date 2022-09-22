@@ -3,7 +3,7 @@ title: "Syllabus"
 bibliography: src/references.bib
 ---
 
-1.  [Cities, a very very brief introduction](src/why_cities.qmd) **TODO: ADD UNIT INFO**
+1.  [Cities, a very very brief introduction](src/why_cities.qmd) **TODO: ADD SOME UNIT INFO**
 
 2.  [Smart cities, urban big data, digital twins and other buzz terms](src/smart_cities.qmd)
 
