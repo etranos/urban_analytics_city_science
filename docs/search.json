@@ -1,0 +1,485 @@
+[
+  {
+    "objectID": "src/smart_cities.html#outline",
+    "href": "src/smart_cities.html#outline",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "Outline",
+    "text": "Outline\n\nBig data vs. just data\nSmart city\nUrban dashboards\nDigital twins"
+  },
+  {
+    "objectID": "src/smart_cities.html#big-data-vs.-just-data",
+    "href": "src/smart_cities.html#big-data-vs.-just-data",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "Big data vs. just data",
+    "text": "Big data vs. just data\n\nDigital traces human activities leave behind\nAccidental (Arribas-Bel 2014)\nWhy?\nComputing power together\nDigital turn\nGeospatial technologies [important for urban researchers]"
+  },
+  {
+    "objectID": "src/smart_cities.html#big-data-vs.-just-data-1",
+    "href": "src/smart_cities.html#big-data-vs.-just-data-1",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "Big data vs. just data",
+    "text": "Big data vs. just data\n\n\nVolume [how big is big?]\nVelocity, being created in or near real time\nVariety, being structured and unstructured in nature\nExhaustive in scope, capture entire populations or systems\nFine-grained in resolution\nRelational in nature, common fields that enable the merging of different data sets\nFlexible, extensionable (can add new fields easily) and scalable (can expand in size rapidly) (Kitchin 2013).\n\nOr, whatever doesn’t fit in an excel spreadsheet (Batty, anecdotal)"
+  },
+  {
+    "objectID": "src/smart_cities.html#big-data-vs.-just-data-2",
+    "href": "src/smart_cities.html#big-data-vs.-just-data-2",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "Big data vs. just data",
+    "text": "Big data vs. just data\n\nBiases\nNeed for new methods\nAccidental\nBig data can speak for themselves. Not really (Kitchin 2013)"
+  },
+  {
+    "objectID": "src/smart_cities.html#smart-cities-different-approaces",
+    "href": "src/smart_cities.html#smart-cities-different-approaces",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "Smart cities, different approaces",
+    "text": "Smart cities, different approaces\nThe digital technologies approach\n\nUrban infrastructure and services are managed computationally\nNetworked digital instrumentation embedded into the urban fabric\nContinuous streams of data that dynamically feed into management systems and control rooms\nNew forms of governmentality\n\n\nBased on Kitchin (2019)"
+  },
+  {
+    "objectID": "src/smart_cities.html#smart-cities-different-approaches",
+    "href": "src/smart_cities.html#smart-cities-different-approaches",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "Smart cities, different approaches",
+    "text": "Smart cities, different approaches\nThe outputs approach\n\nStrategic use of information and communications technology (ICT)\n➔ smarter citizens, workers, policy, and programs\n➔ innovation, economic development, and entrepreneurship\n➔ urban resilience and sustainability\n\n\nBased on Kitchin (2019)"
+  },
+  {
+    "objectID": "src/smart_cities.html#smart-cities-different-approaches-1",
+    "href": "src/smart_cities.html#smart-cities-different-approaches-1",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "Smart cities, different approaches",
+    "text": "Smart cities, different approaches\nThe just approach\n\nICT-led, citizen-centric model of development\n➔ social innovation and social justice, civic engagement and activism\n➔ transparent and accountable governance\n\n\nBased on Kitchin (2019)"
+  },
+  {
+    "objectID": "src/smart_cities.html#smart-cities-different-approaches-2",
+    "href": "src/smart_cities.html#smart-cities-different-approaches-2",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "Smart cities, different approaches",
+    "text": "Smart cities, different approaches\nIn reality…\n… a blend of all these approached\nRio de Janeiro, Brazil: The first smart city\n\n Source: Centro De Operacoes Prefeitura Do Rio"
+  },
+  {
+    "objectID": "src/smart_cities.html#smart-cities-and-data",
+    "href": "src/smart_cities.html#smart-cities-and-data",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "Smart cities and data",
+    "text": "Smart cities and data\n\n(Smart) cities generate much more data nowadays\n\ne-government systems, city operating systems, centralized control rooms, digital surveillance, predictive policing, intelligent transport systems, smart grids, sensor networks, building management systems, civic apps … (Kitchin and Moore-Cherry 2021)"
+  },
+  {
+    "objectID": "src/smart_cities.html#smart-cities-and-data-1",
+    "href": "src/smart_cities.html#smart-cities-and-data-1",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "Smart cities and data",
+    "text": "Smart cities and data\n\nLocal authorities are under pressure to release open data for:\n\npublic scrutiny\ncivic apps\n\nData reuse:\n\ninternally facing\nexternally facing"
+  },
+  {
+    "objectID": "src/smart_cities.html#dashboards",
+    "href": "src/smart_cities.html#dashboards",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "Dashboards",
+    "text": "Dashboards\n\nA visual display of the most important information needed to achieve one or more objectives; a consolidated and arranged on a single screen so the information can be monitored at a glance (Few and Edge 2007)"
+  },
+  {
+    "objectID": "src/smart_cities.html#dashboards-1",
+    "href": "src/smart_cities.html#dashboards-1",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "Dashboards",
+    "text": "Dashboards\n\nTransparency, open government philosophy, accountability (Young, Kitchin, and Naji 2022)\nImprove user’s ’span of control of large and complex data\nShare outputs"
+  },
+  {
+    "objectID": "src/smart_cities.html#dashboards-2",
+    "href": "src/smart_cities.html#dashboards-2",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "Dashboards",
+    "text": "Dashboards\n\nNot just neutral, technical tools\nTranslators and engines rather than mirrors\nReductive in nature (vs. the complex nature of cities)\nDecontextualize cities (Kitchin, Maalsen, and McArdle 2016)"
+  },
+  {
+    "objectID": "src/smart_cities.html#london-dashboard",
+    "href": "src/smart_cities.html#london-dashboard",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "London dashboard",
+    "text": "London dashboard\n\n\n Source: https://citydashboard.org/london/"
+  },
+  {
+    "objectID": "src/smart_cities.html#nyc-dashboard",
+    "href": "src/smart_cities.html#nyc-dashboard",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "NYC Dashboard",
+    "text": "NYC Dashboard\n\n Source: https://datausa.io/profile/geo/new-york-ny"
+  },
+  {
+    "objectID": "src/smart_cities.html#digital-twins",
+    "href": "src/smart_cities.html#digital-twins",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "Digital twins",
+    "text": "Digital twins\n\n\nA mirror image of a physical process that is articulated alongside the process in question, usually matching exactly the operation of the physical process which takes place in real time\n\n\na variety of digital simulation models that run alongside real-time processes that pertain to social and economic systems as well as physical systems\n\nModels are simplifications not replications of the real thing\n\nBased on Batty (2018)"
+  },
+  {
+    "objectID": "src/smart_cities.html#digital-twins-1",
+    "href": "src/smart_cities.html#digital-twins-1",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "Digital twins",
+    "text": "Digital twins\n\n\n  Source: (Bolton et al. 2018)"
+  },
+  {
+    "objectID": "src/smart_cities.html#references",
+    "href": "src/smart_cities.html#references",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "References",
+    "text": "References\n\n\n\n\n\n\nArribas-Bel, Daniel. 2014. “Accidental, Open and Everywhere: Emerging Data Sources for the Understanding of Cities.” Applied Geography 49: 45–53.\n\n\nBatty, Michael. 2018. “Digital Twins.” Environment and Planning B: Urban Analytics and City Science. SAGE Publications Sage UK: London, England.\n\n\nBolton, Alexandra, Lorraine Butler, Ian Dabson, Mark Enzer, Matthew Evans, Tim Fenemore, Fergus Harradence, et al. 2018. “Gemini Principles.”\n\n\nFew, Stephen, and Perceptual Edge. 2007. “Dashboard Confusion Revisited.” Perceptual Edge, 1–6.\n\n\nKitchin, Rob. 2013. “Big Data and Human Geography: Opportunities, Challenges and Risks.” Dialogues in Human Geography 3 (3): 262–67.\n\n\n———. 2019. “The Timescape of Smart Cities.” Annals of the American Association of Geographers 109 (3): 775–90.\n\n\nKitchin, Rob, Sophia Maalsen, and Gavin McArdle. 2016. “The Praxis and Politics of Building Urban Dashboards.” Geoforum 77: 93–101.\n\n\nKitchin, Rob, and Niamh Moore-Cherry. 2021. “Fragmented Governance, the Urban Data Ecosystem and Smart City-Regions: The Case of Metropolitan Boston.” Regional Studies 55 (12): 1913–23.\n\n\nYoung, Gareth W, Rob Kitchin, and Jeneen Naji. 2022. “Building City Dashboards for Different Types of Users.” In Sustainable Smart City Transitions, 259–79. Routledge."
+  },
+  {
+    "objectID": "src/why_cities.html#urban-analytics-and-city-science",
+    "href": "src/why_cities.html#urban-analytics-and-city-science",
+    "title": "Cities, a very very brief introduction",
+    "section": "Urban analytics and city science",
+    "text": "Urban analytics and city science\n\n\nWhy cities L.\nSmart cities and big data L\nLecture on networks L\nNetwork analysis practical 1\nNetwork analysis practical 2\nNetwork science, urban laws and scaling L\nNetworks small scale\nLecture on spatial interactions\nPractical on spatial interaction modelling\nUrban policies and causality"
+  },
+  {
+    "objectID": "src/why_cities.html#urban-analytics-and-city-science-1",
+    "href": "src/why_cities.html#urban-analytics-and-city-science-1",
+    "title": "Cities, a very very brief introduction",
+    "section": "Urban analytics and city science",
+    "text": "Urban analytics and city science\nAims\n\nReadings, full reference list and expectations\nblah\nblah"
+  },
+  {
+    "objectID": "src/why_cities.html#why-should-we-care-about-cities",
+    "href": "src/why_cities.html#why-should-we-care-about-cities",
+    "title": "Cities, a very very brief introduction",
+    "section": "Why should we care about cities?",
+    "text": "Why should we care about cities?\nThe most overused figure (Nations 2009)…\n\nIn 2009 for the first time in history 2009 more than 50% of the population lived within cities\n\n… but still true!\nSource of:\n\neconomic growth,\ninnovation - technology - …,\nbut also - pandemics (!)"
+  },
+  {
+    "objectID": "src/why_cities.html#why-should-we-care-about-cities-1",
+    "href": "src/why_cities.html#why-should-we-care-about-cities-1",
+    "title": "Cities, a very very brief introduction",
+    "section": "Why should we care about cities?",
+    "text": "Why should we care about cities?\n\nStrong links historically between (McCann and Acs 2011):\n\nGlobalisation\nUrbanisation\nIndustrialisation"
+  },
+  {
+    "objectID": "src/why_cities.html#why-should-we-care-about-cities-2",
+    "href": "src/why_cities.html#why-should-we-care-about-cities-2",
+    "title": "Cities, a very very brief introduction",
+    "section": "Why should we care about cities?",
+    "text": "Why should we care about cities?\n\n\n\n\n\n\nTremendous growth\nNot the same everywhere"
+  },
+  {
+    "objectID": "src/why_cities.html#urban-analytics-and-city-science-2",
+    "href": "src/why_cities.html#urban-analytics-and-city-science-2",
+    "title": "Cities, a very very brief introduction",
+    "section": "Urban analytics and city science",
+    "text": "Urban analytics and city science\n\nUnderstand cities and how they change\nUse critically and effectively urban data\nUnderstand and master methodological tools\nSupport urban policy making"
+  },
+  {
+    "objectID": "src/why_cities.html#different-terms",
+    "href": "src/why_cities.html#different-terms",
+    "title": "Cities, a very very brief introduction",
+    "section": "Different terms",
+    "text": "Different terms\n\nAcademics love inventing new terms\nUrban science, city science, urban analytics, urban geography, geographic data science, urban data science, complexity science, TheNextBigThing\nHave a look: Batty (2019)"
+  },
+  {
+    "objectID": "src/why_cities.html#why-do-cities-exist",
+    "href": "src/why_cities.html#why-do-cities-exist",
+    "title": "Cities, a very very brief introduction",
+    "section": "Why do cities exist?",
+    "text": "Why do cities exist?\n\nAn economist’s answer: to economise!\nBecause of economies of scale and agglomeration economies"
+  },
+  {
+    "objectID": "src/why_cities.html#scale-economies",
+    "href": "src/why_cities.html#scale-economies",
+    "title": "Cities, a very very brief introduction",
+    "section": "Scale economies",
+    "text": "Scale economies\n\nAKA increasing returns to scale, or\nAKA economies of scale\nBusiness enterprises become more efﬁcient at large scales of operation\nMore output per unit of input than at smaller scales\n➔ larger enterprises\nWithin firms"
+  },
+  {
+    "objectID": "src/why_cities.html#scale-economies-1",
+    "href": "src/why_cities.html#scale-economies-1",
+    "title": "Cities, a very very brief introduction",
+    "section": "Scale economies",
+    "text": "Scale economies"
+  },
+  {
+    "objectID": "src/why_cities.html#scale-economies-2",
+    "href": "src/why_cities.html#scale-economies-2",
+    "title": "Cities, a very very brief introduction",
+    "section": "Scale economies",
+    "text": "Scale economies\nIncreasing returns to scale\n\n\ndouble ALL the inputs ➔\nmore than double output"
+  },
+  {
+    "objectID": "src/why_cities.html#scale-economies-3",
+    "href": "src/why_cities.html#scale-economies-3",
+    "title": "Cities, a very very brief introduction",
+    "section": "Scale economies",
+    "text": "Scale economies"
+  },
+  {
+    "objectID": "src/why_cities.html#scale-economies-4",
+    "href": "src/why_cities.html#scale-economies-4",
+    "title": "Cities, a very very brief introduction",
+    "section": "Scale economies",
+    "text": "Scale economies\nConstant returns to scale:\n\n\ndouble ALL the inputs ➔\ndouble output"
+  },
+  {
+    "objectID": "src/why_cities.html#scale-economies-5",
+    "href": "src/why_cities.html#scale-economies-5",
+    "title": "Cities, a very very brief introduction",
+    "section": "Scale economies",
+    "text": "Scale economies"
+  },
+  {
+    "objectID": "src/why_cities.html#scale-economies-6",
+    "href": "src/why_cities.html#scale-economies-6",
+    "title": "Cities, a very very brief introduction",
+    "section": "Scale economies",
+    "text": "Scale economies\nDecreasing returns to scale\n\n\ndouble ALL the inputs ➔\nless than double output"
+  },
+  {
+    "objectID": "src/why_cities.html#scale-economies-7",
+    "href": "src/why_cities.html#scale-economies-7",
+    "title": "Cities, a very very brief introduction",
+    "section": "Scale economies",
+    "text": "Scale economies"
+  },
+  {
+    "objectID": "src/why_cities.html#scale-economies-8",
+    "href": "src/why_cities.html#scale-economies-8",
+    "title": "Cities, a very very brief introduction",
+    "section": "Scale economies",
+    "text": "Scale economies\nHow do they affect space?\n\n\nClustering of workers near factories\nClustering of services for workers near factories\nThe company town example\nIllustrative"
+  },
+  {
+    "objectID": "src/why_cities.html#agglomeration-economies",
+    "href": "src/why_cities.html#agglomeration-economies",
+    "title": "Cities, a very very brief introduction",
+    "section": "Agglomeration economies",
+    "text": "Agglomeration economies\n\nAKA external economies of scale\nExternal to the firm\nVery important for cities\nTwo types:\n\nLocalisation economies AKA Marshallian externalities\nUrbanisation economies AKA Jacobian externalities"
+  },
+  {
+    "objectID": "src/why_cities.html#localization-economies",
+    "href": "src/why_cities.html#localization-economies",
+    "title": "Cities, a very very brief introduction",
+    "section": "Localization Economies",
+    "text": "Localization Economies\n\nWithin a group of firms of the same industry\nClustered together at the same place\nWhy?\n\nInformation exchange\nLabour mobility\nSpecialist services\n\n\nExamples: Silicon Valley (micro-electronics), The City of London (finance), Detroit and Michigan (automobile), Seattle (aerospace), etc."
+  },
+  {
+    "objectID": "src/why_cities.html#localization-economies-1",
+    "href": "src/why_cities.html#localization-economies-1",
+    "title": "Cities, a very very brief introduction",
+    "section": "Localization Economies",
+    "text": "Localization Economies"
+  },
+  {
+    "objectID": "src/why_cities.html#urbanization-economies",
+    "href": "src/why_cities.html#urbanization-economies",
+    "title": "Cities, a very very brief introduction",
+    "section": "Urbanization economies",
+    "text": "Urbanization economies\n\nFirms across different sectors\nClustered together at the same place (Jane Jacobs 1961)\nA city\nWhy?\n\nSupport services to firms experiencing internal and localization economies\nClustering\nIncreased local factor prices\nEconomies of scale"
+  },
+  {
+    "objectID": "src/why_cities.html#agglomeration-economies-1",
+    "href": "src/why_cities.html#agglomeration-economies-1",
+    "title": "Cities, a very very brief introduction",
+    "section": "Agglomeration economies",
+    "text": "Agglomeration economies\n\nDiversity vs. specialization\nInternal economies of scale (firm specific)\nLocalization economies (industry specific)\nUrbanization economies (city specific)"
+  },
+  {
+    "objectID": "src/why_cities.html#the-sources-of-agglomeration",
+    "href": "src/why_cities.html#the-sources-of-agglomeration",
+    "title": "Cities, a very very brief introduction",
+    "section": "The sources of agglomeration",
+    "text": "The sources of agglomeration\n\nKnowledge spillovers (Marshall 1890)\n\n\nInteractions between employees of different firms\nProximity\nTacit knowledge\nMutual trading of information"
+  },
+  {
+    "objectID": "src/why_cities.html#the-sources-of-agglomeration-economies",
+    "href": "src/why_cities.html#the-sources-of-agglomeration-economies",
+    "title": "Cities, a very very brief introduction",
+    "section": "The sources of agglomeration economies",
+    "text": "The sources of agglomeration economies\n\nNon-traded local inputs\n\n\nEfficient provision of specialist inputs\nInfrastructure"
+  },
+  {
+    "objectID": "src/why_cities.html#the-sources-of-agglomeration-economies-1",
+    "href": "src/why_cities.html#the-sources-of-agglomeration-economies-1",
+    "title": "Cities, a very very brief introduction",
+    "section": "The sources of agglomeration economies",
+    "text": "The sources of agglomeration economies\n\nLocal skilled labour pool\n\n\nSufficient quantity of labour to respond to market changes\nSpecialised labour / cost of training"
+  },
+  {
+    "objectID": "src/why_cities.html#the-sources-of-agglomeration-economies-2",
+    "href": "src/why_cities.html#the-sources-of-agglomeration-economies-2",
+    "title": "Cities, a very very brief introduction",
+    "section": "The sources of agglomeration economies",
+    "text": "The sources of agglomeration economies\n\nProcesses of learning, sharing and matching (Duranton and Puga 2004)\nClustering:\n\nInteraction\nDynamic\n➔ reduces knowledge and information transaction cost\n\nHigher profitability for firms within the cluster than those outside the cluster"
+  },
+  {
+    "objectID": "src/why_cities.html#agglomeration-economies-pecuniary-vs.-technological",
+    "href": "src/why_cities.html#agglomeration-economies-pecuniary-vs.-technological",
+    "title": "Cities, a very very brief introduction",
+    "section": "Agglomeration economies: pecuniary vs. technological",
+    "text": "Agglomeration economies: pecuniary vs. technological\n\nPecuniary ➔ input cost reduction\nmake inputs cheaper in larger cities\nTechnological ➔ raise productivity\nmake inputs more productive in larger cities\n\n\nBased on Brueckner (2011)"
+  },
+  {
+    "objectID": "src/why_cities.html#agglomeration-economies-a-citique",
+    "href": "src/why_cities.html#agglomeration-economies-a-citique",
+    "title": "Cities, a very very brief introduction",
+    "section": "Agglomeration economies: a citique",
+    "text": "Agglomeration economies: a citique\nBounded rationality (Simon 1955, 1966)\n\nInformation about space and location in limited\nRelocation issues, the ability of a rational decision is limited\nRelocation cost"
+  },
+  {
+    "objectID": "src/why_cities.html#why-cities-do-exist",
+    "href": "src/why_cities.html#why-cities-do-exist",
+    "title": "Cities, a very very brief introduction",
+    "section": "Why cities do exist?",
+    "text": "Why cities do exist?\nTo economise!\nIn other words, collocation of people and firms increases efficiency."
+  },
+  {
+    "objectID": "src/why_cities.html#cities-as-complex-system",
+    "href": "src/why_cities.html#cities-as-complex-system",
+    "title": "Cities, a very very brief introduction",
+    "section": "Cities as complex system",
+    "text": "Cities as complex system\n\n\n\n\n\n\n\n\nHeterogeneity\nDifferences in information, profession, culture, race, ethnicity, and economic status\n\n\nInterconnectivity\nInterdependence between people, organizations, and infrastructure in networks\n\n\nScaling\nSelf-similar economies of scale per capita in material infrastructure and increasing returns to socioeconomic activity\n\n\nCircular causality\nInterdependence dynamics between socioeconomic activities, institutions, and services\n\n\nEvolution\nOpen-ended change supported by new information, investment, and collective action\n\n\n\n Source: Bettencourt (2021)"
+  },
+  {
+    "objectID": "src/why_cities.html#cities-as-complex-system-scale",
+    "href": "src/why_cities.html#cities-as-complex-system-scale",
+    "title": "Cities, a very very brief introduction",
+    "section": "Cities as complex system: scale",
+    "text": "Cities as complex system: scale"
+  },
+  {
+    "objectID": "src/why_cities.html#urban-models-looking-into-cities",
+    "href": "src/why_cities.html#urban-models-looking-into-cities",
+    "title": "Cities, a very very brief introduction",
+    "section": "Urban models: looking into cities",
+    "text": "Urban models: looking into cities\nThe Burgess model\n\n Source: bbc.co.uk"
+  },
+  {
+    "objectID": "src/why_cities.html#urban-models-looking-into-cities-1",
+    "href": "src/why_cities.html#urban-models-looking-into-cities-1",
+    "title": "Cities, a very very brief introduction",
+    "section": "Urban models: looking into cities",
+    "text": "Urban models: looking into cities\nThe Burgess model\n\nCreated by E.W. Burgess in 1925\nDeveloped in rings, reflecting waves of immigrants\nUsed Chicago as his model\nMost European cities developed this way (pre-automobile)"
+  },
+  {
+    "objectID": "src/why_cities.html#urban-models-looking-into-cities-2",
+    "href": "src/why_cities.html#urban-models-looking-into-cities-2",
+    "title": "Cities, a very very brief introduction",
+    "section": "Urban models: looking into cities",
+    "text": "Urban models: looking into cities\nThe Von Thünen model (The isolated state in 1826)\n\nBasic idea: Agricultural land uses follow predictable patterns around cities, which are the markets for the farm goods\nGoods with greatest demand and having the highest transport costs should be produced closest to the city"
+  },
+  {
+    "objectID": "src/why_cities.html#urban-models-looking-into-cities-3",
+    "href": "src/why_cities.html#urban-models-looking-into-cities-3",
+    "title": "Cities, a very very brief introduction",
+    "section": "Urban models: looking into cities",
+    "text": "Urban models: looking into cities\n\n Source: Coe, Kelly, and Yeung (2019)"
+  },
+  {
+    "objectID": "src/why_cities.html#urban-models-systems-of-cities",
+    "href": "src/why_cities.html#urban-models-systems-of-cities",
+    "title": "Cities, a very very brief introduction",
+    "section": "Urban models: systems of cities",
+    "text": "Urban models: systems of cities\nWhy aren’t we all clustered in a huge city?\n\n\nDiseconomies of scale\nAKA Decreasing returns to scale\n\n Source: Bettencourt (2021)"
+  },
+  {
+    "objectID": "src/why_cities.html#urban-models-systems-of-cities-1",
+    "href": "src/why_cities.html#urban-models-systems-of-cities-1",
+    "title": "Cities, a very very brief introduction",
+    "section": "Urban models: systems of cities",
+    "text": "Urban models: systems of cities\nCentral place theory\n\n Source: Wood and Roberts (2012) adapted from Christaller (1966)"
+  },
+  {
+    "objectID": "src/why_cities.html#urban-models-systems-of-cities-2",
+    "href": "src/why_cities.html#urban-models-systems-of-cities-2",
+    "title": "Cities, a very very brief introduction",
+    "section": "Urban models: systems of cities",
+    "text": "Urban models: systems of cities\nCentral place theory\n\nSpatial distribution of cities and towns in Southern Germany\nInductive instead of deductive\nHierarchy of 3 different goods (3, 2, 1), 3 different market areas and 3 different levels of urban centres\nAssumptions: homogeneous land and equal\nTransport possibilities in all directions"
+  },
+  {
+    "objectID": "src/why_cities.html#urban-models-systems-of-cities-3",
+    "href": "src/why_cities.html#urban-models-systems-of-cities-3",
+    "title": "Cities, a very very brief introduction",
+    "section": "Urban models: systems of cities",
+    "text": "Urban models: systems of cities\nThe core-periphery model\n\n\n\n2 region model\nTransport cost steadily fall over time\nAs transport cost ⟱, separation of production and consumption becomes feasible\n⤇ Core-periphery\n\n\n\n\n Source: Krugman and Elizondo (1996)"
+  },
+  {
+    "objectID": "src/why_cities.html#summary",
+    "href": "src/why_cities.html#summary",
+    "title": "Cities, a very very brief introduction",
+    "section": "Summary",
+    "text": "Summary\n\nUrban structure is not random\nMultiple scales: individual, neighbourhoods, cities, urban networks\nCities are complex adaptive systems"
+  },
+  {
+    "objectID": "src/why_cities.html#references",
+    "href": "src/why_cities.html#references",
+    "title": "Cities, a very very brief introduction",
+    "section": "References",
+    "text": "References\n\n\n\n\n\n\nBatty, Michael. 2019. “Urban Analytics Defined.” Environment and Planning B: Urban Analytics and City Science 46 (3): 403–5. https://doi.org/10.1177/2399808319839494.\n\n\nBettencourt, Luı́s MA. 2021. “Introduction to Urban Science: Evidence and Theory of Cities as Complex Systems.”\n\n\nBrueckner, Jan K. 2011. Lectures on Urban Economics. MIT press.\n\n\nChristaller, Walter. 1966. Central Places in Southern Germany. Vol. 10. Prentice-Hall.\n\n\nCoe, Neil M, Philip F Kelly, and Henry WC Yeung. 2019. Economic Geography: A Contemporary Introduction. John Wiley & Sons.\n\n\nDuranton, Gilles, and Diego Puga. 2004. “Micro-Foundations of Urban Agglomeration Economies.” Handbook of Regional and Urban Economics 4: 2063–2117.\n\n\nJane Jacobs. 1961. The Death and Life of Great American Cities. Vintage Books.\n\n\nKrugman, Paul, and Raul Livas Elizondo. 1996. “Trade Policy and the Third World Metropolis.” Journal of Development Economics 49 (1): 137–50.\n\n\nMarshall, Alfred. 1890. “Principles of Economics: An Introductory Volume.” The Macmillan Press Ltd.\n\n\nMcCann, Philip, and Zoltan J Acs. 2011. “Globalization: Countries, Cities and Multinationals.” Regional Studies 45 (1): 17–32.\n\n\nNations, United. 2009. Urban and Rural Areas. New Yorl: United Nations.\n\n\nSimon, Herbert A. 1955. “A Behavioral Model of Rational Choice.” The Quarterly Journal of Economics 69 (1): 99–118.\n\n\n———. 1966. “Theories of Decision-Making in Economics and Behavioural Science.” In Surveys of Economic Theory, 1–28. Springer.\n\n\nWood, Andrew, and Susan Roberts. 2012. Economic Geography: Places, Networks and Flows. Routledge."
+  },
+  {
+    "objectID": "src/apis.html",
+    "href": "src/apis.html",
+    "title": "APIs and urban data",
+    "section": "",
+    "text": "Understand the technicalities and the breadth of the urban data landscape\nUnderstand the messiness of real world (urban) data\nAccess programmatically urban data and understand the benefits of such data access practise."
+  },
+  {
+    "objectID": "src/apis.html#apis",
+    "href": "src/apis.html#apis",
+    "title": "APIs and urban data",
+    "section": "APIs",
+    "text": "APIs\nApplication Programming Interface (APIs) represent a ‘gate’ or otherwise a platform that enables a client (that is you) to interact with a server (for example opendata.bristol.gov.uk. According to AWS (2022):\n\nIn the context of APIs, the word Application refers to any software with a distinct function. Interface can be thought of as a contract of service between two applications. This contract defines how the two communicate with each other using requests and responses. Their API documentation contains information on how developers are to structure those requests and responses.\n\nThe client’s software (this might be R for example) sends a request to the server requesting specific data. The response is the data the client asked.\nMore commonly, the client might be a mobile phone app (e.g. train network status app) and the server is the network operator’s server.\nAPIs can be private or public types. For more inthe description from AWS (2022) here"
+  },
+  {
+    "objectID": "src/apis.html#json-file-format",
+    "href": "src/apis.html#json-file-format",
+    "title": "APIs and urban data",
+    "section": "JSON file format",
+    "text": "JSON file format\nAlthough some urban data can be downloaded as a tidy^ [Every column is a variable; every row is an observation; every cell is a single value. See [here])(https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html) for more info] table in a .csv format, most APIs will ship data to you in a JSON format.\nAccording to the official JSON website (JSON), JSON\n\nis a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate. It is based on a subset of the JavaScript Programming Language Standard ECMA-262 3rd Edition - December 1999. JSON is a text format that is completely language independent but uses conventions that are familiar to programmers of the C-family of languages, including C, C++, C#, Java, JavaScript, Perl, Python, and many others. These properties make JSON an ideal data-interchange language.\n\nIt adopts a hierarchical structure such as attribute:value instead of the fixed structure of tidy data. Following Singleton, Spielman, and Folch (2017), such attribute:value pairs might be:\n\n“mean income”:“50000”\n“internet speed”:“35”\n“jobs”:“15000”\n\nThese attributes might be organised hierarchically:\n(“city”:“Bristol,”mean income”: “27000”, “internet speed”: “55”, “jobs”:(“2019”:“15000”, “2020”:“14000”)), (“city”:“Newcastle,”mean income”: “25000”, “internet speed”: “45”, “jobs”:(“2019”:“11000”, “2020”:“10000”))\nAlthough this format is more verbose (attribute names are repeated) it is more flexible (not all observations need to have all attributes) (Singleton, Spielman, and Folch 2017)"
+  },
+  {
+    "objectID": "src/apis.html#practical-example-with-api",
+    "href": "src/apis.html#practical-example-with-api",
+    "title": "APIs and urban data",
+    "section": "Practical example with API",
+    "text": "Practical example with API\nopendata.bristol.gov.uk offers a lot of data about Bristol. For this example, let’s try to work with Jobs by Ward (by industry) in Bristol 2020. As you can see, this is a small data set with \\(35\\) observations representing Bristol’s \\(35\\) Wards. You can visualise these data with the Table tab and even download a .csv with these data. To begin with, do both of these things.\nThen, go to the API tab. Change the rows you want to include in you API request from 10, which is the default here to 35, which is the maximum as we already know. Then clink on the Submit button and below that you will see a new link. This URL is your API request. If you carefully read the URL from right to left you can easily recognise the fields you saw on the previous screen. The weird output on your screen is the data you requested in JSON format.\n\n\n\nQuestion: Why should you go through all these efforts to build an API request and download the data in JSON file format instead of just downloading a .csv file?\n\n\n\nSo, let’s try to access these data programmatically. First, we need to load the relevant R packages\n\nlibrary(tidyverse)\n\nWarning: package 'tidyverse' was built under R version 4.1.3\n\n\n-- Attaching packages --------------------------------------- tidyverse 1.3.2 --\nv ggplot2 3.3.6     v purrr   0.3.4\nv tibble  3.1.8     v dplyr   1.0.9\nv tidyr   1.2.0     v stringr 1.4.0\nv readr   2.1.2     v forcats 0.5.1\n\n\nWarning: package 'ggplot2' was built under R version 4.1.3\n\n\nWarning: package 'tibble' was built under R version 4.1.3\n\n\nWarning: package 'tidyr' was built under R version 4.1.3\n\n\nWarning: package 'readr' was built under R version 4.1.3\n\n\nWarning: package 'dplyr' was built under R version 4.1.3\n\n\n-- Conflicts ------------------------------------------ tidyverse_conflicts() --\nx dplyr::filter() masks stats::filter()\nx dplyr::lag()    masks stats::lag()\n\nlibrary(jsonlite)\n\nWarning: package 'jsonlite' was built under R version 4.1.3\n\n\n\nAttaching package: 'jsonlite'\n\nThe following object is masked from 'package:purrr':\n\n    flatten\n\n\nTo access the data, we are going to use the function fromJSON() from the jsonlite package. Please check the syntax of this function as well as the other function of this package.\n\ndat <- jsonlite::fromJSON(\"https://opendata.bristol.gov.uk/api/records/1.0/search/?dataset=jobs-by-ward-by-industry-in-bristol-2020&q=&rows=35&facet=ward\", flatten = TRUE)\n\nWe now have an R object called dat. Let’s try to see how it looks like\n\ntypeof(dat)\n\n[1] \"list\"\n\n\nSo, this is a list. If you need a reminder for what a list is, see here. Now the difficult part. Let’s try to figure out the structure of this JSON formated data.\n\nstr(dat)\n\nList of 4\n $ nhits       : int 35\n $ parameters  :List of 6\n  ..$ dataset : chr \"jobs-by-ward-by-industry-in-bristol-2020\"\n  ..$ rows    : int 35\n  ..$ start   : int 0\n  ..$ facet   : chr \"ward\"\n  ..$ format  : chr \"json\"\n  ..$ timezone: chr \"UTC\"\n $ records     :'data.frame':   35 obs. of  24 variables:\n  ..$ datasetid                                          : chr [1:35] \"jobs-by-ward-by-industry-in-bristol-2020\" \"jobs-by-ward-by-industry-in-bristol-2020\" \"jobs-by-ward-by-industry-in-bristol-2020\" \"jobs-by-ward-by-industry-in-bristol-2020\" ...\n  ..$ recordid                                           : chr [1:35] \"8f1ee37587a2233922bfa38b048879368059502e\" \"464799297e1d1af8bb980450d062c7eedb787042\" \"4cf81b7e8c57fc61c73eb40c4d4556446d20896c\" \"e034ff06e7c7d67f6f716c41e8ccd940a36d41fd\" ...\n  ..$ record_timestamp                                   : chr [1:35] \"2021-12-22T11:29:00.712Z\" \"2021-12-22T11:29:00.712Z\" \"2021-12-22T11:29:00.712Z\" \"2021-12-22T11:29:00.712Z\" ...\n  ..$ fields.mining_quarrying_utilities                  : int [1:35] 10 0 0 0 0 10 0 30 2250 0 ...\n  ..$ fields.transport_storage_inc_postal                : int [1:35] 20 0 350 15 200 50 100 600 1750 300 ...\n  ..$ fields.accommodation_food_services                 : int [1:35] 100 150 175 800 700 175 400 400 6000 300 ...\n  ..$ fields.public_administration_defence               : int [1:35] 0 0 0 10 50 0 0 400 9000 200 ...\n  ..$ fields.agriculture_forestry_fishing                : int [1:35] 0 0 0 0 0 0 0 0 0 0 ...\n  ..$ fields.business_administration_support_services    : int [1:35] 125 75 1250 1750 450 225 500 450 11000 125 ...\n  ..$ fields.retail                                      : int [1:35] 700 100 200 700 900 75 800 1500 4500 500 ...\n  ..$ fields.property                                    : int [1:35] 10 15 20 450 175 75 200 30 1750 30 ...\n  ..$ fields.health                                      : int [1:35] 150 125 125 450 500 500 2000 900 12000 1500 ...\n  ..$ fields.motor_trades                                : int [1:35] 125 30 300 30 350 20 40 600 200 40 ...\n  ..$ fields.manufacturing                               : int [1:35] 150 25 900 25 400 5 75 500 500 50 ...\n  ..$ fields.information_communication                   : int [1:35] 225 200 400 800 350 175 450 700 10000 50 ...\n  ..$ fields.education                                   : int [1:35] 350 250 400 200 350 175 1000 500 9000 800 ...\n  ..$ fields.ward_code                                   : chr [1:35] \"E05010889\" \"E05010918\" \"E05010890\" \"E05010894\" ...\n  ..$ fields.financial_insurance                         : int [1:35] 1500 10 10 600 50 10 75 15 8000 35 ...\n  ..$ fields.ward                                        : chr [1:35] \"Bishopsworth\" \"Windmill Hill\" \"Brislington East\" \"Clifton Down\" ...\n  ..$ fields.period                                      : chr [1:35] \"2020\" \"2020\" \"2020\" \"2020\" ...\n  ..$ fields.professional_scientific_technical           : int [1:35] 75 125 200 1000 600 250 800 600 22000 125 ...\n  ..$ fields.construction                                : int [1:35] 500 125 500 300 400 100 350 175 1250 125 ...\n  ..$ fields.arts_entertainment_recreation_other_services: int [1:35] 150 75 75 350 500 35 250 125 1750 100 ...\n  ..$ fields.wholesale                                   : int [1:35] 100 20 450 35 400 15 50 150 900 20 ...\n $ facet_groups:'data.frame':   1 obs. of  2 variables:\n  ..$ name  : chr \"ward\"\n  ..$ facets:List of 1\n  .. ..$ :'data.frame': 35 obs. of  4 variables:\n  .. .. ..$ name : chr [1:35] \"Ashley\" \"Avonmouth and Lawrence Weston\" \"Bedminster\" \"Bishopston and Ashley Down\" ...\n  .. .. ..$ count: int [1:35] 1 1 1 1 1 1 1 1 1 1 ...\n  .. .. ..$ state: chr [1:35] \"displayed\" \"displayed\" \"displayed\" \"displayed\" ...\n  .. .. ..$ path : chr [1:35] \"Ashley\" \"Avonmouth and Lawrence Weston\" \"Bedminster\" \"Bishopston and Ashley Down\" ...\n\n\nWell, it’s complicated. Looking on the above output of list() the object that looks most useful to us is the dat$records.\n\n\n\nQuestion: Based on the output of list(), why do you think is dat$records the most useful part of dat for us?\n\n\n\nAnd if you want to see how the dataframe dat$records looks like, the below function will show the first five rows.\n\nhead(dat$records)\n\n                                 datasetid\n1 jobs-by-ward-by-industry-in-bristol-2020\n2 jobs-by-ward-by-industry-in-bristol-2020\n3 jobs-by-ward-by-industry-in-bristol-2020\n4 jobs-by-ward-by-industry-in-bristol-2020\n5 jobs-by-ward-by-industry-in-bristol-2020\n6 jobs-by-ward-by-industry-in-bristol-2020\n                                  recordid         record_timestamp\n1 8f1ee37587a2233922bfa38b048879368059502e 2021-12-22T11:29:00.712Z\n2 464799297e1d1af8bb980450d062c7eedb787042 2021-12-22T11:29:00.712Z\n3 4cf81b7e8c57fc61c73eb40c4d4556446d20896c 2021-12-22T11:29:00.712Z\n4 e034ff06e7c7d67f6f716c41e8ccd940a36d41fd 2021-12-22T11:29:00.712Z\n5 88ce4a95ea29ef24f38ecd46b3a7e021d325991c 2021-12-22T11:29:00.712Z\n6 0576d71991a12a6102330e89a595d26fcc92fd32 2021-12-22T11:29:00.712Z\n  fields.mining_quarrying_utilities fields.transport_storage_inc_postal\n1                                10                                  20\n2                                 0                                   0\n3                                 0                                 350\n4                                 0                                  15\n5                                 0                                 200\n6                                10                                  50\n  fields.accommodation_food_services fields.public_administration_defence\n1                                100                                    0\n2                                150                                    0\n3                                175                                    0\n4                                800                                   10\n5                                700                                   50\n6                                175                                    0\n  fields.agriculture_forestry_fishing\n1                                   0\n2                                   0\n3                                   0\n4                                   0\n5                                   0\n6                                   0\n  fields.business_administration_support_services fields.retail fields.property\n1                                             125           700              10\n2                                              75           100              15\n3                                            1250           200              20\n4                                            1750           700             450\n5                                             450           900             175\n6                                             225            75              75\n  fields.health fields.motor_trades fields.manufacturing\n1           150                 125                  150\n2           125                  30                   25\n3           125                 300                  900\n4           450                  30                   25\n5           500                 350                  400\n6           500                  20                    5\n  fields.information_communication fields.education fields.ward_code\n1                              225              350        E05010889\n2                              200              250        E05010918\n3                              400              400        E05010890\n4                              800              200        E05010894\n5                              350              350        E05010914\n6                              175              175        E05010916\n  fields.financial_insurance      fields.ward fields.period\n1                       1500     Bishopsworth          2020\n2                         10    Windmill Hill          2020\n3                         10 Brislington East          2020\n4                        600     Clifton Down          2020\n5                         50       Southville          2020\n6                         10     Stoke Bishop          2020\n  fields.professional_scientific_technical fields.construction\n1                                       75                 500\n2                                      125                 125\n3                                      200                 500\n4                                     1000                 300\n5                                      600                 400\n6                                      250                 100\n  fields.arts_entertainment_recreation_other_services fields.wholesale\n1                                                 150              100\n2                                                  75               20\n3                                                  75              450\n4                                                 350               35\n5                                                 500              400\n6                                                  35               15\n\n\nLooking into the above, I can think of the the following necessary data cleaning and wrangling steps:\n\nremove the first three columns as they don’t include any useful data\nremove the string “fields.” from the column names\nalthough not necessary, it is common practice for the first columns to contain identification data such as the ward names and codes.\n\nTo do all the above, we will use the below functions from the dplyr package, which is part of the tidyverse ecosystem.\n\ndat <- dat$records %>% \n  as.data.frame() %>% \n  select(-datasetid, -recordid, -record_timestamp) %>% # remove useless columns\n  rename_with(~sub(\"fields.\", \"\", .)) %>%              # ~ introduces a formula here\n  relocate(ward, ward_code, period) %>%                # looks better\n  glimpse()                                            # a glimpse of the output\n\nRows: 35\nColumns: 21\n$ ward                                         <chr> \"Bishopsworth\", \"Windmill~\n$ ward_code                                    <chr> \"E05010889\", \"E05010918\",~\n$ period                                       <chr> \"2020\", \"2020\", \"2020\", \"~\n$ mining_quarrying_utilities                   <int> 10, 0, 0, 0, 0, 10, 0, 30~\n$ transport_storage_inc_postal                 <int> 20, 0, 350, 15, 200, 50, ~\n$ accommodation_food_services                  <int> 100, 150, 175, 800, 700, ~\n$ public_administration_defence                <int> 0, 0, 0, 10, 50, 0, 0, 40~\n$ agriculture_forestry_fishing                 <int> 0, 0, 0, 0, 0, 0, 0, 0, 0~\n$ business_administration_support_services     <int> 125, 75, 1250, 1750, 450,~\n$ retail                                       <int> 700, 100, 200, 700, 900, ~\n$ property                                     <int> 10, 15, 20, 450, 175, 75,~\n$ health                                       <int> 150, 125, 125, 450, 500, ~\n$ motor_trades                                 <int> 125, 30, 300, 30, 350, 20~\n$ manufacturing                                <int> 150, 25, 900, 25, 400, 5,~\n$ information_communication                    <int> 225, 200, 400, 800, 350, ~\n$ education                                    <int> 350, 250, 400, 200, 350, ~\n$ financial_insurance                          <int> 1500, 10, 10, 600, 50, 10~\n$ professional_scientific_technical            <int> 75, 125, 200, 1000, 600, ~\n$ construction                                 <int> 500, 125, 500, 300, 400, ~\n$ arts_entertainment_recreation_other_services <int> 150, 75, 75, 350, 500, 35~\n$ wholesale                                    <int> 100, 20, 450, 35, 400, 15~\n\n\nLet’s try now to do some analysis based on these data and create some outputs.\n\ndat %>% mutate(total = rowSums(across(c(4:21))),           # total jobs in a ward\n               across(c(4:21),                             # select the columns you are interested in\n                      .names = \"{col}_share\") / total) %>% # divide these columns by total to create industry share within ward  \n                                                           # and name the new columns as oldname_share\n  select(1:2, 23:40) %>%\n  pivot_longer(!c(ward, ward_code),                        # These are the columns I am 'pivoting'\n               names_to = \"industry\",                      # This is how I will name the column with all the industries ...\n               values_to = \"jobs_share\") %>%               # ... and the column with the jobs percentage\n                                                           # Look https://tidyr.tidyverse.org/articles/pivot.html to \n                                                           # understand the long to wide / wide to long transformations.\n  # group_by(ward) %>% \n  # summarise(total = sum(jobs_share))\n  filter(ward == \"Central\") %>%                            # Let's focus on Central Bristol\n  ggplot(aes(x=industry, y=jobs_share)) +                  # ... and create a bar chart for it jobs distribution\n    geom_bar(stat = \"identity\") +\n# to understand the \"identity part go on the Details section of the geom_bar documentation:\n# https://www.rdocumentation.org/packages/ggplot2/versions/1.0.1/topics/geom_bar\n    \n    scale_x_discrete(guide = guide_axis(angle = 90)) +     # This line rotates the x labels,\n    ylab(\"jobs %\")                                         # and here we rename the y axis. \n\n\n\n\nNow, let’s do something slightly more interesting. Let’s create two plots to compare the job distribution between two Bristol wards.\n\ndat %>% mutate(total = rowSums(across(c(4:21))),           # total jobs in a ward\n               across(c(4:21),                             # select the columns you are interested in\n                      .names = \"{col}_share\") / total) %>% # divide these columns by total to create industry share within ward  \n                                                           # and name the new columns as oldname_share\n  select(1:2, 23:40) %>%\n  pivot_longer(!c(ward, ward_code),                        # These are the columns I am 'pivoting'\n               names_to = \"industry\",                      # This is how I will name the column with all the industries ...\n               values_to = \"jobs_share\") %>%               # ... and the column with the jobs percentage\n                                                           # Look https://tidyr.tidyverse.org/articles/pivot.html to \n                                                           # understand the long to wide / wide to long transformations.\n  # group_by(ward) %>% \n  # summarise(total = sum(jobs_share))\n  filter(ward == \"Central\" |\n         ward == \"Easton\") %>%                             # Let's focus on Easton and Central Bristol\n  ggplot(aes(x=industry, y=jobs_share)) +                  # ... and create a bar chart for it jobs distribution\n    geom_bar(stat = \"identity\") +\n    scale_x_discrete(guide = guide_axis(angle = 90)) +     # This line rotates the x labels,\n    ylab(\"jobs %\")                                         # and here we rename the y axis. \n\n\n\n    facet_wrap(~ward, ncol = 2)                            # facet_wrap creates two graphs based on `ward` \n\n<ggproto object: Class FacetWrap, Facet, gg>\n    compute_layout: function\n    draw_back: function\n    draw_front: function\n    draw_labels: function\n    draw_panels: function\n    finish_data: function\n    init_scales: function\n    map_data: function\n    params: list\n    setup_data: function\n    setup_params: function\n    shrink: TRUE\n    train_scales: function\n    vars: function\n    super:  <ggproto object: Class FacetWrap, Facet, gg>\n\n                                                           # and puts one next to each other\n\nWell done! You’ve just utilised Bristol’s open data and are part of the urban open data revolution.\nObviously the x labels are rather ugly.\n\n\n\nTask: using and tweaking the code provided here, can you rename these labels?\n\n\n\n\n\n\nNext task: Search for some other interesting data from opendata.bristol.gov.uk, access it programmatically, do the necessary data wrangling and produce some graphs in a new .Rmd document. Make sure to knit it as .html.\n\n\nIf this is to easy for you, why don’t you check the new Quarto format."
+  },
+  {
+    "objectID": "src/apis.html#accessing-apis-using-existing-r-packages",
+    "href": "src/apis.html#accessing-apis-using-existing-r-packages",
+    "title": "APIs and urban data",
+    "section": "Accessing APIs using existing R packages",
+    "text": "Accessing APIs using existing R packages\nNow you might be lucky and somebody else has already done all the infrastructural / backend work in order for you to easily interrogate an API and access their data. How would this look like? Like another R package. Here is a list with a few examples:\n\nnomisr is a package that allows you to access Nomis data with R. Find here an introduction.\ntidysencus is part of the tidyverse ecosystem and offers access to the US Census. This is the link. Pay extra attention to the spatial data option.\nThe city of Toronto offers an R package to access City of Toronto Open Data Portal.\nSee a relevant book by Bauer, Landesvatter, and Behrens (2022) available here.\n\n\n\n\nAnother task: On your own time, play with these packages and access some of the (urban) data they offer."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Curiculum",
+    "section": "",
+    "text": "This is a very indicative list of lectures and practicals.\nDescribe why networks: from social to spatial.\n\nCities, a very very brief introduction\n\nADD UNIT INFO\n\nSmart cities, urban big data, digital twins and other buzz terms\n\nPractical: APIs and urban data\n\n\n\nLecture on networks L done\nNetwork analysis practical 1\nNetwork analysis practical 2\n\nCsárdi, G., Nepusz, T., & Airoldi, E. M. (2016). Statistical network analysis with igraph. Springer. Available online at https://www.uni-due.de/hummell/sna/igraph/docs/.BookDraft-CsardiNepuszAiroldi2016.pdf. [methods]\nDegree distribution (see help_degree_sistribution.Rmd)\n\nNetwork science, urban laws and scaling L done\n\nBuild and compare modelsP done, decide if I need to describe sample_ syntax\n\n\nNetwork modelling??? NO - Light and Moody (2020), Ch. 12-15 - Kolaczyk and Csárdi (2020) Ch 6 - ERGM and other - link prediction 7 - https://statnet.org/\nEconomic complexity??\n\nLecture on transport geography.\n\nFor spatial interactions: - Bettencourt 2021 8.1.3 for Maximum entropym radiation and a variant of urban scaling - https://www.nature.com/articles/nature10856\nFor network analysis: - Barthelemy 2018 Ch. 7. It has examples for road and subway studies + some policy elements. No code.\n\nNetworks small scale / Spatial networks\n\nhttps://cran.r-project.org/web/packages/sfnetworks/\nBoeing\nhttps://osf.io/78yub/\nLovelace’s book, Geocomputation with R https://geocompr.robinlovelace.net/\n\n\nuse sfnetworks as it contains igraph. Use the vignettes. https://cran.r-project.org/web/packages/sfnetworks/index.html\n\nPractical on spatial interaction modelling Kolaczyk and Csárdi (2020) Ch 9\nUrban policies and causality\n\n\n\n\n\nReferences\n\nKolaczyk, Eric D, and Gábor Csárdi. 2020. Statistical Analysis of Network Data with r. Second. Vol. 65. Springer.\n\n\nLight, Ryan, and James Moody. 2020. The Oxford Handbook of Social Networks. Oxford University Press."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Unit description and aims",
+    "section": "",
+    "text": "This unit introduces students to the research fields of Urban Analytics and City Science. It enables them to utilise cutting-edge methods from these fields and pair them with new sources of data to answer urging research questions about cities. Moreover, the students will develop a critical understanding of these tools and data as well as their applicability and value for urban research, planning and urban policy making. Emphasis will be placed on the interactions between digital technologies and urban space and the smart city agenda.\nEmphasis will be placed on the network understanding of our cities. Networks have long formed a distinctive element of urban research. Various sub-fields of geography, such as transport, economic and urban geography, are heavily based on networks both from a conceptual and an analytical point of view. Moreover, the digital revolution and developments related to social media and connectivity as well as heightened flows of information within and between urban regions, have greatly enhanced the relevance of a network approach to contemporary socio-economic and cultural trends. This module will approach the above issues both from a theoretical and practical perspective.\nThe first part of this unit will be dedicated to concepts and tools from social network analysis, including hands-on practicals. This part will provide the fundamental knowledge of this module. Networks analysis will then lead to the concept of scaling in urban science, which will be linked with essential urban economic elements such as agglomeration economies and urban hierarchies. The practical knowledge of network analysis will be used as a stepping stone to understand ideas and methods from the field of transport geography regarding modelling flows within and between cities. Common thread here is the network structure which is an essential element of both transport geography and social network analysis. The empirical element of this part will deal with basic concepts such as gravity models as well as connectivity and accessibility measures.\nThe unit aims:"
+  },
+  {
+    "objectID": "about.html#intended-learning-outcomes",
+    "href": "about.html#intended-learning-outcomes",
+    "title": "Unit description and aims",
+    "section": "Intended Learning Outcomes",
+    "text": "Intended Learning Outcomes\n\nBe able to creatively utilise cutting edge methods from Urban Analytics and Urban Science in order to answer urban research questions.\nBe able to critically assess the value of and utilise new sources of big data for urban research.\nIdentify key concepts and theories of digital transformations and smart cities.\nPresent the results of statistical analysis in a clear, cogent manner, using effective visualizations, tables, and written argument."
+  },
+  {
+    "objectID": "about.html#assessment-details",
+    "href": "about.html#assessment-details",
+    "title": "Unit description and aims",
+    "section": "Assessment details",
+    "text": "Assessment details\nOne 3500-word report (100% of the unit mark) for an urban data analysis project. The report will be written in a reproducible manner and will include the necessary code for the data analysis and the outputs (e.g. an Rmarkddown document)."
+  },
+  {
+    "objectID": "about.html#software",
+    "href": "about.html#software",
+    "title": "Unit description and aims",
+    "section": "Software",
+    "text": "Software\nAll the analysis will be done using R and RStudio."
+  }
+]

@@ -1,0 +1,69 @@
+---
+title: "Unit description and aims"
+---
+
+This unit introduces students to the research fields of Urban Analytics and City Science. 
+It enables them to utilise cutting-edge methods from these fields and pair them 
+with new sources of data to answer urging research questions about cities. Moreover, 
+the students will develop a critical understanding of these tools and data as 
+well as their applicability and value for urban research, planning and urban policy 
+making. Emphasis will be placed on the interactions between digital technologies 
+and urban space and the smart city agenda. 
+
+Emphasis will be placed on the *network understanding* of our cities. Networks 
+have long formed a distinctive element of urban research. Various sub-fields of 
+geography, such as transport, economic and urban geography, are heavily based on 
+networks both from a conceptual and an analytical point of view. Moreover, the digital 
+revolution and developments related to social media and connectivity as well as 
+heightened flows of information within and between urban regions, have greatly enhanced 
+the relevance of a network approach to contemporary socio-economic and cultural 
+trends. This module will approach the above issues both from a theoretical and practical 
+perspective.
+
+The first part of this unit will be dedicated to concepts and tools from social 
+network analysis, including hands-on practicals. This part will provide the fundamental 
+knowledge of this module. Networks analysis will then lead to the concept of scaling 
+in urban science, which will be linked with essential urban economic elements such 
+as agglomeration economies and urban hierarchies. The practical knowledge of network 
+analysis will be used as a stepping stone to understand ideas and methods from the 
+field of transport geography regarding modelling flows within and between cities. 
+Common thread here is the network structure which is an essential element of both 
+transport geography and social network analysis. The empirical element of this part 
+will deal with basic concepts such as gravity models as well as connectivity and 
+accessibility measures. 
+
+
+The unit aims: 
+
+- To enable students to use tools and methods from the Urban Analytics and City 
+Science fields in order to answer urban questions. 
+
+- To critically assess the value of new sources of big data in urban research. 
+
+- To use such data and tools to provide theoretically grounded urban research which 
+can help urban planners and policy makers to better understand cities. 
+
+- To obtain a broader and critical understanding of how the digital revolution affects 
+cities. 
+
+## Intended Learning Outcomes 
+
+1. Be able to creatively utilise cutting edge methods from Urban Analytics and Urban 
+Science in order to answer urban research questions. 
+
+2. Be able to critically assess the value of and utilise new sources of big data 
+for urban research. 
+
+3. Identify key concepts and theories of digital transformations and smart cities. 
+
+4. Present the results of statistical analysis in a clear, cogent manner, using effective visualizations, tables, and written argument. 
+
+
+## Assessment details
+
+One 3500-word report (100% of the unit mark) for an urban data analysis project. 
+The report will be written in a reproducible manner and will include the necessary code for the data analysis and the outputs (e.g. an Rmarkddown document). 
+
+## Software
+
+All the analysis will be done using `R` and `RStudio`.

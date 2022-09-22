@@ -1,0 +1,59 @@
+---
+title: "Curiculum"
+bibliography: src/references.bib
+---
+
+**TEST_with_net_science_full_targets_terminal**
+
+This is a very indicative list of lectures and practicals.
+
+Describe why networks: from social to spatial.
+
+1.  [Cities, a very very brief introduction](src/why_cities.qmd)
+
+    -   **ADD UNIT INFO**
+
+2.  [Smart cities, urban big data, digital twins and other buzz terms](src/smart_cities.qmd)
+
+    -   Practical: [APIs and urban data](src/apis.Rmd) 
+    
+    <!-- 2. digital traces **P**: ??? think of traces --> 
+    
+    <!-- 3. Social Media **P**: Twitter -->
+
+3.  Lecture on networks **L** *done*
+
+4.  Network analysis practical 1
+
+5.  Network analysis practical 2
+
+    -   Csárdi, G., Nepusz, T., & Airoldi, E. M. (2016). Statistical network analysis with igraph. Springer. Available online at https://www.uni-due.de/hummell/sna/igraph/docs/.BookDraft-CsardiNepuszAiroldi2016.pdf. \[*methods*\]
+
+    -   Degree distribution (see help_degree_sistribution.Rmd)
+
+6.  Network science, urban laws and scaling **L** *done*
+
+    -   Build and compare models**P** *done*, *decide if I need to describe sample\_* syntax
+
+Network modelling??? *NO* - @light2020oxford, Ch. 12-15 - @kolaczyk2020statistical Ch 6 - ERGM and other - link prediction 7 - https://statnet.org/
+
+Economic complexity??
+
+7.  Lecture on transport geography.
+
+For spatial interactions: - Bettencourt 2021 8.1.3 for Maximum entropym radiation and a variant of urban scaling - https://www.nature.com/articles/nature10856
+
+For network analysis: - Barthelemy 2018 Ch. 7. It has examples for road and subway studies + some policy elements. No code.
+
+8.  Networks small scale / Spatial networks
+
+    -   https://cran.r-project.org/web/packages/sfnetworks/
+    -   Boeing
+    -   https://osf.io/78yub/
+    -   Lovelace's book, Geocomputation with R https://geocompr.robinlovelace.net/
+
+use sfnetworks as it contains igraph. Use the vignettes. https://cran.r-project.org/web/packages/sfnetworks/index.html
+
+9.  Practical on spatial interaction modelling @kolaczyk2020statistical Ch 9
+
+10. Urban policies and causality

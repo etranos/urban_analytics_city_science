@@ -1,0 +1,1 @@
+bibliography: "`r system('kpsewhich ../src/references.bib', intern = TRUE)`"

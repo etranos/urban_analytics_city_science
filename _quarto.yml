@@ -1,0 +1,34 @@
+project:
+  type: website
+  output-dir: docs
+  render: 
+  - src/smart_cities.qmd
+  - src/why_cities.qmd 
+  - src/apis.Rmd
+  - index.qmd
+  - about.qmd
+
+website:
+  title: "Urban analytics and city science"
+  navbar:
+    left:
+      - text: "Unit description"
+        file: about.qmd
+        
+      - text: "Lectures"
+        menu:
+          - src/smart_cities.qmd
+          - src/why_cities.qmd
+          
+      - text: "Practicals"
+        menu: 
+          - src/apis.Rmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+editor: visual
+
