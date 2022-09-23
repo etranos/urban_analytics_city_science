@@ -14,6 +14,7 @@ project:
   - index.qmd
   - src/syllabus.qmd
   - src/readings.qmd
+  - src/author.qmd
 
 website:
   title: "Urban analytics and city science"
@@ -42,6 +43,10 @@ website:
           - src/apis.Rmd
           - src/network_analysis.Rmd
           - src/network_models.Rmd
+      - section: "Unit leader"
+        contents: 
+          - text: "Professor Emmanouil Tranos"
+            file: src/author.qmd
           
 format:
   html:

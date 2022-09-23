@@ -1405,5 +1405,12 @@
     "title": "Key readings",
     "section": "",
     "text": "All lecture slides include a reference list. Please go through these materials.\nA indicative list of key readings include:\nAlso, the Big Book of R is a great collection of R related books. Some of these include:\nPlease don’t limit your reading in the following list."
+  },
+  {
+    "objectID": "src/author.html",
+    "href": "src/author.html",
+    "title": "Urban analytics and city science",
+    "section": "",
+    "text": "I am a Professor of Quantitative Human Geography at the University of Bristol and a Fellow at the Alan Turing Institute. My research has been exposing the spatial dimensions of digital technologies and the digital economy from their early stages until today. I have published on issues related to the geography of the internet infrastructure, the economic impacts that such digital infrastructure can generate on cities and regions and the position of cities within spatial, complex networks. I have a strong interest and expertise on the use of new sources of big data, such as data from mobile phone operators, to better understand the complexities of smart cities and urban systems. Using such data and relevant computational methods, my research has explored the interplay between geography, spatial structure and social networks and how these support knowledge transfer and creation. Together with my team, we have explored how access to digital tools can intervene with some key dimensions of spatial structure including commuting and the role of distance.\nRecently, we have been exploring the geography and the evolution of the creation of online content and its interrelation with cities and spatial structure using web data and digital archives. Our research framework enables us to access how early engagement with digital technologies may intervene with future regional productivity pathways.\nI am an Editor of the Regional Science Policy and Practice journal, the Conferences Officer of QMRG, a Board Member of the British and Irish Section of RSAI and the Director of the MSc in Geographic Data Science and Spatial Analytics the MRes in Advanced Quantitative Methods (AQM).\nEmail me at: e [dot] tranos [at] bristol [dot] ac [dot] uk\nAffiliations:\n\nQuantitative Spatial Science, University of Bristol\nSchool of Geographical Sciences, University of Bristol\nThe Alan Turing Institute\n\nProfessor Emmanouil Tranos"
   }
 ]
