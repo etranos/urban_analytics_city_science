@@ -10,30 +10,39 @@ project:
   - src/apis.Rmd
   - src/network_analysis.Rmd
   - src/network_models.Rmd
+  - src/description.qmd
   - index.qmd
-  - about.qmd
+  - src/syllabus.qmd
+  - src/readings.qmd
 
 website:
   title: "Urban analytics and city science"
-  navbar:
-    left:
-      - text: "Unit description"
-        file: about.qmd
-        
-      - text: "Lectures"
-        menu:
-          - src/smart_cities.qmd
+  sidebar:
+    tools:
+      - icon: github
+        href: https://github.com/etranos/urban_analytics_city_science
+    style: "docked"
+    search: false
+    contents:
+      - section: "Content"
+        contents:
+          - src/description.qmd
+          - src/syllabus.qmd
+          - src/readings.qmd
+      - section: "Lectures"
+        contents:
           - src/why_cities.qmd
-          - src/intro_networks.qmd
+          - src/smart_cities.qmd
+          - text: "Networks: an introduction"
+            file: src/intro_networks.qmd
           - src/network_science.qmd
           - src/diversity.qmd
-          
-      - text: "Practicals"
-        menu: 
+      - section: "Practicals"
+        contents:
           - src/apis.Rmd
           - src/network_analysis.Rmd
           - src/network_models.Rmd
-
+          
 format:
   html:
     theme: cosmo

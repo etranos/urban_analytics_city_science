@@ -9,7 +9,7 @@ author: |
 format:
   revealjs:
     embed-resources: true
-editor: visual
+editor: source
 bibliography: references.bib
 ---
 
@@ -25,40 +25,6 @@ library(rprojroot)
 path <- find_rstudio_root_file()
 images.path <- paste0(path, "/images/")
 ```
-
-## Urban analytics and city science
-
-<small>
-
-1.  Why cities **L**.
-
-2.  Smart cities and big data **L**
-
-3.  Lecture on networks **L**
-
-4.  Network analysis practical 1
-
-5.  Network analysis practical 2
-
-6.  Network science, urban laws and scaling **L**
-
-7.  Networks small scale
-
-8.  Lecture on spatial interactions
-
-9.  Practical on spatial interaction modelling
-
-10. Urban policies and causality
-
-</small>
-
-## Urban analytics and city science
-
-Aims
-
--   Readings, full reference list and expectations
--   blah
--   blah
 
 ## Why should we care about cities?
 
@@ -282,7 +248,7 @@ In other words, collocation of people and firms increases efficiency.
 
 ::: r-fit-text
 |                    |                                                                                                                        |
-|---------------------|---------------------------------------------------|
+|----------------------|--------------------------------------------------|
 | Heterogeneity      | Differences in information, profession, culture, race, ethnicity, and economic status                                  |
 | Interconnectivity  | Interdependence between people, organizations, and infrastructure in networks                                          |
 | Scaling            | Self-similar economies of scale per capita in material infrastructure and increasing returns to socioeconomic activity |
@@ -296,8 +262,10 @@ In other words, collocation of people and firms increases efficiency.
 
 <center>
 
-```{r, echo=FALSE, results='asis'}
+```{r}
 library(DiagrammeR)
+
+# suppressPackageStartupMessages(library(widgetframe))
 
 mermaid("
 graph TB
@@ -305,6 +273,8 @@ A[Individual] --> B[Neighbourhood]
 B --> C[City]
 C --> D[Urban systems]
 ")
+
+# widgetframe::frameWidget(l)
 ```
 
 </center>

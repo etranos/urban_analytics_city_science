@@ -6,11 +6,11 @@ author: |
   |
   | University of Bristol, Alan Turing Institute 
   | e.tranos@bristol.ac.uk, [\@EmmanouilTranos](https://twitter.com/EmmanouilTranos),  [etranos.info](https://etranos.info/)
-
 output:
   html_document:
     toc: true
     toc_float: true
+editor: source
 ---
 
 ## Resources

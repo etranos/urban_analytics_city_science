@@ -1,0 +1,44 @@
+project:
+  type: website
+  output-dir: docs
+  render: 
+  - src/smart_cities.qmd
+  - src/why_cities.qmd
+  - src/intro_networks.qmd
+  - src/network_science.qmd
+  - src/diversity.qmd
+  - src/apis.Rmd
+  - src/network_analysis.Rmd
+  - src/network_models.Rmd
+  - index.qmd
+  - about.qmd
+
+website:
+  title: "Urban analytics and city science"
+  navbar:
+    left:
+      - text: "Unit description"
+        file: about.qmd
+        
+      - text: "Lectures"
+        menu:
+          - src/smart_cities.qmd
+          - src/why_cities.qmd
+          - src/intro_networks.qmd
+          - src/network_science.qmd
+          - src/diversity.qmd
+          
+      - text: "Practicals"
+        menu: 
+          - src/apis.Rmd
+          - src/network_analysis.Rmd
+          - src/network_models.Rmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+editor: visual
+

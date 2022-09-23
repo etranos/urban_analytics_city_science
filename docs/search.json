@@ -130,7 +130,7 @@
     "href": "src/why_cities.html#urban-analytics-and-city-science",
     "title": "Cities, a very very brief introduction",
     "section": "Urban analytics and city science",
-    "text": "Urban analytics and city science\n\n\nWhy cities L.\nSmart cities and big data L\nLecture on networks L\nNetwork analysis practical 1\nNetwork analysis practical 2\nNetwork science, urban laws and scaling L\nNetworks small scale\nLecture on spatial interactions\nPractical on spatial interaction modelling\nUrban policies and causality"
+    "text": "Urban analytics and city science\n\nUnderstand cities and how they change\nUse critically and effectively urban data\nUnderstand and master methodological tools\nSupport urban policy making"
   },
   {
     "objectID": "src/why_cities.html#urban-analytics-and-city-science-1",
@@ -1117,7 +1117,7 @@
     "href": "src/diversity.html#k-means-2",
     "title": "Diversity in cities",
     "section": "K-means",
-    "text": "K-means\n\nkclust = kmeans(la.sic[,-1], centers = 10, nstart = 10) # be aware of the [,-1]\nstr(kclust)\n\nList of 9\n $ cluster     : int [1:33] 1 5 10 7 5 2 3 4 5 4 ...\n $ centers     : num [1:10, 1:1036] 0.099 0.0444 0.0521 0.036 0.0361 ...\n  ..- attr(*, \"dimnames\")=List of 2\n  .. ..$ : chr [1:10] \"1\" \"2\" \"3\" \"4\" ...\n  .. ..$ : chr [1:1036] \"82990 - Other business support service activities n.e.c.\" \"64209 - Activities of other holding companies n.e.c.\" \"70229 - Management consultancy activities other than financial management\" \"64999 - Financial intermediation not elsewhere classified\" ...\n $ totss       : num 0.0945\n $ withinss    : num [1:10] 0.00271 0.0042 0.0019 0.00182 0.00609 ...\n $ tot.withinss: num 0.0235\n $ betweenss   : num 0.071\n $ size        : int [1:10] 2 6 3 2 8 1 5 1 2 3\n $ iter        : int 2\n $ ifault      : int 0\n - attr(*, \"class\")= chr \"kmeans\"\n\n\ncenters is 10 x 1036: 1036 is the number of SIC codes."
+    "text": "K-means\n\nkclust = kmeans(la.sic[,-1], centers = 10, nstart = 10) # be aware of the [,-1]\nstr(kclust)\n\nList of 9\n $ cluster     : int [1:33] 2 5 4 7 5 9 10 6 5 6 ...\n $ centers     : num [1:10, 1:1036] 0.0443 0.099 0.0424 0.0476 0.0361 ...\n  ..- attr(*, \"dimnames\")=List of 2\n  .. ..$ : chr [1:10] \"1\" \"2\" \"3\" \"4\" ...\n  .. ..$ : chr [1:1036] \"82990 - Other business support service activities n.e.c.\" \"64209 - Activities of other holding companies n.e.c.\" \"70229 - Management consultancy activities other than financial management\" \"64999 - Financial intermediation not elsewhere classified\" ...\n $ totss       : num 0.0945\n $ withinss    : num [1:10] 0 0.00271 0 0.00194 0.00609 ...\n $ tot.withinss: num 0.0235\n $ betweenss   : num 0.071\n $ size        : int [1:10] 1 2 1 3 8 2 5 2 6 3\n $ iter        : int 3\n $ ifault      : int 0\n - attr(*, \"class\")= chr \"kmeans\"\n\n\ncenters is 10 x 1036: 1036 is the number of SIC codes."
   },
   {
     "objectID": "src/diversity.html#choosing-k",
@@ -1285,7 +1285,7 @@
     "href": "src/network_analysis.html#network-attributes",
     "title": "Network analysis practical",
     "section": "Network attributes",
-    "text": "Network attributes\nThe below igraph functions illustrate some attributes of the network with all the flows.\n\n# It provides information about the type of the net.all object. Not surprisingly,\n# it is an igraph network.\nclass(net.all)\n\n[1] \"igraph\"\n\n# It displays the network file, the number of nodes and edges (345 and 92,688\n# in this case).\nnet.all\n\nIGRAPH 5b9bdb5 DNW- 346 92688 -- \n+ attr: name (v/c), cmlad11nm (v/c), weight (e/n)\n+ edges from 5b9bdb5 (vertex names):\n [1] E41000001->E41000002 E41000001->E41000003 E41000001->E41000004\n [4] E41000001->E41000005 E41000001->E41000006 E41000001->E41000007\n [7] E41000001->E41000009 E41000001->E41000010 E41000001->E41000011\n[10] E41000001->E41000012 E41000001->E41000013 E41000001->E41000014\n[13] E41000001->E41000015 E41000001->E41000016 E41000001->E41000017\n[16] E41000001->E41000018 E41000001->E41000019 E41000001->E41000020\n[19] E41000001->E41000021 E41000001->E41000022 E41000001->E41000023\n[22] E41000001->E41000025 E41000001->E41000026 E41000001->E41000029\n+ ... omitted several edges\n\n# It displays the vertices (aka nodes)\nV(net.all)\n\n+ 346/346 vertices, named, from 5b9bdb5:\n  [1] E41000001 E41000002 E41000003 E41000004 E41000005 E41000006 E41000007\n  [8] E41000008 E41000009 E41000010 E41000011 E41000012 E41000013 E41000014\n [15] E41000015 E41000016 E41000017 E41000018 E41000019 E41000020 E41000021\n [22] E41000022 E41000023 E41000024 E41000025 E41000026 E41000027 E41000028\n [29] E41000029 E41000030 E41000031 E41000032 E41000033 E41000034 E41000035\n [36] E41000036 E41000037 E41000038 E41000039 E41000040 E41000041 E41000042\n [43] E41000043 E41000044 E41000045 E41000046 E41000047 E41000048 E41000049\n [50] E41000050 E41000051 E41000052 E41000053 E41000054 E41000055 E41000056\n [57] E41000057 E41000058 E41000059 E41000060 E41000061 E41000062 E41000063\n [64] E41000064 E41000065 E41000066 E41000067 E41000068 E41000069 E41000070\n+ ... omitted several vertices\n\n# It displays the vertex attributes. In this case the local authority codes.\nvertex_attr(net.all) %>% glimpse()\n\nList of 2\n $ name     : chr [1:346] \"E41000001\" \"E41000002\" \"E41000003\" \"E41000004\" ...\n $ cmlad11nm: chr [1:346] \"Hartlepool\" \"Middlesbrough\" \"Redcar and Cleveland\" \"Stockton-on-Tees\" ...\n\n# the output of vertex_attr() is quite long, this is why I chained it with glimpse()\n\n# It displays the edges.\nE(net.all) %>% glimpse()\n\n 'igraph.es' int [1:92688] 1 2 3 4 5 6 7 8 9 10 ...\n - attr(*, \"vnames\")= chr [1:92688] \"E41000001|E41000002\" \"E41000001|E41000003\" \"E41000001|E41000004\" \"E41000001|E41000005\" ...\n - attr(*, \"env\")=<weakref> \n - attr(*, \"graph\")= chr \"5b9bdb50-3aa4-11ed-ba5e-d7d7bdd88d14\"\n\n# the output of E() is quite long, this is why I chained it with glimpse()\n\n# It displays the weights for each edge. In our case the weights represent commuters.\nedge.attributes(net.all)$weight %>% glimpse()\n\n num [1:92688] 1591 534 3865 433 5 ...\n\n# as above re: glimpse()\n\n# Asks whether the network is weighted or not\nis.weighted(net.all)\n\n[1] TRUE\n\n\n\n\n\nQuestion: How many nodes and edges are there for the other types of networks? What do these differences mean?"
+    "text": "Network attributes\nThe below igraph functions illustrate some attributes of the network with all the flows.\n\n# It provides information about the type of the net.all object. Not surprisingly,\n# it is an igraph network.\nclass(net.all)\n\n[1] \"igraph\"\n\n# It displays the network file, the number of nodes and edges (345 and 92,688\n# in this case).\nnet.all\n\nIGRAPH f2608f6 DNW- 346 92688 -- \n+ attr: name (v/c), cmlad11nm (v/c), weight (e/n)\n+ edges from f2608f6 (vertex names):\n [1] E41000001->E41000002 E41000001->E41000003 E41000001->E41000004\n [4] E41000001->E41000005 E41000001->E41000006 E41000001->E41000007\n [7] E41000001->E41000009 E41000001->E41000010 E41000001->E41000011\n[10] E41000001->E41000012 E41000001->E41000013 E41000001->E41000014\n[13] E41000001->E41000015 E41000001->E41000016 E41000001->E41000017\n[16] E41000001->E41000018 E41000001->E41000019 E41000001->E41000020\n[19] E41000001->E41000021 E41000001->E41000022 E41000001->E41000023\n[22] E41000001->E41000025 E41000001->E41000026 E41000001->E41000029\n+ ... omitted several edges\n\n# It displays the vertices (aka nodes)\nV(net.all)\n\n+ 346/346 vertices, named, from f2608f6:\n  [1] E41000001 E41000002 E41000003 E41000004 E41000005 E41000006 E41000007\n  [8] E41000008 E41000009 E41000010 E41000011 E41000012 E41000013 E41000014\n [15] E41000015 E41000016 E41000017 E41000018 E41000019 E41000020 E41000021\n [22] E41000022 E41000023 E41000024 E41000025 E41000026 E41000027 E41000028\n [29] E41000029 E41000030 E41000031 E41000032 E41000033 E41000034 E41000035\n [36] E41000036 E41000037 E41000038 E41000039 E41000040 E41000041 E41000042\n [43] E41000043 E41000044 E41000045 E41000046 E41000047 E41000048 E41000049\n [50] E41000050 E41000051 E41000052 E41000053 E41000054 E41000055 E41000056\n [57] E41000057 E41000058 E41000059 E41000060 E41000061 E41000062 E41000063\n [64] E41000064 E41000065 E41000066 E41000067 E41000068 E41000069 E41000070\n+ ... omitted several vertices\n\n# It displays the vertex attributes. In this case the local authority codes.\nvertex_attr(net.all) %>% glimpse()\n\nList of 2\n $ name     : chr [1:346] \"E41000001\" \"E41000002\" \"E41000003\" \"E41000004\" ...\n $ cmlad11nm: chr [1:346] \"Hartlepool\" \"Middlesbrough\" \"Redcar and Cleveland\" \"Stockton-on-Tees\" ...\n\n# the output of vertex_attr() is quite long, this is why I chained it with glimpse()\n\n# It displays the edges.\nE(net.all) %>% glimpse()\n\n 'igraph.es' int [1:92688] 1 2 3 4 5 6 7 8 9 10 ...\n - attr(*, \"vnames\")= chr [1:92688] \"E41000001|E41000002\" \"E41000001|E41000003\" \"E41000001|E41000004\" \"E41000001|E41000005\" ...\n - attr(*, \"env\")=<weakref> \n - attr(*, \"graph\")= chr \"f2608f6c-3b4f-11ed-bff1-0597cc652dd2\"\n\n# the output of E() is quite long, this is why I chained it with glimpse()\n\n# It displays the weights for each edge. In our case the weights represent commuters.\nedge.attributes(net.all)$weight %>% glimpse()\n\n num [1:92688] 1591 534 3865 433 5 ...\n\n# as above re: glimpse()\n\n# Asks whether the network is weighted or not\nis.weighted(net.all)\n\n[1] TRUE\n\n\n\n\n\nQuestion: How many nodes and edges are there for the other types of networks? What do these differences mean?"
   },
   {
     "objectID": "src/network_analysis.html#network-measures",
@@ -1344,41 +1344,6 @@
     "text": "This is not a Machine Learning introduction…\n… but maybe a sneak preview of the philosophy behind modern data science approaches to answer computational problems. We are using the caret packahe to\n\nsplit our data into test and training\ntrain a lm()andglm()` model using the training data set\nuse the estimated models to make out-of-sample predictions using the test data set\nplot the results and the relevant metrics and choose the best model.\n\nThis is obviously an oversimplification with quite a few errors, but it provides a good preview of machine learning frameworks.\nIt is worth browsing the caret package.\ncommuting.si <- commuting.si %>% \n  drop_na() %>% \n  glimpse()\n  \nset.seed(3456)\ntrainIndex <- createDataPartition(commuting.si$`All categories: Method of travel to work`, p = .8, \n                                  list = FALSE, \n                                  times = 1)\ndim(trainIndex)\ndim(commuting.si)\n\ncommuting.si.train <- commuting.si[ trainIndex,]\ncommuting.si.test  <- commuting.si[-trainIndex,]\n\nmodel.lm <- train(`All categories: Method of travel to work` ~\n                    distance + resident + workplace,\n                    data = commuting.si,\n                    method = \"lm\")\n\npredictions.lm <- predict(model.lm, commuting.si.test)\nlm.metrics <- postResample(pred = predictions.lm, obs = commuting.si.test$`All categories: Method of travel to work`) \n\nmodel.glm <- train(`All categories: Method of travel to work` ~\n                    distance + resident + workplace,\n                    data = commuting.si,\n                    method = \"glmnet\",\n                    family = \"poisson\", \n                    na.action = na.omit)\n\npredictions.glm <- predict(model.glm, commuting.si.test)\nglm.metrics <- postResample(pred = predictions.glm, obs = commuting.si.test$`All categories: Method of travel to work`) \nbind_rows(lm.metrics, glm.metrics) %>% \n  mutate(Model = c(\"lm\", \"glm\")) %>% \n  select(Model, Rsquared, RMSE, MAE) %>% \n  kable(digits = 3)\n\n\n\nQuestion Which model would you choose?\n\n\n\npredict.lm.plot <- bind_cols(commuting.si.test$`All categories: Method of travel to work`, predictions.lm) %>% \n  rename(y = '...1',\n         y_hat = '...2') %>% \n  ggplot(aes(x=y, y=y_hat)) + geom_point() + ggtitle(\"lm\") + \n  theme(plot.title = element_text(hjust = 0.5))\n\npredict.glm.plot <- bind_cols(commuting.si.test$`All categories: Method of travel to work`, predictions.glm) %>% \n  rename(y = '...1',\n         y_hat = '...2') %>% \n  ggplot(aes(x=y, y=y_hat)) + geom_point() + ggtitle(\"glm\") + \n  theme(plot.title = element_text(hjust = 0.5))\n\nlibrary(patchwork)\npredict.lm.plot + predict.glm.plot"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Syllabus",
-    "section": "",
-    "text": "Spatial interaction modelling TODO\n\n\n\nUrban policies and causality TODO"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Unit description and aims",
-    "section": "",
-    "text": "This unit introduces students to the research fields of Urban Analytics and City Science. It enables them to utilise cutting-edge methods from these fields and pair them with new sources of data to answer urging research questions about cities. Moreover, the students will develop a critical understanding of these tools and data as well as their applicability and value for urban research, planning and urban policy making. Emphasis will be placed on the interactions between digital technologies and urban space and the smart city agenda.\nEmphasis will be placed on the network understanding of our cities. Networks have long formed a distinctive element of urban research. Various sub-fields of geography, such as transport, economic and urban geography, are heavily based on networks both from a conceptual and an analytical point of view. Moreover, the digital revolution and developments related to social media and connectivity as well as heightened flows of information within and between urban regions, have greatly enhanced the relevance of a network approach to contemporary socio-economic and cultural trends. This module will approach the above issues both from a theoretical and practical perspective.\nThe first part of this unit will be dedicated to concepts and tools from social network analysis, including hands-on practicals. This part will provide the fundamental knowledge of this module. Networks analysis will then lead to the concept of scaling in urban science, which will be linked with essential urban economic elements such as agglomeration economies and urban hierarchies. The practical knowledge of network analysis will be used as a stepping stone to understand ideas and methods from the field of transport geography regarding modelling flows within and between cities. Common thread here is the network structure which is an essential element of both transport geography and social network analysis. The empirical element of this part will deal with basic concepts such as gravity models as well as connectivity and accessibility measures.\nThe unit aims:"
-  },
-  {
-    "objectID": "about.html#intended-learning-outcomes",
-    "href": "about.html#intended-learning-outcomes",
-    "title": "Unit description and aims",
-    "section": "Intended Learning Outcomes",
-    "text": "Intended Learning Outcomes\n\nBe able to creatively utilise cutting edge methods from Urban Analytics and Urban Science in order to answer urban research questions.\nBe able to critically assess the value of and utilise new sources of big data for urban research.\nIdentify key concepts and theories of digital transformations and smart cities.\nPresent the results of statistical analysis in a clear, cogent manner, using effective visualizations, tables, and written argument."
-  },
-  {
-    "objectID": "about.html#assessment-details",
-    "href": "about.html#assessment-details",
-    "title": "Unit description and aims",
-    "section": "Assessment details",
-    "text": "Assessment details\nOne 3500-word report (100% of the unit mark) for an urban data analysis project. The report will be written in a reproducible manner and will include the necessary code for the data analysis and the outputs (e.g. an Rmarkddown document)."
-  },
-  {
-    "objectID": "about.html#software",
-    "href": "about.html#software",
-    "title": "Unit description and aims",
-    "section": "Software",
-    "text": "Software\nAll the analysis will be done using R and RStudio."
-  },
-  {
     "objectID": "src/network_models.html",
     "href": "src/network_models.html",
     "title": "Network models in practice",
@@ -1391,5 +1356,54 @@
     "title": "Network models in practice",
     "section": "Aims of the practical",
     "text": "Aims of the practical\n\nSimulate network models\nAnalyse their key attributes\nCompare them\n\nigraph enables us to generate networks based on some of the some key network models we discussed. I list below some of these functions:\n\nsample_gnp()\nsample_smallworld()\nsample_pa()\n\nGo to igraph’s webpage and familiarise yourselves with the syntax of these functions.\n\n\n\nTask: Create three networks using these three functions with, let’s say, (n = 500) nodes each.\n\n\nVisualise and compare these networks.\n\n\n\nImportantly, just before you generate a network with one of the above three functions you will need to define a random seed for reproducibility reasons, e.g. set.seed(55).\n\n\n\nQuestion: Without defining a random seed, generate a network as per the above, run some type of quick analysis about this network and then repeat the code by generating a second network with the exact same characteristics. Run the same analysis for the second network. Are the results the same?\n\n\nWhy do we need to define the random seed ?\n\n\n\nExamples of modelled networks\n\nsample_gnp(n = 500, p = 0.02) %>% \n  plot(layout=layout_in_circle, vertex.label=NA)\n\n\n\nsample_pa(n = 500, directed=FALSE) %>% \n  plot(layout=layout_in_circle, vertex.label=NA)\n\n\n\nsample_smallworld(dim = 1, size = 500, nei = 5, p = 0.05) %>% \n  plot(layout=layout_in_circle, vertex.label=NA)\n\n\n\nmake_lattice(dim =1, length = 100, nei = 5) %>% \n  plot(vertex.label=NA)"
+  },
+  {
+    "objectID": "src/description.html",
+    "href": "src/description.html",
+    "title": "Unit description and aims",
+    "section": "",
+    "text": "This unit introduces students to the research fields of Urban Analytics and City Science. It enables them to utilise cutting-edge methods from these fields and pair them with new sources of data to answer urging research questions about cities. Moreover, the students will develop a critical understanding of these tools and data as well as their applicability and value for urban research, planning and urban policy making. Emphasis will be placed on the interactions between digital technologies and urban space and the smart city agenda.\nEmphasis will be placed on the network understanding of our cities. Networks have long formed a distinctive element of urban research. Various sub-fields of geography, such as transport, economic and urban geography, are heavily based on networks both from a conceptual and an analytical point of view. Moreover, the digital revolution and developments related to social media and connectivity as well as heightened flows of information within and between urban regions, have greatly enhanced the relevance of a network approach to contemporary socio-economic and cultural trends. This module will approach the above issues both from a theoretical and practical perspective.\nThe first part of this unit will be dedicated to concepts and tools from social network analysis, including hands-on practicals. This part will provide the fundamental knowledge of this module. Networks analysis will then lead to the concept of scaling in urban science, which will be linked with essential urban economic elements such as agglomeration economies and urban hierarchies. The practical knowledge of network analysis will be used as a stepping stone to understand ideas and methods from the field of transport geography regarding modelling flows within and between cities. Common thread here is the network structure which is an essential element of both transport geography and social network analysis. The empirical element of this part will deal with basic concepts such as gravity models as well as connectivity and accessibility measures.\nThe unit aims:"
+  },
+  {
+    "objectID": "src/description.html#intended-learning-outcomes",
+    "href": "src/description.html#intended-learning-outcomes",
+    "title": "Unit description and aims",
+    "section": "Intended Learning Outcomes",
+    "text": "Intended Learning Outcomes\n\nBe able to creatively utilise cutting edge methods from Urban Analytics and Urban Science in order to answer urban research questions.\nBe able to critically assess the value of and utilise new sources of big data for urban research.\nIdentify key concepts and theories of digital transformations and smart cities.\nPresent the results of statistical analysis in a clear, cogent manner, using effective visualizations, tables, and written argument."
+  },
+  {
+    "objectID": "src/description.html#assessment-details",
+    "href": "src/description.html#assessment-details",
+    "title": "Unit description and aims",
+    "section": "Assessment details",
+    "text": "Assessment details\nOne 3500-word report (100% of the unit mark) for an urban data analysis project. The report will be written in a reproducible manner and will include the necessary code for the data analysis and the outputs (e.g. an Rmarkddown document)."
+  },
+  {
+    "objectID": "src/description.html#software",
+    "href": "src/description.html#software",
+    "title": "Unit description and aims",
+    "section": "Software",
+    "text": "Software\nAll the analysis will be done using R and RStudio."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Urban Analytics and City Science",
+    "section": "",
+    "text": "This is the webpage for the Urban Analytics and City Science unit, a core unit for the MSc in Geographic Data Science and Spatial Analytics. This programme is part of the School of Geographical Sciences at the University of Bristol and has been developed by the Quantitative Spatial Science Research Group.\nAll the unit material can be accessed in .html form from the left-hand side menu. If you want to access the source code please go to the src directory of the GitHub repository."
+  },
+  {
+    "objectID": "src/syllabus.html",
+    "href": "src/syllabus.html",
+    "title": "Syllabus",
+    "section": "",
+    "text": "Network science, urban laws and scaling\n\nPractical: Build and compare models\n\nMoving from network analysis to network science with clear urban applications.\nDiversity in cities\nWhy is diversity important in cities and how do we measure it?\nTransport geography\nSame methods, different facets of urban research. This part of the unit will allow you to apply your network skills to answer transport related questions. It will also make the transition from networks to flows.\n\n\n\n\n\n\n\n\n\n\nSpatial interaction modelling\nYou learned to analyse network, now you can learn to analyse and model flows. Do you see the parallel?\n\n\n\nUrban policies and causality\nFrom urban analysis to urban policies. And how to assess such policies. Causality."
+  },
+  {
+    "objectID": "src/readings.html",
+    "href": "src/readings.html",
+    "title": "Key readings",
+    "section": "",
+    "text": "All lecture slides include a reference list. Please go through these materials.\nA indicative list of key readings include:\nAlso, the Big Book of R is a great collection of R related books. Some of these include:\nPlease don’t limit your reading in the following list."
   }
 ]

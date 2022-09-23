@@ -1,52 +1,16 @@
 ---
-title: "Syllabus"
-bibliography: src/references.bib
+title: "Urban Analytics and City Science"
 ---
 
-1.  [Cities, a very very brief introduction](src/why_cities.qmd) **TODO: ADD SOME UNIT INFO**
+Welcome! 
 
-2.  [Smart cities, urban big data, digital twins and other buzz terms](src/smart_cities.qmd)
+This is the webpage for the *Urban Analytics and City Science* unit, a 
+core unit for the [MSc in Geographic Data Science and Spatial Analytics](http://www.bristol.ac.uk/study/postgraduate/2022/sci/msc-geographic-data-science-and-spatial-analytics/#:~:text=The%20MSc%20in%20Geographic%20Data%20Science%20and%20Spatial%20Analytics%20builds,quantitative%20geography%20and%20spatial%20analysis.){target="_blank"}. 
+This programme is part of the [School of Geographical Sciences](http://www.bristol.ac.uk/geography/){target="_blank"} 
+at the [University of Bristol](https://www.bristol.ac.uk/){target="_blank"} and 
+has been developed by the [Quantitative Spatial Science](https://quss.blogs.bristol.ac.uk/research_people/){target="_blank"} 
+Research Group.
 
-    -   Practical: [APIs and urban data](src/apis.Rmd) 
-    
-    <!-- 2. digital traces **P**: ??? think of traces --> 
-    
-    <!-- 3. Social Media **P**: Twitter -->
-
-3.  [Networks: an introduction](src/intro_networks.qmd)
-
-4.  [Network analysis practical](src/network_analysis.Rmd) **TODO: REMOVE SIM**
-
-5.  [Network analysis practical](src/network_analysis.Rmd) **TODO: REMOVE SIM**
-
-    <!-- -   Csárdi, G., Nepusz, T., & Airoldi, E. M. (2016). Statistical network analysis with igraph. Springer. Available online at https://www.uni-due.de/hummell/sna/igraph/docs/.BookDraft-CsardiNepuszAiroldi2016.pdf. \[*methods*\] -->
-
-    <!-- -   Degree distribution (see help_degree_sistribution.Rmd) -->
-
-6.  [Network science, urban laws and scaling](src/network_science.qmd)
-
-    -   Practical: [Build and compare models](src/network_models.Rmd) **TODO decide if I need to describe sample_ syntax**
-
-
-7.  [Diversity in cities](src/diversity.qmd)
-
-8.  Transport geography **TODO**
-
-<!-- For spatial interactions: - Bettencourt 2021 8.1.3 for Maximum entropym radiation and a variant of urban scaling - https://www.nature.com/articles/nature10856 -->
-
-<!-- For network analysis: - Barthelemy 2018 Ch. 7. It has examples for road and subway studies + some policy elements. No code. -->
-
-<!-- 8.  Networks small scale / Spatial networks -->
-
-<!--     -   https://cran.r-project.org/web/packages/sfnetworks/ -->
-<!--     -   Boeing -->
-<!--     -   https://osf.io/78yub/ -->
-<!--     -   Lovelace's book, Geocomputation with R https://geocompr.robinlovelace.net/ -->
-
-<!-- use sfnetworks as it contains igraph. Use the vignettes. https://cran.r-project.org/web/packages/sfnetworks/index.html -->
-
-9.  Spatial interaction modelling **TODO** 
-
-<!-- @kolaczyk2020statistical Ch 9 -->
-
-10. Urban policies and causality **TODO**
+All the unit material can be accessed in `.html` form from the left-hand side menu.
+If you want to access the source code please go to the `src` directory of the
+[GitHub repository](https://github.com/etranos/urban_analytics_city_science){target="_blank"}.

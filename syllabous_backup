@@ -1,0 +1,81 @@
+---
+title: "Syllabus"
+bibliography: src/references.bib
+---
+
+1.  [Cities, a very very brief introduction](src/why_cities.qmd){target="_blank"} **TODO: ADD SOME UNIT INFO**
+
+    Why do cities exist? One cannot study, analyse and model cities and systems of cities
+    unless they know their fundamental attributes, and the reasons why cities have 
+    been developed at the first instance.
+
+2.  [Smart cities, urban big data, digital twins and other buzz terms](src/smart_cities.qmd){target="_blank"}
+
+    -   Practical: [APIs and urban data](src/apis.Rmd){target="_blank"}
+
+    <!-- 2. digital traces **P**: ??? think of traces -->
+
+    <!-- 3. Social Media **P**: Twitter -->
+    
+    How do digital technologies change cities? How does their usage actually enables
+    citizens to act as sensors? And, how do these changes affect urban research? 
+    We will first approach these issues from a theoretical perspective and then utilise
+    such free and open urban data using APIs.
+
+3.  [Networks: an introduction](src/intro_networks.qmd){target="_blank"}
+
+    Networks are everywhere! After this lecture you will hopefully start seeing them.
+
+4.  [Network analysis practical](src/network_analysis.Rmd){target="_blank"} **TODO: REMOVE SIM**
+
+5.  [Network analysis practical](src/network_analysis.Rmd){target="_blank"} **TODO: REMOVE SIM**
+
+    These two practical sessions will put into practise your newly acquired network
+    understanding of cities. 
+
+<!-- -   Csárdi, G., Nepusz, T., & Airoldi, E. M. (2016). Statistical network analysis with igraph. Springer. Available online at https://www.uni-due.de/hummell/sna/igraph/docs/.BookDraft-CsardiNepuszAiroldi2016.pdf. \[*methods*\] -->
+
+<!-- -   Degree distribution (see help_degree_sistribution.Rmd) -->
+
+6.  [Network science, urban laws and scaling](src/network_science.qmd){target="_blank"}
+
+    -   Practical: [Build and compare models](src/network_models.Rmd){target="_blank"} **TODO decide if I need to describe sample\_ syntax**
+    
+    Moving from network analysis to network science with clear urban applications. 
+
+7.  [Diversity in cities](src/diversity.qmd){target="_blank"}
+
+    Why is diversity important in cities and how do we measure it?    
+
+8.  Transport geography **TODO**
+
+    Same methods, different facets of urban research. This part of the unit will allow
+    you to apply your network skills to answer transport related questions. It will
+    also make the transition from networks to flows. 
+
+<!-- For spatial interactions: - Bettencourt 2021 8.1.3 for Maximum entropym radiation and a variant of urban scaling - https://www.nature.com/articles/nature10856 -->
+
+<!-- For network analysis: - Barthelemy 2018 Ch. 7. It has examples for road and subway studies + some policy elements. No code. -->
+
+<!-- 8.  Networks small scale / Spatial networks -->
+
+<!--     -   https://cran.r-project.org/web/packages/sfnetworks/ -->
+
+<!--     -   Boeing -->
+
+<!--     -   https://osf.io/78yub/ -->
+
+<!--     -   Lovelace's book, Geocomputation with R https://geocompr.robinlovelace.net/ -->
+
+<!-- use sfnetworks as it contains igraph. Use the vignettes. https://cran.r-project.org/web/packages/sfnetworks/index.html -->
+
+9.  Spatial interaction modelling **TODO**
+
+    You learned to analyse network, now you can learn to analyse and model flows.
+    Do you see the parallel?
+    
+<!-- @kolaczyk2020statistical Ch 9 -->
+
+10. Urban policies and causality **TODO**
+
+    From urban analysis to urban policies. And how to assess such policies. Causality.

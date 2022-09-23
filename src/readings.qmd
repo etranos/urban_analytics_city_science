@@ -1,0 +1,40 @@
+---
+title: "Key readings"
+editor: source
+bibliography: references.bib
+---
+
+All lecture slides include a reference list. Please go
+through these materials. 
+
+A indicative list of key readings include:
+
+-   @bettencourt2021introduction
+
+-   @neal2021handbook
+
+-   @light2020oxford
+
+-   @batty2013new
+
+-   lovelace2019geocomputation
+
+-   @singleton2017urban
+
+Also, the [Big Book of R](https://www.bigbookofr.com/){target="_blank"} 
+is a great collection of `R` related books.
+Some of these include:
+
+- @wickham2016r for `tidyverse`
+
+- @apis on how to access APIs through `R`
+
+- @wickham2016data for visualisations with `ggplot2`
+
+- @xie2020r for `RMarkdown`
+
+- @boehmke2019hands
+
+**Please don't limit your reading in the following list.**
+
+## Key readings
