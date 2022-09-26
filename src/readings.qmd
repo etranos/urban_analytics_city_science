@@ -17,7 +17,7 @@ A indicative list of key readings include:
 
 -   @batty2013new
 
--   lovelace2019geocomputation
+-   @lovelace2019geocomputation
 
 -   @singleton2017urban
 
