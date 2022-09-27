@@ -64,7 +64,8 @@ editor: source
 
 9.  Spatial interaction modelling
 
-    You learned to analyse network, now you can learn to analyse and model flows. Do you see the parallel?
+    You ve'learned how to analyse networks, now you can learn how to analyse and 
+    model flows. Do you see the parallel?
 
 <!-- @kolaczyk2020statistical Ch 9 -->
 
