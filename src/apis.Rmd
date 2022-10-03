@@ -1,13 +1,6 @@
 ---
 title: "APIs and urban data"
-author: |
-  | 
-  | Emmanouil Tranos
-  |
-  | University of Bristol, Alan Turing Institute 
-  | [e.tranos@bristol.ac.uk](mailto:e.tranos@bristol.ac.uk), [\@EmmanouilTranos](https://twitter.com/EmmanouilTranos),  [etranos.info](https://etranos.info/)
-  | 
-  | 
+author: Emmanouil Tranos
 date: "`r Sys.Date()`"
 editor: source
 output:
@@ -39,7 +32,9 @@ APIs can be private or public types. For more inthe description from @amazonWhat
 
 ## JSON file format
 
-Although some urban data can be downloaded as a tidy\^ \[Every column is a variable; every row is an observation; every cell is a single value. See \[here\])(https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html) for more info\] table in a `.csv` format, most APIs will ship data to you in a `JSON` format.
+Although some urban data can be downloaded as a tidy[^1] table in a `.csv` format, most APIs will ship data to you in a `JSON` format.
+
+[^1]: Every column is a variable; every row is an observation; every cell is a single value. See \[here\])(https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html) for more info
 
 According to the official JSON website [@jsonJSON], JSON
 
@@ -74,7 +69,7 @@ download the data in `JSON` file format instead of just downloading a `.csv` fil
 
 So, let's try to access these data programmatically. First, we need to load the relevant `R` packages
 
-```{r setup}
+```{r setup, echo=FALSE}
 library(tidyverse)
 library(jsonlite)
 ```
@@ -124,12 +119,10 @@ To do all the above, we will use the below functions from the `dplyr` package, w
 
 ```{r wrangling}
 dat <- dat$records %>% 
-  as.data.frame() %>% 
   select(-datasetid, -recordid, -record_timestamp) %>% # remove useless columns
   rename_with(~sub("fields.", "", .)) %>%              # ~ introduces a formula here
   relocate(ward, ward_code, period) %>%                # looks better
   glimpse()                                            # a glimpse of the output
-
 ```
 
 Let's try now to do some analysis based on these data and create some outputs.
@@ -145,8 +138,6 @@ dat %>% mutate(total = rowSums(across(c(4:21))),           # total jobs in a war
                values_to = "jobs_share") %>%               # ... and the column with the jobs percentage
                                                            # Look https://tidyr.tidyverse.org/articles/pivot.html to 
                                                            # understand the long to wide / wide to long transformations.
-  # group_by(ward) %>% 
-  # summarise(total = sum(jobs_share))
   filter(ward == "Central") %>%                            # Let's focus on Central Bristol
   ggplot(aes(x=industry, y=jobs_share)) +                  # ... and create a bar chart for it jobs distribution
     geom_bar(stat = "identity") +
@@ -170,19 +161,16 @@ dat %>% mutate(total = rowSums(across(c(4:21))),           # total jobs in a war
                values_to = "jobs_share") %>%               # ... and the column with the jobs percentage
                                                            # Look https://tidyr.tidyverse.org/articles/pivot.html to 
                                                            # understand the long to wide / wide to long transformations.
-  # group_by(ward) %>% 
-  # summarise(total = sum(jobs_share))
   filter(ward == "Central" |
          ward == "Easton") %>%                             # Let's focus on Easton and Central Bristol
   ggplot(aes(x=industry, y=jobs_share)) +                  # ... and create a bar chart for it jobs distribution
     geom_bar(stat = "identity") +
     scale_x_discrete(guide = guide_axis(angle = 90)) +     # This line rotates the x labels,
-    ylab("jobs %")                                         # and here we rename the y axis. 
-    facet_wrap(~ward, ncol = 2)                            # facet_wrap creates two graphs based on `ward` 
-                                                           # and puts one next to each other
+    ylab("jobs %") +                                       # and here we rename the y axis. 
+    facet_wrap(vars(ward), ncol = 2)                       # facet_wrap creates two graphs based on `ward` and puts one next to each other
 ```
 
-Well done! You've just utilised Bristol's open data and are part of the urban open data revolution.
+Well done! You've just utilised Bristol's open data and became part of the urban open data revolution 😃.
 
 Obviously the `x` labels are rather ugly.
 
@@ -201,7 +189,7 @@ If this is to easy for you, why don't you check the new [Quarto format](https://
 
 ## Accessing APIs using existing `R` packages
 
-Now you might be lucky and somebody else has already done all the infrastructural / backend work in order for you to easily interrogate an API and access their data. How would this look like? Like another `R` package. Here is a list with a few examples:
+Now you might be lucky and somebody else has already done all the infrastructural / back-end work in order for you to easily interrogate an API and access their data. How would this look like? Like another `R` package. Here is a list with a few examples:
 
 -   `nomisr` is a package that allows you to access [Nomis](https://www.nomisweb.co.uk/) data with `R`. Find [here](https://cran.r-project.org/web/packages/nomisr/vignettes/introduction.html) an introduction.
 

@@ -43,7 +43,7 @@ images.path <- paste0(path, "/images/")
 
 -   Why?
 
--   Computing power together
+-   Computing power
 
 -   Digital turn
 
@@ -198,8 +198,9 @@ Rio de Janeiro, Brazil: The first *smart city*
 ::: r-fit-text
 > A mirror image of a physical process that is articulated alongside the process in question, usually matching exactly the operation of the physical process which takes place in real time
 
-> a variety of digital simulation models that run alongside real-time processes that pertain to social and economic systems as well as physical systems
+> A variety of digital simulation models that run alongside real-time processes that pertain to social and economic systems as well as physical systems
 
+<br>
 Models are simplifications not replications of the real thing
 
 ::: footer
