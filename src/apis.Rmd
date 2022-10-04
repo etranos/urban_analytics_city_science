@@ -69,7 +69,7 @@ download the data in `JSON` file format instead of just downloading a `.csv` fil
 
 So, let's try to access these data programmatically. First, we need to load the relevant `R` packages
 
-```{r setup, echo=FALSE}
+```{r setup, message=FALSE, results='hide', error=FALSE, warning=FALSE}
 library(tidyverse)
 library(jsonlite)
 ```
@@ -82,13 +82,13 @@ dat <- jsonlite::fromJSON("https://opendata.bristol.gov.uk/api/records/1.0/searc
 
 We now have an `R` object called `dat`. Let's try to see how it looks like
 
-```{r str}
+```{r type}
 typeof(dat)
 ```
 
 So, this is a list. If you need a reminder for what a list is, see [here](http://adv-r.had.co.nz/Data-structures.html). Now the difficult part. Let's try to figure out the structure of this `JSON` formated data.
 
-```{r}
+```{r structure}
 str(dat)
 ```
 
@@ -103,7 +103,7 @@ the most useful part of `dat` for us?
 
 And if you want to see how the dataframe `dat$records` looks like, the below function will show the first five rows.
 
-```{r}
+```{r head}
 head(dat$records)
 ```
 
@@ -120,7 +120,7 @@ To do all the above, we will use the below functions from the `dplyr` package, w
 ```{r wrangling}
 dat <- dat$records %>% 
   select(-datasetid, -recordid, -record_timestamp) %>% # remove useless columns
-  rename_with(~sub("fields.", "", .)) %>%              # ~ introduces a formula here
+  rename_with(~sub("fields.", "", .)) %>%              # ~ introduces a formula: function `sub` substitutes (in other words replaces) the string "fields." with an empty sting "" for all columns (symbol .) 
   relocate(ward, ward_code, period) %>%                # looks better
   glimpse()                                            # a glimpse of the output
 ```
