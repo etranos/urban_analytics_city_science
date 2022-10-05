@@ -655,9 +655,8 @@ Redrawing the Map of Great Britain from a Network of Human Interactions [@ratti2
 
 ------------------------------------------------------------------------
 
-<iframe src="http://schochastics.net/sna/periodic.html" width="1300" height="600" frameBorder="0" scrolling="yes">
 
-</iframe>
+<iframe src="http://schochastics.net/sna/periodic.html" width="1200" height="600" frameBorder="0" scrolling="yes"></iframe>
 
 <small><small> Source: [schochastics.net](http://schochastics.net/sna/periodic.html) </small></small>
 
@@ -848,7 +847,7 @@ G -- { I J K }
 
 -   Webpages that link to $i$, but link to a lot of other webpages in general, should be given less weight.
 
--   Directerd networks
+-   Directed networks
 
 -   Iterative algorithm
 
@@ -866,7 +865,7 @@ G -- { I J K }
 
 -   Multilayer
 
-tw-   Dynamic
+-   Dynamic
 
 -   Spatial
 

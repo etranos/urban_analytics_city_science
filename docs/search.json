@@ -676,7 +676,7 @@
     "href": "src/intro_networks.html#pagerank-centrality",
     "title": "Networks",
     "section": "PageRank centrality",
-    "text": "PageRank centrality\n\nThe basis of Google search engine\nWebpages that link to \\(i\\), and have high PageRank scores themselves, should be given more weight.\nWebpages that link to \\(i\\), but link to a lot of other webpages in general, should be given less weight.\nDirecterd networks\nIterative algorithm"
+    "text": "PageRank centrality\n\nThe basis of Google search engine\nWebpages that link to \\(i\\), and have high PageRank scores themselves, should be given more weight.\nWebpages that link to \\(i\\), but link to a lot of other webpages in general, should be given less weight.\nDirected networks\nIterative algorithm"
   },
   {
     "objectID": "src/intro_networks.html#centralities",
@@ -690,7 +690,7 @@
     "href": "src/intro_networks.html#other-types-of-networks",
     "title": "Networks",
     "section": "Other types of networks",
-    "text": "Other types of networks\n\nTwo mode networks\nMultilayer\n\ntw- Dynamic\n\nSpatial\n\nSee also Light and Moody (2020)"
+    "text": "Other types of networks\n\nTwo mode networks\nMultilayer\nDynamic\nSpatial\n\nSee also Light and Moody (2020)"
   },
   {
     "objectID": "src/intro_networks.html#references",
