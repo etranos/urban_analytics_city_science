@@ -494,14 +494,14 @@
     "href": "src/intro_networks.html#directed-weighted-networks",
     "title": "Networks",
     "section": "3. Directed, weighted networks",
-    "text": "3. Directed, weighted networks\nLinks are characterized by weights i.e. strength of a friendship, commuting flows, trade flows\n\nAdjacency matrix\n\n\n\n\nA\nB\nC\nD\n\n\nA\n0\n3\n1\n5\n\n\nB\n0\n0\n1\n0\n\n\nC\n0\n0\n0\n6\n\n\nD\n0\n0\n7\n0"
+    "text": "3. Directed, weighted networks\n\nLinks are characterized by weights i.e. strength of a friendship, commuting flows, trade flows\nAdjacency matrix\n\n\n\n\nA\nB\nC\nD\n\n\nA\n0\n3\n1\n5\n\n\nB\n0\n0\n1\n0\n\n\nC\n0\n0\n0\n6\n\n\nD\n0\n0\n7\n0"
   },
   {
     "objectID": "src/intro_networks.html#directed-weighted-networks-1",
     "href": "src/intro_networks.html#directed-weighted-networks-1",
     "title": "Networks",
     "section": "3. Directed, weighted networks",
-    "text": "3. Directed, weighted networks\nLinks are characterized by weights i.e. strength of a friendship, commuting flows, trade flows\nEdge list\n\n\n\n\ni\nj\nw\n\n\n\n\nA\nB\n3\n\n\nA\nC\n1\n\n\nA\nD\n5\n\n\nB\nC\n1\n\n\nC\nD\n6\n\n\nD\nC\n7"
+    "text": "3. Directed, weighted networks\n\nLinks are characterized by weights i.e. strength of a friendship, commuting flows, trade flows\nEdge list\n\n\n\ni\nj\nw\n\n\n\n\nA\nB\n3\n\n\nA\nC\n1\n\n\nA\nD\n5\n\n\nB\nC\n1\n\n\nC\nD\n6\n\n\nD\nC\n7"
   },
   {
     "objectID": "src/intro_networks.html#directed-weighted-networks-2",
@@ -543,21 +543,21 @@
     "href": "src/intro_networks.html#network-size",
     "title": "Networks",
     "section": "Network size",
-    "text": "Network size\n\n\\(k\\) numbers of nodes\nmaximum number of links:\n\\(k(k-1)\\) for directed\n\\(k(k-1)/2\\) for undirected networks"
+    "text": "Network size\n\n\\(k\\) numbers of nodes\nmaximum number of links:\n\n\\(k(k-1)\\) for directed\n\\(k(k-1)/2\\) for undirected networks"
   },
   {
     "objectID": "src/intro_networks.html#network-density",
     "href": "src/intro_networks.html#network-density",
     "title": "Networks",
     "section": "Network density",
-    "text": "Network density\n\nnumbers of links / numbers of nodes:\n\\(L/k(k-1)\\) for directed\n\\(2L/k(k-1)\\) for undirected networks"
+    "text": "Network density\n\nNumbers of links / numbers of nodes:\n\n\\(L/k(k-1)\\) for directed\n\\(2L/k(k-1)\\) for undirected networks"
   },
   {
     "objectID": "src/intro_networks.html#network-distance",
     "href": "src/intro_networks.html#network-distance",
     "title": "Networks",
     "section": "Network distance",
-    "text": "Network distance\n\nA macro characteristic of the network ➔ efficiency\n\nMultiple paths between two nodes\nA walk is a path in which each node and each link are used once\nGeodesic distance: the number of relations in the shortest possible path from one node to another\nDiameter: the longest geodesic distance in the network"
+    "text": "Network distance\nA macro characteristic of the network ➔ efficiency\n\n\nMultiple paths between two nodes\nA walk is a path in which each node and each link are used once\nGeodesic distance: the number of relations in the shortest possible path from one node to another\nDiameter: the longest geodesic distance in the network"
   },
   {
     "objectID": "src/intro_networks.html#reciprocity",
@@ -662,14 +662,14 @@
     "href": "src/intro_networks.html#betweenness-centrality",
     "title": "Networks",
     "section": "Betweenness centrality",
-    "text": "Betweenness centrality\n\nWhich nodes control information flows\nHow many geodesic links between actors i and j contain actor k?\n\n\\(B_{k} = \\sum_{i \\not=j \\not=k} \\frac{g_{ij}(k)}{g_{ij}}\\)"
+    "text": "Betweenness centrality\n\nWhich nodes control information flows\nHow many geodesic links between actors \\(i\\) and \\(j\\) contain actor \\(k\\)?\n\n\\(B_{k} = \\sum_{i \\not=j \\not=k} \\frac{g_{ij}(k)}{g_{ij}}\\)"
   },
   {
     "objectID": "src/intro_networks.html#eigenvector-centrality",
     "href": "src/intro_networks.html#eigenvector-centrality",
     "title": "Networks",
     "section": "Eigenvector centrality",
-    "text": "Eigenvector centrality\n\nNot all connections are equal\nConnections to more central vertices are more important than connections to less central ones\nIt is still important to have a large number of connections, but a node with fewer but more important connections will end up being more central than a node with more but less important links\nGlobal structure of the network: both direct and indirect links\nEigenvector of the adjacency matrix associated with the larger eigenvalue"
+    "text": "Eigenvector centrality\n\nNot all connections are equal\nConnections to more central vertices are more important than connections to less central ones\nIt is still important to have a large number of connections, but a node with fewer but more important connections will end up being more central than a node with more but less important links\nGlobal structure of the network: both direct links and walks\nEigenvector of the adjacency matrix associated with the larger eigenvalue"
   },
   {
     "objectID": "src/intro_networks.html#pagerank-centrality",
@@ -690,7 +690,7 @@
     "href": "src/intro_networks.html#other-types-of-networks",
     "title": "Networks",
     "section": "Other types of networks",
-    "text": "Other types of networks\n\nTwo mode networks\nMutliplexity\nDynamic\nSpatial\n\nSee also Light and Moody (2020)"
+    "text": "Other types of networks\n\nTwo mode networks\nMultilayer\n\ntw- Dynamic\n\nSpatial\n\nSee also Light and Moody (2020)"
   },
   {
     "objectID": "src/intro_networks.html#references",

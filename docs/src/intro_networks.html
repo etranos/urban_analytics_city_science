@@ -334,7 +334,7 @@
   <script src="../site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
   <script src="../site_libs/viz-1.8.2/viz.js"></script>
   <link href="../site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
-  <script src="../site_libs/grViz-binding-1.0.9/grViz.js"></script>
+  <script src="../site_libs/grViz-binding-1.0.9.9000/grViz.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -379,11 +379,11 @@ University of Bristol, Alan Turing Institute<br>
 <p><small><small></small></small></p><small><small>
 <table>
 <colgroup>
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 19%">
+<col style="width: 27%">
+<col style="width: 17%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -560,8 +560,8 @@ University of Bristol, Alan Turing Institute<br>
 </small><p><small></small></p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-5fccd62dd30fa9461dce" style="width:960px;height:288px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5fccd62dd30fa9461dce">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = neato]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B\nA -> C\nA -> D\nA -> C\nC -> D\nD -> C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-536f6bdb1b2e1bb39f93" style="width:960px;height:288px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-536f6bdb1b2e1bb39f93">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = neato]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B\nA -> C\nA -> D\nA -> C\nC -> D\nD -> C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -685,15 +685,15 @@ University of Bristol, Alan Turing Institute<br>
 <h2>2. Undirected, non-weighted networks</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-fdd73eef4fdd2c9a1582" style="width:960px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-fdd73eef4fdd2c9a1582">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B\nA -> C\nA -> D\nB -> C\nB -> A\nC -> A\nC -> B\nC -> D\nD -> C\nD -> A\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1a51940ca02d25fb3853" style="width:960px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1a51940ca02d25fb3853">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B\nA -> C\nA -> D\nB -> C\nB -> A\nC -> A\nC -> B\nC -> D\nD -> C\nD -> A\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
 <section id="directed-weighted-networks" class="slide level2">
 <h2>3. Directed, weighted networks</h2>
-<p>Links are characterized by weights i.e.&nbsp;strength of a friendship, commuting flows, trade flows</p>
 <p><small></small></p><small>
+<p>Links are characterized by weights i.e.&nbsp;strength of a friendship, commuting flows, trade flows</p>
 <p><strong>Adjacency matrix</strong></p>
 <table>
 <tbody>
@@ -738,9 +738,9 @@ University of Bristol, Alan Turing Institute<br>
 </section>
 <section id="directed-weighted-networks-1" class="slide level2">
 <h2>3. Directed, weighted networks</h2>
+<p><small></small></p><small>
 <p>Links are characterized by weights i.e.&nbsp;strength of a friendship, commuting flows, trade flows</p>
 <p><strong>Edge list</strong></p>
-<p><small></small></p><small>
 <table>
 <thead>
 <tr class="header">
@@ -788,8 +788,8 @@ University of Bristol, Alan Turing Institute<br>
 <h2>3. Directed, weighted networks</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-374f3e96904a0aeea11d" style="width:960px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-374f3e96904a0aeea11d">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B [ penwidth = 3]\nA -> C [ penwidth = 1]\nA -> D [ penwidth = 5]\nA -> C [ penwidth = 1]\nC -> D [ penwidth = 6]\nD -> C [ penwidth = 7]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-fb3a3ec93eea375492cb" style="width:960px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fb3a3ec93eea375492cb">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B [ penwidth = 3]\nA -> C [ penwidth = 1]\nA -> D [ penwidth = 5]\nA -> C [ penwidth = 1]\nC -> D [ penwidth = 6]\nD -> C [ penwidth = 7]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -911,8 +911,8 @@ University of Bristol, Alan Turing Institute<br>
 <h2>4. Undirected, weighted networks</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-81a7dacbf14a41fd4b99" style="width:960px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-81a7dacbf14a41fd4b99">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B [ penwidth = 3]\nA -> C [ penwidth = 1]\nA -> D [ penwidth = 5]\nB -> C [ penwidth = 1]\nB -> A [ penwidth = 3]\nC -> A [ penwidth = 1]\nC -> B [ penwidth = 1]\nC -> D [ penwidth = 6]\nD -> C [ penwidth = 6]\nD -> A [ penwidth = 5]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-65486953a4b85425a518" style="width:960px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-65486953a4b85425a518">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B [ penwidth = 3]\nA -> C [ penwidth = 1]\nA -> D [ penwidth = 5]\nB -> C [ penwidth = 1]\nB -> A [ penwidth = 3]\nC -> A [ penwidth = 1]\nC -> B [ penwidth = 1]\nC -> D [ penwidth = 6]\nD -> C [ penwidth = 6]\nD -> A [ penwidth = 5]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -943,35 +943,39 @@ University of Bristol, Alan Turing Institute<br>
 <h2>Network size</h2>
 <ul>
 <li><p><span class="math inline">\(k\)</span> numbers of nodes</p></li>
-<li><p>maximum number of links:</p></li>
+<li><p>maximum number of links:</p>
+<ul>
 <li><p><span class="math inline">\(k(k-1)\)</span> for directed</p></li>
 <li><p><span class="math inline">\(k(k-1)/2\)</span> for undirected networks</p></li>
+</ul></li>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-ec4ee884dd109836c7de" style="width:960px;height:288px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ec4ee884dd109836c7de">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-fe75287a9a58a8f790e3" style="width:960px;height:288px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fe75287a9a58a8f790e3">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
 <section id="network-density" class="slide level2">
 <h2>Network density</h2>
 <ul>
-<li><p>numbers of links / numbers of nodes:</p></li>
+<li><p>Numbers of links / numbers of nodes:</p>
+<ul>
 <li><p><span class="math inline">\(L/k(k-1)\)</span> for directed</p></li>
 <li><p><span class="math inline">\(2L/k(k-1)\)</span> for undirected networks</p></li>
+</ul></li>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-66d6703821b8738c2e3d" style="width:960px;height:288px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-66d6703821b8738c2e3d">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-6293a1930bb52fc637ca" style="width:960px;height:288px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6293a1930bb52fc637ca">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
 <section id="network-distance" class="slide level2">
 <h2>Network distance</h2>
-<p><small></small></p><small>
 <p>A macro characteristic of the network ➔ efficiency</p>
+<p><small></small></p><small>
 <ul>
 <li><p>Multiple <em>paths</em> between two nodes</p></li>
 <li><p>A <em>walk</em> is a path in which each node and each link are used once</p></li>
@@ -981,8 +985,8 @@ University of Bristol, Alan Turing Institute<br>
 </small><p><small></small></p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-f4516ad48ea2a80e069d" style="width:960px;height:268.8px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f4516ad48ea2a80e069d">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-c70584c1858ca9e0e9db" style="width:960px;height:268.8px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c70584c1858ca9e0e9db">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -996,8 +1000,8 @@ University of Bristol, Alan Turing Institute<br>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-381f2fe1162cb86db09f" style="width:960px;height:192px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-381f2fe1162cb86db09f">{"x":{"diagram":"\ndigraph  {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C;   \n      \n# an edge statement\nedge [color = grey]\nA -> B\nB -> A\nB -> C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-048eeea3d38385eec0af" style="width:960px;height:192px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-048eeea3d38385eec0af">{"x":{"diagram":"\ndigraph  {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C;   \n      \n# an edge statement\nedge [color = grey]\nA -> B\nB -> A\nB -> C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1021,8 +1025,8 @@ University of Bristol, Alan Turing Institute<br>
 </small><p><small></small></p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-e47fc289eb3171160adc" style="width:960px;height:240px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e47fc289eb3171160adc">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\nnode [fillcolor = red]\nEGO\n\n# an edge statement\nedge [color = grey]\n\nEGO -- {A B C D E}\nB -- {C D E}\nC -- {E}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d490d660d1df7fcfa7c6" style="width:960px;height:240px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d490d660d1df7fcfa7c6">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\nnode [fillcolor = red]\nEGO\n\n# an edge statement\nedge [color = grey]\n\nEGO -- {A B C D E}\nB -- {C D E}\nC -- {E}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1076,7 +1080,7 @@ University of Bristol, Alan Turing Institute<br>
 <section class="slide level2">
 
 <ul>
-<li><p>In Social Network Analysis centrality is related with power: e.g.&nbsp;dominance and dependence</p></li>
+<li><p>In social networks centrality is related with power, e.g.&nbsp;dominance and dependence</p></li>
 <li><p>Micro and macro property</p></li>
 <li><p>Position in the network</p></li>
 <li><p>Many centrality measures</p></li>
@@ -1113,8 +1117,8 @@ University of Bristol, Alan Turing Institute<br>
 <h2>Degree cenralities</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="htmlwidget-77e2d5ec94c5489224b5" style="width:960px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-77e2d5ec94c5489224b5">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\nnode [fillcolor = red]\nEGO\n\n# an edge statement\nedge [color = grey]\n\nEGO -- {A B C D E}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f85e4fddc7dc0a3681d1" style="width:960px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f85e4fddc7dc0a3681d1">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\nnode [fillcolor = red]\nEGO\n\n# an edge statement\nedge [color = grey]\n\nEGO -- {A B C D E}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1122,8 +1126,8 @@ University of Bristol, Alan Turing Institute<br>
 <h2>Degree cenralities</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="htmlwidget-30708fd1fb6b64e98341" style="width:960px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-30708fd1fb6b64e98341">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\n# an edge statement\nedge [color = grey]\n\nA -- B\nB -- C\nC -- D\nD -- E\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ccc237a9f711b3bf31d2" style="width:960px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ccc237a9f711b3bf31d2">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\n# an edge statement\nedge [color = grey]\n\nA -- B\nB -- C\nC -- D\nD -- E\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1131,8 +1135,8 @@ University of Bristol, Alan Turing Institute<br>
 <h2>Degree cenralities</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="htmlwidget-5d1070163c06cd94764d" style="width:960px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5d1070163c06cd94764d">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = circo,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\n# an edge statement\nedge [color = grey]\n\nA -- B\nB -- C\nC -- D\nD -- E\nE -- A\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-04d0814b062102e7c272" style="width:960px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-04d0814b062102e7c272">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = circo,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\n# an edge statement\nedge [color = grey]\n\nA -- B\nB -- C\nC -- D\nD -- E\nE -- A\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1208,13 +1212,13 @@ University of Bristol, Alan Turing Institute<br>
 <h2>Betweenness centrality</h2>
 <ul>
 <li><p>Which nodes control information flows</p></li>
-<li><p>How many geodesic links between actors i and j contain actor k?</p></li>
+<li><p>How many geodesic links between actors <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> contain actor <span class="math inline">\(k\)</span>?</p></li>
 </ul>
 <p><span class="math inline">\(B_{k} = \sum_{i \not=j \not=k} \frac{g_{ij}(k)}{g_{ij}}\)</span></p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-2b914f77f9dabb42ec77" style="width:960px;height:192px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2b914f77f9dabb42ec77">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = BT]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E; G; H; I; J; K\n\nnode [fillcolor = red]\nF\n\n# an edge statement\nedge [color = grey]\n\nA -- {B C D E}\nB -- {C D E}\nC -- {E}\n\nF -- {A H I J K}\nG -- { I J K }\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-8fa055dc6b0c2cdf10e5" style="width:960px;height:192px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8fa055dc6b0c2cdf10e5">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = BT]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E; G; H; I; J; K\n\nnode [fillcolor = red]\nF\n\n# an edge statement\nedge [color = grey]\n\nA -- {B C D E}\nB -- {C D E}\nC -- {E}\n\nF -- {A H I J K}\nG -- { I J K }\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1224,7 +1228,7 @@ University of Bristol, Alan Turing Institute<br>
 <li><p>Not all connections are equal</p></li>
 <li><p>Connections to more central vertices are more important than connections to less central ones</p></li>
 <li><p>It is still important to have a large number of connections, but a node with fewer but more important connections will end up being more central than a node with more but less important links</p></li>
-<li><p>Global structure of the network: both direct and indirect links</p></li>
+<li><p>Global structure of the network: both direct links and walks</p></li>
 <li><p>Eigenvector of the adjacency matrix associated with the larger eigenvalue</p></li>
 </ul>
 </section>
@@ -1250,9 +1254,11 @@ University of Bristol, Alan Turing Institute<br>
 <h2>Other types of networks</h2>
 <ul>
 <li><p>Two mode networks</p></li>
-<li><p>Mutliplexity</p></li>
-<li><p>Dynamic</p></li>
-<li><p>Spatial</p></li>
+<li><p>Multilayer</p></li>
+</ul>
+<p>tw- Dynamic</p>
+<ul>
+<li>Spatial</li>
 </ul>
 <p>See also <span class="citation" data-cites="light2020oxford">Light and Moody (<a href="#/ref-light2020oxford" role="doc-biblioref" onclick="return false;">2020</a>)</span></p>
 </section>

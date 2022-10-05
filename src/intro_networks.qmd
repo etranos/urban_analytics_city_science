@@ -8,7 +8,7 @@ author: |
   | University of Bristol, Alan Turing Institute 
   | [e.tranos@bristol.ac.uk](mailto:e.tranos@bristol.ac.uk), [\@EmmanouilTranos](https://twitter.com/EmmanouilTranos),  [etranos.info](https://etranos.info/)
 format: revealjs
-editor: visual
+editor: source
 bibliography: references.bib
 ---
 
@@ -59,7 +59,7 @@ images.path <- paste0(path, "/images/")
 <small><small>
 
 | Level (aggregation of linkages and nodes) |        | Geographical scale (network boundary)                             |                                                                                            |                                             |
-|---------------|---------------|---------------|---------------|---------------|
+|-------------|-------------|--------------|--------------------|-------------|
 |                                           |        | 1 -- Local                                                        | 2 -- Regional                                                                              | 3 -- Global                                 |
 | A \-- Macro                               | Cities | City as a whole entity                                            | Central place system [@christaller1966central]                                             |                                             |
 | B \-- Meso                                | Firms  | Clusters (Porter 2000)                                            | Regional economic intergration and functional polycentrism (e.g. Scott 2001: Boschma 2005) | Global inter-firm network (e.g. Cohen 1981) |
@@ -243,9 +243,9 @@ D -> A
 
 ## 3. Directed, weighted networks
 
-Links are characterized by weights i.e. strength of a friendship, commuting flows, trade flows
-
 <small>
+
+Links are characterized by weights i.e. strength of a friendship, commuting flows, trade flows
 
 **Adjacency matrix**
 
@@ -257,16 +257,15 @@ Links are characterized by weights i.e. strength of a friendship, commuting flow
 | C   | 0   | 0   | 0   | 6   |
 | D   | 0   | 0   | 7   | 0   |
 
-
 </small>
 
 ## 3. Directed, weighted networks
 
+<small>
+
 Links are characterized by weights i.e. strength of a friendship, commuting flows, trade flows
 
 **Edge list**
-
-<small>
 
 | i   | j   | w   |
 |-----|-----|-----|
@@ -408,9 +407,9 @@ D -> A [ penwidth = 5]
 
 -   maximum number of links:
 
--   $k(k-1)$ for directed
+    -   $k(k-1)$ for directed
 
--   $k(k-1)/2$ for undirected networks
+    -   $k(k-1)/2$ for undirected networks
 
 ```{r, fig.height=3}
 grViz("
@@ -440,12 +439,11 @@ E -- D
 
 ## Network density
 
--   numbers of links / numbers of nodes:
+-   Numbers of links / numbers of nodes:
 
--   $L/k(k-1)$ for directed
+    -   $L/k(k-1)$ for directed
 
--   $2L/k(k-1)$ for undirected networks
-
+    -   $2L/k(k-1)$ for undirected networks
 
 ```{r, fig.height=3}
 grViz("
@@ -475,9 +473,9 @@ E -- D
 
 ## Network distance
 
-<small>
-
 A macro characteristic of the network ➔ efficiency
+
+<small>
 
 -   Multiple *paths* between two nodes
 
@@ -519,11 +517,11 @@ E -- D
 
 -   The extent to which ties are reciprocated (if A ➔ B, then B ➔ A)
 
--   At least two different approaches 
+-   At least two different approaches
 
-  -   Reciprocated ties / maximum number of ties (0.33) 
-  
-  -   Reciprocated ties / number of existing ties (0.5)
+-   Reciprocated ties / maximum number of ties (0.33)
+
+-   Reciprocated ties / number of existing ties (0.5)
 
 ```{r, fig.height=2}
 grViz("
@@ -647,7 +645,7 @@ Redrawing the Map of Great Britain from a Network of Human Interactions [@ratti2
 
 ------------------------------------------------------------------------
 
--   In Social Network Analysis centrality is related with power: e.g. dominance and dependence
+-   In social networks centrality is related with power, e.g. dominance and dependence
 
 -   Micro and macro property
 
@@ -795,10 +793,9 @@ E -- A
 
 -   Which nodes control information flows
 
--   How many geodesic links between actors i and j contain actor k?
+-   How many geodesic links between actors $i$ and $j$ contain actor $k$?
 
 $B_{k} = \sum_{i \not=j \not=k} \frac{g_{ij}(k)}{g_{ij}}$
-
 
 ```{r, fig.height=2}
 grViz("
@@ -833,13 +830,13 @@ G -- { I J K }
 
 ## Eigenvector centrality
 
--   Not all connections are equal 
+-   Not all connections are equal
 
 -   Connections to more central vertices are more important than connections to less central ones
 
 -   It is still important to have a large number of connections, but a node with fewer but more important connections will end up being more central than a node with more but less important links
 
--   Global structure of the network: both direct and indirect links
+-   Global structure of the network: both direct links and walks
 
 -   Eigenvector of the adjacency matrix associated with the larger eigenvalue
 
@@ -847,7 +844,7 @@ G -- { I J K }
 
 -   The basis of [Google search engine](http://infolab.stanford.edu/~backrub/google.html)
 
--   Webpages that link to $i$, and have high PageRank scores themselves, should be given more weight. 
+-   Webpages that link to $i$, and have high PageRank scores themselves, should be given more weight.
 
 -   Webpages that link to $i$, but link to a lot of other webpages in general, should be given less weight.
 
@@ -867,12 +864,11 @@ G -- { I J K }
 
 -   Two mode networks
 
--   Mutliplexity
+-   Multilayer
 
--   Dynamic
+tw-   Dynamic
 
 -   Spatial
-
 
 See also @light2020oxford
 
