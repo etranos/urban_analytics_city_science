@@ -59,7 +59,7 @@ images.path <- paste0(path, "/images/")
 <small><small>
 
 | Level (aggregation of linkages and nodes) |        | Geographical scale (network boundary)                             |                                                                                            |                                             |
-|-------------|-------------|--------------|--------------------|-------------|
+|--------------|--------------|--------------|----------------|--------------|
 |                                           |        | 1 -- Local                                                        | 2 -- Regional                                                                              | 3 -- Global                                 |
 | A \-- Macro                               | Cities | City as a whole entity                                            | Central place system [@christaller1966central]                                             |                                             |
 | B \-- Meso                                | Firms  | Clusters (Porter 2000)                                            | Regional economic intergration and functional polycentrism (e.g. Scott 2001: Boschma 2005) | Global inter-firm network (e.g. Cohen 1981) |
@@ -655,10 +655,12 @@ Redrawing the Map of Great Britain from a Network of Human Interactions [@ratti2
 
 ------------------------------------------------------------------------
 
+<!-- <iframe src="http://schochastics.net/sna/periodic.html" width="1200" height="600" frameBorder="0" scrolling="yes"></iframe> -->
+<!-- iframe doesn't work because of https/http mixed content -->
 
-<iframe src="http://schochastics.net/sna/periodic.html" width="1200" height="600" frameBorder="0" scrolling="yes"></iframe>
+[![](images/periodic.png)](http://schochastics.net/sna/periodic.html)
 
-<small><small> Source: [schochastics.net](http://schochastics.net/sna/periodic.html) </small></small>
+<small><small> Source: [schochastics.net](http://schochastics.net/sna/periodic.html){target="_blank"} </small></small>
 
 ## Degree centrality for undirected networks
 
