@@ -22,9 +22,9 @@ editor: source
 
     Networks are everywhere! After this lecture you will hopefully start seeing them.
 
-4.  [Network analysis practical](network_analysis.Rmd){target="_blank"}
+4.  [Network analysis practical: networks of cities](network_analysis.Rmd){target="_blank"}
 
-5.  [Network analysis practical](network_analysis.Rmd){target="_blank"}
+5.  [Street network analysis practical: networks within cities](street_networks.Rmd){target="_blank"}
 
     These two practical sessions will put into practise your newly acquired network understanding of cities.
 

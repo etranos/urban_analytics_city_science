@@ -2,13 +2,18 @@
 .Rhistory
 .RData
 .Ruserdata
+.quarto
+
 materials/*
 lectures/*
 practicals/*
 data/*
-2022-09-07_11-33-03.mp4
-.quarto
-todo.md
 assignments/*
+.quarto/
+src_help/*
+
+2022-09-07_11-33-03.mp4
+todo.md
+
 
 /.quarto/
