@@ -16,6 +16,7 @@ project:
   - src/readings.qmd
   - src/author.qmd
   - src/street_networks.Rmd
+  - assignments/project.md
 
 website:
   title: "Urban analytics and city science"
@@ -31,6 +32,8 @@ website:
           - src/description.qmd
           - src/syllabus.qmd
           - src/readings.qmd
+          - text: "Assessment"
+            file: assignments/project.md
       - section: "Lectures"
         contents:
           - src/why_cities.qmd
