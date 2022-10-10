@@ -550,7 +550,7 @@
     "href": "src/intro_networks.html#network-density",
     "title": "Networks",
     "section": "Network density",
-    "text": "Network density\n\nNumbers of links / numbers of nodes:\n\n\\(L/k(k-1)\\) for directed\n\\(2L/k(k-1)\\) for undirected networks"
+    "text": "Network density\n\nNumbers of links / Max. number of links:\n\n\\(L/k(k-1)\\) for directed\n\\(2L/k(k-1)\\) for undirected networks"
   },
   {
     "objectID": "src/intro_networks.html#network-distance",
@@ -564,7 +564,7 @@
     "href": "src/intro_networks.html#reciprocity",
     "title": "Networks",
     "section": "Reciprocity",
-    "text": "Reciprocity\n\nThe extent to which ties are reciprocated (if A ➔ B, then B ➔ A)\nAt least two different approaches\nReciprocated ties / maximum number of ties (0.33)\nReciprocated ties / number of existing ties (0.5)"
+    "text": "Reciprocity\n\nThe extent to which ties are reciprocated (if A ➔ B, then B ➔ A)\nAt least two different approaches:\n\nReciprocated ties / maximum number of ties (0.33)\nReciprocated ties / number of existing ties (0.5)"
   },
   {
     "objectID": "src/intro_networks.html#assortativity",
@@ -669,7 +669,7 @@
     "href": "src/intro_networks.html#eigenvector-centrality",
     "title": "Networks",
     "section": "Eigenvector centrality",
-    "text": "Eigenvector centrality\n\nNot all connections are equal\nConnections to more central vertices are more important than connections to less central ones\nIt is still important to have a large number of connections, but a node with fewer but more important connections will end up being more central than a node with more but less important links\nGlobal structure of the network: both direct links and walks\nEigenvector of the adjacency matrix associated with the larger eigenvalue"
+    "text": "Eigenvector centrality\n\nNot all connections are equal\nConnections to more central vertices are more important than connections to less central ones\nIt is still important to have a large number of connections, but a node with fewer and more important connections will end up being more central than a node with more and less important links\nGlobal structure of the network: both direct links and shortest paths\nEigenvector of the adjacency matrix associated with the larger eigenvalue"
   },
   {
     "objectID": "src/intro_networks.html#pagerank-centrality",
@@ -697,7 +697,7 @@
     "href": "src/intro_networks.html#references",
     "title": "Networks",
     "section": "References",
-    "text": "References\n\n\n\n\n\n\nBlondel, Vincent D, Jean-Loup Guillaume, Renaud Lambiotte, and Etienne Lefebvre. 2008. “Fast Unfolding of Communities in Large Networks.” Journal of Statistical Mechanics: Theory and Experiment 2008 (10): P10008.\n\n\nChristaller, Walter. 1966. Central Places in Southern Germany. Vol. 10. Prentice-Hall.\n\n\nLight, Ryan, and James Moody. 2020. The Oxford Handbook of Social Networks. Oxford University Press.\n\n\nNeal, Zachary P, and Céline Rozenblat. 2021. Handbook of Cities and Networks. Edward Elgar Publishing.\n\n\nRatti, Carlo, Stanislav Sobolevsky, Francesco Calabrese, Clio Andris, Jonathan Reades, Mauro Martino, Rob Claxton, and Steven H Strogatz. 2010. “Redrawing the Map of Great Britain from a Network of Human Interactions.” PloS One 5 (12): e14248."
+    "text": "References\n\n\n\n\n\n\nBlondel, Vincent D, Jean-Loup Guillaume, Renaud Lambiotte, and Etienne Lefebvre. 2008. “Fast Unfolding of Communities in Large Networks.” Journal of Statistical Mechanics: Theory and Experiment 2008 (10): P10008.\n\n\nChristaller, Walter. 1966. Central Places in Southern Germany. Vol. 10. Prentice-Hall.\n\n\nLight, Ryan, and James Moody. 2020. The Oxford Handbook of Social Networks. Oxford University Press.\n\n\nNeal, Zachary P, and Céline Rozenblat. 2021. Handbook of Cities and Networks. Edward Elgar Publishing.\n\n\nRatti, Carlo, Stanislav Sobolevsky, Francesco Calabrese, Clio Andris, Jonathan Reades, Mauro Martino, Rob Claxton, and Steven H Strogatz. 2010. “Redrawing the Map of Great Britain from a Network of Human Interactions.” PloS One 5 (12): e14248.\n\n\nTranos, Emmanouil, Masood Gheasi, and Peter Nijkamp. 2015. “International Migration: A Global Complex Network.” Environment and Planning B: Planning and Design 42 (1): 4–22."
   },
   {
     "objectID": "src/network_science.html#network-science-the-evolution-of-a-new-science",

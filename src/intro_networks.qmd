@@ -59,7 +59,7 @@ images.path <- paste0(path, "/images/")
 <small><small>
 
 | Level (aggregation of linkages and nodes) |        | Geographical scale (network boundary)                             |                                                                                            |                                             |
-|--------------|--------------|--------------|----------------|--------------|
+|---------------|---------------|---------------|---------------|---------------|
 |                                           |        | 1 -- Local                                                        | 2 -- Regional                                                                              | 3 -- Global                                 |
 | A \-- Macro                               | Cities | City as a whole entity                                            | Central place system [@christaller1966central]                                             |                                             |
 | B \-- Meso                                | Firms  | Clusters (Porter 2000)                                            | Regional economic intergration and functional polycentrism (e.g. Scott 2001: Boschma 2005) | Global inter-firm network (e.g. Cohen 1981) |
@@ -439,7 +439,7 @@ E -- D
 
 ## Network density
 
--   Numbers of links / numbers of nodes:
+-   Numbers of links / Max. number of links:
 
     -   $L/k(k-1)$ for directed
 
@@ -517,11 +517,11 @@ E -- D
 
 -   The extent to which ties are reciprocated (if A ➔ B, then B ➔ A)
 
--   At least two different approaches
+-   At least two different approaches:
 
--   Reciprocated ties / maximum number of ties (0.33)
+    -   Reciprocated ties / maximum number of ties (0.33)
 
--   Reciprocated ties / number of existing ties (0.5)
+    -   Reciprocated ties / number of existing ties (0.5)
 
 ```{r, fig.height=2}
 grViz("
@@ -656,6 +656,7 @@ Redrawing the Map of Great Britain from a Network of Human Interactions [@ratti2
 ------------------------------------------------------------------------
 
 <!-- <iframe src="http://schochastics.net/sna/periodic.html" width="1200" height="600" frameBorder="0" scrolling="yes"></iframe> -->
+
 <!-- iframe doesn't work because of https/http mixed content -->
 
 [![](images/periodic.png)](http://schochastics.net/sna/periodic.html)
@@ -835,9 +836,9 @@ G -- { I J K }
 
 -   Connections to more central vertices are more important than connections to less central ones
 
--   It is still important to have a large number of connections, but a node with fewer but more important connections will end up being more central than a node with more but less important links
+-   It is still important to have a large number of connections, but a node with fewer and more important connections will end up being more central than a node with more and less important links
 
--   Global structure of the network: both direct links and walks
+-   Global structure of the network: both direct links and shortest paths
 
 -   Eigenvector of the adjacency matrix associated with the larger eigenvalue
 
@@ -860,6 +861,11 @@ G -- { I J K }
 -   Various other centrality measures exist (e.g. see [`igraph`](https://igraph.org/r/))
 
 -   Highlight different aspects of the distribution and sources of power
+
+------------------------------------------------------------------------
+
+![](images/tranos_epb.png)
+<small> Source: @tranos2015international </small>
 
 ## Other types of networks
 
