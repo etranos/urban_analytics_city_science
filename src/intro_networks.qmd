@@ -87,7 +87,10 @@ images.path <- paste0(path, "/images/")
 
 # Network data
 
-## 1. Directed, non-weighted networks
+## 1. Directed, non-weighted networks^1[
+@hanneman2005introduction is a very useful [online source](http://faculty.ucr.edu/~hanneman/nettext/) for most of the concepts
+presented here.
+]
 
 <small>
 
@@ -163,7 +166,7 @@ edge [color = grey]
 A -> B
 A -> C
 A -> D
-A -> C
+Β -> C
 C -> D
 D -> C
 }")
@@ -200,13 +203,13 @@ D -> C
 | A   | B   | 1   |
 | A   | C   | 1   |
 | A   | D   | 1   |
-| B   | C   | 1   |
 | B   | A   | 1   |
+| B   | C   | 1   |
 | C   | A   | 1   |
 | C   | B   | 1   |
 | C   | D   | 1   |
-| D   | C   | 1   |
 | D   | A   | 1   |
+| D   | C   | 1   |
 
 </small>
 
@@ -231,13 +234,13 @@ edge [color = grey]
 A -> B
 A -> C
 A -> D
-B -> C
 B -> A
+B -> C
 C -> A
 C -> B
 C -> D
-D -> C
 D -> A
+D -> C
 }")
 ```
 
@@ -299,7 +302,7 @@ edge [color = grey]
 A -> B [ penwidth = 3]
 A -> C [ penwidth = 1]
 A -> D [ penwidth = 5]
-A -> C [ penwidth = 1]
+B -> C [ penwidth = 1]
 C -> D [ penwidth = 6]
 D -> C [ penwidth = 7]
 }")
