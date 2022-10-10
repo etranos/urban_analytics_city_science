@@ -87,10 +87,7 @@ images.path <- paste0(path, "/images/")
 
 # Network data
 
-## 1. Directed, non-weighted networks^1[
-@hanneman2005introduction is a very useful [online source](http://faculty.ucr.edu/~hanneman/nettext/) for most of the concepts
-presented here.
-]
+## 1. Directed, non-weighted networks^[@hanneman2005introduction is a very useful [online source](http://faculty.ucr.edu/~hanneman/nettext/) for most of the concepts presented here.]
 
 <small>
 

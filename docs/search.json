@@ -451,15 +451,15 @@
     "objectID": "src/intro_networks.html#directed-non-weighted-networks",
     "href": "src/intro_networks.html#directed-non-weighted-networks",
     "title": "Networks",
-    "section": "1. Directed, non-weighted networks",
-    "text": "1. Directed, non-weighted networks\n\n\nBasic elements: nodes and links\nData is not arranged in vectors but on square matrices\n1 and 0 represent the existence of a link\nEdge list\n\n\n\ni\nj\nw\n\n\n\n\nA\nB\n1\n\n\nA\nC\n1\n\n\nA\nD\n1\n\n\nB\nC\n1\n\n\nC\nD\n1\n\n\nD\nC\n1"
+    "section": "1. Directed, non-weighted networks1",
+    "text": "1. Directed, non-weighted networks1\n\n\nBasic elements: nodes and links\nData is not arranged in vectors but on square matrices\n1 and 0 represent the existence of a link\n\nAdjacency matrix\n\n\n\n\nA\nB\nC\nD\n\n\nA\n0\n1\n1\n1\n\n\nB\n0\n0\n1\n0\n\n\nC\n0\n0\n0\n1\n\n\nD\n0\n0\n0\n0\n\n\n\n\nHanneman and Riddle (2005) is a very useful online source for most of the concepts presented here."
   },
   {
     "objectID": "src/intro_networks.html#directed-non-weighted-networks-1",
     "href": "src/intro_networks.html#directed-non-weighted-networks-1",
     "title": "Networks",
     "section": "1. Directed, non-weighted networks",
-    "text": "1. Directed, non-weighted networks\n\n\nBasic elements: nodes and links\nData is not arranged in vectors but on square matrices\n1 and 0 represent the existence of a link"
+    "text": "1. Directed, non-weighted networks\n\n\nBasic elements: nodes and links\nData is not arranged in vectors but on square matrices\n1 and 0 represent the existence of a link\nEdge list\n\n\n\ni\nj\nw\n\n\n\n\nA\nB\n1\n\n\nA\nC\n1\n\n\nA\nD\n1\n\n\nB\nC\n1\n\n\nC\nD\n1\n\n\nD\nC\n1"
   },
   {
     "objectID": "src/intro_networks.html#directed-non-weighted-networks-2",
@@ -697,7 +697,7 @@
     "href": "src/intro_networks.html#references",
     "title": "Networks",
     "section": "References",
-    "text": "References\n\n\n\n\n\n\nBlondel, Vincent D, Jean-Loup Guillaume, Renaud Lambiotte, and Etienne Lefebvre. 2008. “Fast Unfolding of Communities in Large Networks.” Journal of Statistical Mechanics: Theory and Experiment 2008 (10): P10008.\n\n\nChristaller, Walter. 1966. Central Places in Southern Germany. Vol. 10. Prentice-Hall.\n\n\nLight, Ryan, and James Moody. 2020. The Oxford Handbook of Social Networks. Oxford University Press.\n\n\nNeal, Zachary P, and Céline Rozenblat. 2021. Handbook of Cities and Networks. Edward Elgar Publishing.\n\n\nRatti, Carlo, Stanislav Sobolevsky, Francesco Calabrese, Clio Andris, Jonathan Reades, Mauro Martino, Rob Claxton, and Steven H Strogatz. 2010. “Redrawing the Map of Great Britain from a Network of Human Interactions.” PloS One 5 (12): e14248.\n\n\nTranos, Emmanouil, Masood Gheasi, and Peter Nijkamp. 2015. “International Migration: A Global Complex Network.” Environment and Planning B: Planning and Design 42 (1): 4–22."
+    "text": "References\n\n\n\n\n\n\nBlondel, Vincent D, Jean-Loup Guillaume, Renaud Lambiotte, and Etienne Lefebvre. 2008. “Fast Unfolding of Communities in Large Networks.” Journal of Statistical Mechanics: Theory and Experiment 2008 (10): P10008.\n\n\nChristaller, Walter. 1966. Central Places in Southern Germany. Vol. 10. Prentice-Hall.\n\n\nHanneman, Robert A, and Mark Riddle. 2005. “Introduction to Social Network Methods.” University of California Riverside. http://faculty.ucr.edu/~hanneman/nettext/.\n\n\nLight, Ryan, and James Moody. 2020. The Oxford Handbook of Social Networks. Oxford University Press.\n\n\nNeal, Zachary P, and Céline Rozenblat. 2021. Handbook of Cities and Networks. Edward Elgar Publishing.\n\n\nRatti, Carlo, Stanislav Sobolevsky, Francesco Calabrese, Clio Andris, Jonathan Reades, Mauro Martino, Rob Claxton, and Steven H Strogatz. 2010. “Redrawing the Map of Great Britain from a Network of Human Interactions.” PloS One 5 (12): e14248.\n\n\nTranos, Emmanouil, Masood Gheasi, and Peter Nijkamp. 2015. “International Migration: A Global Complex Network.” Environment and Planning B: Planning and Design 42 (1): 4–22."
   },
   {
     "objectID": "src/network_science.html#network-science-the-evolution-of-a-new-science",
