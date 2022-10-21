@@ -18,7 +18,7 @@ Until this point the focus has been on networks *between* cities. Now we are tur
 
 -   However, edges can:
 
-    -   either contain geographical information (e.g. road networks)
+    -   either contain geographical information (e.g. road networks),
 
     -   or not, and instead just link two nodes (e.g. social networks whose node's geograpical location is known to us)
 
@@ -26,17 +26,17 @@ Street network analysis is not new. For instance, Leonhard Euler proved that the
 
 Why is it important to study street networks:
 
--   To understand the form of cities. There are quite a few recent studies [e.g. @boeing2019urban; @boeing2017osmnx], but this was also part of an older strand of research called Space Syntax [@hillier1976space]
+-   To understand the form of cities. There are quite a few recent studies [e.g. @boeing2019urban; @boeing2017osmnx], but this was also part of an older strand of research called Space Syntax [@hillier1976space].
 
 -   To understand the structure of transportation systems and support transportation planning.
 
 Some key characteristics of street networks:
 
--   They might have multiple edges between two nodes
+-   They might have multiple edges between two nodes.
 
--   Street networks are approximately planar [\@ @boeing2017osmnx]
+-   Street networks are approximately planar [@boeing2017osmnx].
 
--   Edges contain geographical information
+-   Edges contain geographical information.
 
 Topological measures are important to understand and (maybe compare different) urban street networks.
 
@@ -50,7 +50,7 @@ Try to think what the below topological measures might mean for a street network
 
 -   Node degree
 
--   clustering coefficient
+-   Clustering coefficient
 
 -   Betweenness centrality and its maximum value in a network
 
@@ -69,7 +69,7 @@ library(igraph)     #as above
 library(osmdata)    #access OSM data
 library(dbscan)     #this is the dbscan clustering algorithm
 
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE) 
 ```
 
 In geospatial networks:
@@ -134,7 +134,7 @@ edges # check the from and to columns
 net = sfnetwork(nodes, edges, node_key = "name")
 ```
 
-`net`'s edges contain geographical information. So, let's create an `other_net` whose edges do not contain geographical information. This could have been a geospatial social network, for example. We know where each node is located in space and then the edges illustrate the existence of a connection between two nodes. To do so, we simply set the `st_geometry` equal to NULL. The plots below will make these differences clear.
+`net`'s edges contain geographical information. So, let's create an `other_net` whose edges do not contain geographical information. This could have been a geospatial social network, for example. We know where each node is located in space and then the edges illustrate the existence of a connection between two nodes. To do so, we simply set the `st_geometry` equal to `NULL`. The plots below will make these differences clear.
 
 ```{r}
 st_geometry(edges) = NULL
@@ -252,7 +252,7 @@ Network data wrangling. We need to:
 
 2.  Remove nodes that are interior points in a line and define the shape of the line. AKA smoothing the network.
 
-To keep track of the changes, let's keep a note of the original network size
+To keep track of the changes, let's keep a note of the original network size.
 
 ```{r size}
 # size of original network
@@ -260,7 +260,7 @@ gsize(bristol_sfn)  # number of edges
 gorder(bristol_sfn) # number of nodes
 ```
 
-Simplify the network.
+Now we can simplify the network.
 
 ```{r simplify}
 bristol_wrangled <- bristol_sfn %>%
@@ -283,7 +283,7 @@ gsize(bristol_wrangled)  # number of edges
 gorder(bristol_wrangled) # number of nodes
 ```
 
-Remove interior points.
+Remove the interior points...
 
 ```{r smooth}
 bristol_wrangled <- convert(bristol_wrangled, to_spatial_smooth)
@@ -293,7 +293,7 @@ gsize(bristol_wrangled)  # number of edges
 gorder(bristol_wrangled) # number of nodes
 ```
 
-And plot the network again.
+... and plot the network again.
 
 ```{r}
 ggplot() +
@@ -360,7 +360,7 @@ ggplot() +
 **Question**: How can we interpret this map?
 ```
 
-Remember the community detections algorithms? We can detect such communities within the street network. These are neighbourhoods of **streets** which are better connected internally than externally with the whole network. There is a contradiction here, no? Community detection is about nodes, not edges? However, we here we are interested in clustering edges. So, we do a trick. We first 'inverse' our spatial network, which means that the nodes become edges and vice versa. We do this with `morph(to_linegraph)`. Read the Wikipedia entry of [line graps](https://en.wikipedia.org/wiki/Line_graph). The `unmorgh()` brings the changes -- that is the new `group` column back to the original network, that we now call `grouped_net`. For more details, have a look [here](https://cran.r-project.org/web/packages/sfnetworks/vignettes/sfn05_morphers.html).
+Remember the community detections algorithms? We can detect such communities within the street network. These are neighbourhoods of **streets** which are better connected internally than externally with the whole network. There is a contradiction here, no? Community detection is about nodes, not edges? However, here we are interested in clustering edges. So, we wiil do a trick. We first 'inverse' our spatial network, which means that the nodes become edges and vice versa. We do this with `morph(to_linegraph)`. Read the Wikipedia entry of [line graps](https://en.wikipedia.org/wiki/Line_graph) and see teh below image for an example. The `unmorgh()` brings the changes -- that is the new `group` column back to the original network, that we now call `grouped_net`. For more details, have a look [here](https://cran.r-project.org/web/packages/sfnetworks/vignettes/sfn05_morphers.html).
 
 ![](images/linegraph.png)
 

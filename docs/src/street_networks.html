@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Emmanouil Tranos">
-<meta name="dcterms.date" content="2022-10-06">
+<meta name="dcterms.date" content="2022-10-21">
 
 <title>Urban analytics and city science - Street network analysis practical: networks within cities</title>
 <style>
@@ -192,6 +192,11 @@ div.csl-indent {
   <a href="../src/readings.html" class="sidebar-item-text sidebar-link">Key readings</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/project.html" class="sidebar-item-text sidebar-link">Assessment</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -313,7 +318,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 6, 2022</p>
+      <p class="date">October 21, 2022</p>
     </div>
   </div>
     
@@ -329,21 +334,21 @@ div.csl-indent {
 <li><p>Nodes always contain geographical coordinates.</p></li>
 <li><p>However, edges can:</p>
 <ul>
-<li><p>either contain geographical information (e.g.&nbsp;road networks)</p></li>
+<li><p>either contain geographical information (e.g.&nbsp;road networks),</p></li>
 <li><p>or not, and instead just link two nodes (e.g.&nbsp;social networks whose node’s geograpical location is known to us)</p></li>
 </ul></li>
 </ul>
 <p>Street network analysis is not new. For instance, Leonhard Euler proved that the <a href="https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg">Seven Bridges of Königsberg problem</a> had no solution. This type of problems and analysis – routing – later on became integral part of the standard GIS toolkit.</p>
 <p>Why is it important to study street networks:</p>
 <ul>
-<li><p>To understand the form of cities. There are quite a few recent studies <span class="citation" data-cites="boeing2019urban boeing2017osmnx">(e.g. <a href="#ref-boeing2019urban" role="doc-biblioref">Boeing 2019</a>, <a href="#ref-boeing2017osmnx" role="doc-biblioref">2017</a>)</span>, but this was also part of an older strand of research called Space Syntax <span class="citation" data-cites="hillier1976space">(<a href="#ref-hillier1976space" role="doc-biblioref">Hillier et al. 1976</a>)</span></p></li>
+<li><p>To understand the form of cities. There are quite a few recent studies <span class="citation" data-cites="boeing2019urban boeing2017osmnx">(e.g. <a href="#ref-boeing2019urban" role="doc-biblioref">Boeing 2019</a>, <a href="#ref-boeing2017osmnx" role="doc-biblioref">2017</a>)</span>, but this was also part of an older strand of research called Space Syntax <span class="citation" data-cites="hillier1976space">(<a href="#ref-hillier1976space" role="doc-biblioref">Hillier et al. 1976</a>)</span>.</p></li>
 <li><p>To understand the structure of transportation systems and support transportation planning.</p></li>
 </ul>
 <p>Some key characteristics of street networks:</p>
 <ul>
-<li><p>They might have multiple edges between two nodes</p></li>
-<li><p>Street networks are approximately planar <span class="citation" data-cites="boeing2017osmnx">(@ <a href="#ref-boeing2017osmnx" role="doc-biblioref">Boeing 2017</a>)</span></p></li>
-<li><p>Edges contain geographical information</p></li>
+<li><p>They might have multiple edges between two nodes.</p></li>
+<li><p>Street networks are approximately planar <span class="citation" data-cites="boeing2017osmnx">(<a href="#ref-boeing2017osmnx" role="doc-biblioref">Boeing 2017</a>)</span>.</p></li>
+<li><p>Edges contain geographical information.</p></li>
 </ul>
 <p>Topological measures are important to understand and (maybe compare different) urban street networks.</p>
 <p>Try to think what the below topological measures might mean for a street network:</p>
@@ -352,7 +357,7 @@ div.csl-indent {
 <li><p>Node eccentricity</p></li>
 <li><p>Network diameter</p></li>
 <li><p>Node degree</p></li>
-<li><p>clustering coefficient</p></li>
+<li><p>Clustering coefficient</p></li>
 <li><p>Betweenness centrality and its maximum value in a network</p></li>
 <li><p>Closeness centrality</p></li>
 </ul>
@@ -367,7 +372,7 @@ div.csl-indent {
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmdata)    <span class="co">#access OSM data</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dbscan)     <span class="co">#this is the dbscan clustering algorithm</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In geospatial networks:</p>
 <ul>
@@ -472,7 +477,7 @@ Geodetic CRS:  WGS 84
 <pre><code>Spatial network structure is valid</code></pre>
 </div>
 </div>
-<p><code>net</code>’s edges contain geographical information. So, let’s create an <code>other_net</code> whose edges do not contain geographical information. This could have been a geospatial social network, for example. We know where each node is located in space and then the edges illustrate the existence of a connection between two nodes. To do so, we simply set the <code>st_geometry</code> equal to NULL. The plots below will make these differences clear.</p>
+<p><code>net</code>’s edges contain geographical information. So, let’s create an <code>other_net</code> whose edges do not contain geographical information. This could have been a geospatial social network, for example. We know where each node is located in space and then the edges illustrate the existence of a connection between two nodes. To do so, we simply set the <code>st_geometry</code> equal to <code>NULL</code>. The plots below will make these differences clear.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_geometry</span>(edges) <span class="ot">=</span> <span class="cn">NULL</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -637,7 +642,7 @@ Geodetic CRS:  WGS 84
 <pre><code>Issuing query to Overpass API ...</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Rate limit: 0</code></pre>
+<pre><code>Announced endpoint: lz4.overpass-api.de/api/</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Query complete!</code></pre>
@@ -666,19 +671,19 @@ Geodetic CRS:  WGS 84
 <ol start="2" type="1">
 <li>Remove nodes that are interior points in a line and define the shape of the line. AKA smoothing the network.</li>
 </ol>
-<p>To keep track of the changes, let’s keep a note of the original network size</p>
+<p>To keep track of the changes, let’s keep a note of the original network size.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># size of original network</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gsize</span>(bristol_sfn)  <span class="co"># number of edges</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 15050</code></pre>
+<pre><code>[1] 15071</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gorder</span>(bristol_sfn) <span class="co"># number of nodes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 20880</code></pre>
+<pre><code>[1] 20891</code></pre>
 </div>
 </div>
-<p>Simplify the network.</p>
+<p>Now we can simplify the network.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>bristol_wrangled <span class="ot">&lt;-</span> bristol_sfn <span class="sc">%&gt;%</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"edges"</span>) <span class="sc">%&gt;%</span></span>
@@ -688,29 +693,29 @@ Geodetic CRS:  WGS 84
 <span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="co"># size of simplified network</span></span>
 <span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="fu">gsize</span>(bristol_wrangled)  <span class="co"># number of edges</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 14849</code></pre>
+<pre><code>[1] 14871</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gorder</span>(bristol_wrangled) <span class="co"># number of nodes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 20880</code></pre>
+<pre><code>[1] 20891</code></pre>
 </div>
 </div>
 <!-- Create nodes where two lines intersect. -->
-<p>Remove interior points.</p>
+<p>Remove the interior points…</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>bristol_wrangled <span class="ot">&lt;-</span> <span class="fu">convert</span>(bristol_wrangled, to_spatial_smooth)</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># size of simplified network</span></span>
 <span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gsize</span>(bristol_wrangled)  <span class="co"># number of edges</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 11708</code></pre>
+<pre><code>[1] 11724</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gorder</span>(bristol_wrangled) <span class="co"># number of nodes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 17739</code></pre>
+<pre><code>[1] 17744</code></pre>
 </div>
 </div>
-<p>And plot the network again.</p>
+<p>… and plot the network again.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(bristol_wrangled, <span class="st">"edges"</span>), <span class="at">col =</span> <span class="st">"grey50"</span>) <span class="sc">+</span></span>
@@ -753,7 +758,7 @@ Geodetic CRS:  WGS 84
 </p>
 </div>
 </div>
-<p>Remember the community detections algorithms? We can detect such communities within the street network. These are neighbourhoods of <strong>streets</strong> which are better connected internally than externally with the whole network. There is a contradiction here, no? Community detection is about nodes, not edges? However, we here we are interested in clustering edges. So, we do a trick. We first ‘inverse’ our spatial network, which means that the nodes become edges and vice versa. We do this with <code>morph(to_linegraph)</code>. Read the Wikipedia entry of <a href="https://en.wikipedia.org/wiki/Line_graph">line graps</a>. The <code>unmorgh()</code> brings the changes – that is the new <code>group</code> column back to the original network, that we now call <code>grouped_net</code>. For more details, have a look <a href="https://cran.r-project.org/web/packages/sfnetworks/vignettes/sfn05_morphers.html">here</a>.</p>
+<p>Remember the community detections algorithms? We can detect such communities within the street network. These are neighbourhoods of <strong>streets</strong> which are better connected internally than externally with the whole network. There is a contradiction here, no? Community detection is about nodes, not edges? However, here we are interested in clustering edges. So, we wiil do a trick. We first ‘inverse’ our spatial network, which means that the nodes become edges and vice versa. We do this with <code>morph(to_linegraph)</code>. Read the Wikipedia entry of <a href="https://en.wikipedia.org/wiki/Line_graph">line graps</a> and see teh below image for an example. The <code>unmorgh()</code> brings the changes – that is the new <code>group</code> column back to the original network, that we now call <code>grouped_net</code>. For more details, have a look <a href="https://cran.r-project.org/web/packages/sfnetworks/vignettes/sfn05_morphers.html">here</a>.</p>
 <p><img src="images/linegraph.png" class="img-fluid"></p>
 <p><small>Source: <a href="https://mathworld.wolfram.com/LineGraph.html">mathworld.wolfram.com</a></small></p>
 <div class="cell">
@@ -765,36 +770,36 @@ Geodetic CRS:  WGS 84
 <span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="co"># A new group column has been added with the community membership</span></span>
 <span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>grouped_net</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A sfnetwork with 17739 nodes and 11708 edges
+<pre><code># A sfnetwork with 17744 nodes and 11724 edges
 #
 # CRS:  EPSG:4326 
 #
-# An undirected multigraph with 6662 components with spatially explicit edges
+# An undirected multigraph with 6660 components with spatially explicit edges
 #
-# Node Data:     17,739 x 2 (active)
+# Node Data:     17,744 x 2 (active)
 # Geometry type: POINT
 # Dimension:     XY
 # Bounding box:  xmin: -2.748173 ymin: 51.38876 xmax: -2.460661 ymax: 51.56766
                      x     bc
            &lt;POINT [°]&gt;  &lt;dbl&gt;
 1  (-2.460661 51.5015)     0 
-2 (-2.521586 51.51787) 10474.
+2 (-2.521586 51.51787) 10505.
 3 (-2.546315 51.54446)     0 
-4 (-2.552245 51.40075)  6597 
-5 (-2.516866 51.51245)  5413.
-6 (-2.518981 51.51272) 31432.
-# ... with 17,733 more rows
+4 (-2.552245 51.40075)  6617 
+5 (-2.516866 51.51245)  5438.
+6 (-2.518981 51.51272) 31472.
+# ... with 17,738 more rows
 #
-# Edge Data:     11,708 x 5
+# Edge Data:     11,724 x 5
 # Geometry type: LINESTRING
 # Dimension:     XY
 # Bounding box:  xmin: -2.748173 ymin: 51.38876 xmax: -2.460661 ymax: 51.56766
    from    to weight                                                     x group
   &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;                                      &lt;LINESTRING [°]&gt; &lt;int&gt;
-1     6     7 219.   (-2.518981 51.51272, -2.518938 51.51293, -2.518937 5~    26
-2     8     9 980.   (-2.523849 51.52109, -2.522684 51.5198, -2.521651 51~    26
-3    18    19   5.23              (-2.528247 51.50576, -2.528179 51.50578)    26
-# ... with 11,705 more rows</code></pre>
+1     6     7 219.   (-2.518981 51.51272, -2.518938 51.51293, -2.518937 5~    16
+2     8     9 980.   (-2.523849 51.52109, -2.522684 51.5198, -2.521651 51~    16
+3    18    19   5.23              (-2.528247 51.50576, -2.528179 51.50578)    16
+# ... with 11,721 more rows</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There are quite a few communities overall</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>grouped_net <span class="sc">%&gt;%</span></span>
@@ -803,7 +808,7 @@ Geodetic CRS:  WGS 84
 <span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">length</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 6708</code></pre>
+<pre><code>[1] 6702</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>grouped_net <span class="sc">%&gt;%</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"edges"</span>) <span class="sc">%&gt;%</span></span>
