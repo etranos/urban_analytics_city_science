@@ -25,6 +25,11 @@ Some of the materials for this tutorial have been adapted from:
 
 As you can see this is a long `.Rmd` document, which has a dual objective. On one hand, it will help you achieve the unit learning outcomes as it provides an implementation of most of the concepts and ideas we discuss for this unit. On the other hand this is almost a representation of a 'real world' workflow. Instead of breaking the code in shorter and maybe more digestible `.Rmd` documents I decided to provide you with a working sequence of all actions I would have taken in order to analyse a network with spatial dimensions such as the network of commuting flows in $2011$. You can use this workflow as the basis for building your own approach and, consequently, code in order to complete this session's project. We will spend at least $2$ sessions to go through this code.
 
+To begin with, create a new `R Project` as a new directory and within it create a 
+`source` and `data` directory to store the code and the data accordingly. Instructions 
+on how to create such a project, can be found [here](https://bookdown.org/daniel_dauber_io/r4np_book/starting-your-r-projects.html). 
+Then, create a new `RMarkdown` document to implement all the below.
+
 ## Install and load packages
 
 We will use quite a few packages for this tutorial. Most of the code is based on the `tidyverse` logic -- see [here](https://www.tidyverse.org/) for more info. But the main package we will use for network data wrangling and analysis is `igraph` -- more info [here](https://igraph.org/r/).
