@@ -37,10 +37,8 @@ editor: source
     -   Practical: [Build and compare models](network_models.Rmd){target="_blank"}
 
     Moving from network analysis to network science with clear urban applications.
-
-7.  [Diversity in cities](diversity.qmd){target="_blank"}
-
-    Why is diversity important in cities and how do we measure it?
+    
+7.  Reading week 
 
 8.  Transport geography
 
@@ -69,6 +67,13 @@ editor: source
 
 <!-- @kolaczyk2020statistical Ch 9 -->
 
-10. Urban policies and causality
+10.  Spatial interaction modelling
+
+
+11.  [Diversity in cities](diversity.qmd){target="_blank"}
+
+      Why is diversity important in cities and how do we measure it?
+
+12. Urban policies and causality
 
     From urban analysis to urban policies. And how to assess such policies. Causality.
