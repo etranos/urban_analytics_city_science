@@ -1,26 +1,20 @@
 ---
 title: "Network models in practice"
-author: |
-  | 
-  | Emmanouil Tranos
-  |
-  | University of Bristol, Alan Turing Institute 
-  | [e.tranos@bristol.ac.uk](mailto:e.tranos@bristol.ac.uk), [\@EmmanouilTranos](https://twitter.com/EmmanouilTranos),  [etranos.info](https://etranos.info/)
-  | 
-  | 
+author: Emmanouil Tranos
 date: "`r Sys.Date()`"
 output:
   html_document:
     toc: true
     toc_float: true
+editor: source
 bibliography: references.bib
 ---
 
 ## Setup
 
-Pay attention on the packages `sand` and `igraphdata`. The first one contains all the different network datasets used by [@kolaczyk2020statistical]. Then, the second one contain network data to be used together with the `igraph` package. More information can be found [here](https://cran.r-project.org/web/packages/sand/sand.pdf) and [here](https://cran.r-project.org/web/packages/igraphdata/igraphdata.pdf). Feel free to explore these network data on your own time.
+Pay attention on the packages `sand` and `igraphdata`. The first one contains all the different network datasets used by [@kolaczyk2020statistical]. Then, the second one contain network data to be used together with the `igraph` package. More information can be found [here](https://cran.r-project.org/web/packages/sand/sand.pdf){target="_blank"} and [here](https://cran.r-project.org/web/packages/igraphdata/igraphdata.pdf){target="_blank"}. Feel free to explore these network data on your own time.
 
-```{r setup}
+```{r setup, include=TRUE, results= 'hide', message=FALSE, warning=FALSE}
 library(tidyverse)
 library(igraph)
 
@@ -44,7 +38,7 @@ library(igraphdata)
 
 -   `sample_pa()`
 
-Go to `igraph`'s [webpage](https://igraph.org/r/html/latest/) and familiarise yourselves with the syntax of these functions.
+Go to `igraph`'s [webpage](https://igraph.org/r/html/latest/){target="_blank"} and familiarise yourselves with the syntax of these functions.
 
 ```{block, type='alert alert-warning'}
 
@@ -65,7 +59,7 @@ second network. Are the results the same?
 Why do we need to define the random seed ?
 ```
 
-Examples of modelled networks
+## Examples of modelled networks
 
 ```{r}
 

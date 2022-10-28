@@ -6,10 +6,12 @@ author: |
   |
   | University of Bristol, Alan Turing Institute 
   | [e.tranos@bristol.ac.uk](mailto:e.tranos@bristol.ac.uk), [\@EmmanouilTranos](https://twitter.com/EmmanouilTranos),  [etranos.info](https://etranos.info/)
+
 format: revealjs
 editor: source
 bibliography: references.bib
 ---
+
 
 ```{r}
 #| label: setup
@@ -133,11 +135,11 @@ C -- F
 
 -   SW networks are located between regular and random networks:
 
--   Highly clustered like regular lattices
+    -   Highly clustered like regular lattices
 
--   Small distances like random networks
+    -   Small distances like random networks
 
--   Node degree distribution is quite similar with the RN and decays exponentially
+    -   Node degree distribution is quite similar with the RN and decays exponentially
 
 ## 2nd milestone: Small-worlds
 
@@ -175,7 +177,7 @@ C -- F
 
 -   2 main formation mechanisms:
 
-    -   **growth**; expansion of networks over time
+    -   **growth**: expansion of networks over time
 
     -   **preferential attachment**: growth is not equally dispersed across the nodes; highly connected nodes are more likely to receive new links than the lower degree nodes
 
@@ -467,7 +469,7 @@ $Y_i = Y_0P_i^\beta$
 :::
 
 ::: {.column width="20%"}
-<small> An average urban dweller in the capital, Lisbon, has approximately twice as many reciprocated mobile phone contacts, k, as an average individual in the rural town of Lixa.
+<small> An average urban dweller in the capital, Lisbon, has approximately twice as many reciprocated mobile phone contacts, *k*, as an average individual in the rural town of Lixa.
 
 <small>Source: @bettencourt2021introduction </small> </small>
 :::
@@ -503,30 +505,32 @@ $Y_i = Y_0P_i^\beta$
 :::
 :::
 
-------------------------------------------------------------------------
+<!-- ------------------------------------------------------------------------ -->
+
+<!-- ```{=html} -->
+<!-- <style> -->
+
+<!-- .center { -->
+<!--   margin: 0; -->
+<!--   position: absolute; -->
+<!--   top: 50%; -->
+<!--   left: 50%; -->
+<!--   -ms-transform: translate(-50%, -50%); -->
+<!--   transform: translate(-50%, -50%); -->
+<!-- } -->
+<!-- </style> -->
+<!-- ``` -->
+<!-- ::: container -->
+<!-- ::: center -->
+<!-- <big>Revisit economies of scale</big> -->
+<!-- ::: -->
+<!-- ::: -->
+
+# <small>Revisit economies of scale</small>
+
+---
 
 ![](images/scale_economies.png){width="50%"}
-
-------------------------------------------------------------------------
-
-```{=html}
-<style>
-
-.center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-</style>
-```
-::: container
-::: center
-<big>Revisit economies of scale</big>
-:::
-:::
 
 ## Epilogue
 

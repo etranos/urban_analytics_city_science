@@ -753,7 +753,7 @@
     "href": "src/network_science.html#nd-milestone-small-worlds-1",
     "title": "Network science, urban laws and scaling",
     "section": "2nd milestone: Small-worlds",
-    "text": "2nd milestone: Small-worlds\n\nWatts and Strogatz (1998) Small-world (SW) model\nCoexistence of short average distance with high clustering coefficient\nSW networks are located between regular and random networks:\nHighly clustered like regular lattices\nSmall distances like random networks\nNode degree distribution is quite similar with the RN and decays exponentially"
+    "text": "2nd milestone: Small-worlds\n\nWatts and Strogatz (1998) Small-world (SW) model\nCoexistence of short average distance with high clustering coefficient\nSW networks are located between regular and random networks:\n\nHighly clustered like regular lattices\nSmall distances like random networks\nNode degree distribution is quite similar with the RN and decays exponentially"
   },
   {
     "objectID": "src/network_science.html#nd-milestone-small-worlds-2",
@@ -781,7 +781,7 @@
     "href": "src/network_science.html#rd-milestone-scale-free-sf-networks",
     "title": "Network science, urban laws and scaling",
     "section": "3rd milestone: Scale-free (SF) networks",
-    "text": "3rd milestone: Scale-free (SF) networks\n\n\nBarabási and Albert (1999)\nVery few super connected nodes and a vast majority of less connected nodes\nSF: nodes degree distribution follows a power law distribution regardless the scale of observation\n2 main formation mechanisms:\n\ngrowth; expansion of networks over time\npreferential attachment: growth is not equally dispersed across the nodes; highly connected nodes are more likely to receive new links than the lower degree nodes"
+    "text": "3rd milestone: Scale-free (SF) networks\n\n\nBarabási and Albert (1999)\nVery few super connected nodes and a vast majority of less connected nodes\nSF: nodes degree distribution follows a power law distribution regardless the scale of observation\n2 main formation mechanisms:\n\ngrowth: expansion of networks over time\npreferential attachment: growth is not equally dispersed across the nodes; highly connected nodes are more likely to receive new links than the lower degree nodes"
   },
   {
     "objectID": "src/network_science.html#rd-milestone-scale-free-sf-networks-1",
@@ -1348,14 +1348,14 @@
     "href": "src/network_models.html",
     "title": "Network models in practice",
     "section": "",
-    "text": "Pay attention on the packages sand and igraphdata. The first one contains all the different network datasets used by (Kolaczyk and Csárdi 2020). Then, the second one contain network data to be used together with the igraph package. More information can be found here and here. Feel free to explore these network data on your own time.\n\nlibrary(tidyverse)\n\nWarning: package 'tidyverse' was built under R version 4.1.3\n\n\n-- Attaching packages --------------------------------------- tidyverse 1.3.2 --\nv ggplot2 3.3.6     v purrr   0.3.4\nv tibble  3.1.8     v dplyr   1.0.9\nv tidyr   1.2.0     v stringr 1.4.0\nv readr   2.1.2     v forcats 0.5.1\n\n\nWarning: package 'ggplot2' was built under R version 4.1.3\n\n\nWarning: package 'tibble' was built under R version 4.1.3\n\n\nWarning: package 'tidyr' was built under R version 4.1.3\n\n\nWarning: package 'readr' was built under R version 4.1.3\n\n\nWarning: package 'dplyr' was built under R version 4.1.3\n\n\n-- Conflicts ------------------------------------------ tidyverse_conflicts() --\nx dplyr::filter() masks stats::filter()\nx dplyr::lag()    masks stats::lag()\n\nlibrary(igraph)\n\nWarning: package 'igraph' was built under R version 4.1.3\n\n\n\nAttaching package: 'igraph'\n\nThe following objects are masked from 'package:dplyr':\n\n    as_data_frame, groups, union\n\nThe following objects are masked from 'package:purrr':\n\n    compose, simplify\n\nThe following object is masked from 'package:tidyr':\n\n    crossing\n\nThe following object is masked from 'package:tibble':\n\n    as_data_frame\n\nThe following objects are masked from 'package:stats':\n\n    decompose, spectrum\n\nThe following object is masked from 'package:base':\n\n    union\n\nlibrary(sand)       \n\nWarning: package 'sand' was built under R version 4.1.3\n\n\nLoading required package: igraphdata\n\n\nWarning: package 'igraphdata' was built under R version 4.1.3\n\n\n\nStatistical Analysis of Network Data with R, 2nd Edition\nType in C2 (+ENTER) to start with Chapter 2.\n\nlibrary(igraphdata)"
+    "text": "Pay attention on the packages sand and igraphdata. The first one contains all the different network datasets used by (Kolaczyk and Csárdi 2020). Then, the second one contain network data to be used together with the igraph package. More information can be found here and here. Feel free to explore these network data on your own time.\n\nlibrary(tidyverse)\nlibrary(igraph)\n\nlibrary(sand)       \nlibrary(igraphdata)"
   },
   {
     "objectID": "src/network_models.html#aims-of-the-practical",
     "href": "src/network_models.html#aims-of-the-practical",
     "title": "Network models in practice",
     "section": "Aims of the practical",
-    "text": "Aims of the practical\n\nSimulate network models\nAnalyse their key attributes\nCompare them\n\nigraph enables us to generate networks based on some of the some key network models we discussed. I list below some of these functions:\n\nsample_gnp()\nsample_smallworld()\nsample_pa()\n\nGo to igraph’s webpage and familiarise yourselves with the syntax of these functions.\n\n\n\nTask: Create three networks using these three functions with, let’s say, (n = 500) nodes each.\n\n\nVisualise and compare these networks.\n\n\n\nImportantly, just before you generate a network with one of the above three functions you will need to define a random seed for reproducibility reasons, e.g. set.seed(55).\n\n\n\nQuestion: Without defining a random seed, generate a network as per the above, run some type of quick analysis about this network and then repeat the code by generating a second network with the exact same characteristics. Run the same analysis for the second network. Are the results the same?\n\n\nWhy do we need to define the random seed ?\n\n\n\nExamples of modelled networks\n\nsample_gnp(n = 500, p = 0.02) %>% \n  plot(layout=layout_in_circle, vertex.label=NA)\n\n\n\nsample_pa(n = 500, directed=FALSE) %>% \n  plot(layout=layout_in_circle, vertex.label=NA)\n\n\n\nsample_smallworld(dim = 1, size = 500, nei = 5, p = 0.05) %>% \n  plot(layout=layout_in_circle, vertex.label=NA)\n\n\n\nmake_lattice(dim =1, length = 100, nei = 5) %>% \n  plot(vertex.label=NA)"
+    "text": "Aims of the practical\n\nSimulate network models\nAnalyse their key attributes\nCompare them\n\nigraph enables us to generate networks based on some of the some key network models we discussed. I list below some of these functions:\n\nsample_gnp()\nsample_smallworld()\nsample_pa()\n\nGo to igraph’s webpage and familiarise yourselves with the syntax of these functions.\n\n\n\nTask: Create three networks using these three functions with, let’s say, (n = 500) nodes each.\n\n\nVisualise and compare these networks.\n\n\n\nImportantly, just before you generate a network with one of the above three functions you will need to define a random seed for reproducibility reasons, e.g. set.seed(55).\n\n\n\nQuestion: Without defining a random seed, generate a network as per the above, run some type of quick analysis about this network and then repeat the code by generating a second network with the exact same characteristics. Run the same analysis for the second network. Are the results the same?\n\n\nWhy do we need to define the random seed ?"
   },
   {
     "objectID": "src/description.html",
@@ -1461,5 +1461,12 @@
     "title": "Networks",
     "section": "1. Directed, non-weighted networks^1[]",
     "text": "1. Directed, non-weighted networks^1[]\n\n\nBasic elements: nodes and links\nData is not arranged in vectors but on square matrices\n1 and 0 represent the existence of a link\n\nAdjacency matrix\n\n\n\n\nA\nB\nC\nD\n\n\nA\n0\n1\n1\n1\n\n\nB\n0\n0\n1\n0\n\n\nC\n0\n0\n0\n1\n\n\nD\n0\n0\n0\n0"
+  },
+  {
+    "objectID": "src/network_models.html#examples-of-modelled-networks",
+    "href": "src/network_models.html#examples-of-modelled-networks",
+    "title": "Network models in practice",
+    "section": "Examples of modelled networks",
+    "text": "Examples of modelled networks\n\nsample_gnp(n = 500, p = 0.02) %>% \n  plot(layout=layout_in_circle, vertex.label=NA)\n\n\n\nsample_pa(n = 500, directed=FALSE) %>% \n  plot(layout=layout_in_circle, vertex.label=NA)\n\n\n\nsample_smallworld(dim = 1, size = 500, nei = 5, p = 0.05) %>% \n  plot(layout=layout_in_circle, vertex.label=NA)\n\n\n\nmake_lattice(dim =1, length = 100, nei = 5) %>% \n  plot(vertex.label=NA)"
   }
 ]
