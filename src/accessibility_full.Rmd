@@ -1,0 +1,219 @@
+---
+title: "Accessibility in practice"
+author: Emmanouil Tranos
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+editor: source
+bibliography: references.bib
+---
+
+## Setup
+
+blah blah
+
+```{r setup, include=TRUE, results= 'hide', message=FALSE, warning=FALSE}
+library(tidyverse)
+library(accessibility)
+library(sf)
+library(data.table)
+
+library(rprojroot)
+library(osmdata)
+
+# This is the project path
+path <- find_rstudio_root_file()
+```
+
+## Aims of the practical
+
+blah blah
+
+1.  Network access
+
+    -   distance to access the network
+
+    -   travel opportunities
+
+2.  Travel cost measures
+
+    -   network access + distance/time travelled on the network
+
+3.  Market potential accessibility
+
+    -   destinations at greater distance provide diminishing opportunities
+
+    -   $Acc_i = \sum_j\frac{W_j} {c_{ij}^a}$
+
+For a review have a look @HOLL2007286, @el2022making and @shi2020literature
+as well as some older and well cited papers such as @geurs2004accessibility and 
+@bruinsma1998accessibility.
+
+
+```{r}
+data_dir <- system.file("extdata", package = "accessibility")
+
+travel_matrix <- readRDS(file.path(data_dir, "travel_matrix.rds"))
+head(travel_matrix)
+```
+
+```{r}
+land_use_data <- readRDS(file.path(data_dir, "land_use_data.rds"))
+head(land_use_data)
+```
+
+```{r}
+mtc <- cost_to_closest(
+  travel_matrix,
+  land_use_data,
+  opportunity = "schools",
+  travel_cost = "travel_time",
+  n = 1
+)
+head(mtc)
+```
+
+```{r}
+cum_cutoff <- cumulative_cutoff(
+  travel_matrix,
+  land_use_data,
+  opportunity = "jobs",
+  travel_cost = "travel_time",
+  cutoff = 30
+)
+
+head(cum_cutoff)
+```
+
+```{r}
+passive_cum_cutoff <- cumulative_cutoff(
+  travel_matrix,
+  land_use_data,
+  opportunity = "population",
+  travel_cost = "travel_time",
+  cutoff = 30,
+  active = FALSE
+)
+head(passive_cum_cutoff)
+```
+
+```{r}
+negative_exp <- gravity(
+  travel_matrix,
+  land_use_data,
+  opportunity = "schools",
+  travel_cost = "travel_time",
+  decay_function = decay_exponential(decay_value = 0.2)
+)
+head(negative_exp)
+```
+
+```{r}
+grid <- system.file("extdata/grid_bho.rds", package = "accessibility")
+grid <- readRDS(grid)
+
+spatial_data <- merge(grid, cum_cutoff, by = "id")
+#spatial_data <- merge(grid, negative_exp, by = "id")
+
+ggplot() +
+  geom_sf(data = spatial_data, aes(fill = jobs), color = NA) +
+  labs(
+    title = "Job accessibility by transit in under 30 min.",
+    fill = "Accessible jobs"
+  ) +
+  scale_fill_viridis_c() +
+  theme_void()
+```
+
+## London example
+
+Let's build a dataframe with jobs, BLAH BLAH per local authority.
+
+I am [data.london.gov.uk](https://data.london.gov.uk/dataset/jobs-and-job-density-borough).
+
+```{r}
+jobs <- read_csv("https://data.london.gov.uk/download/jobs-and-job-density-borough/79e85749-e38d-4bb6-8327-c60c6be27222/Jobs_and_Job_Density.csv") %>% 
+  filter(year == 2020) %>%  # I am only using 2020 data. Remove this line 
+                            # to see what will happen to the data.
+  glimpse()
+
+pop <- read_csv("https://data.london.gov.uk/download/land-area-and-population-density-ward-and-borough/77e9257d-ad9d-47aa-aeed-59a00741f301/housing-density-borough.csv") %>% 
+  filter(Year == 2020) %>% # This is a projection, but it will work for now
+  glimpse()
+
+df <- inner_join(jobs, pop, by = c("code" = "Code")) %>% 
+  filter(area != "London") %>% 
+  rename(id = code) %>% 
+  glimpse()
+```
+London Local Authorities boundaries
+
+```{r}
+path.shape <- paste0(path, "/data/Local_Authority_Districts_(May_2021)_UK_BFE.geojson")
+
+# Load Towns and Cities boundary dataset and subset to Portsmouth
+london <- st_read(path.shape) %>%
+  dplyr::filter(LAD21CD %in% (df$code))
+
+london.centres <- st_centroid(london)
+```
+osmr
+
+https://geocompr.robinlovelace.net/transport.html#routes
+
+https://rgeomatic.hypotheses.org/category/osrm
+
+
+
+```{r}
+library(osrm)
+
+dist <- osrmTable(loc = london.centres, 
+                  measure = "duration",
+                  osrm.profile = "car")
+
+help <- dist$durations 
+
+as.data.frame(help) %>% column_to_rownames(var = london.centres$LAD21CD)
+
+rownames(help) <- as.vector(london.centres$LAD21CD)
+colnames(help) <- as.vector(london.centres$LAD21CD)
+
+dim(dist$durations)
+od::odmatrix_to_od(dist$durations)
+
+dist.df <- as.data.frame(as.table(help)) %>% 
+  rename(from_id = Var1,
+         to_id = Var2,
+         travel_time = Freq)
+```
+
+```{r}
+mtc <- cumulative_cutoff(
+  dist.df,
+  df,
+  opportunity = "number_of_jobs",
+  travel_cost = "travel_time",
+  cutoff = 20
+)
+head(mtc)
+```
+
+```{r}
+
+london <- merge(london, mtc, by.x = "LAD21CD", by.y = "id" )
+  
+  
+ggplot() +
+  geom_sf(data = london, aes(fill = number_of_jobs), color = NA) +
+  labs(
+    title = "Job accessibility by driving in under 20 min.",
+    fill = "Accessible jobs"
+  ) +
+  scale_fill_viridis_c() +
+  theme_void()
+```
+
+
