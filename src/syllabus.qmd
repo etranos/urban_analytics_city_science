@@ -40,7 +40,7 @@ editor: source
     
 7.  Reading week 
 
-8.  [Methods in transport geography](src/transport_geography.qmd){target="_blank"}
+8.  [Methods in transport geography](transport_geography.qmd){target="_blank"}
 
     Same methods, different facets of urban research. This part of the unit will allow you to apply your network skills to answer transport related questions. It will also make the transition from networks to flows.
 
@@ -60,14 +60,14 @@ editor: source
 
 <!-- use sfnetworks as it contains igraph. Use the vignettes. https://cran.r-project.org/web/packages/sfnetworks/index.html -->
 
-9.  [Spatial interaction modelling](src/sim.Rmd){target="_blank"}
+9.  [Spatial interaction modelling](sim.Rmd){target="_blank"}
 
     You ve'learned how to analyse networks, now you can learn how to analyse and 
     model flows. Do you see the parallel?
 
 <!-- @kolaczyk2020statistical Ch 9 -->
 
-10.  [Accessibility](src/accessibility_full.Rmd){target="_blank"}
+10.  [Accessibility](accessibility_full.Rmd){target="_blank"}
 
 
 11.  [Diversity in cities](diversity.qmd){target="_blank"}
