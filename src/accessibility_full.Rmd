@@ -12,24 +12,32 @@ bibliography: references.bib
 
 ## Setup
 
-blah blah
+To run this pratical you need to have an RStudio project as discussed in the 
+[previous practical](https://etranos.info/urban_analytics_city_science/src/network_analysis.html). 
 
 ```{r setup, include=TRUE, results= 'hide', message=FALSE, warning=FALSE}
 library(tidyverse)
 library(accessibility)
 library(sf)
-library(data.table)
+library(kableExtra)
+#library(data.table)
 
 library(rprojroot)
-library(osmdata)
+library(osrm)
 
-# This is the project path
 path <- find_rstudio_root_file()
 ```
 
 ## Aims of the practical
 
-blah blah
+The aim of this practical is to calculate different accessibility indicators.
+For a brief overview about accessibility, please have a look at [@rodrigue2020geography]
+(for example [here](https://transportgeography.org/contents/methods/transportation-accessibility/)
+and).
+For a review have a look @HOLL2007286, @el2022making and @shi2020literature
+as well as some older and well cited papers such as @geurs2004accessibility and 
+@bruinsma1998accessibility. The below typology of accessibility concepts is from
+@HOLL2007286.
 
 1.  Network access
 
@@ -47,22 +55,40 @@ blah blah
 
     -   $Acc_i = \sum_j\frac{W_j} {c_{ij}^a}$
 
-For a review have a look @HOLL2007286, @el2022making and @shi2020literature
-as well as some older and well cited papers such as @geurs2004accessibility and 
-@bruinsma1998accessibility.
+Among other `R` packages, the practical is based on the `accessibility` package.
+Some of the below materials are based on the package's [vignette](https://cran.r-project.org/web/packages/accessibility/vignettes/accessibility.html).
 
+Let's start with using the toy data that comes with the `accessibility` package.
+As you can see below, the data comes in `R`'s native data format called [`Rds`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/readRDS)
+and, therefore, we use the relevant function to read it -- `readRDS()`.
+
+The first data object we are using is the travel time matrix between all potential
+origins and destinations in city of Belo Horizonte, Brazil. 
+As you can see, the matrix is stored in a *long format* and not as an $n*n$ matrix. 
+If you check the dimension of that object you will understand what I mean
+(`dim(travel_matrix)`).
 
 ```{r}
 data_dir <- system.file("extdata", package = "accessibility")
 
-travel_matrix <- readRDS(file.path(data_dir, "travel_matrix.rds"))
+travel_matrix <- readRDS(file.path(data_dir, "travel_matrix.rds")) 
+
 head(travel_matrix)
 ```
+
+Then, we are loading the characteristics of each location. As you can see, the 
+`id` records match with the `from_id` and `to_id` from the `travel_matrix`.
 
 ```{r}
 land_use_data <- readRDS(file.path(data_dir, "land_use_data.rds"))
 head(land_use_data)
 ```
+
+The first accessibility function we are using is `cost_to_closest()`. As per its
+name, it calculates the minimum travel cost to the closest *n* number of opportunities.
+In our example, as travel cost we understand the travel time between origins and 
+destinations included in the column `travel_time` from the `travel_matrix` object. 
+We are only interested in the closest (n=1) opportunity, which in this example is a school.
 
 ```{r}
 mtc <- cost_to_closest(
@@ -72,8 +98,13 @@ mtc <- cost_to_closest(
   travel_cost = "travel_time",
   n = 1
 )
+
 head(mtc)
 ```
+
+The next measure is the total number of opportunities (in other words cummulative
+opportunities) within a cut-off of the travel cost. In other words, the below provides
+the nu,ber of jobs accessibile within 30 minutes of travel time.
 
 ```{r}
 cum_cutoff <- cumulative_cutoff(
@@ -87,6 +118,11 @@ cum_cutoff <- cumulative_cutoff(
 head(cum_cutoff)
 ```
 
+If the above was a form of *active* accessibility -- that is how many opportunities
+one can access from their location -- the below offers a *passive* form of accessibility
+-- that is how many individuals can be reached from each destination within a cuttof.
+The latter is based on `travel_time` in the below. 
+
 ```{r}
 passive_cum_cutoff <- cumulative_cutoff(
   travel_matrix,
@@ -99,6 +135,22 @@ passive_cum_cutoff <- cumulative_cutoff(
 head(passive_cum_cutoff)
 ```
 
+Last, but not least we can calculate the gravity based accessibility indicators,
+or, in other words, potential accessibility indicators. This is the same measure 
+as the example we discussed during the class **ADD LINK**.
+The intuition is that the furthest away each opportunity is, the less important
+it becomes. So, the accessibility of a location $i$ is equal to the sum of all
+opportunities available divided -- in other words discounted -- by the distance or 
+the cost to reach them. The `negative_exp` function can take different decay functions
+(see [here](https://cran.r-project.org/web/packages/accessibility/vignettes/decay_functions.html)).
+We know from previous studies that the exponential function represents better shorter
+interactions (e.g. within cities) while the power function works better for longer distance
+interactions (e.g. migrations flows) [@fotheringham1989spatial, see also discussions
+in @article{oshan2021spatial].
+
+$Acc_{i} = \sum_j \frac{W_j}{d_{ij}^2}$
+
+
 ```{r}
 negative_exp <- gravity(
   travel_matrix,
@@ -110,12 +162,16 @@ negative_exp <- gravity(
 head(negative_exp)
 ```
 
+And now we can plot these metrics. The `grid` object is a toy spatial dataset of 
+the places we calculate the above accessibility indicators. We first load these
+spatial data, merge them with the acessibility indicator we want to plot and then
+we plot these data.
+
 ```{r}
 grid <- system.file("extdata/grid_bho.rds", package = "accessibility")
 grid <- readRDS(grid)
 
 spatial_data <- merge(grid, cum_cutoff, by = "id")
-#spatial_data <- merge(grid, negative_exp, by = "id")
 
 ggplot() +
   geom_sf(data = spatial_data, aes(fill = jobs), color = NA) +
@@ -129,9 +185,9 @@ ggplot() +
 
 ## London example
 
-Let's build a dataframe with jobs, BLAH BLAH per local authority.
-
-I am [data.london.gov.uk](https://data.london.gov.uk/dataset/jobs-and-job-density-borough).
+All the above were based on the data that came together with the `accessibility`
+package. Let's repeat this exercise using some real world data from [data.london.gov.uk](https://data.london.gov.uk/dataset/jobs-and-job-density-borough).
+Jobs and population per local authority represent the opportunities. 
 
 ```{r}
 jobs <- read_csv("https://data.london.gov.uk/download/jobs-and-job-density-borough/79e85749-e38d-4bb6-8327-c60c6be27222/Jobs_and_Job_Density.csv") %>% 
@@ -142,53 +198,105 @@ jobs <- read_csv("https://data.london.gov.uk/download/jobs-and-job-density-borou
 pop <- read_csv("https://data.london.gov.uk/download/land-area-and-population-density-ward-and-borough/77e9257d-ad9d-47aa-aeed-59a00741f301/housing-density-borough.csv") %>% 
   filter(Year == 2020) %>% # This is a projection, but it will work for now
   glimpse()
+```
 
+Jobs and pop include observations for spatial units other than London's 33 local
+authorities. Explore `pop` and `jobs` to see that.
+Therefore, we use the `inner_join()` function to join them. See 
+[here](https://dplyr.tidyverse.org/reference/mutate-joins.html) how it works. 
+You shoud be able to understand the different function to join data.
+
+```{r}
 df <- inner_join(jobs, pop, by = c("code" = "Code")) %>% 
   filter(area != "London") %>% 
-  rename(id = code) %>% 
-  glimpse()
+  rename(id = code) 
 ```
-London Local Authorities boundaries
+
+To produce a nicer looking table I am using here the `kableExtra` package.
+It just adds some nice styling for `html` outputs.
+
+```{r}
+df %>% kbl() %>%
+  kable_styling()   #Nice(r) table
+```
+
+Next, we are bringing the spatial data -- that is the polygons -- for London's Local
+Authorities. We start by downloading all the polygons for all Local Authorities 
+in the country. Please go to this [webpage](https://geoportal.statistics.gov.uk/datasets/1119a90ec5f343678f044374392e6bda_0/explore), download the `geojson` file and save it to the appropriate `data` folder 
+within your project directory.
+
+However, we don;t need all the Local Authorities, but instead we only need to ones
+within London. Therefore we use the `filter` option to select only the Local Authorities
+which are included within -- this is the `%in%` operator -- the `df$id` column. 
+Finally, we create a new object which only includes the centroids of these polygos?
+Why are we doing this? Because we need to calculate distances and accessibilities
+metrics for specific points and we will use these points as representative for each
+Local Authority. 
+
+::: callout-tip
+Do you see any problems with this approach?
+:::
 
 ```{r}
 path.shape <- paste0(path, "/data/Local_Authority_Districts_(May_2021)_UK_BFE.geojson")
 
 # Load Towns and Cities boundary dataset and subset to Portsmouth
 london <- st_read(path.shape) %>%
-  dplyr::filter(LAD21CD %in% (df$code))
+  dplyr::filter(LAD21CD %in% (df$id))
 
 london.centres <- st_centroid(london)
 ```
-osmr
 
-https://geocompr.robinlovelace.net/transport.html#routes
+Now we need to actually calculate the distance matrix. We are going to use a real
+world road network to perform what is known as *routing*. There is a great discussion
+about routing and before you move forward I would encourage you to read the relevant
+section from @lovelace2019geocomputation, which can be found [here](https://geocompr.robinlovelace.net/transport.html#routes).
 
-https://rgeomatic.hypotheses.org/category/osrm
+We are using the `osmr` package which can do routing for us. The details of the `osrm`
+package can be founf [here](https://github.com/riatelab/osrm).
 
-
+The below code creates a distance table between all the `london.centres`. We are 
+interested in distance measured as time -- i.e. duration -- by car. The `osrm`
+package offers other options too.
 
 ```{r}
-library(osrm)
-
 dist <- osrmTable(loc = london.centres, 
                   measure = "duration",
                   osrm.profile = "car")
+```
+The output of the above is a list with an $n*n$ distance matrix, and a dataframe
+with the longitude and latitude of the origins and destinations. We are mostly
+interested in the former, so we start the data wrangling by creating a `help` 
+dataframe with these distances, or in other words, durations.
+We then add row and column names using the `london.centres` names. We can just
+do that because the matrix follows the same order as the intital spatial data
+of Local Authorities. I always like to throw in a `dim` function just to keep 
+an eye on the dimensions of the objects I create. Indeed, the `dist` object is 
+a $33*33$ matrix as it should have been.
 
+Then, I use the function `odmatrix_to_od()` form the `od` package. Why? Because
+we need to convert the $n*n$ matrix to a long format. If you remember, we used to
+call this format an [edge list](https://etranos.info/urban_analytics_city_science/src/intro_networks.html#/directed-weighted-networks-1).
+
+And at the end
+```{r}
 help <- dist$durations 
 
-as.data.frame(help) %>% column_to_rownames(var = london.centres$LAD21CD)
 
 rownames(help) <- as.vector(london.centres$LAD21CD)
 colnames(help) <- as.vector(london.centres$LAD21CD)
 
 dim(dist$durations)
-od::odmatrix_to_od(dist$durations)
+
+# od::odmatrix_to_od(dist$durations)
 
 dist.df <- as.data.frame(as.table(help)) %>% 
   rename(from_id = Var1,
          to_id = Var2,
          travel_time = Freq)
 ```
+As before, we calculate the cumulative opportunities for London's Local Authorities
+(the centroids to be more accurate) within a cutoff of 20 minutes.
 
 ```{r}
 mtc <- cumulative_cutoff(
@@ -200,6 +308,8 @@ mtc <- cumulative_cutoff(
 )
 head(mtc)
 ```
+
+And finally, we plot our accessibility map.
 
 ```{r}
 
@@ -215,5 +325,13 @@ ggplot() +
   scale_fill_viridis_c() +
   theme_void()
 ```
+
+::: callout-tip
+Can you calculate and plot other accessibility metrics for London?
+:::
+
+::: callout-tip
+What do we miss by focusing on London' accessibility?
+:::
 
 

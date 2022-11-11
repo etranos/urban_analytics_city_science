@@ -1,5 +1,5 @@
 ---
-title: "Transport geography: methods"
+title: "Methods in transport geography"
 author: |
   | 
   | Emmanouil Tranos
@@ -230,6 +230,10 @@ $T_{ij} = f(V_i, W_j, S_{ij})$
 -   $T_{ij}$: Interaction between location $i$ (origin) and location $j$ (destination)
 
 -   $V_i$: Attributes of the location of origin $i$ (e.g. population, number of jobs available, industrial output, GDP); push factors; the potential of origins
+
+## Spatial interactions and the gravity model
+
+$T_{ij} = f(V_i, W_j, S_{ij})$
 
 -   $W_j$: Attributes of the location of destination $j$, pull factors; attractiveness of destinations
 

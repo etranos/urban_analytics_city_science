@@ -17,6 +17,9 @@ project:
   - src/author.qmd
   - src/street_networks.Rmd
   - assignments/project.md
+  - src/transport_geography.qmd
+  - src/accessibility_full.Rmd
+  - src/sim.Rmd
 
 website:
   title: "Urban analytics and city science"
@@ -41,6 +44,7 @@ website:
           - text: "Networks: an introduction"
             file: src/intro_networks.qmd
           - src/network_science.qmd
+          - src/transport_geography.qmd
           - src/diversity.qmd
       - section: "Practicals"
         contents:
@@ -48,6 +52,8 @@ website:
           - src/network_analysis.Rmd
           - src/street_networks.Rmd
           - src/network_models.Rmd
+          - src/accessibility_full.Rmd
+          - src/sim.Rmd
       - section: "Unit leader"
         contents: 
           - text: "Professor Emmanouil Tranos"
