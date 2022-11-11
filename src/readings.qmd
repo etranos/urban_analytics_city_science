@@ -21,6 +21,8 @@ A indicative list of key readings include:
 
 -   @singleton2017urban
 
+-   @rodrigue2020geography
+
 Also, the [Big Book of R](https://www.bigbookofr.com/){target="_blank"} 
 is a great collection of `R` related books.
 Some of these include:
