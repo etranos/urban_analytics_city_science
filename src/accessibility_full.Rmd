@@ -25,6 +25,7 @@ library(osrm)
 
 path <- find_rstudio_root_file()
 
+# This is the project path
 knitr::opts_chunk$set(include=TRUE, message=FALSE, warning=FALSE)
 ```
 

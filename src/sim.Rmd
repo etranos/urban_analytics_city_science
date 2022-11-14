@@ -7,6 +7,7 @@ output:
     toc: true
     toc_float: true
 editor: source
+bibliography: references.bib
 ---
 
 ## Resources
@@ -21,7 +22,7 @@ Some of the materials for this tutorial have been adapted from:
 
 -   [Lovelace, Robin, Jakub Nowosad, and Jannes Muenchow. Geocomputation with R. CRC Press, 2019](https://geocompr.robinlovelace.net/)
 
-```{r setup, include=TRUE, results= 'hide', message=FALSE}
+```{r setup, results='hide', message=FALSE, warning=FALSE}
 library(tidyverse)
 library(geojsonio)
 library(SpatialPosition)
@@ -32,7 +33,7 @@ library(kableExtra)
 library(sf)
 library(caret)
 
-knitr::opts_chunk$set(include=TRUE, results= 'hide', message=FALSE, warning=FALSE)
+knitr::opts_chunk$set(include=TRUE, message=FALSE, warning=FALSE)
 
 # This is the project path
 path <- find_rstudio_root_file()
@@ -274,12 +275,12 @@ commuting.si <- commuting.si %>%
 Now let's bring data for some $i$ and $j$ characteristics that we believe that affect commuting. I have prepared such a small data set from the census, which includes resident population and working populations as *push* and *pull* variables. These data have been obtained by [nomis](https://www.nomisweb.co.uk/published/census/odexplorer.asp).
 
 ```{r si ij data, include=TRUE, results= 'markup', message=FALSE, warning = FALSE}
-data.workplace <- read.csv("https://www.dropbox.com/s/0ym88p8quwaiyau/data_workplace.csv?dl=1")
+data.workplace <- read_csv("https://www.dropbox.com/s/0ym88p8quwaiyau/data_workplace.csv?dl=1")
 
 # Dropbox trick: to use in an .Rmd the link that Dropbox provides to share a file
 # replace dl=0 with dl=1 at the end of the link
 
-data.resident <- read.csv("https://www.dropbox.com/s/09d7v5cm6ov3ioz/data_resident.csv?dl=1")
+data.resident <- read_csv("https://www.dropbox.com/s/09d7v5cm6ov3ioz/data_resident.csv?dl=1")
 
 commuting.si <- commuting.si %>% 
   left_join(data.resident, by = c('i' = 'Merging.Local.Authority.Code')) %>% 
@@ -382,9 +383,8 @@ It is worth browsing the [`caret`](https://topepo.github.io/caret/) package.
 
 ```{r predict, eval = TRUE, include=TRUE, results= 'asis', message=FALSE, warning = FALSE}
 commuting.si <- commuting.si %>% 
-  drop_na() %>% 
-  glimpse()
-  
+  drop_na() 
+
 set.seed(3456)
 trainIndex <- createDataPartition(commuting.si$`All categories: Method of travel to work`, p = .8, 
                                   list = FALSE, 
