@@ -15,7 +15,7 @@ bibliography: references.bib
 To run this pratical you need to have an RStudio project as discussed in the 
 [previous practical](https://etranos.info/urban_analytics_city_science/src/network_analysis.html). 
 
-```{r setup}
+```{r setup, results= 'hide'}
 library(tidyverse)
 library(accessibility)
 library(sf)
@@ -25,7 +25,7 @@ library(osrm)
 
 path <- find_rstudio_root_file()
 
-knitr::opts_chunk$set(include=TRUE, results= 'hide', message=FALSE, warning=FALSE)
+knitr::opts_chunk$set(include=TRUE, message=FALSE, warning=FALSE)
 ```
 
 ## Aims of the practical
