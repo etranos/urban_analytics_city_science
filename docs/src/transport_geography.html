@@ -351,6 +351,7 @@ University of Bristol, Alan Turing Institute<br>
 <li><p>Empirical data</p></li>
 <li><p>Data analytics</p></li>
 <li><p>Applied science: improve the efficiency of movements / spatial constraints</p></li>
+<li><p>Why in this unit?</p></li>
 </ul>
 </section>
 <section id="transport-geography-key-elements" class="slide level2">
@@ -464,7 +465,7 @@ University of Bristol, Alan Turing Institute<br>
 <li><p>Very common for regional analysis too</p></li>
 <li><p><span class="math inline">\(M_{ti}\)</span> is the traffic of a merchandise <span class="math inline">\(t\)</span> at a terminal <span class="math inline">\(i\)</span></p></li>
 <li><p><span class="math inline">\(Mi\)</span> is the traffic of all merchandise at a terminal <span class="math inline">\(i\)</span></p></li>
-<li><p><span class="math inline">\(M_{ti}\)</span> is the total of all merchandises of type <span class="math inline">\(t\)</span> for all terminals, and</p></li>
+<li><p><span class="math inline">\(M_{t}\)</span> is the total of all merchandises of type <span class="math inline">\(t\)</span> for all terminals, and</p></li>
 <li><p><span class="math inline">\(M\)</span> is the total of all types of merchandises for all terminals</p></li>
 </ul>
 </section>
@@ -499,6 +500,12 @@ University of Bristol, Alan Turing Institute<br>
 <ul>
 <li><p>A spatial interaction is a realised movement of people, freight or information between an origin and a destination</p></li>
 <li><p>It is a transport demand/supply relationship expressed over geographical space.</p></li>
+</ul>
+</section>
+<section id="spatial-interactions-and-the-gravity-model-1" class="slide level2">
+<h2>Spatial interactions and the gravity model</h2>
+<p>Conditions for spatial interaction to be materialised</p>
+<ul>
 <li><p>Complementarity</p></li>
 <li><p>Intervening opportunity</p></li>
 <li><p>Transferability</p></li>
@@ -508,7 +515,7 @@ University of Bristol, Alan Turing Institute<br>
 <h2></h2>
 <p><img data-src="images/si.png"> <small> Source: <span class="citation" data-cites="rodrigue2020geography">Rodrigue (<a href="#/ref-rodrigue2020geography" role="doc-biblioref" onclick="return false;">2020</a>)</span> </small></p>
 </section>
-<section id="spatial-interactions-and-the-gravity-model-1" class="slide level2">
+<section id="spatial-interactions-and-the-gravity-model-2" class="slide level2">
 <h2>Spatial interactions and the gravity model</h2>
 <ul>
 <li><p>Origin/destination matrices</p></li>
@@ -518,14 +525,14 @@ University of Bristol, Alan Turing Institute<br>
 </ul>
 
 <img data-src="images/si2.png" class="r-stretch"></section>
-<section id="spatial-interactions-and-the-gravity-model-2" class="slide level2">
+<section id="spatial-interactions-and-the-gravity-model-3" class="slide level2">
 <h2>Spatial interactions and the gravity model</h2>
 <p><span class="math inline">\(T_{ij} = f(V_i, W_j, S_{ij})\)</span></p>
 <ul>
 <li>Flows are a function of the attributes of the locations of origin, the attributes of the locations of destination and the friction of distance between the concerned origins and the destinations</li>
 </ul>
 </section>
-<section id="spatial-interactions-and-the-gravity-model-3" class="slide level2">
+<section id="spatial-interactions-and-the-gravity-model-4" class="slide level2">
 <h2>Spatial interactions and the gravity model</h2>
 <p><span class="math inline">\(T_{ij} = f(V_i, W_j, S_{ij})\)</span></p>
 <ul>
@@ -533,7 +540,7 @@ University of Bristol, Alan Turing Institute<br>
 <li><p><span class="math inline">\(V_i\)</span>: Attributes of the location of origin <span class="math inline">\(i\)</span> (e.g.&nbsp;population, number of jobs available, industrial output, GDP); push factors; the potential of origins</p></li>
 </ul>
 </section>
-<section id="spatial-interactions-and-the-gravity-model-4" class="slide level2">
+<section id="spatial-interactions-and-the-gravity-model-5" class="slide level2">
 <h2>Spatial interactions and the gravity model</h2>
 <p><span class="math inline">\(T_{ij} = f(V_i, W_j, S_{ij})\)</span></p>
 <ul>
@@ -541,7 +548,7 @@ University of Bristol, Alan Turing Institute<br>
 <li><p><span class="math inline">\(S_{ij}\)</span>: Attributes of separation between <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> (e.g.&nbsp;distance, transport costs, or travel time); cost of overcoming the separation between origins and destinations</p></li>
 </ul>
 </section>
-<section id="spatial-interactions-and-the-gravity-model-5" class="slide level2">
+<section id="spatial-interactions-and-the-gravity-model-6" class="slide level2">
 <h2>Spatial interactions and the gravity model</h2>
 <p><span class="math inline">\(T_{ij} = k\frac{V_i^\lambda W_j^\alpha}{d_{ij}^\beta}\)</span></p>
 <ul>
@@ -563,6 +570,7 @@ University of Bristol, Alan Turing Institute<br>
 <li><p>Define: <span class="math inline">\(\lambda=1\)</span>, <span class="math inline">\(\alpha=1\)</span>, <span class="math inline">\(\beta=2\)</span>, and <span class="math inline">\(k=0.00001\)</span></p></li>
 <li><p>These are some standard results from past empirical studies</p></li>
 <li><p>Big unknown: <span class="math inline">\(T\)</span></p></li>
+<li><p>Example from <span class="citation" data-cites="tranos2015international">Tranos, Gheasi, and Nijkamp (<a href="#/ref-tranos2015international" role="doc-biblioref" onclick="return false;">2015</a>)</span></p></li>
 </ul>
 </section>
 <section id="calculate-flows-naive-1" class="slide level2">
@@ -627,7 +635,7 @@ University of Bristol, Alan Turing Institute<br>
 </section>
 <section id="estimate-accessibility-indicators-1" class="slide level2">
 <h2>3. Estimate accessibility indicators</h2>
-<p>Different typologies <span class="citation" data-cites="HOLL2007286">(<a href="#/ref-HOLL2007286" role="doc-biblioref" onclick="return false;">Holl 2007</a>)</span>.</p>
+<p>Different typologies <span class="citation" data-cites="HOLL2007286">(<a href="#/ref-HOLL2007286" role="doc-biblioref" onclick="return false;">Holl 2007</a>)</span></p>
 <ol type="1">
 <li><p>Network access</p>
 <ul>
@@ -715,6 +723,9 @@ Holl, Adelheid. 2007. <span>“Twenty Years of Accessibility Improvements. The C
 </div>
 <div id="ref-rodrigue2020geography" class="csl-entry" role="doc-biblioentry">
 Rodrigue, Jean-Paul. 2020. <em>The Geography of Transport Systems</em>. Routledge. <a href="https://transportgeography.org/">https://transportgeography.org/</a>.
+</div>
+<div id="ref-tranos2015international" class="csl-entry" role="doc-biblioentry">
+Tranos, Emmanouil, Masood Gheasi, and Peter Nijkamp. 2015. <span>“International Migration: A Global Complex Network.”</span> <em>Environment and Planning B: Planning and Design</em> 42 (1): 4–22.
 </div>
 </div>
 </section></section>

@@ -1,6 +1,7 @@
 ---
 title: "Spatial interaction modelling"
 author: Emmanouil Tranos
+date: "`r Sys.Date()`"
 output:
   html_document:
     toc: true
@@ -21,34 +22,28 @@ Some of the materials for this tutorial have been adapted from:
 -   [Lovelace, Robin, Jakub Nowosad, and Jannes Muenchow. Geocomputation with R. CRC Press, 2019](https://geocompr.robinlovelace.net/)
 
 ```{r setup, include=TRUE, results= 'hide', message=FALSE}
-list.of.packages <- c("igraph", "knitr", "corrplot", "corrgram", "rgdal", "tidyverse", "spdplyr", "geojsonio", "stplanr", "leaflet", "SpatialPosition", "stargazer", "DescTools", "patchwork", "caret", "rprojroot", "kableExtra")
-new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
-if(length(new.packages)) install.packages(new.packages)
-
-#library(igraph)
-#library(knitr)
-#library(corrplot)
-#library(corrgram)
-#library(rgdal)
 library(tidyverse)
-#library(spdplyr)
 library(geojsonio)
-#library(stplanr)
-#library(leaflet)
 library(SpatialPosition)
 library(stargazer)
-#library(DescTools)
-#library(patchwork)
 library(caret)
 library(rprojroot)
 library(kableExtra)
 library(sf)
+library(caret)
 
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(include=TRUE, results= 'hide', message=FALSE, warning=FALSE)
 
 # This is the project path
 path <- find_rstudio_root_file()
 ```
+
+## Current research
+
+As an introduction, see [here](https://etranos.info/post/sad2021/SAD2021.html#/){target="_blank"} 
+some a recent research project we did, which used 
+spatial interaction type of modelling to predict interregional trade flow, which
+web data [@tranos2022using].
 
 ## Commuting data and networks
 
@@ -64,7 +59,7 @@ for
 
 The below code loads the data.
 
-```{r data load, include=TRUE, results= 'hide', message=FALSE}
+```{r data load}
 
 path.data <- paste0(path, "/data/wu03uk_v3/wu03uk_v3.csv")
 commuting <- read_csv(path.data)
@@ -383,7 +378,9 @@ This is obviously an oversimplification, but it provides a good preview of machi
 
 It is worth browsing the [`caret`](https://topepo.github.io/caret/) package.
 
-```{r predict, eval = FALSE, include=TRUE, results= 'asis', message=FALSE, warning = FALSE}
+**The below will take a few minutes!**
+
+```{r predict, eval = TRUE, include=TRUE, results= 'asis', message=FALSE, warning = FALSE}
 commuting.si <- commuting.si %>% 
   drop_na() %>% 
   glimpse()
@@ -425,7 +422,7 @@ bind_rows(lm.metrics, glm.metrics) %>%
 **Question** Which model would you choose?
 ```
 
-```{r predict.plots, eval = FALSE, include=TRUE, results= 'asis', message=FALSE, warning = FALSE}
+```{r predict.plots, eval = TRUE, include=TRUE, results= 'asis', message=FALSE, warning = FALSE}
 
 predict.lm.plot <- bind_cols(commuting.si.test$`All categories: Method of travel to work`, predictions.lm) %>% 
   rename(y = '...1',

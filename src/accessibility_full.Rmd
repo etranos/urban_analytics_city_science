@@ -15,17 +15,17 @@ bibliography: references.bib
 To run this pratical you need to have an RStudio project as discussed in the 
 [previous practical](https://etranos.info/urban_analytics_city_science/src/network_analysis.html). 
 
-```{r setup, include=TRUE, results= 'hide', message=FALSE, warning=FALSE}
+```{r setup}
 library(tidyverse)
 library(accessibility)
 library(sf)
 library(kableExtra)
-#library(data.table)
-
 library(rprojroot)
 library(osrm)
 
 path <- find_rstudio_root_file()
+
+knitr::opts_chunk$set(include=TRUE, results= 'hide', message=FALSE, warning=FALSE)
 ```
 
 ## Aims of the practical
@@ -33,9 +33,9 @@ path <- find_rstudio_root_file()
 The aim of this practical is to calculate different accessibility indicators.
 For a brief overview about accessibility, please have a look at [@rodrigue2020geography]
 (for example [here](https://transportgeography.org/contents/methods/transportation-accessibility/)
-and).
-For a review have a look @HOLL2007286, @el2022making and @shi2020literature
-as well as some older and well cited papers such as @geurs2004accessibility and 
+).
+For a review have a look at @HOLL2007286, @el2022making and @shi2020literature
+as well as at some older and well cited papers such as @geurs2004accessibility and 
 @bruinsma1998accessibility. The below typology of accessibility concepts is from
 @HOLL2007286.
 
@@ -59,7 +59,7 @@ Among other `R` packages, the practical is based on the `accessibility` package.
 Some of the below materials are based on the package's [vignette](https://cran.r-project.org/web/packages/accessibility/vignettes/accessibility.html).
 
 Let's start with using the toy data that comes with the `accessibility` package.
-As you can see below, the data comes in `R`'s native data format called [`Rds`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/readRDS)
+As you can see below, the data comes in `R`'s native data format called [`.Rds`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/readRDS)
 and, therefore, we use the relevant function to read it -- `readRDS()`.
 
 The first data object we are using is the travel time matrix between all potential
@@ -132,12 +132,13 @@ passive_cum_cutoff <- cumulative_cutoff(
   cutoff = 30,
   active = FALSE
 )
+
 head(passive_cum_cutoff)
 ```
 
 Last, but not least we can calculate the gravity based accessibility indicators,
 or, in other words, potential accessibility indicators. This is the same measure 
-as the example we discussed during the class **ADD LINK**.
+as the example we discussed during the [class](https://etranos.info/urban_analytics_city_science/src/transport_geography.html#/spatial-interactions-and-the-gravity-model-2){target="_blank"}.
 The intuition is that the furthest away each opportunity is, the less important
 it becomes. So, the accessibility of a location $i$ is equal to the sum of all
 opportunities available divided -- in other words discounted -- by the distance or 
@@ -146,7 +147,7 @@ the cost to reach them. The `negative_exp` function can take different decay fun
 We know from previous studies that the exponential function represents better shorter
 interactions (e.g. within cities) while the power function works better for longer distance
 interactions (e.g. migrations flows) [@fotheringham1989spatial, see also discussions
-in @article{oshan2021spatial].
+in @oshan2021spatial].
 
 $Acc_{i} = \sum_j \frac{W_j}{d_{ij}^2}$
 
@@ -159,6 +160,7 @@ negative_exp <- gravity(
   travel_cost = "travel_time",
   decay_function = decay_exponential(decay_value = 0.2)
 )
+
 head(negative_exp)
 ```
 
@@ -187,7 +189,7 @@ ggplot() +
 
 All the above were based on the data that came together with the `accessibility`
 package. Let's repeat this exercise using some real world data from [data.london.gov.uk](https://data.london.gov.uk/dataset/jobs-and-job-density-borough).
-Jobs and population per local authority represent the opportunities. 
+Jobs and population per Local Authority represent the opportunities. 
 
 ```{r}
 jobs <- read_csv("https://data.london.gov.uk/download/jobs-and-job-density-borough/79e85749-e38d-4bb6-8327-c60c6be27222/Jobs_and_Job_Density.csv") %>% 
@@ -200,11 +202,11 @@ pop <- read_csv("https://data.london.gov.uk/download/land-area-and-population-de
   glimpse()
 ```
 
-Jobs and pop include observations for spatial units other than London's 33 local
-authorities. Explore `pop` and `jobs` to see that.
+Jobs and pop include observations for spatial units other than London's 33 Local
+Authorities. Explore `pop` and `jobs` to see that.
 Therefore, we use the `inner_join()` function to join them. See 
 [here](https://dplyr.tidyverse.org/reference/mutate-joins.html) how it works. 
-You shoud be able to understand the different function to join data.
+You should be able to understand the different functions to join data.
 
 ```{r}
 df <- inner_join(jobs, pop, by = c("code" = "Code")) %>% 
@@ -217,7 +219,8 @@ It just adds some nice styling for `html` outputs.
 
 ```{r}
 df %>% kbl() %>%
-  kable_styling()   #Nice(r) table
+  kable_styling(full_width = F) %>%   #Nice(r) table
+  scroll_box(width = "500px", height = "200px")
 ```
 
 Next, we are bringing the spatial data -- that is the polygons -- for London's Local
@@ -225,7 +228,7 @@ Authorities. We start by downloading all the polygons for all Local Authorities
 in the country. Please go to this [webpage](https://geoportal.statistics.gov.uk/datasets/1119a90ec5f343678f044374392e6bda_0/explore), download the `geojson` file and save it to the appropriate `data` folder 
 within your project directory.
 
-However, we don;t need all the Local Authorities, but instead we only need to ones
+However, we don't need all the Local Authorities, but instead we only need to ones
 within London. Therefore we use the `filter` option to select only the Local Authorities
 which are included within -- this is the `%in%` operator -- the `df$id` column. 
 Finally, we create a new object which only includes the centroids of these polygos?
@@ -240,7 +243,6 @@ Do you see any problems with this approach?
 ```{r}
 path.shape <- paste0(path, "/data/Local_Authority_Districts_(May_2021)_UK_BFE.geojson")
 
-# Load Towns and Cities boundary dataset and subset to Portsmouth
 london <- st_read(path.shape) %>%
   dplyr::filter(LAD21CD %in% (df$id))
 

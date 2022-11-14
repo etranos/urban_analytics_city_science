@@ -20,6 +20,8 @@ bibliography: references.bib
 
 -   Applied science: improve the efficiency of movements / spatial constraints
 
+-   Why in this unit?
+
 ## Transport geography: key elements
 
 -   Distance
@@ -153,7 +155,7 @@ bibliography: references.bib
 
 -   $Mi$ is the traffic of all merchandise at a terminal $i$
 
--   $M_{ti}$ is the total of all merchandises of type $t$ for all terminals, and
+-   $M_{t}$ is the total of all merchandises of type $t$ for all terminals, and
 
 -   $M$ is the total of all types of merchandises for all terminals
 
@@ -194,6 +196,10 @@ Employment in manufacturing sector
 -   A spatial interaction is a realised movement of people, freight or information between an origin and a destination
 
 -   It is a transport demand/supply relationship expressed over geographical space.
+
+## Spatial interactions and the gravity model
+
+Conditions for spatial interaction to be materialised
 
 -   Complementarity
 
@@ -263,6 +269,8 @@ $T_{ij} = k\frac{V_i^\lambda W_j^\alpha}{d_{ij}^\beta}$
 
 -   Big unknown: $T$
 
+-   Example from @tranos2015international
+
 ## 1. Calculate flows (naive)
 
 ![](images/sim_calc.png)
@@ -331,7 +339,7 @@ $T_{ij} = k\frac{V_i^\lambda W_j^\alpha}{d_{ij}^\beta}$
 
 ## 3. Estimate accessibility indicators
 
-Different typologies [@HOLL2007286].
+Different typologies [@HOLL2007286]
 
 1.  Network access
 
