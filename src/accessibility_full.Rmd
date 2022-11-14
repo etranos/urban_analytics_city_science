@@ -15,7 +15,7 @@ bibliography: references.bib
 To run this pratical you need to have an RStudio project as discussed in the 
 [previous practical](https://etranos.info/urban_analytics_city_science/src/network_analysis.html). 
 
-```{r setup, results='hide'}
+```{r setup, results='hide', message=FALSE, warning=FALSE}
 library(tidyverse)
 library(accessibility)
 library(sf)
