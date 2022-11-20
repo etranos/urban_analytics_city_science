@@ -14,7 +14,6 @@ project:
   - index.qmd
   - src/syllabus.qmd
   - src/readings.qmd
-  - src/author.qmd
   - src/street_networks.Rmd
   - assignments/project.md
   - src/transport_geography.qmd
@@ -57,7 +56,7 @@ website:
       - section: "Unit leader"
         contents: 
           - text: "Professor Emmanouil Tranos"
-            file: src/author.qmd
+            file: https://etranos.info/
           
 format:
   html:
