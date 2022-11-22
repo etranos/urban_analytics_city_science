@@ -51,8 +51,8 @@ website:
           - src/network_analysis.Rmd
           - src/street_networks.Rmd
           - src/network_models.Rmd
-          - src/accessibility_full.Rmd
           - src/sim.Rmd
+          - src/accessibility_full.Rmd
       - section: "Unit leader"
         contents: 
           - text: "Professor Emmanouil Tranos"
