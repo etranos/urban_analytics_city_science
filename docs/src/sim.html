@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Emmanouil Tranos">
-<meta name="dcterms.date" content="2022-11-14">
+<meta name="dcterms.date" content="2022-11-23">
 
 <title>Urban analytics and city science - Spatial interaction modelling</title>
 <style>
@@ -270,12 +270,12 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../src/accessibility_full.html" class="sidebar-item-text sidebar-link">Accessibility in practice</a>
+  <a href="../src/sim.html" class="sidebar-item-text sidebar-link active">Spatial interaction modelling</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../src/sim.html" class="sidebar-item-text sidebar-link active">Spatial interaction modelling</a>
+  <a href="../src/accessibility_full.html" class="sidebar-item-text sidebar-link">Accessibility in practice</a>
   </div>
 </li>
       </ul>
@@ -290,7 +290,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../src/author.html" class="sidebar-item-text sidebar-link">Professor Emmanouil Tranos</a>
+  <a href="https://etranos.info/" class="sidebar-item-text sidebar-link">Professor Emmanouil Tranos</a>
   </div>
 </li>
       </ul>
@@ -334,7 +334,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 14, 2022</p>
+      <p class="date">November 23, 2022</p>
     </div>
   </div>
     
@@ -349,24 +349,23 @@ div.csl-indent {
 <ul>
 <li><p>the <a href="https://docs.ropensci.org/stplanr/articles/stplanr-od.html">Origin-destination data with stplanr</a> manual,</p></li>
 <li><p>the <a href="https://rpubs.com/adam_dennett/376877">Modelling Population Flows Using Spatial Interaction Models</a> tutorial, and</p></li>
-<li><p><a href="http://openjournals.wu.ac.at/region/paper_175/175.html">Oshan (2016)</a></p></li>
-<li><p><a href="https://geocompr.robinlovelace.net/">Lovelace, Robin, Jakub Nowosad, and Jannes Muenchow. Geocomputation with R. CRC Press, 2019</a></p></li>
+<li><p><a href="http://openjournals.wu.ac.at/region/paper_175/175.html"><span class="citation" data-cites="oshan2021spatial">Oshan (</span></a><a href="#ref-oshan2021spatial" role="doc-biblioref">2021</a>)</p></li>
+<li><p><a href="https://geocompr.robinlovelace.net/"><span class="citation" data-cites="lovelace2019geocomputation">Lovelace, Nowosad, and Muenchow (</span></a><a href="#ref-lovelace2019geocomputation" role="doc-biblioref">2019</a>)</p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geojsonio)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialPosition)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rprojroot)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">include=</span><span class="cn">TRUE</span>, <span class="at">message=</span><span class="cn">FALSE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># This is the project path</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">find_rstudio_root_file</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rprojroot)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">include=</span><span class="cn">TRUE</span>, <span class="at">message=</span><span class="cn">FALSE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># This is the project path</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">find_rstudio_root_file</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="current-research" class="level2">
@@ -388,24 +387,28 @@ div.csl-indent {
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>path.data <span class="ot">&lt;-</span> <span class="fu">paste0</span>(path, <span class="st">"/data/wu03uk_v3/wu03uk_v3.csv"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>commuting <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(path.data)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(commuting)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>commuting</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 110,162
-Columns: 14
-$ `Area of usual residence`                  &lt;chr&gt; "95AA", "95AA", "95AA", "95~
-$ `Area of workplace`                        &lt;chr&gt; "95AA", "95BB", "95CC", "95~
-$ `All categories: Method of travel to work` &lt;dbl&gt; 9465, 107, 42, 1485, 35, 18~
-$ `Work mainly at or from home`              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-$ `Underground, metro, light rail, tram`     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-$ Train                                      &lt;dbl&gt; 12, 0, 0, 11, 0, 0, 165, 1,~
-$ `Bus, minibus or coach`                    &lt;dbl&gt; 243, 1, 1, 84, 1, 0, 434, 1~
-$ Taxi                                       &lt;dbl&gt; 421, 2, 0, 13, 0, 0, 14, 0,~
-$ `Motorcycle, scooter or moped`             &lt;dbl&gt; 58, 0, 0, 8, 0, 0, 23, 0, 0~
-$ `Driving a car or van`                     &lt;dbl&gt; 5376, 68, 29, 1111, 25, 12,~
-$ `Passenger in a car or van`                &lt;dbl&gt; 1721, 20, 9, 241, 9, 4, 830~
-$ Bicycle                                    &lt;dbl&gt; 196, 5, 0, 2, 0, 0, 11, 0, ~
-$ `On foot`                                  &lt;dbl&gt; 1403, 9, 3, 13, 0, 2, 46, 1~
-$ `Other method of travel to work`           &lt;dbl&gt; 35, 2, 0, 2, 0, 0, 6, 0, 1,~</code></pre>
+<pre><code># A tibble: 110,162 × 14
+   Area of…¹ Area …² All c…³ Work …⁴ Under…⁵ Train Bus, …⁶  Taxi Motor…⁷ Drivi…⁸
+   &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 95AA      95AA       9465       0       0    12     243   421      58    5376
+ 2 95AA      95BB        107       0       0     0       1     2       0      68
+ 3 95AA      95CC         42       0       0     0       1     0       0      29
+ 4 95AA      95DD       1485       0       0    11      84    13       8    1111
+ 5 95AA      95EE         35       0       0     0       1     0       0      25
+ 6 95AA      95FF         18       0       0     0       0     0       0      12
+ 7 95AA      95GG       4538       0       0   165     434    14      23    3009
+ 8 95AA      95HH        139       0       0     1       1     0       0     113
+ 9 95AA      95II        282       0       0     2      15     0       0     219
+10 95AA      95JJ        108       0       0    15       2     0       0      78
+# … with 110,152 more rows, 4 more variables:
+#   `Passenger in a car or van` &lt;dbl&gt;, Bicycle &lt;dbl&gt;, `On foot` &lt;dbl&gt;,
+#   `Other method of travel to work` &lt;dbl&gt;, and abbreviated variable names
+#   ¹​`Area of usual residence`, ²​`Area of workplace`,
+#   ³​`All categories: Method of travel to work`,
+#   ⁴​`Work mainly at or from home`, ⁵​`Underground, metro, light rail, tram`,
+#   ⁶​`Bus, minibus or coach`, ⁷​`Motorcycle, scooter or moped`, …</code></pre>
 </div>
 </div>
 <p>You might have observe some weird codes (OD0000001, OD0000002, OD0000003 and OD0000004). With some simple Google searching we can find the <a href="https://www.ons.gov.uk/file?uri=/census/2011census/2011censusdata/originanddestinationdata/secureoriginanddestinationtables/2011censusoduserguide_tcm77-383888.pdf">2011 Census Origin-Destination Data User Guide</a>, which indicates that these codes do not refer to local authorities:</p>
@@ -431,20 +434,20 @@ $ `Other method of travel to work`           &lt;dbl&gt; 35, 2, 0, 2, 0, 0, 6, 0
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 93,034
 Columns: 14
-$ `Area of usual residence`                  &lt;chr&gt; "E41000001", "E41000001", "~
-$ `Area of workplace`                        &lt;chr&gt; "E41000001", "E41000002", "~
-$ `All categories: Method of travel to work` &lt;dbl&gt; 20777, 1591, 534, 3865, 433~
-$ `Work mainly at or from home`              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-$ `Underground, metro, light rail, tram`     &lt;dbl&gt; 6, 1, 0, 1, 0, 0, 0, 0, 0, ~
-$ Train                                      &lt;dbl&gt; 26, 32, 0, 49, 11, 0, 0, 0,~
-$ `Bus, minibus or coach`                    &lt;dbl&gt; 1922, 140, 21, 167, 7, 0, 0~
-$ Taxi                                       &lt;dbl&gt; 527, 11, 4, 20, 1, 0, 0, 0,~
-$ `Motorcycle, scooter or moped`             &lt;dbl&gt; 107, 6, 6, 23, 4, 0, 0, 0, ~
-$ `Driving a car or van`                     &lt;dbl&gt; 11788, 1225, 448, 3144, 360~
-$ `Passenger in a car or van`                &lt;dbl&gt; 1965, 99, 36, 365, 33, 0, 0~
-$ Bicycle                                    &lt;dbl&gt; 593, 13, 1, 29, 2, 0, 0, 0,~
-$ `On foot`                                  &lt;dbl&gt; 3789, 60, 16, 60, 15, 0, 0,~
-$ `Other method of travel to work`           &lt;dbl&gt; 54, 4, 2, 7, 0, 0, 0, 0, 0,~</code></pre>
+$ `Area of usual residence`                  &lt;chr&gt; "E41000001", "E41000001", "…
+$ `Area of workplace`                        &lt;chr&gt; "E41000001", "E41000002", "…
+$ `All categories: Method of travel to work` &lt;dbl&gt; 20777, 1591, 534, 3865, 433…
+$ `Work mainly at or from home`              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ `Underground, metro, light rail, tram`     &lt;dbl&gt; 6, 1, 0, 1, 0, 0, 0, 0, 0, …
+$ Train                                      &lt;dbl&gt; 26, 32, 0, 49, 11, 0, 0, 0,…
+$ `Bus, minibus or coach`                    &lt;dbl&gt; 1922, 140, 21, 167, 7, 0, 0…
+$ Taxi                                       &lt;dbl&gt; 527, 11, 4, 20, 1, 0, 0, 0,…
+$ `Motorcycle, scooter or moped`             &lt;dbl&gt; 107, 6, 6, 23, 4, 0, 0, 0, …
+$ `Driving a car or van`                     &lt;dbl&gt; 11788, 1225, 448, 3144, 360…
+$ `Passenger in a car or van`                &lt;dbl&gt; 1965, 99, 36, 365, 33, 0, 0…
+$ Bicycle                                    &lt;dbl&gt; 593, 13, 1, 29, 2, 0, 0, 0,…
+$ `On foot`                                  &lt;dbl&gt; 3789, 60, 16, 60, 15, 0, 0,…
+$ `Other method of travel to work`           &lt;dbl&gt; 54, 4, 2, 7, 0, 0, 0, 0, 0,…</code></pre>
 </div>
 </div>
 <p>We can also see we many rows we dropped with <code>glimpse()</code>.</p>
@@ -458,20 +461,20 @@ $ `Other method of travel to work`           &lt;dbl&gt; 54, 4, 2, 7, 0, 0, 0, 0
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 92,688
 Columns: 14
-$ `Area of usual residence`                  &lt;chr&gt; "E41000001", "E41000001", "~
-$ `Area of workplace`                        &lt;chr&gt; "E41000002", "E41000003", "~
-$ `All categories: Method of travel to work` &lt;dbl&gt; 1591, 534, 3865, 433, 5, 2,~
-$ `Work mainly at or from home`              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-$ `Underground, metro, light rail, tram`     &lt;dbl&gt; 1, 0, 1, 0, 0, 0, 0, 0, 0, ~
-$ Train                                      &lt;dbl&gt; 32, 0, 49, 11, 0, 0, 0, 0, ~
-$ `Bus, minibus or coach`                    &lt;dbl&gt; 140, 21, 167, 7, 0, 0, 0, 1~
-$ Taxi                                       &lt;dbl&gt; 11, 4, 20, 1, 0, 0, 0, 0, 0~
-$ `Motorcycle, scooter or moped`             &lt;dbl&gt; 6, 6, 23, 4, 0, 0, 0, 0, 0,~
-$ `Driving a car or van`                     &lt;dbl&gt; 1225, 448, 3144, 360, 5, 2,~
-$ `Passenger in a car or van`                &lt;dbl&gt; 99, 36, 365, 33, 0, 0, 0, 0~
-$ Bicycle                                    &lt;dbl&gt; 13, 1, 29, 2, 0, 0, 0, 0, 0~
-$ `On foot`                                  &lt;dbl&gt; 60, 16, 60, 15, 0, 0, 0, 0,~
-$ `Other method of travel to work`           &lt;dbl&gt; 4, 2, 7, 0, 0, 0, 0, 0, 0, ~</code></pre>
+$ `Area of usual residence`                  &lt;chr&gt; "E41000001", "E41000001", "…
+$ `Area of workplace`                        &lt;chr&gt; "E41000002", "E41000003", "…
+$ `All categories: Method of travel to work` &lt;dbl&gt; 1591, 534, 3865, 433, 5, 2,…
+$ `Work mainly at or from home`              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ `Underground, metro, light rail, tram`     &lt;dbl&gt; 1, 0, 1, 0, 0, 0, 0, 0, 0, …
+$ Train                                      &lt;dbl&gt; 32, 0, 49, 11, 0, 0, 0, 0, …
+$ `Bus, minibus or coach`                    &lt;dbl&gt; 140, 21, 167, 7, 0, 0, 0, 1…
+$ Taxi                                       &lt;dbl&gt; 11, 4, 20, 1, 0, 0, 0, 0, 0…
+$ `Motorcycle, scooter or moped`             &lt;dbl&gt; 6, 6, 23, 4, 0, 0, 0, 0, 0,…
+$ `Driving a car or van`                     &lt;dbl&gt; 1225, 448, 3144, 360, 5, 2,…
+$ `Passenger in a car or van`                &lt;dbl&gt; 99, 36, 365, 33, 0, 0, 0, 0…
+$ Bicycle                                    &lt;dbl&gt; 13, 1, 29, 2, 0, 0, 0, 0, 0…
+$ `On foot`                                  &lt;dbl&gt; 60, 16, 60, 15, 0, 0, 0, 0,…
+$ `Other method of travel to work`           &lt;dbl&gt; 4, 2, 7, 0, 0, 0, 0, 0, 0, …</code></pre>
 </div>
 </div>
 <p>Please note the constant use of <code>glimpse()</code> to keep control of how many observations we have and check if we missed anything.</p>
@@ -542,7 +545,7 @@ $ `Other method of travel to work`           &lt;dbl&gt; 4, 2, 7, 0, 0, 0, 0, 0,
 <p><span class="math display">\[lnT_{ij} = lnk + \lambda lnV_i + \alpha lnM_j - \beta lnD_{ij} + e_{ij}\]</span></p>
 <p>This is what is known as the log-linear or log-normal transformation.</p>
 <p>There are a number of issues with such an approach though. Most importantly, our dependent variable is not continuous, but instead a discrete, positive variable (there are no flows of -324.56 people!). Therefore we need to employ an appropriate estimator and this is what the Poisson regression does. Briefly, if we exponentiate both sides, the above equation can be written as:</p>
-<p><span class="math display">\[T_{ij} = e^{lnk + \lambda lnV_i + \alpha lnM_j - \beta lnD_{ij}}\]</span> The above is in the form of the Poisson regression. So, we are interested in modelling <em>not</em> the mean <span class="math inline">\(T_{ij}\)</span> drawn from a normally distributed <span class="math inline">\(T\)</span>, but, instead, the mean <span class="math inline">\(T_{ij}\)</span>, which is the average of the all the flows (i.e.&nbsp;counts) between any <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>. For more details about the Poisson regression have a look at the (Legler and Roback 2019)[https://bookdown.org/roback/bookdown-bysh/ch-poissonreg.html#initial-models]. For this practical we will estimate the commuting flows using both OLS and Poisson regressions.</p>
+<p><span class="math display">\[T_{ij} = e^{lnk + \lambda lnV_i + \alpha lnM_j - \beta lnD_{ij}}\]</span> The above is in the form of the Poisson regression. So, we are interested in modelling <em>not</em> the mean <span class="math inline">\(T_{ij}\)</span> drawn from a normally distributed <span class="math inline">\(T\)</span>, but, instead, the mean <span class="math inline">\(T_{ij}\)</span>, which is the average of the all the flows (i.e.&nbsp;counts) between any <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>. For more details about the Poisson regression have a look at <a href="https://bookdown.org/roback/bookdown-bysh/ch-poissonreg.html#initial-models"><span class="citation" data-cites="roback2021beyond">Roback and Legler (</span></a><a href="#ref-roback2021beyond" role="doc-biblioref">2021</a>). For this practical we will estimate the commuting flows using both OLS and Poisson regressions.</p>
 <p>But before we get into the estimation we need to build a data frame, which includes all the necessary variables. These are the origin-destination flows <span class="math inline">\(T\)</span> between <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>, the distance <span class="math inline">\(dist\)</span> between <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> and the characteristics <span class="math inline">\(V\)</span> and <span class="math inline">\(M\)</span> of origin <span class="math inline">\(i\)</span> and destinations <span class="math inline">\(j\)</span> that we believe <em>push</em> and <em>pull</em> individuals to commute.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we use the `SpatialPosition` package and the `CreateDistMatrix()` function to</span></span>
@@ -561,9 +564,9 @@ $ `Other method of travel to work`           &lt;dbl&gt; 4, 2, 7, 0, 0, 0, 0, 0,
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 119,716
 Columns: 3
-$ Var1  &lt;fct&gt; E41000001, E41000002, E41000003, E41000004, E41000005, E41000006~
-$ Var2  &lt;fct&gt; E41000001, E41000001, E41000001, E41000001, E41000001, E41000001~
-$ value &lt;dbl&gt; 0.00, 14370.86, 20185.71, 11427.54, 23175.73, 175329.74, 164912.~</code></pre>
+$ Var1  &lt;fct&gt; E41000001, E41000002, E41000003, E41000004, E41000005, E41000006…
+$ Var2  &lt;fct&gt; E41000001, E41000001, E41000001, E41000001, E41000001, E41000001…
+$ value &lt;dbl&gt; 0.00, 14370.86, 20185.71, 11427.54, 23175.73, 175329.74, 164912.…</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Please note that the elements of the diagonal are present in this distance matrix.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -576,9 +579,9 @@ $ value &lt;dbl&gt; 0.00, 14370.86, 20185.71, 11427.54, 23175.73, 175329.74, 164
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 119,370
 Columns: 3
-$ Var1  &lt;fct&gt; E41000002, E41000003, E41000004, E41000005, E41000006, E41000007~
-$ Var2  &lt;fct&gt; E41000001, E41000001, E41000001, E41000001, E41000001, E41000001~
-$ value &lt;dbl&gt; 14370.86, 20185.71, 11427.54, 23175.73, 175329.74, 164912.66, 13~</code></pre>
+$ Var1  &lt;fct&gt; E41000002, E41000003, E41000004, E41000005, E41000006, E41000007…
+$ Var2  &lt;fct&gt; E41000001, E41000001, E41000001, E41000001, E41000001, E41000001…
+$ value &lt;dbl&gt; 14370.86, 20185.71, 11427.54, 23175.73, 175329.74, 164912.66, 13…</code></pre>
 </div>
 </div>
 <p>What we want to do is to match the data frame with all the distances with the commuting flows data frame. To do that we will (1) create a new data frame for the origin-destination pair and (2) match the two data frames.</p>
@@ -589,10 +592,10 @@ $ value &lt;dbl&gt; 14370.86, 20185.71, 11427.54, 23175.73, 175329.74, 164912.66
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 119,370
 Columns: 4
-$ Var1    &lt;fct&gt; E41000002, E41000003, E41000004, E41000005, E41000006, E410000~
-$ Var2    &lt;fct&gt; E41000001, E41000001, E41000001, E41000001, E41000001, E410000~
-$ value   &lt;dbl&gt; 14370.86, 20185.71, 11427.54, 23175.73, 175329.74, 164912.66, ~
-$ ij.code &lt;chr&gt; "E41000002_E41000001", "E41000003_E41000001", "E41000004_E4100~</code></pre>
+$ Var1    &lt;fct&gt; E41000002, E41000003, E41000004, E41000005, E41000006, E410000…
+$ Var2    &lt;fct&gt; E41000001, E41000001, E41000001, E41000001, E41000001, E410000…
+$ value   &lt;dbl&gt; 14370.86, 20185.71, 11427.54, 23175.73, 175329.74, 164912.66, …
+$ ij.code &lt;chr&gt; "E41000002_E41000001", "E41000003_E41000001", "E41000004_E4100…</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>commuting <span class="ot">&lt;-</span> commuting <span class="sc">%&gt;%</span> </span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ij.code =</span> <span class="fu">paste</span>(<span class="st">`</span><span class="at">Area of usual residence</span><span class="st">`</span>,</span>
@@ -602,21 +605,21 @@ $ ij.code &lt;chr&gt; "E41000002_E41000001", "E41000003_E41000001", "E41000004_E
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 92,688
 Columns: 15
-$ `Area of usual residence`                  &lt;chr&gt; "E41000001", "E41000001", "~
-$ `Area of workplace`                        &lt;chr&gt; "E41000002", "E41000003", "~
-$ `All categories: Method of travel to work` &lt;dbl&gt; 1591, 534, 3865, 433, 5, 2,~
-$ `Work mainly at or from home`              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-$ `Underground, metro, light rail, tram`     &lt;dbl&gt; 1, 0, 1, 0, 0, 0, 0, 0, 0, ~
-$ Train                                      &lt;dbl&gt; 32, 0, 49, 11, 0, 0, 0, 0, ~
-$ `Bus, minibus or coach`                    &lt;dbl&gt; 140, 21, 167, 7, 0, 0, 0, 1~
-$ Taxi                                       &lt;dbl&gt; 11, 4, 20, 1, 0, 0, 0, 0, 0~
-$ `Motorcycle, scooter or moped`             &lt;dbl&gt; 6, 6, 23, 4, 0, 0, 0, 0, 0,~
-$ `Driving a car or van`                     &lt;dbl&gt; 1225, 448, 3144, 360, 5, 2,~
-$ `Passenger in a car or van`                &lt;dbl&gt; 99, 36, 365, 33, 0, 0, 0, 0~
-$ Bicycle                                    &lt;dbl&gt; 13, 1, 29, 2, 0, 0, 0, 0, 0~
-$ `On foot`                                  &lt;dbl&gt; 60, 16, 60, 15, 0, 0, 0, 0,~
-$ `Other method of travel to work`           &lt;dbl&gt; 4, 2, 7, 0, 0, 0, 0, 0, 0, ~
-$ ij.code                                    &lt;chr&gt; "E41000001_E41000002", "E41~</code></pre>
+$ `Area of usual residence`                  &lt;chr&gt; "E41000001", "E41000001", "…
+$ `Area of workplace`                        &lt;chr&gt; "E41000002", "E41000003", "…
+$ `All categories: Method of travel to work` &lt;dbl&gt; 1591, 534, 3865, 433, 5, 2,…
+$ `Work mainly at or from home`              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ `Underground, metro, light rail, tram`     &lt;dbl&gt; 1, 0, 1, 0, 0, 0, 0, 0, 0, …
+$ Train                                      &lt;dbl&gt; 32, 0, 49, 11, 0, 0, 0, 0, …
+$ `Bus, minibus or coach`                    &lt;dbl&gt; 140, 21, 167, 7, 0, 0, 0, 1…
+$ Taxi                                       &lt;dbl&gt; 11, 4, 20, 1, 0, 0, 0, 0, 0…
+$ `Motorcycle, scooter or moped`             &lt;dbl&gt; 6, 6, 23, 4, 0, 0, 0, 0, 0,…
+$ `Driving a car or van`                     &lt;dbl&gt; 1225, 448, 3144, 360, 5, 2,…
+$ `Passenger in a car or van`                &lt;dbl&gt; 99, 36, 365, 33, 0, 0, 0, 0…
+$ Bicycle                                    &lt;dbl&gt; 13, 1, 29, 2, 0, 0, 0, 0, 0…
+$ `On foot`                                  &lt;dbl&gt; 60, 16, 60, 15, 0, 0, 0, 0,…
+$ `Other method of travel to work`           &lt;dbl&gt; 4, 2, 7, 0, 0, 0, 0, 0, 0, …
+$ ij.code                                    &lt;chr&gt; "E41000001_E41000002", "E41…</code></pre>
 </div>
 </div>
 <p>Before we perform the match, keep a note of how many observations both data frames have in order to check if we loose any observations during the matching. As you can see the commuting data frame has less observations than the la.d one, which includes all the possible origin-destination pairs.</p>
@@ -627,24 +630,24 @@ $ ij.code                                    &lt;chr&gt; "E41000001_E41000002", 
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 119,370
 Columns: 18
-$ Var1                                       &lt;fct&gt; E41000002, E41000003, E4100~
-$ Var2                                       &lt;fct&gt; E41000001, E41000001, E4100~
-$ value                                      &lt;dbl&gt; 14370.86, 20185.71, 11427.5~
-$ ij.code                                    &lt;chr&gt; "E41000002_E41000001", "E41~
-$ `Area of usual residence`                  &lt;chr&gt; "E41000002", "E41000003", "~
-$ `Area of workplace`                        &lt;chr&gt; "E41000001", "E41000001", "~
-$ `All categories: Method of travel to work` &lt;dbl&gt; 990, 558, 2590, 266, 1, 4, ~
-$ `Work mainly at or from home`              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, NA, 0,~
-$ `Underground, metro, light rail, tram`     &lt;dbl&gt; 0, 1, 0, 0, 0, 0, 0, NA, 0,~
-$ Train                                      &lt;dbl&gt; 6, 3, 25, 2, 0, 0, 0, NA, 1~
-$ `Bus, minibus or coach`                    &lt;dbl&gt; 58, 8, 87, 6, 0, 0, 0, NA, ~
-$ Taxi                                       &lt;dbl&gt; 1, 2, 4, 0, 0, 0, 0, NA, 0,~
-$ `Motorcycle, scooter or moped`             &lt;dbl&gt; 2, 1, 12, 0, 0, 0, 0, NA, 0~
-$ `Driving a car or van`                     &lt;dbl&gt; 783, 499, 2259, 244, 1, 4, ~
-$ `Passenger in a car or van`                &lt;dbl&gt; 73, 26, 154, 10, 0, 0, 0, N~
-$ Bicycle                                    &lt;dbl&gt; 15, 9, 23, 0, 0, 0, 0, NA, ~
-$ `On foot`                                  &lt;dbl&gt; 52, 8, 24, 4, 0, 0, 0, NA, ~
-$ `Other method of travel to work`           &lt;dbl&gt; 0, 1, 2, 0, 0, 0, 0, NA, 0,~</code></pre>
+$ Var1                                       &lt;fct&gt; E41000002, E41000003, E4100…
+$ Var2                                       &lt;fct&gt; E41000001, E41000001, E4100…
+$ value                                      &lt;dbl&gt; 14370.86, 20185.71, 11427.5…
+$ ij.code                                    &lt;chr&gt; "E41000002_E41000001", "E41…
+$ `Area of usual residence`                  &lt;chr&gt; "E41000002", "E41000003", "…
+$ `Area of workplace`                        &lt;chr&gt; "E41000001", "E41000001", "…
+$ `All categories: Method of travel to work` &lt;dbl&gt; 990, 558, 2590, 266, 1, 4, …
+$ `Work mainly at or from home`              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, NA, 0,…
+$ `Underground, metro, light rail, tram`     &lt;dbl&gt; 0, 1, 0, 0, 0, 0, 0, NA, 0,…
+$ Train                                      &lt;dbl&gt; 6, 3, 25, 2, 0, 0, 0, NA, 1…
+$ `Bus, minibus or coach`                    &lt;dbl&gt; 58, 8, 87, 6, 0, 0, 0, NA, …
+$ Taxi                                       &lt;dbl&gt; 1, 2, 4, 0, 0, 0, 0, NA, 0,…
+$ `Motorcycle, scooter or moped`             &lt;dbl&gt; 2, 1, 12, 0, 0, 0, 0, NA, 0…
+$ `Driving a car or van`                     &lt;dbl&gt; 783, 499, 2259, 244, 1, 4, …
+$ `Passenger in a car or van`                &lt;dbl&gt; 73, 26, 154, 10, 0, 0, 0, N…
+$ Bicycle                                    &lt;dbl&gt; 15, 9, 23, 0, 0, 0, 0, NA, …
+$ `On foot`                                  &lt;dbl&gt; 52, 8, 24, 4, 0, 0, 0, NA, …
+$ `Other method of travel to work`           &lt;dbl&gt; 0, 1, 2, 0, 0, 0, 0, NA, 0,…</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Some variables are repetitive or need name change</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>commuting.si <span class="ot">&lt;-</span> commuting.si <span class="sc">%&gt;%</span> </span>
@@ -657,22 +660,22 @@ $ `Other method of travel to work`           &lt;dbl&gt; 0, 1, 2, 0, 0, 0, 0, NA
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 119,370
 Columns: 16
-$ i                                          &lt;fct&gt; E41000002, E41000003, E4100~
-$ j                                          &lt;fct&gt; E41000001, E41000001, E4100~
-$ distance                                   &lt;dbl&gt; 14370.86, 20185.71, 11427.5~
-$ ij.code                                    &lt;chr&gt; "E41000002_E41000001", "E41~
-$ `All categories: Method of travel to work` &lt;dbl&gt; 990, 558, 2590, 266, 1, 4, ~
-$ `Work mainly at or from home`              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, NA, 0,~
-$ `Underground, metro, light rail, tram`     &lt;dbl&gt; 0, 1, 0, 0, 0, 0, 0, NA, 0,~
-$ Train                                      &lt;dbl&gt; 6, 3, 25, 2, 0, 0, 0, NA, 1~
-$ `Bus, minibus or coach`                    &lt;dbl&gt; 58, 8, 87, 6, 0, 0, 0, NA, ~
-$ Taxi                                       &lt;dbl&gt; 1, 2, 4, 0, 0, 0, 0, NA, 0,~
-$ `Motorcycle, scooter or moped`             &lt;dbl&gt; 2, 1, 12, 0, 0, 0, 0, NA, 0~
-$ `Driving a car or van`                     &lt;dbl&gt; 783, 499, 2259, 244, 1, 4, ~
-$ `Passenger in a car or van`                &lt;dbl&gt; 73, 26, 154, 10, 0, 0, 0, N~
-$ Bicycle                                    &lt;dbl&gt; 15, 9, 23, 0, 0, 0, 0, NA, ~
-$ `On foot`                                  &lt;dbl&gt; 52, 8, 24, 4, 0, 0, 0, NA, ~
-$ `Other method of travel to work`           &lt;dbl&gt; 0, 1, 2, 0, 0, 0, 0, NA, 0,~</code></pre>
+$ i                                          &lt;fct&gt; E41000002, E41000003, E4100…
+$ j                                          &lt;fct&gt; E41000001, E41000001, E4100…
+$ distance                                   &lt;dbl&gt; 14370.86, 20185.71, 11427.5…
+$ ij.code                                    &lt;chr&gt; "E41000002_E41000001", "E41…
+$ `All categories: Method of travel to work` &lt;dbl&gt; 990, 558, 2590, 266, 1, 4, …
+$ `Work mainly at or from home`              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, NA, 0,…
+$ `Underground, metro, light rail, tram`     &lt;dbl&gt; 0, 1, 0, 0, 0, 0, 0, NA, 0,…
+$ Train                                      &lt;dbl&gt; 6, 3, 25, 2, 0, 0, 0, NA, 1…
+$ `Bus, minibus or coach`                    &lt;dbl&gt; 58, 8, 87, 6, 0, 0, 0, NA, …
+$ Taxi                                       &lt;dbl&gt; 1, 2, 4, 0, 0, 0, 0, NA, 0,…
+$ `Motorcycle, scooter or moped`             &lt;dbl&gt; 2, 1, 12, 0, 0, 0, 0, NA, 0…
+$ `Driving a car or van`                     &lt;dbl&gt; 783, 499, 2259, 244, 1, 4, …
+$ `Passenger in a car or van`                &lt;dbl&gt; 73, 26, 154, 10, 0, 0, 0, N…
+$ Bicycle                                    &lt;dbl&gt; 15, 9, 23, 0, 0, 0, 0, NA, …
+$ `On foot`                                  &lt;dbl&gt; 52, 8, 24, 4, 0, 0, 0, NA, …
+$ `Other method of travel to work`           &lt;dbl&gt; 0, 1, 2, 0, 0, 0, 0, NA, 0,…</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's see if we have any missing values</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(commuting.si, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1222,6 +1225,15 @@ F Statistic
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-lovelace2019geocomputation" class="csl-entry" role="doc-biblioentry">
+Lovelace, Robin, Jakub Nowosad, and Jannes Muenchow. 2019. <em>Geocomputation with r</em>. Chapman; Hall/CRC.
+</div>
+<div id="ref-oshan2021spatial" class="csl-entry" role="doc-biblioentry">
+Oshan, Taylor M. 2021. <span>“The Spatial Structure Debate in Spatial Interaction Modeling: 50 Years On.”</span> <em>Progress in Human Geography</em> 45 (5): 925–50.
+</div>
+<div id="ref-roback2021beyond" class="csl-entry" role="doc-biblioentry">
+Roback, Paul, and Julie Legler. 2021. <em>Beyond Multiple Linear Regression: Applied Generalized Linear Models and Multilevel Models in r</em>. Chapman; Hall/CRC.
+</div>
 <div id="ref-tranos2022using" class="csl-entry" role="doc-biblioentry">
 Tranos, Emmanouil, André Carrascal-Incera, and George Willis. 2022. <span>“Using the Web to Predict Regional Trade Flows: Data Extraction, Modeling, and Validation.”</span> <em>Annals of the American Association of Geographers</em>, 1–23.
 </div>

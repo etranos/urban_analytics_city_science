@@ -18,16 +18,15 @@ Some of the materials for this tutorial have been adapted from:
 
 -   the [Modelling Population Flows Using Spatial Interaction Models](https://rpubs.com/adam_dennett/376877) tutorial, and
 
--   [Oshan (2016)](http://openjournals.wu.ac.at/region/paper_175/175.html)
+-   [@oshan2021spatial](http://openjournals.wu.ac.at/region/paper_175/175.html)
 
--   [Lovelace, Robin, Jakub Nowosad, and Jannes Muenchow. Geocomputation with R. CRC Press, 2019](https://geocompr.robinlovelace.net/)
+-   [@lovelace2019geocomputation](https://geocompr.robinlovelace.net/)
 
 ```{r setup, results='hide', message=FALSE, warning=FALSE}
 library(tidyverse)
 library(geojsonio)
 library(SpatialPosition)
 library(stargazer)
-library(caret)
 library(rprojroot)
 library(kableExtra)
 library(sf)
@@ -64,7 +63,7 @@ The below code loads the data.
 
 path.data <- paste0(path, "/data/wu03uk_v3/wu03uk_v3.csv")
 commuting <- read_csv(path.data)
-glimpse(commuting)
+commuting
 ```
 
 You might have observe some weird codes (OD0000001, OD0000002, OD0000003 and OD0000004). With some simple Google searching we can find the [2011 Census Origin-Destination Data User Guide](https://www.ons.gov.uk/file?uri=/census/2011census/2011censusdata/originanddestinationdata/secureoriginanddestinationtables/2011censusoduserguide_tcm77-383888.pdf), which indicates that these codes do not refer to local authorities:
@@ -195,7 +194,7 @@ This is what is known as the log-linear or log-normal transformation.
 
 There are a number of issues with such an approach though. Most importantly, our dependent variable is not continuous, but instead a discrete, positive variable (there are no flows of -324.56 people!). Therefore we need to employ an appropriate estimator and this is what the Poisson regression does. Briefly, if we exponentiate both sides, the above equation can be written as:
 
-$$T_{ij} = e^{lnk + \lambda lnV_i + \alpha lnM_j - \beta lnD_{ij}}$$ The above is in the form of the Poisson regression. So, we are interested in modelling *not* the mean $T_{ij}$ drawn from a normally distributed $T$, but, instead, the mean $T_{ij}$, which is the average of the all the flows (i.e. counts) between any $i$ and $j$. For more details about the Poisson regression have a look at the (Legler and Roback 2019)\[https://bookdown.org/roback/bookdown-bysh/ch-poissonreg.html#initial-models\]. For this practical we will estimate the commuting flows using both OLS and Poisson regressions.
+$$T_{ij} = e^{lnk + \lambda lnV_i + \alpha lnM_j - \beta lnD_{ij}}$$ The above is in the form of the Poisson regression. So, we are interested in modelling *not* the mean $T_{ij}$ drawn from a normally distributed $T$, but, instead, the mean $T_{ij}$, which is the average of the all the flows (i.e. counts) between any $i$ and $j$. For more details about the Poisson regression have a look at  [@roback2021beyond](https://bookdown.org/roback/bookdown-bysh/ch-poissonreg.html#initial-models). For this practical we will estimate the commuting flows using both OLS and Poisson regressions.
 
 But before we get into the estimation we need to build a data frame, which includes all the necessary variables. These are the origin-destination flows $T$ between $i$ and $j$, the distance $dist$ between $i$ and $j$ and the characteristics $V$ and $M$ of origin $i$ and destinations $j$ that we believe *push* and *pull* individuals to commute.
 
