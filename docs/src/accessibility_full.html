@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Emmanouil Tranos">
-<meta name="dcterms.date" content="2022-11-14">
+<meta name="dcterms.date" content="2022-11-23">
 
 <title>Urban analytics and city science - Accessibility in practice</title>
 <style>
@@ -273,12 +273,12 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../src/accessibility_full.html" class="sidebar-item-text sidebar-link active">Accessibility in practice</a>
+  <a href="../src/sim.html" class="sidebar-item-text sidebar-link">Spatial interaction modelling</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../src/sim.html" class="sidebar-item-text sidebar-link">Spatial interaction modelling</a>
+  <a href="../src/accessibility_full.html" class="sidebar-item-text sidebar-link active">Accessibility in practice</a>
   </div>
 </li>
       </ul>
@@ -293,7 +293,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../src/author.html" class="sidebar-item-text sidebar-link">Professor Emmanouil Tranos</a>
+  <a href="https://etranos.info/" class="sidebar-item-text sidebar-link">Professor Emmanouil Tranos</a>
   </div>
 </li>
       </ul>
@@ -335,7 +335,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 14, 2022</p>
+      <p class="date">November 23, 2022</p>
     </div>
   </div>
     
@@ -530,11 +530,11 @@ div.csl-indent {
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 49
 Columns: 5
-$ code           &lt;chr&gt; "E09000001", "E09000002", "E09000003", "E09000004", "E0~
-$ area           &lt;chr&gt; "City of London", "Barking and Dagenham", "Barnet", "Be~
-$ year           &lt;dbl&gt; 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2~
-$ number_of_jobs &lt;dbl&gt; 630000, 71000, 164000, 85000, 149000, 129000, 389000, 1~
-$ job_density    &lt;dbl&gt; 83.71, 0.52, 0.64, 0.54, 0.69, 0.62, 1.97, 0.58, 0.72, ~</code></pre>
+$ code           &lt;chr&gt; "E09000001", "E09000002", "E09000003", "E09000004", "E0…
+$ area           &lt;chr&gt; "City of London", "Barking and Dagenham", "Barnet", "Be…
+$ year           &lt;dbl&gt; 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2…
+$ number_of_jobs &lt;dbl&gt; 630000, 71000, 164000, 85000, 149000, 129000, 389000, 1…
+$ job_density    &lt;dbl&gt; 83.71, 0.52, 0.64, 0.54, 0.69, 0.62, 1.97, 0.58, 0.72, …</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pop <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://data.london.gov.uk/download/land-area-and-population-density-ward-and-borough/77e9257d-ad9d-47aa-aeed-59a00741f301/housing-density-borough.csv"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> <span class="co"># This is a projection, but it will work for now</span></span>
@@ -542,16 +542,16 @@ $ job_density    &lt;dbl&gt; 83.71, 0.52, 0.64, 0.54, 0.69, 0.62, 1.97, 0.58, 0.
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 36
 Columns: 10
-$ Code                            &lt;chr&gt; "E09000001", "E09000002", "E09000003",~
-$ Name                            &lt;chr&gt; "City of London", "Barking and Dagenha~
-$ Year                            &lt;dbl&gt; 2020, 2020, 2020, 2020, 2020, 2020, 20~
-$ Source                          &lt;chr&gt; "GLA Population Projections", "GLA Pop~
-$ Population                      &lt;dbl&gt; 8046, 218367, 407148, 254970, 343853, ~
-$ `Inland_Area _Hectares`         &lt;dbl&gt; 290.4, 3610.8, 8674.8, 6058.1, 4323.3,~
-$ Total_Area_Hectares             &lt;dbl&gt; 314.9, 3779.9, 8674.8, 6428.6, 4323.3,~
-$ Population_per_hectare          &lt;dbl&gt; 27.7, 60.5, 46.9, 42.1, 79.5, 22.4, 11~
-$ Square_Kilometres               &lt;dbl&gt; 2.9, 36.1, 86.7, 60.6, 43.2, 150.1, 21~
-$ Population_per_square_kilometre &lt;dbl&gt; 2770.7, 6047.6, 4693.4, 4208.8, 7953.6~</code></pre>
+$ Code                            &lt;chr&gt; "E09000001", "E09000002", "E09000003",…
+$ Name                            &lt;chr&gt; "City of London", "Barking and Dagenha…
+$ Year                            &lt;dbl&gt; 2020, 2020, 2020, 2020, 2020, 2020, 20…
+$ Source                          &lt;chr&gt; "GLA Population Projections", "GLA Pop…
+$ Population                      &lt;dbl&gt; 8046, 218367, 407148, 254970, 343853, …
+$ `Inland_Area _Hectares`         &lt;dbl&gt; 290.4, 3610.8, 8674.8, 6058.1, 4323.3,…
+$ Total_Area_Hectares             &lt;dbl&gt; 314.9, 3779.9, 8674.8, 6428.6, 4323.3,…
+$ Population_per_hectare          &lt;dbl&gt; 27.7, 60.5, 46.9, 42.1, 79.5, 22.4, 11…
+$ Square_Kilometres               &lt;dbl&gt; 2.9, 36.1, 86.7, 60.6, 43.2, 150.1, 21…
+$ Population_per_square_kilometre &lt;dbl&gt; 2770.7, 6047.6, 4693.4, 4208.8, 7953.6…</code></pre>
 </div>
 </div>
 <p>Jobs and pop include observations for spatial units other than London’s 33 Local Authorities. Explore <code>pop</code> and <code>jobs</code> to see that. Therefore, we use the <code>inner_join()</code> function to join them. See <a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">here</a> how it works. You should be able to understand the different functions to join data.</p>
@@ -564,10 +564,10 @@ $ Population_per_square_kilometre &lt;dbl&gt; 2770.7, 6047.6, 4693.4, 4208.8, 79
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">kbl</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> F) <span class="sc">%&gt;%</span>   <span class="co">#Nice(r) table</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">"500px"</span>, <span class="at">height =</span> <span class="st">"200px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">"900px"</span>, <span class="at">height =</span> <span class="st">"400px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; overflow-x: scroll; width:500px; "><table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:900px; "><table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
    <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> id </th>

@@ -221,7 +221,7 @@ It just adds some nice styling for `html` outputs.
 ```{r}
 df %>% kbl() %>%
   kable_styling(full_width = F) %>%   #Nice(r) table
-  scroll_box(width = "500px", height = "200px")
+  scroll_box(width = "900px", height = "400px")
 ```
 
 Next, we are bringing the spatial data -- that is the polygons -- for London's Local
