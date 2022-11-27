@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Emmanouil Tranos">
-<meta name="dcterms.date" content="2022-11-23">
+<meta name="dcterms.date" content="2022-11-27">
 
 <title>Urban analytics and city science - Accessibility in practice</title>
 <style>
@@ -335,7 +335,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 23, 2022</p>
+      <p class="date">November 27, 2022</p>
     </div>
   </div>
     
@@ -363,7 +363,7 @@ div.csl-indent {
 </section>
 <section id="aims-of-the-practical" class="level2">
 <h2 class="anchored" data-anchor-id="aims-of-the-practical">Aims of the practical</h2>
-<p>The aim of this practical is to calculate different accessibility indicators. For a brief overview about accessibility, please have a look at <span class="citation" data-cites="rodrigue2020geography">(<a href="#ref-rodrigue2020geography" role="doc-biblioref">Rodrigue 2020</a>)</span> (for example <a href="https://transportgeography.org/contents/methods/transportation-accessibility/">here</a> ). For a review have a look at <span class="citation" data-cites="HOLL2007286">Holl (<a href="#ref-HOLL2007286" role="doc-biblioref">2007</a>)</span>, <span class="citation" data-cites="el2022making">El-Geneidy and Levinson (<a href="#ref-el2022making" role="doc-biblioref">2022</a>)</span> and <span class="citation" data-cites="shi2020literature">Shi et al. (<a href="#ref-shi2020literature" role="doc-biblioref">2020</a>)</span> as well as at some older and well cited papers such as <span class="citation" data-cites="geurs2004accessibility">Geurs and Van Wee (<a href="#ref-geurs2004accessibility" role="doc-biblioref">2004</a>)</span> and <span class="citation" data-cites="bruinsma1998accessibility">Bruinsma and Rietveld (<a href="#ref-bruinsma1998accessibility" role="doc-biblioref">1998</a>)</span>. The below typology of accessibility concepts is from <span class="citation" data-cites="HOLL2007286">Holl (<a href="#ref-HOLL2007286" role="doc-biblioref">2007</a>)</span>.</p>
+<p>The aim of this practical is to calculate different accessibility indicators. For a brief overview about accessibility, please have a look at <span class="citation" data-cites="rodrigue2020geography">(<a href="#ref-rodrigue2020geography" role="doc-biblioref">Rodrigue 2020</a>)</span> (for example <a href="https://transportgeography.org/contents/methods/transportation-accessibility/">here</a> ). For in depth reviews have a look at <span class="citation" data-cites="HOLL2007286">Holl (<a href="#ref-HOLL2007286" role="doc-biblioref">2007</a>)</span>, <span class="citation" data-cites="el2022making">El-Geneidy and Levinson (<a href="#ref-el2022making" role="doc-biblioref">2022</a>)</span> and <span class="citation" data-cites="shi2020literature">Shi et al. (<a href="#ref-shi2020literature" role="doc-biblioref">2020</a>)</span> as well as at some older and well-cited papers such as <span class="citation" data-cites="geurs2004accessibility">Geurs and Van Wee (<a href="#ref-geurs2004accessibility" role="doc-biblioref">2004</a>)</span> and <span class="citation" data-cites="bruinsma1998accessibility">Bruinsma and Rietveld (<a href="#ref-bruinsma1998accessibility" role="doc-biblioref">1998</a>)</span>. The below typology of accessibility concepts is from <span class="citation" data-cites="HOLL2007286">Holl (<a href="#ref-HOLL2007286" role="doc-biblioref">2007</a>)</span>.</p>
 <ol type="1">
 <li><p>Network access</p>
 <ul>
@@ -434,7 +434,7 @@ div.csl-indent {
 6: 89a881a5b03ffff          17</code></pre>
 </div>
 </div>
-<p>The next measure is the total number of opportunities (in other words cummulative opportunities) within a cut-off of the travel cost. In other words, the below provides the nu,ber of jobs accessibile within 30 minutes of travel time.</p>
+<p>The next measure is the total number of opportunities (in other words, the cumulative opportunities) within a cut-off of the travel cost. So, the below provides the number of jobs accessible within 30 minutes of travel time.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cum_cutoff <span class="ot">&lt;-</span> <span class="fu">cumulative_cutoff</span>(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  travel_matrix,</span>
@@ -477,7 +477,7 @@ div.csl-indent {
 6: 89a88cdb50fffff     107605</code></pre>
 </div>
 </div>
-<p>Last, but not least we can calculate the gravity based accessibility indicators, or, in other words, potential accessibility indicators. This is the same measure as the example we discussed during the <a href="https://etranos.info/urban_analytics_city_science/src/transport_geography.html#/spatial-interactions-and-the-gravity-model-2" target="_blank">class</a>. The intuition is that the furthest away each opportunity is, the less important it becomes. So, the accessibility of a location <span class="math inline">\(i\)</span> is equal to the sum of all opportunities available divided – in other words discounted – by the distance or the cost to reach them. The <code>negative_exp</code> function can take different decay functions (see <a href="https://cran.r-project.org/web/packages/accessibility/vignettes/decay_functions.html">here</a>). We know from previous studies that the exponential function represents better shorter interactions (e.g.&nbsp;within cities) while the power function works better for longer distance interactions (e.g.&nbsp;migrations flows) <span class="citation" data-cites="fotheringham1989spatial">Oshan (<a href="#ref-oshan2021spatial" role="doc-biblioref">2021</a>)</span>.</p>
+<p>Last, but not least we can calculate the gravity-based accessibility indicators, or, in other words, potential accessibility indicators. This is the same measure as the example we discussed during the <a href="https://etranos.info/urban_analytics_city_science/src/transport_geography.html#/spatial-interactions-and-the-gravity-model-2" target="_blank">class</a>. The intuition is that the furthest away each opportunity is, the less important it becomes. So, the accessibility of a location <span class="math inline">\(i\)</span> is equal to the sum of all opportunities available divided – in other words discounted – by the distance or the cost to reach them. The <code>negative_exp</code> function can take different decay functions (see <a href="https://cran.r-project.org/web/packages/accessibility/vignettes/decay_functions.html">here</a>). We know from previous studies that the exponential function represents better shorter interactions (e.g.&nbsp;within cities) while the power function works better for longer distance interactions (e.g.&nbsp;migrations flows) <span class="citation" data-cites="fotheringham1989spatial">Oshan (<a href="#ref-oshan2021spatial" role="doc-biblioref">2021</a>)</span>.</p>
 <p><span class="math inline">\(Acc_{i} = \sum_j \frac{W_j}{d_{ij}^2}\)</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>negative_exp <span class="ot">&lt;-</span> <span class="fu">gravity</span>(</span>
@@ -1121,7 +1121,7 @@ $ Population_per_square_kilometre &lt;dbl&gt; 2770.7, 6047.6, 4693.4, 4208.8, 79
 </div>
 </div>
 <p>Next, we are bringing the spatial data – that is the polygons – for London’s Local Authorities. We start by downloading all the polygons for all Local Authorities in the country. Please go to this <a href="https://geoportal.statistics.gov.uk/datasets/1119a90ec5f343678f044374392e6bda_0/explore">webpage</a>, download the <code>geojson</code> file and save it to the appropriate <code>data</code> folder within your project directory.</p>
-<p>However, we don’t need all the Local Authorities, but instead we only need to ones within London. Therefore we use the <code>filter</code> option to select only the Local Authorities which are included within – this is the <code>%in%</code> operator – the <code>df$id</code> column. Finally, we create a new object which only includes the centroids of these polygos? Why are we doing this? Because we need to calculate distances and accessibilities metrics for specific points and we will use these points as representative for each Local Authority.</p>
+<p>However, we don’t need all the Local Authorities, but instead we only need to ones within London. Therefore we use the <code>filter</code> option to select only the Local Authorities which are included within – this is the <code>%in%</code> operator – the <code>df$id</code> column. Finally, we create a new object which only includes the centroids of these polygons. Why are we doing this? Because we need to calculate distances and accessibility metrics for specific points and we will use these points as representative for each Local Authority.</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1160,9 +1160,8 @@ Geodetic CRS:  WGS 84</code></pre>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">measure =</span> <span class="st">"duration"</span>,</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">osrm.profile =</span> <span class="st">"car"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The output of the above is a list with an <span class="math inline">\(n*n\)</span> distance matrix, and a dataframe with the longitude and latitude of the origins and destinations. We are mostly interested in the former, so we start the data wrangling by creating a <code>help</code> dataframe with these distances, or in other words, durations. We then add row and column names using the <code>london.centres</code> names. We can just do that because the matrix follows the same order as the intital spatial data of Local Authorities. I always like to throw in a <code>dim</code> function just to keep an eye on the dimensions of the objects I create. Indeed, the <code>dist</code> object is a <span class="math inline">\(33*33\)</span> matrix as it should have been.</p>
-<p>Then, I use the function <code>odmatrix_to_od()</code> form the <code>od</code> package. Why? Because we need to convert the <span class="math inline">\(n*n\)</span> matrix to a long format. If you remember, we used to call this format an <a href="https://etranos.info/urban_analytics_city_science/src/intro_networks.html#/directed-weighted-networks-1">edge list</a>.</p>
-<p>And at the end</p>
+<p>The output of the above is a list with an <span class="math inline">\(n*n\)</span> distance matrix, and a dataframe with the longitude and latitude of the origins and destinations. We are mostly interested in the former, so we start the data wrangling by creating a <code>help</code> dataframe with these distances, or in other words, durations. We then add row and column names using the <code>london.centres</code> names. We can just do that because the matrix follows the same order as the intimal spatial data of Local Authorities. I always like to throw in a <code>dim</code> function just to keep an eye on the dimensions of the objects I create. Indeed, the <code>dist</code> object is a <span class="math inline">\(33*33\)</span> matrix as it should have been.</p>
+<p>Then, we need to convert the <span class="math inline">\(n*n\)</span> matrix to a long format. If you remember, we used to call this format an <a href="https://etranos.info/urban_analytics_city_science/src/intro_networks.html#/directed-weighted-networks-1">edge list</a>. There are different way to do this. We can use the ready-made function <code>odmatrix_to_od()</code> from the <code>od</code> package. To see how it works, make sure that the <code>od</code> package is installed and then type the following: <code>od::odmatrix_to_od</code>. This will reveal how the <code>odmatrix_to_od()</code> function works under the hood. As you can see the magic happens by using the following R-base function: <code>as.data.frame(as.table(odmatrix))</code>. Therefore, I just used the below R-base function. You can, of course, use directly the <code>odmatrix_to_od()</code> function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>help <span class="ot">&lt;-</span> dist<span class="sc">$</span>durations </span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1174,14 +1173,12 @@ Geodetic CRS:  WGS 84</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 33 33</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># od::odmatrix_to_od(dist$durations)</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>dist.df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">as.table</span>(help)) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">from_id =</span> Var1,</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">to_id =</span> Var2,</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">travel_time =</span> Freq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>dist.df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">as.table</span>(help)) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">from_id =</span> Var1,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">to_id =</span> Var2,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">travel_time =</span> Freq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>As before, we calculate the cumulative opportunities for London’s Local Authorities (the centroids to be more accurate) within a cutoff of 20 minutes.</p>
+<p>As before, we calculate the cumulative opportunities for London’s Local Authorities (the centroids to be more accurate) within a cut-off of 20 minutes.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>mtc <span class="ot">&lt;-</span> <span class="fu">cumulative_cutoff</span>(</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  dist.df,</span>
@@ -1209,7 +1206,7 @@ Geodetic CRS:  WGS 84</code></pre>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> london, <span class="fu">aes</span>(<span class="at">fill =</span> number_of_jobs), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
 <span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Job accessibility by driving in under 20 min."</span>,</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Job accessibility by driving in under 20 min"</span>,</span>
 <span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Accessible jobs"</span></span>
 <span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span></span>

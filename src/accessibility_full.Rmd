@@ -35,8 +35,8 @@ The aim of this practical is to calculate different accessibility indicators.
 For a brief overview about accessibility, please have a look at [@rodrigue2020geography]
 (for example [here](https://transportgeography.org/contents/methods/transportation-accessibility/)
 ).
-For a review have a look at @HOLL2007286, @el2022making and @shi2020literature
-as well as at some older and well cited papers such as @geurs2004accessibility and 
+For in depth reviews have a look at @HOLL2007286, @el2022making and @shi2020literature
+as well as at some older and well-cited papers such as @geurs2004accessibility and 
 @bruinsma1998accessibility. The below typology of accessibility concepts is from
 @HOLL2007286.
 
@@ -103,9 +103,9 @@ mtc <- cost_to_closest(
 head(mtc)
 ```
 
-The next measure is the total number of opportunities (in other words cummulative
-opportunities) within a cut-off of the travel cost. In other words, the below provides
-the nu,ber of jobs accessibile within 30 minutes of travel time.
+The next measure is the total number of opportunities (in other words, the cumulative
+opportunities) within a cut-off of the travel cost. So, the below provides
+the number of jobs accessible within 30 minutes of travel time.
 
 ```{r}
 cum_cutoff <- cumulative_cutoff(
@@ -137,7 +137,7 @@ passive_cum_cutoff <- cumulative_cutoff(
 head(passive_cum_cutoff)
 ```
 
-Last, but not least we can calculate the gravity based accessibility indicators,
+Last, but not least we can calculate the gravity-based accessibility indicators,
 or, in other words, potential accessibility indicators. This is the same measure 
 as the example we discussed during the [class](https://etranos.info/urban_analytics_city_science/src/transport_geography.html#/spatial-interactions-and-the-gravity-model-2){target="_blank"}.
 The intuition is that the furthest away each opportunity is, the less important
@@ -232,8 +232,8 @@ within your project directory.
 However, we don't need all the Local Authorities, but instead we only need to ones
 within London. Therefore we use the `filter` option to select only the Local Authorities
 which are included within -- this is the `%in%` operator -- the `df$id` column. 
-Finally, we create a new object which only includes the centroids of these polygos?
-Why are we doing this? Because we need to calculate distances and accessibilities
+Finally, we create a new object which only includes the centroids of these polygons.
+Why are we doing this? Because we need to calculate distances and accessibility
 metrics for specific points and we will use these points as representative for each
 Local Authority. 
 
@@ -272,16 +272,23 @@ with the longitude and latitude of the origins and destinations. We are mostly
 interested in the former, so we start the data wrangling by creating a `help` 
 dataframe with these distances, or in other words, durations.
 We then add row and column names using the `london.centres` names. We can just
-do that because the matrix follows the same order as the intital spatial data
+do that because the matrix follows the same order as the intimal spatial data
 of Local Authorities. I always like to throw in a `dim` function just to keep 
 an eye on the dimensions of the objects I create. Indeed, the `dist` object is 
 a $33*33$ matrix as it should have been.
 
-Then, I use the function `odmatrix_to_od()` form the `od` package. Why? Because
-we need to convert the $n*n$ matrix to a long format. If you remember, we used to
+Then, we need to convert the $n*n$ matrix to a long format. If you remember, we used to
 call this format an [edge list](https://etranos.info/urban_analytics_city_science/src/intro_networks.html#/directed-weighted-networks-1).
+There are different way to do this.
+We can use the ready-made function `odmatrix_to_od()` from the `od` package. 
+To see how it works, make sure that the `od` package is installed and then type the
+following: `od::odmatrix_to_od`. This will reveal how the `odmatrix_to_od()` function
+works under the hood. 
+As you can see the magic happens by using the following R-base function: `as.data.frame(as.table(odmatrix))`.
+Therefore, I just used the below R-base function. 
+You can, of course, use directly the `odmatrix_to_od()` function.
 
-And at the end
+
 ```{r}
 help <- dist$durations 
 
@@ -291,15 +298,14 @@ colnames(help) <- as.vector(london.centres$LAD21CD)
 
 dim(dist$durations)
 
-# od::odmatrix_to_od(dist$durations)
-
 dist.df <- as.data.frame(as.table(help)) %>% 
   rename(from_id = Var1,
          to_id = Var2,
          travel_time = Freq)
 ```
+
 As before, we calculate the cumulative opportunities for London's Local Authorities
-(the centroids to be more accurate) within a cutoff of 20 minutes.
+(the centroids to be more accurate) within a cut-off of 20 minutes.
 
 ```{r}
 mtc <- cumulative_cutoff(
@@ -322,7 +328,7 @@ london <- merge(london, mtc, by.x = "LAD21CD", by.y = "id" )
 ggplot() +
   geom_sf(data = london, aes(fill = number_of_jobs), color = NA) +
   labs(
-    title = "Job accessibility by driving in under 20 min.",
+    title = "Job accessibility by driving in under 20 min",
     fill = "Accessible jobs"
   ) +
   scale_fill_viridis_c() +
