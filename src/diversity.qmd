@@ -45,11 +45,11 @@ In general is *a good thing* for:
 
 ## Opposing forces
 
--   Within-sector or Marshall--Arrow--Romer (MAR) spillovers,
+-   Within-sector or Marshall--Arrow--Romer (MAR) spillovers
 
 -   Between-sector or Jacobs spillovers
 
--   Large empirical literature trying to identify the write ratio (e.g. @saviotti2008export; @caragliu2016both)
+-   Large empirical literature trying to identify the write ratio, e.g. @saviotti2008export and @caragliu2016both
 
 -   MAR externalities (or spillovers): good for productivity and short-term growth
 
@@ -57,7 +57,7 @@ In general is *a good thing* for:
 
 ## Opposing forces
 
-Using more clear econ terminology [@fujita1989urban]:
+Using more clear economics terminology [@fujita1989urban]:
 
 -   Diverse cities (heterogeneous agglomerations) enjoy economies of scope
 
@@ -67,7 +67,10 @@ Using more clear econ terminology [@fujita1989urban]:
 
 -   Ambiguous concepts
 
--   Abundance, difference or number of, but also the degrees of richness, concentration or evenness [@yuo2021environmental]
+-   Variety, diversity, difference: a relative concept of agglomeration and the clustering of activities
+
+-   Not only higher 'abundance', 'difference' or 'number', but also the degrees of 'richness', 'concentration'
+or 'evenness' [@yuo2021environmental]
 
 -   Different ways to measure [@bettencourt2021introduction]
 
@@ -75,9 +78,13 @@ Using more clear econ terminology [@fujita1989urban]:
 
 -   ... aka variety
 
--   $\sum_{i}p_{i}^0$
+-   $D = \sum_{i}^n p_{i}^0$
 
 -   $p_i$ is the proportion of data points in the $i$th category
+
+-   $n$ is the number of total categories
+
+-   A count of different species / categories / ...
 
 **Interpretation:**
 
@@ -87,7 +94,7 @@ Using more clear econ terminology [@fujita1989urban]:
 
 ## Shannon entropy
 
--   $H = -\sum_{i=1}^n p_{i} \ln{p_{i}}$
+-   $H = -\sum_{i}^n p_{i} \ln{p_{i}}$
 
 -   $n$ is the number of total categories
 
@@ -103,7 +110,7 @@ Using more clear econ terminology [@fujita1989urban]:
 
 ## Herfindahl-Hirschman index
 
--   $HHI = \sum_{i}(p_{i}^2)$
+-   $HHI = \sum_{i}^{n}(p_{i}^2)$
 
 -   $p_i$ is the proportion of data points in the $i$th category
 
@@ -127,7 +134,7 @@ HHI_2
 
 -   Caution: alternative specification
 
--   $HHI = 1- \sum_{i}(p_{i}^2)$
+-   $HHI = 1- \sum_{i}^{n}(p_{i}^2)$
 
 # Examples
 
@@ -147,9 +154,9 @@ HHI_2
 
 -   Why? Because:
 
-    -   identical activities compete for for customers and resources,
+    -   identical activities compete for customers and resources,
 
-    -   no learning between very dissimilar economicactivities
+    -   no learning between very dissimilar economic activities
 
 ## Relatedness
 
@@ -161,9 +168,9 @@ HHI_2
 
 -   Learn about abstract factors of production and the way they combine into outputs
 
--   Dimensionality reduction techniques to data on the geography of activities, e.g. employment by industry or patents by technology.
+-   Dimensionality reduction techniques to data on the geography of activities, e.g. employment by industry or patents by technology
 
--   Machine learning and network techniques to predict and explain the economic trajectories of countries, cities and regions.
+-   Machine learning and network techniques to predict and explain the economic trajectories of countries, cities and regions
 
 For a review, check @hidalgo2021economic and @balland2022new.
 
@@ -181,7 +188,8 @@ For a review, check @hidalgo2021economic and @balland2022new.
 
 -   Make sure you know the file location!
 
--   We will use the `REAT` and `entropy` packages. Check what these packages do [here](https://cran.r-project.org/web/packages/REAT/REAT.pdf) and [here](https://cran.r-project.org/web/packages/entropy/entropy.pdf).
+-   We will use the `REAT` and `entropy` packages. Check what these packages do [here](https://cran.r-project.org/web/packages/REAT/REAT.pdf){target="_blank"} and
+[here](https://cran.r-project.org/web/packages/entropy/entropy.pdf){target="_blank"}.
 
 -   Install them if needed with `install.packages("packagename")`
 
@@ -189,14 +197,15 @@ For a review, check @hidalgo2021economic and @balland2022new.
 
 ```{r, echo=TRUE}
 
-library(tidyverse)  #for data wrangling
-library(rprojroot)  #for relative paths
-library(REAT)       #for diversity measures
-library(entropy)    #for entropy
-library(cluster)    #for cluster analysis
-library(factoextra) #help functions for clustering 
-library(kableExtra) #for nice html tables
-library(dbscan)     #for HDBSCAL
+library(tidyverse)  # for data wrangling
+library(rprojroot)  # for relative paths
+library(REAT)       # for diversity measures
+library(entropy)    # for entropy
+library(cluster)    # for cluster analysis
+library(factoextra) # help functions for clustering 
+library(kableExtra) # for nice html tables
+library(dbscan)     # for HDBSCAL
+library(sf)         # for mapping
 
 # This is the project path
 path <- find_rstudio_root_file()
@@ -204,34 +213,62 @@ path.data <- paste0(path, "/data/businesses-in-london.csv")
 
 london.firms <- read_csv(path.data) 
 
-london.firms %>% 
-  filter(SICCode.SicText_1!="None Supplied") %>% 
-  group_by(oslaua, SICCode.SicText_1) %>% 
-  summarise(n = n()) %>% 
-  mutate(total = sum(n),
-         freq = n / total) %>% 
-  group_by(oslaua) %>% 
-  summarise(richness = n_distinct(SICCode.SicText_1),
-            entropy = entropy(freq, method = "ML"),
-            herf = herf(n)) %>% 
-  arrange(-herf) 
+london.firms.sum <- london.firms %>% 
+  filter(SICCode.SicText_1!="None Supplied") %>% # dropping NAs in essence
+  group_by(oslaua, SICCode.SicText_1) %>%        # grouping by Local Authority and SIC code
+  summarise(n = n()) %>%                         # summarise: n is the number of firms per Local Authority and SIC code
+  mutate(total = sum(n),                         # total equal all firms
+         freq = n / total) %>%                   # just a frequency
+  group_by(oslaua) %>%                           # grouping again only by Local Authority
+  summarise(richness = n_distinct(SICCode.SicText_1), # the number of distinct SIC per Local Authority
+            entropy = entropy(freq, method = "ML"),   # entropy for each Local Authority, we did the first group_by() and mutate() to be                                                           able to calculate freq so we can calculate entropy
+            herf = herf(n)) %>%                       # HHI for each local authority
+  arrange(-herf)                                      # sort based on HHI (descending)
+
+london.firms.sum %>% kbl() %>%
+  kable_styling(full_width = F) %>%                   # A nice(r) table
+  scroll_box(width = "800px", height = "300px")
 ```
 
 ## Measuring diversity
 
 ::: callout-tip
-You don't know what local authorities these codes refer to. You should download the codes and name and join them with your data from [here](https://geoportal.statistics.gov.uk/documents/c4f647d8a4a648d7b4a1ebf057f8aaa3/about).
+You don't know what local authorities these codes refer to. You should download the codes and names and join them with your data from [here](https://geoportal.statistics.gov.uk/documents/c4f647d8a4a648d7b4a1ebf057f8aaa3/about).
 :::
 
 ::: callout-tip
 Discuss what we can learn from this exercise.
 
-Can you think of a way to understand how these indices *behave*?
+Can you think of a way to understand how different these indices are among London's Local Authorities?
 :::
 
-## Measuring diversity
+## Measuring diversity {.scrollable}
 
-**TO ADD: CHOROPLETH MAPS**
+```{r, }
+#| label: maps
+#| echo: true
+#| include: true
+#| message: false
+#| warning: false
+#| error: false
+#| results: asis
+
+path.shape <- paste0(path, "/data/Local_Authority_Districts_(May_2021)_UK_BFE.geojson")
+
+london <- st_read(path.shape, quiet = T) %>%
+  dplyr::filter(LAD21CD %in% (london.firms$oslaua))
+
+london <- merge(london, london.firms.sum, by.x = "LAD21CD", by.y = "oslaua" )
+  
+ggplot() +
+  geom_sf(data = london, aes(fill = entropy), color = NA) +
+  labs(
+    title = "Business diversity in London' Local Autorities",
+    fill = "Entropy") +
+  scale_fill_viridis_c() +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5)) # centres the title
+```
 
 ## Clustering
 
@@ -273,7 +310,7 @@ Can you think of a way to understand how these indices *behave*?
 6.  Iterative process to minimise *within-cluster variation* until convergence
 :::
 
-$SS_within = \sum_{k=1}^k W(C_{k}) = \sum_{k=1}^k \sum_{x_i\in C_K}(x_i-\mu_k)^2$
+$SS_{within} = \sum_{k=1}^k W(C_{k}) = \sum_{k=1}^k \sum_{x_i\in C_K}(x_i-\mu_k)^2$
 
 ## *K*-means {.scrollable}
 
@@ -315,7 +352,7 @@ str(kclust)
 
     -   Compute k-means clustering for different values of *k*
 
-    -   Calculate $SS_within$
+    -   Calculate $SS_{within}$
 
     -   Plot and spot the loction of a bend
 
@@ -466,7 +503,6 @@ fviz_nbclust(
 sp.cluster = kmeans(london.firms.sample, 6) 
 
 plot(london.firms.sample, col = sp.cluster$cluster)
-#points(sp.cluster$centers, col = 1:4, pch = 8, cex = 2)
 ```
 
 ## Clusters in space, hdbscan

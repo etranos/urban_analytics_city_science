@@ -429,16 +429,16 @@ University of Bristol, Alan Turing Institute<br>
 <section id="opposing-forces" class="slide level2">
 <h2>Opposing forces</h2>
 <ul>
-<li><p>Within-sector or Marshall–Arrow–Romer (MAR) spillovers,</p></li>
+<li><p>Within-sector or Marshall–Arrow–Romer (MAR) spillovers</p></li>
 <li><p>Between-sector or Jacobs spillovers</p></li>
-<li><p>Large empirical literature trying to identify the write ratio (e.g. <span class="citation" data-cites="saviotti2008export">Saviotti and Frenken (<a href="#/ref-saviotti2008export" role="doc-biblioref" onclick="return false;">2008</a>)</span>; <span class="citation" data-cites="caragliu2016both">Caragliu, Dominicis, and Groot (<a href="#/ref-caragliu2016both" role="doc-biblioref" onclick="return false;">2016</a>)</span>)</p></li>
+<li><p>Large empirical literature trying to identify the write ratio, e.g. <span class="citation" data-cites="saviotti2008export">Saviotti and Frenken (<a href="#/ref-saviotti2008export" role="doc-biblioref" onclick="return false;">2008</a>)</span> and <span class="citation" data-cites="caragliu2016both">Caragliu, Dominicis, and Groot (<a href="#/ref-caragliu2016both" role="doc-biblioref" onclick="return false;">2016</a>)</span></p></li>
 <li><p>MAR externalities (or spillovers): good for productivity and short-term growth</p></li>
 <li><p>Jacobean externalities: good for innovation and long-term growth</p></li>
 </ul>
 </section>
 <section id="opposing-forces-1" class="slide level2">
 <h2>Opposing forces</h2>
-<p>Using more clear econ terminology <span class="citation" data-cites="fujita1989urban">(<a href="#/ref-fujita1989urban" role="doc-biblioref" onclick="return false;">Fujita et al. 1989</a>)</span>:</p>
+<p>Using more clear economics terminology <span class="citation" data-cites="fujita1989urban">(<a href="#/ref-fujita1989urban" role="doc-biblioref" onclick="return false;">Fujita et al. 1989</a>)</span>:</p>
 <ul>
 <li><p>Diverse cities (heterogeneous agglomerations) enjoy economies of scope</p></li>
 <li><p>Homogeneous agglomeration enjoy increasing returns from economies of scale</p></li>
@@ -448,7 +448,8 @@ University of Bristol, Alan Turing Institute<br>
 <h2>On the ground</h2>
 <ul>
 <li><p>Ambiguous concepts</p></li>
-<li><p>Abundance, difference or number of, but also the degrees of richness, concentration or evenness <span class="citation" data-cites="yuo2021environmental">(<a href="#/ref-yuo2021environmental" role="doc-biblioref" onclick="return false;">Yuo and Tseng 2021</a>)</span></p></li>
+<li><p>Variety, diversity, difference: a relative concept of agglomeration and the clustering of activities</p></li>
+<li><p>Not only higher ‘abundance’, ‘difference’ or ‘number’, but also the degrees of ‘richness’, ‘concentration’ or ‘evenness’ <span class="citation" data-cites="yuo2021environmental">(<a href="#/ref-yuo2021environmental" role="doc-biblioref" onclick="return false;">Yuo and Tseng 2021</a>)</span></p></li>
 <li><p>Different ways to measure <span class="citation" data-cites="bettencourt2021introduction">(<a href="#/ref-bettencourt2021introduction" role="doc-biblioref" onclick="return false;">Bettencourt 2021</a>)</span></p></li>
 </ul>
 </section>
@@ -456,8 +457,10 @@ University of Bristol, Alan Turing Institute<br>
 <h2>Spieces richness…</h2>
 <ul>
 <li><p>… aka variety</p></li>
-<li><p><span class="math inline">\(\sum_{i}p_{i}^0\)</span></p></li>
+<li><p><span class="math inline">\(D = \sum_{i}^n p_{i}^0\)</span></p></li>
 <li><p><span class="math inline">\(p_i\)</span> is the proportion of data points in the <span class="math inline">\(i\)</span>th category</p></li>
+<li><p><span class="math inline">\(n\)</span> is the number of total categories</p></li>
+<li><p>A count of different species / categories / …</p></li>
 </ul>
 <p><strong>Interpretation:</strong></p>
 <ul>
@@ -468,7 +471,7 @@ University of Bristol, Alan Turing Institute<br>
 <section id="shannon-entropy" class="slide level2">
 <h2>Shannon entropy</h2>
 <ul>
-<li><p><span class="math inline">\(H = -\sum_{i=1}^n p_{i} \ln{p_{i}}\)</span></p></li>
+<li><p><span class="math inline">\(H = -\sum_{i}^n p_{i} \ln{p_{i}}\)</span></p></li>
 <li><p><span class="math inline">\(n\)</span> is the number of total categories</p></li>
 <li><p><span class="math inline">\(p_i\)</span> is the proportion of data points in the <span class="math inline">\(i\)</span>th category</p></li>
 <li><p>Probably the most common diversity index.</p></li>
@@ -482,7 +485,7 @@ University of Bristol, Alan Turing Institute<br>
 <section id="herfindahl-hirschman-index" class="slide level2">
 <h2>Herfindahl-Hirschman index</h2>
 <ul>
-<li><p><span class="math inline">\(HHI = \sum_{i}(p_{i}^2)\)</span></p></li>
+<li><p><span class="math inline">\(HHI = \sum_{i}^{n}(p_{i}^2)\)</span></p></li>
 <li><p><span class="math inline">\(p_i\)</span> is the proportion of data points in the <span class="math inline">\(i\)</span>th category</p></li>
 <li><p>Concentration of the market.</p></li>
 <li><p><strong>Interpretation:</strong></p>
@@ -508,7 +511,7 @@ University of Bristol, Alan Turing Institute<br>
 <h2>Herfindahl-Hirschman index</h2>
 <ul>
 <li><p>Caution: alternative specification</p></li>
-<li><p><span class="math inline">\(HHI = 1- \sum_{i}(p_{i}^2)\)</span></p></li>
+<li><p><span class="math inline">\(HHI = 1- \sum_{i}^{n}(p_{i}^2)\)</span></p></li>
 </ul>
 </section>
 <section>
@@ -531,8 +534,8 @@ University of Bristol, Alan Turing Institute<br>
 <li><p>Related activities are neither exactly the same nor completely different <span class="citation" data-cites="frenken2007related boschma2012technological">(<a href="#/ref-frenken2007related" role="doc-biblioref" onclick="return false;">Frenken, Van Oort, and Verburg 2007</a>; <a href="#/ref-boschma2012technological" role="doc-biblioref" onclick="return false;">Boschma et al. 2012</a>)</span></p></li>
 <li><p>Why? Because:</p>
 <ul>
-<li><p>identical activities compete for for customers and resources,</p></li>
-<li><p>no learning between very dissimilar economicactivities</p></li>
+<li><p>identical activities compete for customers and resources,</p></li>
+<li><p>no learning between very dissimilar economic activities</p></li>
 </ul></li>
 </ul>
 </section>
@@ -547,8 +550,8 @@ University of Bristol, Alan Turing Institute<br>
 <ul>
 <li><p>Large scale fine-grained data on economic activities</p></li>
 <li><p>Learn about abstract factors of production and the way they combine into outputs</p></li>
-<li><p>Dimensionality reduction techniques to data on the geography of activities, e.g.&nbsp;employment by industry or patents by technology.</p></li>
-<li><p>Machine learning and network techniques to predict and explain the economic trajectories of countries, cities and regions.</p></li>
+<li><p>Dimensionality reduction techniques to data on the geography of activities, e.g.&nbsp;employment by industry or patents by technology</p></li>
+<li><p>Machine learning and network techniques to predict and explain the economic trajectories of countries, cities and regions</p></li>
 </ul>
 <p>For a review, check <span class="citation" data-cites="hidalgo2021economic">Hidalgo (<a href="#/ref-hidalgo2021economic" role="doc-biblioref" onclick="return false;">2021</a>)</span> and <span class="citation" data-cites="balland2022new">Balland et al. (<a href="#/ref-balland2022new" role="doc-biblioref" onclick="return false;">2022</a>)</span>.</p>
 </section>
@@ -563,54 +566,257 @@ University of Bristol, Alan Turing Institute<br>
 <li><p>Go to <a href="https://data.london.gov.uk/dataset/directory-of-london-businesses">data.london.gov.uk</a></p></li>
 <li><p>Download and and save locally the <code>Businesses-in-London.csv</code></p></li>
 <li><p>Make sure you know the file location!</p></li>
-<li><p>We will use the <code>REAT</code> and <code>entropy</code> packages. Check what these packages do <a href="https://cran.r-project.org/web/packages/REAT/REAT.pdf">here</a> and <a href="https://cran.r-project.org/web/packages/entropy/entropy.pdf">here</a>.</p></li>
+<li><p>We will use the <code>REAT</code> and <code>entropy</code> packages. Check what these packages do <a href="https://cran.r-project.org/web/packages/REAT/REAT.pdf" target="_blank">here</a> and <a href="https://cran.r-project.org/web/packages/entropy/entropy.pdf" target="_blank">here</a>.</p></li>
 <li><p>Install them if needed with <code>install.packages("packagename")</code></p></li>
 </ul>
 </section>
 <section id="measuring-diversity-2" class="slide level2 scrollable">
 <h2>Measuring diversity</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(tidyverse)  <span class="co">#for data wrangling</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">library</span>(rprojroot)  <span class="co">#for relative paths</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">library</span>(REAT)       <span class="co">#for diversity measures</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="fu">library</span>(entropy)    <span class="co">#for entropy</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="fu">library</span>(cluster)    <span class="co">#for cluster analysis</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="fu">library</span>(factoextra) <span class="co">#help functions for clustering </span></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="fu">library</span>(kableExtra) <span class="co">#for nice html tables</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="fu">library</span>(dbscan)     <span class="co">#for HDBSCAL</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="co"># This is the project path</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a>path <span class="ot">&lt;-</span> <span class="fu">find_rstudio_root_file</span>()</span>
-<span id="cb5-12"><a href="#cb5-12"></a>path.data <span class="ot">&lt;-</span> <span class="fu">paste0</span>(path, <span class="st">"/data/businesses-in-london.csv"</span>)</span>
-<span id="cb5-13"><a href="#cb5-13"></a></span>
-<span id="cb5-14"><a href="#cb5-14"></a>london.firms <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(path.data) </span>
-<span id="cb5-15"><a href="#cb5-15"></a></span>
-<span id="cb5-16"><a href="#cb5-16"></a>london.firms <span class="sc">%&gt;%</span> </span>
-<span id="cb5-17"><a href="#cb5-17"></a>  <span class="fu">filter</span>(SICCode.SicText_1<span class="sc">!=</span><span class="st">"None Supplied"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-18"><a href="#cb5-18"></a>  <span class="fu">group_by</span>(oslaua, SICCode.SicText_1) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-19"><a href="#cb5-19"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-20"><a href="#cb5-20"></a>  <span class="fu">mutate</span>(<span class="at">total =</span> <span class="fu">sum</span>(n),</span>
-<span id="cb5-21"><a href="#cb5-21"></a>         <span class="at">freq =</span> n <span class="sc">/</span> total) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-22"><a href="#cb5-22"></a>  <span class="fu">group_by</span>(oslaua) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-23"><a href="#cb5-23"></a>  <span class="fu">summarise</span>(<span class="at">richness =</span> <span class="fu">n_distinct</span>(SICCode.SicText_1),</span>
-<span id="cb5-24"><a href="#cb5-24"></a>            <span class="at">entropy =</span> <span class="fu">entropy</span>(freq, <span class="at">method =</span> <span class="st">"ML"</span>),</span>
-<span id="cb5-25"><a href="#cb5-25"></a>            <span class="at">herf =</span> <span class="fu">herf</span>(n)) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-26"><a href="#cb5-26"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>herf) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 33 x 4
-   oslaua    richness entropy   herf
-   &lt;chr&gt;        &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;
- 1 E09000013      602    4.64 0.0301
- 2 E09000001      744    4.52 0.0288
- 3 E09000033      827    4.61 0.0258
- 4 E09000003      723    4.67 0.0233
- 5 E09000008      678    4.79 0.0221
- 6 E09000027      558    4.71 0.0220
- 7 E09000015      633    4.73 0.0205
- 8 E09000010      667    4.79 0.0205
- 9 E09000007      827    4.83 0.0204
-10 E09000020      577    4.77 0.0196
-# ... with 23 more rows</code></pre>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(tidyverse)  <span class="co"># for data wrangling</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">library</span>(rprojroot)  <span class="co"># for relative paths</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">library</span>(REAT)       <span class="co"># for diversity measures</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="fu">library</span>(entropy)    <span class="co"># for entropy</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="fu">library</span>(cluster)    <span class="co"># for cluster analysis</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="fu">library</span>(factoextra) <span class="co"># help functions for clustering </span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="fu">library</span>(kableExtra) <span class="co"># for nice html tables</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="fu">library</span>(dbscan)     <span class="co"># for HDBSCAL</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="fu">library</span>(sf)         <span class="co"># for mapping</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="co"># This is the project path</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a>path <span class="ot">&lt;-</span> <span class="fu">find_rstudio_root_file</span>()</span>
+<span id="cb5-13"><a href="#cb5-13"></a>path.data <span class="ot">&lt;-</span> <span class="fu">paste0</span>(path, <span class="st">"/data/businesses-in-london.csv"</span>)</span>
+<span id="cb5-14"><a href="#cb5-14"></a></span>
+<span id="cb5-15"><a href="#cb5-15"></a>london.firms <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(path.data) </span>
+<span id="cb5-16"><a href="#cb5-16"></a></span>
+<span id="cb5-17"><a href="#cb5-17"></a>london.firms.sum <span class="ot">&lt;-</span> london.firms <span class="sc">%&gt;%</span> </span>
+<span id="cb5-18"><a href="#cb5-18"></a>  <span class="fu">filter</span>(SICCode.SicText_1<span class="sc">!=</span><span class="st">"None Supplied"</span>) <span class="sc">%&gt;%</span> <span class="co"># dropping NAs in essence</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a>  <span class="fu">group_by</span>(oslaua, SICCode.SicText_1) <span class="sc">%&gt;%</span>        <span class="co"># grouping by Local Authority and SIC code</span></span>
+<span id="cb5-20"><a href="#cb5-20"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span>                         <span class="co"># summarise: n is the number of firms per Local Authority and SIC code</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a>  <span class="fu">mutate</span>(<span class="at">total =</span> <span class="fu">sum</span>(n),                         <span class="co"># total equal all firms</span></span>
+<span id="cb5-22"><a href="#cb5-22"></a>         <span class="at">freq =</span> n <span class="sc">/</span> total) <span class="sc">%&gt;%</span>                   <span class="co"># just a frequency</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a>  <span class="fu">group_by</span>(oslaua) <span class="sc">%&gt;%</span>                           <span class="co"># grouping again only by Local Authority</span></span>
+<span id="cb5-24"><a href="#cb5-24"></a>  <span class="fu">summarise</span>(<span class="at">richness =</span> <span class="fu">n_distinct</span>(SICCode.SicText_1), <span class="co"># the number of distinct SIC per Local Authority</span></span>
+<span id="cb5-25"><a href="#cb5-25"></a>            <span class="at">entropy =</span> <span class="fu">entropy</span>(freq, <span class="at">method =</span> <span class="st">"ML"</span>),   <span class="co"># entropy for each Local Authority, we did the first group_by() and mutate() to be                                                           able to calculate freq so we can calculate entropy</span></span>
+<span id="cb5-26"><a href="#cb5-26"></a>            <span class="at">herf =</span> <span class="fu">herf</span>(n)) <span class="sc">%&gt;%</span>                       <span class="co"># HHI for each local authority</span></span>
+<span id="cb5-27"><a href="#cb5-27"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>herf)                                      <span class="co"># sort based on HHI (descending)</span></span>
+<span id="cb5-28"><a href="#cb5-28"></a></span>
+<span id="cb5-29"><a href="#cb5-29"></a>london.firms.sum <span class="sc">%&gt;%</span> <span class="fu">kbl</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb5-30"><a href="#cb5-30"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> F) <span class="sc">%&gt;%</span>                   <span class="co"># A nice(r) table</span></span>
+<span id="cb5-31"><a href="#cb5-31"></a>  <span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">"800px"</span>, <span class="at">height =</span> <span class="st">"300px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:800px; "><table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> oslaua </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> richness </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> entropy </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> herf </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> E09000013 </td>
+   <td style="text-align:right;"> 602 </td>
+   <td style="text-align:right;"> 4.637865 </td>
+   <td style="text-align:right;"> 0.0301165 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000001 </td>
+   <td style="text-align:right;"> 744 </td>
+   <td style="text-align:right;"> 4.520774 </td>
+   <td style="text-align:right;"> 0.0288396 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000033 </td>
+   <td style="text-align:right;"> 827 </td>
+   <td style="text-align:right;"> 4.607933 </td>
+   <td style="text-align:right;"> 0.0258339 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000003 </td>
+   <td style="text-align:right;"> 723 </td>
+   <td style="text-align:right;"> 4.671225 </td>
+   <td style="text-align:right;"> 0.0233361 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000008 </td>
+   <td style="text-align:right;"> 678 </td>
+   <td style="text-align:right;"> 4.786546 </td>
+   <td style="text-align:right;"> 0.0221182 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000027 </td>
+   <td style="text-align:right;"> 558 </td>
+   <td style="text-align:right;"> 4.712318 </td>
+   <td style="text-align:right;"> 0.0220274 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000015 </td>
+   <td style="text-align:right;"> 633 </td>
+   <td style="text-align:right;"> 4.730619 </td>
+   <td style="text-align:right;"> 0.0205194 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000010 </td>
+   <td style="text-align:right;"> 667 </td>
+   <td style="text-align:right;"> 4.790814 </td>
+   <td style="text-align:right;"> 0.0204714 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000007 </td>
+   <td style="text-align:right;"> 827 </td>
+   <td style="text-align:right;"> 4.829186 </td>
+   <td style="text-align:right;"> 0.0204085 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000020 </td>
+   <td style="text-align:right;"> 577 </td>
+   <td style="text-align:right;"> 4.774282 </td>
+   <td style="text-align:right;"> 0.0196181 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000030 </td>
+   <td style="text-align:right;"> 690 </td>
+   <td style="text-align:right;"> 4.802693 </td>
+   <td style="text-align:right;"> 0.0193494 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000025 </td>
+   <td style="text-align:right;"> 623 </td>
+   <td style="text-align:right;"> 4.816502 </td>
+   <td style="text-align:right;"> 0.0188794 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000032 </td>
+   <td style="text-align:right;"> 571 </td>
+   <td style="text-align:right;"> 4.831936 </td>
+   <td style="text-align:right;"> 0.0184425 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000026 </td>
+   <td style="text-align:right;"> 630 </td>
+   <td style="text-align:right;"> 4.806874 </td>
+   <td style="text-align:right;"> 0.0180738 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000012 </td>
+   <td style="text-align:right;"> 729 </td>
+   <td style="text-align:right;"> 4.915068 </td>
+   <td style="text-align:right;"> 0.0178886 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000014 </td>
+   <td style="text-align:right;"> 595 </td>
+   <td style="text-align:right;"> 4.830779 </td>
+   <td style="text-align:right;"> 0.0178559 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000019 </td>
+   <td style="text-align:right;"> 803 </td>
+   <td style="text-align:right;"> 4.904964 </td>
+   <td style="text-align:right;"> 0.0178424 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000006 </td>
+   <td style="text-align:right;"> 599 </td>
+   <td style="text-align:right;"> 4.833756 </td>
+   <td style="text-align:right;"> 0.0177523 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000021 </td>
+   <td style="text-align:right;"> 529 </td>
+   <td style="text-align:right;"> 4.856868 </td>
+   <td style="text-align:right;"> 0.0176720 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000004 </td>
+   <td style="text-align:right;"> 569 </td>
+   <td style="text-align:right;"> 4.849445 </td>
+   <td style="text-align:right;"> 0.0176348 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000024 </td>
+   <td style="text-align:right;"> 582 </td>
+   <td style="text-align:right;"> 4.860828 </td>
+   <td style="text-align:right;"> 0.0168338 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000018 </td>
+   <td style="text-align:right;"> 603 </td>
+   <td style="text-align:right;"> 4.906424 </td>
+   <td style="text-align:right;"> 0.0163947 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000029 </td>
+   <td style="text-align:right;"> 543 </td>
+   <td style="text-align:right;"> 4.879529 </td>
+   <td style="text-align:right;"> 0.0162662 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000022 </td>
+   <td style="text-align:right;"> 594 </td>
+   <td style="text-align:right;"> 4.925276 </td>
+   <td style="text-align:right;"> 0.0157286 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000017 </td>
+   <td style="text-align:right;"> 640 </td>
+   <td style="text-align:right;"> 4.960676 </td>
+   <td style="text-align:right;"> 0.0153900 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000005 </td>
+   <td style="text-align:right;"> 644 </td>
+   <td style="text-align:right;"> 4.958913 </td>
+   <td style="text-align:right;"> 0.0146799 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000016 </td>
+   <td style="text-align:right;"> 564 </td>
+   <td style="text-align:right;"> 4.936603 </td>
+   <td style="text-align:right;"> 0.0145663 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000028 </td>
+   <td style="text-align:right;"> 681 </td>
+   <td style="text-align:right;"> 4.996227 </td>
+   <td style="text-align:right;"> 0.0145643 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000002 </td>
+   <td style="text-align:right;"> 543 </td>
+   <td style="text-align:right;"> 4.916217 </td>
+   <td style="text-align:right;"> 0.0143203 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000009 </td>
+   <td style="text-align:right;"> 645 </td>
+   <td style="text-align:right;"> 4.992793 </td>
+   <td style="text-align:right;"> 0.0142574 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000031 </td>
+   <td style="text-align:right;"> 587 </td>
+   <td style="text-align:right;"> 4.977460 </td>
+   <td style="text-align:right;"> 0.0136438 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000011 </td>
+   <td style="text-align:right;"> 565 </td>
+   <td style="text-align:right;"> 4.995980 </td>
+   <td style="text-align:right;"> 0.0136430 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E09000023 </td>
+   <td style="text-align:right;"> 540 </td>
+   <td style="text-align:right;"> 5.008342 </td>
+   <td style="text-align:right;"> 0.0130329 </td>
+  </tr>
+</tbody>
+</table></div>
+
 </div>
 </div>
 </section>
@@ -625,7 +831,7 @@ University of Bristol, Alan Turing Institute<br>
 <p><strong>Tip</strong></p>
 </div>
 <div class="callout-content">
-<p>You don’t know what local authorities these codes refer to. You should download the codes and name and join them with your data from <a href="https://geoportal.statistics.gov.uk/documents/c4f647d8a4a648d7b4a1ebf057f8aaa3/about">here</a>.</p>
+<p>You don’t know what local authorities these codes refer to. You should download the codes and names and join them with your data from <a href="https://geoportal.statistics.gov.uk/documents/c4f647d8a4a648d7b4a1ebf057f8aaa3/about">here</a>.</p>
 </div>
 </div>
 </div>
@@ -639,14 +845,31 @@ University of Bristol, Alan Turing Institute<br>
 </div>
 <div class="callout-content">
 <p>Discuss what we can learn from this exercise.</p>
-<p>Can you think of a way to understand how these indices <em>behave</em>?</p>
+<p>Can you think of a way to understand how different these indices are among London’s Local Authorities?</p>
 </div>
 </div>
 </div>
 </section>
-<section id="measuring-diversity-4" class="slide level2">
+<section id="measuring-diversity-4" class="slide level2 scrollable">
 <h2>Measuring diversity</h2>
-<p><strong>TO ADD: CHOROPLETH MAPS</strong></p>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>path.shape <span class="ot">&lt;-</span> <span class="fu">paste0</span>(path, <span class="st">"/data/Local_Authority_Districts_(May_2021)_UK_BFE.geojson"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a>london <span class="ot">&lt;-</span> <span class="fu">st_read</span>(path.shape, <span class="at">quiet =</span> T) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(LAD21CD <span class="sc">%in%</span> (london.firms<span class="sc">$</span>oslaua))</span>
+<span id="cb6-5"><a href="#cb6-5"></a></span>
+<span id="cb6-6"><a href="#cb6-6"></a>london <span class="ot">&lt;-</span> <span class="fu">merge</span>(london, london.firms.sum, <span class="at">by.x =</span> <span class="st">"LAD21CD"</span>, <span class="at">by.y =</span> <span class="st">"oslaua"</span> )</span>
+<span id="cb6-7"><a href="#cb6-7"></a>  </span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> london, <span class="fu">aes</span>(<span class="at">fill =</span> entropy), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-11"><a href="#cb6-11"></a>    <span class="at">title =</span> <span class="st">"Business diversity in London' Local Autorities"</span>,</span>
+<span id="cb6-12"><a href="#cb6-12"></a>    <span class="at">fill =</span> <span class="st">"Entropy"</span>) <span class="sc">+</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a>  <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="co"># centres the title</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="diversity_files/figure-revealjs/maps-1.png" width="960"></p>
+</div>
 </section>
 <section id="clustering" class="slide level2">
 <h2>Clustering</h2>
@@ -682,7 +905,7 @@ University of Bristol, Alan Turing Institute<br>
 <li><p>Iterative process to minimise <em>within-cluster variation</em> until convergence</p></li>
 </ol>
 </div>
-<p><span class="math inline">\(SS_within = \sum_{k=1}^k W(C_{k}) = \sum_{k=1}^k \sum_{x_i\in C_K}(x_i-\mu_k)^2\)</span></p>
+<p><span class="math inline">\(SS_{within} = \sum_{k=1}^k W(C_{k}) = \sum_{k=1}^k \sum_{x_i\in C_K}(x_i-\mu_k)^2\)</span></p>
 </section>
 <section id="k-means-1" class="slide level2 scrollable">
 <h2><em>K</em>-means</h2>
@@ -1470,17 +1693,17 @@ University of Bristol, Alan Turing Institute<br>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="fu">str</span>(kclust)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 9
- $ cluster     : int [1:33] 5 8 6 3 8 7 10 1 8 1 ...
- $ centers     : num [1:10, 1:1036] 0.036 0.0443 0.0582 0.0424 0.099 ...
+ $ cluster     : int [1:33] 2 3 1 4 1 6 10 8 1 8 ...
+ $ centers     : num [1:10, 1:1036] 0.0419 0.099 0.0343 0.0419 0.0591 ...
   ..- attr(*, "dimnames")=List of 2
   .. ..$ : chr [1:10] "1" "2" "3" "4" ...
   .. ..$ : chr [1:1036] "82990 - Other business support service activities n.e.c." "64209 - Activities of other holding companies n.e.c." "70229 - Management consultancy activities other than financial management" "64999 - Financial intermediation not elsewhere classified" ...
  $ totss       : num 0.0945
- $ withinss    : num [1:10] 0.001816 0 0.000671 0 0.002706 ...
- $ tot.withinss: num 0.0244
- $ betweenss   : num 0.0702
- $ size        : int [1:10] 2 1 2 1 2 3 6 7 4 5
- $ iter        : int 2
+ $ withinss    : num [1:10] 0.00512 0.00271 0.00205 0.00502 0.00112 ...
+ $ tot.withinss: num 0.0239
+ $ betweenss   : num 0.0706
+ $ size        : int [1:10] 7 2 3 6 2 6 1 2 1 3
+ $ iter        : int 4
  $ ifault      : int 0
  - attr(*, "class")= chr "kmeans"</code></pre>
 </div>
@@ -1494,7 +1717,7 @@ University of Bristol, Alan Turing Institute<br>
 <li><p>The <em>elbow</em> method</p>
 <ul>
 <li><p>Compute k-means clustering for different values of <em>k</em></p></li>
-<li><p>Calculate <span class="math inline">\(SS_within\)</span></p></li>
+<li><p>Calculate <span class="math inline">\(SS_{within}\)</span></p></li>
 <li><p>Plot and spot the loction of a bend</p></li>
 </ul></li>
 </ol>
@@ -1510,7 +1733,7 @@ University of Bristol, Alan Turing Institute<br>
 <span id="cb10-6"><a href="#cb10-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="diversity_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
+<img data-src="diversity_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
 <section id="hierarchical-clustering" class="slide level2">
 <h2>Hierarchical clustering</h2>
 <div class="columns">
@@ -1541,11 +1764,11 @@ University of Bristol, Alan Turing Institute<br>
 
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">#hang: the fraction of the plot height by which labels should hang below the rest of the plot. A negative value will cause the labels to hang down from 0.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<img data-src="diversity_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
+<img data-src="diversity_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
 <section id="optimal-number-of-clusters" class="slide level2">
 <h2>Optimal number of clusters</h2>
 
-<img data-src="diversity_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
+<img data-src="diversity_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
 <section id="optimal-number-of-clusters-1" class="slide level2">
 <h2>Optimal number of clusters</h2>
 <div class="callout callout-tip callout-captioned callout-style-default">
@@ -1580,8 +1803,8 @@ University of Bristol, Alan Turing Institute<br>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 1,037
 Columns: 2
-$ SICCode.SicText_1 &lt;chr&gt; "82990 - Other business support service activities n~
-$ n                 &lt;int&gt; 72756, 58526, 55309, 52058, 46572, 45312, 44270, 439~</code></pre>
+$ SICCode.SicText_1 &lt;chr&gt; "82990 - Other business support service activities n…
+$ n                 &lt;int&gt; 72756, 58526, 55309, 52058, 46572, 45312, 44270, 439…</code></pre>
 </div>
 </div>
 </section>
@@ -1605,7 +1828,7 @@ $ n                 &lt;int&gt; 72756, 58526, 55309, 52058, 46572, 45312, 44270,
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">plot</span>(london.firms.sample)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="diversity_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
+<img data-src="diversity_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
 <section id="clusters-in-space-k-means" class="slide level2">
 <h2>Clusters in space, <em>k</em>-means</h2>
 <div class="cell">
@@ -1617,7 +1840,7 @@ $ n                 &lt;int&gt; 72756, 58526, 55309, 52058, 46572, 45312, 44270,
 <span id="cb17-6"><a href="#cb17-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="diversity_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
+<img data-src="diversity_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
 <section id="clusters-in-space-k-means-1" class="slide level2">
 <h2>Clusters in space, <em>k</em>-means</h2>
 <div class="cell">
@@ -1625,9 +1848,8 @@ $ n                 &lt;int&gt; 72756, 58526, 55309, 52058, 46572, 45312, 44270,
 <span id="cb18-2"><a href="#cb18-2"></a></span>
 <span id="cb18-3"><a href="#cb18-3"></a><span class="fu">plot</span>(london.firms.sample, <span class="at">col =</span> sp.cluster<span class="sc">$</span>cluster)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co">#points(sp.cluster$centers, col = 1:4, pch = 8, cex = 2)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<img data-src="diversity_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
+<img data-src="diversity_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
 <section id="clusters-in-space-hdbscan" class="slide level2">
 <h2>Clusters in space, hdbscan</h2>
 <ol type="1">
@@ -1642,13 +1864,13 @@ $ n                 &lt;int&gt; 72756, 58526, 55309, 52058, 46572, 45312, 44270,
 <section id="clusters-in-space-hdbscan-1" class="slide level2">
 <h2>Clusters in space, hdbscan</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>cl <span class="ot">&lt;-</span> <span class="fu">hdbscan</span>(london.firms.sample, </span>
-<span id="cb20-2"><a href="#cb20-2"></a>              <span class="at">minPts =</span> <span class="dv">10</span>)         <span class="co">#minimum size of clusters</span></span>
-<span id="cb20-3"><a href="#cb20-3"></a></span>
-<span id="cb20-4"><a href="#cb20-4"></a><span class="fu">plot</span>(london.firms.sample, <span class="at">col=</span>cl<span class="sc">$</span>cluster<span class="sc">+</span><span class="dv">1</span>, <span class="at">pch=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>cl <span class="ot">&lt;-</span> <span class="fu">hdbscan</span>(london.firms.sample, </span>
+<span id="cb19-2"><a href="#cb19-2"></a>              <span class="at">minPts =</span> <span class="dv">10</span>)         <span class="co">#minimum size of clusters</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a></span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="fu">plot</span>(london.firms.sample, <span class="at">col=</span>cl<span class="sc">$</span>cluster<span class="sc">+</span><span class="dv">1</span>, <span class="at">pch=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="diversity_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
+<img data-src="diversity_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
 <section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>
 

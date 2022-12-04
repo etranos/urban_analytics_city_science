@@ -970,56 +970,56 @@
     "href": "src/diversity.html#opposing-forces",
     "title": "Diversity in cities",
     "section": "Opposing forces",
-    "text": "Opposing forces\n\nWithin-sector or Marshall–Arrow–Romer (MAR) spillovers,\nBetween-sector or Jacobs spillovers\nLarge empirical literature trying to identify the write ratio (e.g. Saviotti and Frenken (2008); Caragliu, Dominicis, and Groot (2016))\nMAR externalities (or spillovers): good for productivity and short-term growth\nJacobean externalities: good for innovation and long-term growth"
+    "text": "Opposing forces\n\nWithin-sector or Marshall–Arrow–Romer (MAR) spillovers\nBetween-sector or Jacobs spillovers\nLarge empirical literature trying to identify the write ratio, e.g. Saviotti and Frenken (2008) and Caragliu, Dominicis, and Groot (2016)\nMAR externalities (or spillovers): good for productivity and short-term growth\nJacobean externalities: good for innovation and long-term growth"
   },
   {
     "objectID": "src/diversity.html#opposing-forces-1",
     "href": "src/diversity.html#opposing-forces-1",
     "title": "Diversity in cities",
     "section": "Opposing forces",
-    "text": "Opposing forces\nUsing more clear econ terminology (Fujita et al. 1989):\n\nDiverse cities (heterogeneous agglomerations) enjoy economies of scope\nHomogeneous agglomeration enjoy increasing returns from economies of scale"
+    "text": "Opposing forces\nUsing more clear economics terminology (Fujita et al. 1989):\n\nDiverse cities (heterogeneous agglomerations) enjoy economies of scope\nHomogeneous agglomeration enjoy increasing returns from economies of scale"
   },
   {
     "objectID": "src/diversity.html#on-the-ground",
     "href": "src/diversity.html#on-the-ground",
     "title": "Diversity in cities",
     "section": "On the ground",
-    "text": "On the ground\n\nAmbiguous concepts\nAbundance, difference or number of, but also the degrees of richness, concentration or evenness (Yuo and Tseng 2021)\nDifferent ways to measure (Bettencourt 2021)"
+    "text": "On the ground\n\nAmbiguous concepts\nVariety, diversity, difference: a relative concept of agglomeration and the clustering of activities\nNot only higher ‘abundance’, ‘difference’ or ‘number’, but also the degrees of ‘richness’, ‘concentration’ or ‘evenness’ (Yuo and Tseng 2021)\nDifferent ways to measure (Bettencourt 2021)"
   },
   {
     "objectID": "src/diversity.html#spieces-richness",
     "href": "src/diversity.html#spieces-richness",
     "title": "Diversity in cities",
     "section": "Spieces richness…",
-    "text": "Spieces richness…\n\n… aka variety\n\\(\\sum_{i}p_{i}^0\\)\n\\(p_i\\) is the proportion of data points in the \\(i\\)th category\n\nInterpretation:\n\nPlurality\nAvailability of options"
+    "text": "Spieces richness…\n\n… aka variety\n\\(D = \\sum_{i}^n p_{i}^0\\)\n\\(p_i\\) is the proportion of data points in the \\(i\\)th category\n\\(n\\) is the number of total categories\nA count of different species / categories / …\n\nInterpretation:\n\nPlurality\nAvailability of options"
   },
   {
     "objectID": "src/diversity.html#shannon-entropy",
     "href": "src/diversity.html#shannon-entropy",
     "title": "Diversity in cities",
     "section": "Shannon entropy",
-    "text": "Shannon entropy\n\n\\(H = -\\sum_{i=1}^n p_{i} \\ln{p_{i}}\\)\n\\(n\\) is the number of total categories\n\\(p_i\\) is the proportion of data points in the \\(i\\)th category\nProbably the most common diversity index.\nInterpretation:\n\nIf one category dominates ➔ less surprise ➔ low entropy\nNo category dominates ➔ more surprise ➔ high entropy"
+    "text": "Shannon entropy\n\n\\(H = -\\sum_{i}^n p_{i} \\ln{p_{i}}\\)\n\\(n\\) is the number of total categories\n\\(p_i\\) is the proportion of data points in the \\(i\\)th category\nProbably the most common diversity index.\nInterpretation:\n\nIf one category dominates ➔ less surprise ➔ low entropy\nNo category dominates ➔ more surprise ➔ high entropy"
   },
   {
     "objectID": "src/diversity.html#herfindahl-hirschman-index",
     "href": "src/diversity.html#herfindahl-hirschman-index",
     "title": "Diversity in cities",
     "section": "Herfindahl-Hirschman index",
-    "text": "Herfindahl-Hirschman index\n\n\\(HHI = \\sum_{i}(p_{i}^2)\\)\n\\(p_i\\) is the proportion of data points in the \\(i\\)th category\nConcentration of the market.\nInterpretation:\n\n\\(1/n \\leq HHI \\leq 1\\)\nTwo scenarios:\n\n\n\nHHI_1 = .8^2 + .05^2 + .05^2 + .1^2\nHHI_1\n\n[1] 0.655\n\nHHI_2 = .25^2 + .25^2 + .25^2 + .25^2\nHHI_2\n\n[1] 0.25"
+    "text": "Herfindahl-Hirschman index\n\n\\(HHI = \\sum_{i}^{n}(p_{i}^2)\\)\n\\(p_i\\) is the proportion of data points in the \\(i\\)th category\nConcentration of the market.\nInterpretation:\n\n\\(1/n \\leq HHI \\leq 1\\)\nTwo scenarios:\n\n\n\nHHI_1 = .8^2 + .05^2 + .05^2 + .1^2\nHHI_1\n\n[1] 0.655\n\nHHI_2 = .25^2 + .25^2 + .25^2 + .25^2\nHHI_2\n\n[1] 0.25"
   },
   {
     "objectID": "src/diversity.html#herfindahl-hirschman-index-1",
     "href": "src/diversity.html#herfindahl-hirschman-index-1",
     "title": "Diversity in cities",
     "section": "Herfindahl-Hirschman index",
-    "text": "Herfindahl-Hirschman index\n\nCaution: alternative specification\n\\(HHI = 1- \\sum_{i}(p_{i}^2)\\)"
+    "text": "Herfindahl-Hirschman index\n\nCaution: alternative specification\n\\(HHI = 1- \\sum_{i}^{n}(p_{i}^2)\\)"
   },
   {
     "objectID": "src/diversity.html#relatedness",
     "href": "src/diversity.html#relatedness",
     "title": "Diversity in cities",
     "section": "Relatedness",
-    "text": "Relatedness\n\nRelatedness spans the continuum between MAR and Jacobs (Hidalgo 2021)\nRelated activities are neither exactly the same nor completely different (Frenken, Van Oort, and Verburg 2007; Boschma et al. 2012)\nWhy? Because:\n\nidentical activities compete for for customers and resources,\nno learning between very dissimilar economicactivities"
+    "text": "Relatedness\n\nRelatedness spans the continuum between MAR and Jacobs (Hidalgo 2021)\nRelated activities are neither exactly the same nor completely different (Frenken, Van Oort, and Verburg 2007; Boschma et al. 2012)\nWhy? Because:\n\nidentical activities compete for customers and resources,\nno learning between very dissimilar economic activities"
   },
   {
     "objectID": "src/diversity.html#relatedness-1",
@@ -1033,7 +1033,7 @@
     "href": "src/diversity.html#economic-complexity",
     "title": "Diversity in cities",
     "section": "Economic complexity",
-    "text": "Economic complexity\n\nLarge scale fine-grained data on economic activities\nLearn about abstract factors of production and the way they combine into outputs\nDimensionality reduction techniques to data on the geography of activities, e.g. employment by industry or patents by technology.\nMachine learning and network techniques to predict and explain the economic trajectories of countries, cities and regions.\n\nFor a review, check Hidalgo (2021) and Balland et al. (2022)."
+    "text": "Economic complexity\n\nLarge scale fine-grained data on economic activities\nLearn about abstract factors of production and the way they combine into outputs\nDimensionality reduction techniques to data on the geography of activities, e.g. employment by industry or patents by technology\nMachine learning and network techniques to predict and explain the economic trajectories of countries, cities and regions\n\nFor a review, check Hidalgo (2021) and Balland et al. (2022)."
   },
   {
     "objectID": "src/diversity.html#measuring-diversity",
@@ -1054,21 +1054,21 @@
     "href": "src/diversity.html#measuring-diversity-2",
     "title": "Diversity in cities",
     "section": "Measuring diversity",
-    "text": "Measuring diversity\n\nlibrary(tidyverse)  #for data wrangling\nlibrary(rprojroot)  #for relative paths\nlibrary(REAT)       #for diversity measures\nlibrary(entropy)    #for entropy\nlibrary(cluster)    #for cluster analysis\nlibrary(factoextra) #help functions for clustering \nlibrary(kableExtra) #for nice html tables\nlibrary(dbscan)     #for HDBSCAL\n\n# This is the project path\npath <- find_rstudio_root_file()\npath.data <- paste0(path, \"/data/businesses-in-london.csv\")\n\nlondon.firms <- read_csv(path.data) \n\nlondon.firms %>% \n  filter(SICCode.SicText_1!=\"None Supplied\") %>% \n  group_by(oslaua, SICCode.SicText_1) %>% \n  summarise(n = n()) %>% \n  mutate(total = sum(n),\n         freq = n / total) %>% \n  group_by(oslaua) %>% \n  summarise(richness = n_distinct(SICCode.SicText_1),\n            entropy = entropy(freq, method = \"ML\"),\n            herf = herf(n)) %>% \n  arrange(-herf) \n\n# A tibble: 33 x 4\n   oslaua    richness entropy   herf\n   <chr>        <int>   <dbl>  <dbl>\n 1 E09000013      602    4.64 0.0301\n 2 E09000001      744    4.52 0.0288\n 3 E09000033      827    4.61 0.0258\n 4 E09000003      723    4.67 0.0233\n 5 E09000008      678    4.79 0.0221\n 6 E09000027      558    4.71 0.0220\n 7 E09000015      633    4.73 0.0205\n 8 E09000010      667    4.79 0.0205\n 9 E09000007      827    4.83 0.0204\n10 E09000020      577    4.77 0.0196\n# ... with 23 more rows"
+    "text": "Measuring diversity\n\nlibrary(tidyverse)  # for data wrangling\nlibrary(rprojroot)  # for relative paths\nlibrary(REAT)       # for diversity measures\nlibrary(entropy)    # for entropy\nlibrary(cluster)    # for cluster analysis\nlibrary(factoextra) # help functions for clustering \nlibrary(kableExtra) # for nice html tables\nlibrary(dbscan)     # for HDBSCAL\nlibrary(sf)         # for mapping\n\n# This is the project path\npath <- find_rstudio_root_file()\npath.data <- paste0(path, \"/data/businesses-in-london.csv\")\n\nlondon.firms <- read_csv(path.data) \n\nlondon.firms.sum <- london.firms %>% \n  filter(SICCode.SicText_1!=\"None Supplied\") %>% # dropping NAs in essence\n  group_by(oslaua, SICCode.SicText_1) %>%        # grouping by Local Authority and SIC code\n  summarise(n = n()) %>%                         # summarise: n is the number of firms per Local Authority and SIC code\n  mutate(total = sum(n),                         # total equal all firms\n         freq = n / total) %>%                   # just a frequency\n  group_by(oslaua) %>%                           # grouping again only by Local Authority\n  summarise(richness = n_distinct(SICCode.SicText_1), # the number of distinct SIC per Local Authority\n            entropy = entropy(freq, method = \"ML\"),   # entropy for each Local Authority, we did the first group_by() and mutate() to be                                                           able to calculate freq so we can calculate entropy\n            herf = herf(n)) %>%                       # HHI for each local authority\n  arrange(-herf)                                      # sort based on HHI (descending)\n\nlondon.firms.sum %>% kbl() %>%\n  kable_styling(full_width = F) %>%                   # A nice(r) table\n  scroll_box(width = \"800px\", height = \"300px\")\n\n\n\n \n  \n    oslaua \n    richness \n    entropy \n    herf \n  \n \n\n  \n    E09000013 \n    602 \n    4.637865 \n    0.0301165 \n  \n  \n    E09000001 \n    744 \n    4.520774 \n    0.0288396 \n  \n  \n    E09000033 \n    827 \n    4.607933 \n    0.0258339 \n  \n  \n    E09000003 \n    723 \n    4.671225 \n    0.0233361 \n  \n  \n    E09000008 \n    678 \n    4.786546 \n    0.0221182 \n  \n  \n    E09000027 \n    558 \n    4.712318 \n    0.0220274 \n  \n  \n    E09000015 \n    633 \n    4.730619 \n    0.0205194 \n  \n  \n    E09000010 \n    667 \n    4.790814 \n    0.0204714 \n  \n  \n    E09000007 \n    827 \n    4.829186 \n    0.0204085 \n  \n  \n    E09000020 \n    577 \n    4.774282 \n    0.0196181 \n  \n  \n    E09000030 \n    690 \n    4.802693 \n    0.0193494 \n  \n  \n    E09000025 \n    623 \n    4.816502 \n    0.0188794 \n  \n  \n    E09000032 \n    571 \n    4.831936 \n    0.0184425 \n  \n  \n    E09000026 \n    630 \n    4.806874 \n    0.0180738 \n  \n  \n    E09000012 \n    729 \n    4.915068 \n    0.0178886 \n  \n  \n    E09000014 \n    595 \n    4.830779 \n    0.0178559 \n  \n  \n    E09000019 \n    803 \n    4.904964 \n    0.0178424 \n  \n  \n    E09000006 \n    599 \n    4.833756 \n    0.0177523 \n  \n  \n    E09000021 \n    529 \n    4.856868 \n    0.0176720 \n  \n  \n    E09000004 \n    569 \n    4.849445 \n    0.0176348 \n  \n  \n    E09000024 \n    582 \n    4.860828 \n    0.0168338 \n  \n  \n    E09000018 \n    603 \n    4.906424 \n    0.0163947 \n  \n  \n    E09000029 \n    543 \n    4.879529 \n    0.0162662 \n  \n  \n    E09000022 \n    594 \n    4.925276 \n    0.0157286 \n  \n  \n    E09000017 \n    640 \n    4.960676 \n    0.0153900 \n  \n  \n    E09000005 \n    644 \n    4.958913 \n    0.0146799 \n  \n  \n    E09000016 \n    564 \n    4.936603 \n    0.0145663 \n  \n  \n    E09000028 \n    681 \n    4.996227 \n    0.0145643 \n  \n  \n    E09000002 \n    543 \n    4.916217 \n    0.0143203 \n  \n  \n    E09000009 \n    645 \n    4.992793 \n    0.0142574 \n  \n  \n    E09000031 \n    587 \n    4.977460 \n    0.0136438 \n  \n  \n    E09000011 \n    565 \n    4.995980 \n    0.0136430 \n  \n  \n    E09000023 \n    540 \n    5.008342 \n    0.0130329"
   },
   {
     "objectID": "src/diversity.html#measuring-diversity-3",
     "href": "src/diversity.html#measuring-diversity-3",
     "title": "Diversity in cities",
     "section": "Measuring diversity",
-    "text": "Measuring diversity\n\n\n\n\n\n\nTip\n\n\nYou don’t know what local authorities these codes refer to. You should download the codes and name and join them with your data from here.\n\n\n\n\n\n\n\n\n\nTip\n\n\nDiscuss what we can learn from this exercise.\nCan you think of a way to understand how these indices behave?"
+    "text": "Measuring diversity\n\n\n\n\n\n\nTip\n\n\nYou don’t know what local authorities these codes refer to. You should download the codes and names and join them with your data from here.\n\n\n\n\n\n\n\n\n\nTip\n\n\nDiscuss what we can learn from this exercise.\nCan you think of a way to understand how different these indices are among London’s Local Authorities?"
   },
   {
     "objectID": "src/diversity.html#measuring-diversity-4",
     "href": "src/diversity.html#measuring-diversity-4",
     "title": "Diversity in cities",
     "section": "Measuring diversity",
-    "text": "Measuring diversity\nTO ADD: CHOROPLETH MAPS"
+    "text": "Measuring diversity\npath.shape <- paste0(path, \"/data/Local_Authority_Districts_(May_2021)_UK_BFE.geojson\")\n\nlondon <- st_read(path.shape, quiet = T) %>%\n  dplyr::filter(LAD21CD %in% (london.firms$oslaua))\n\nlondon <- merge(london, london.firms.sum, by.x = \"LAD21CD\", by.y = \"oslaua\" )\n  \nggplot() +\n  geom_sf(data = london, aes(fill = entropy), color = NA) +\n  labs(\n    title = \"Business diversity in London' Local Autorities\",\n    fill = \"Entropy\") +\n  scale_fill_viridis_c() +\n  theme_void() +\n  theme(plot.title = element_text(hjust = 0.5)) # centres the title"
   },
   {
     "objectID": "src/diversity.html#clustering",
@@ -1089,7 +1089,7 @@
     "href": "src/diversity.html#k-means",
     "title": "Diversity in cities",
     "section": "K-means",
-    "text": "K-means\n\n\nk is the number of clusters and is pre-defined\nThe algorithm selects k random observations (starting centres)\nThe remaining observations are assigned to the nearest centre\nRecalculates the new centres\nRe-check cluster assignment\nIterative process to minimise within-cluster variation until convergence\n\n\n\\(SS_within = \\sum_{k=1}^k W(C_{k}) = \\sum_{k=1}^k \\sum_{x_i\\in C_K}(x_i-\\mu_k)^2\\)"
+    "text": "K-means\n\n\nk is the number of clusters and is pre-defined\nThe algorithm selects k random observations (starting centres)\nThe remaining observations are assigned to the nearest centre\nRecalculates the new centres\nRe-check cluster assignment\nIterative process to minimise within-cluster variation until convergence\n\n\n\\(SS_{within} = \\sum_{k=1}^k W(C_{k}) = \\sum_{k=1}^k \\sum_{x_i\\in C_K}(x_i-\\mu_k)^2\\)"
   },
   {
     "objectID": "src/diversity.html#k-means-1",
@@ -1103,14 +1103,14 @@
     "href": "src/diversity.html#k-means-2",
     "title": "Diversity in cities",
     "section": "K-means",
-    "text": "K-means\n\nkclust = kmeans(la.sic[,-1], centers = 10, nstart = 10) # be aware of the [,-1]\nstr(kclust)\n\nList of 9\n $ cluster     : int [1:33] 5 8 6 3 8 7 10 1 8 1 ...\n $ centers     : num [1:10, 1:1036] 0.036 0.0443 0.0582 0.0424 0.099 ...\n  ..- attr(*, \"dimnames\")=List of 2\n  .. ..$ : chr [1:10] \"1\" \"2\" \"3\" \"4\" ...\n  .. ..$ : chr [1:1036] \"82990 - Other business support service activities n.e.c.\" \"64209 - Activities of other holding companies n.e.c.\" \"70229 - Management consultancy activities other than financial management\" \"64999 - Financial intermediation not elsewhere classified\" ...\n $ totss       : num 0.0945\n $ withinss    : num [1:10] 0.001816 0 0.000671 0 0.002706 ...\n $ tot.withinss: num 0.0244\n $ betweenss   : num 0.0702\n $ size        : int [1:10] 2 1 2 1 2 3 6 7 4 5\n $ iter        : int 2\n $ ifault      : int 0\n - attr(*, \"class\")= chr \"kmeans\"\n\n\ncenters is 10 x 1036: 1036 is the number of SIC codes."
+    "text": "K-means\n\nkclust = kmeans(la.sic[,-1], centers = 10, nstart = 10) # be aware of the [,-1]\nstr(kclust)\n\nList of 9\n $ cluster     : int [1:33] 2 3 1 4 1 6 10 8 1 8 ...\n $ centers     : num [1:10, 1:1036] 0.0419 0.099 0.0343 0.0419 0.0591 ...\n  ..- attr(*, \"dimnames\")=List of 2\n  .. ..$ : chr [1:10] \"1\" \"2\" \"3\" \"4\" ...\n  .. ..$ : chr [1:1036] \"82990 - Other business support service activities n.e.c.\" \"64209 - Activities of other holding companies n.e.c.\" \"70229 - Management consultancy activities other than financial management\" \"64999 - Financial intermediation not elsewhere classified\" ...\n $ totss       : num 0.0945\n $ withinss    : num [1:10] 0.00512 0.00271 0.00205 0.00502 0.00112 ...\n $ tot.withinss: num 0.0239\n $ betweenss   : num 0.0706\n $ size        : int [1:10] 7 2 3 6 2 6 1 2 1 3\n $ iter        : int 4\n $ ifault      : int 0\n - attr(*, \"class\")= chr \"kmeans\"\n\n\ncenters is 10 x 1036: 1036 is the number of SIC codes."
   },
   {
     "objectID": "src/diversity.html#choosing-k",
     "href": "src/diversity.html#choosing-k",
     "title": "Diversity in cities",
     "section": "Choosing K",
-    "text": "Choosing K\n\nRule of thumb: \\(k = \\sqrt{n/2}\\)\nThe elbow method\n\nCompute k-means clustering for different values of k\nCalculate \\(SS_within\\)\nPlot and spot the loction of a bend"
+    "text": "Choosing K\n\nRule of thumb: \\(k = \\sqrt{n/2}\\)\nThe elbow method\n\nCompute k-means clustering for different values of k\nCalculate \\(SS_{within}\\)\nPlot and spot the loction of a bend"
   },
   {
     "objectID": "src/diversity.html#choosing-k-1",
@@ -1152,7 +1152,7 @@
     "href": "src/diversity.html#clusters-in-space",
     "title": "Diversity in cities",
     "section": "Clusters in space",
-    "text": "Clusters in space\n\nCreate a SIC frequency table\n\n\n# This will build an SIC frequency table\nlondon.firms %>% \n  group_by(SICCode.SicText_1) %>% \n  summarise(n=n()) %>% \n  arrange(-n) %>% \n  glimpse()\n\nRows: 1,037\nColumns: 2\n$ SICCode.SicText_1 <chr> \"82990 - Other business support service activities n~\n$ n                 <int> 72756, 58526, 55309, 52058, 46572, 45312, 44270, 439~"
+    "text": "Clusters in space\n\nCreate a SIC frequency table\n\n\n# This will build an SIC frequency table\nlondon.firms %>% \n  group_by(SICCode.SicText_1) %>% \n  summarise(n=n()) %>% \n  arrange(-n) %>% \n  glimpse()\n\nRows: 1,037\nColumns: 2\n$ SICCode.SicText_1 <chr> \"82990 - Other business support service activities n…\n$ n                 <int> 72756, 58526, 55309, 52058, 46572, 45312, 44270, 439…"
   },
   {
     "objectID": "src/diversity.html#clusters-in-space-1",
@@ -1180,7 +1180,7 @@
     "href": "src/diversity.html#clusters-in-space-k-means-1",
     "title": "Diversity in cities",
     "section": "Clusters in space, k-means",
-    "text": "Clusters in space, k-means\n\nsp.cluster = kmeans(london.firms.sample, 6) \n\nplot(london.firms.sample, col = sp.cluster$cluster)\n\n#points(sp.cluster$centers, col = 1:4, pch = 8, cex = 2)"
+    "text": "Clusters in space, k-means\n\nsp.cluster = kmeans(london.firms.sample, 6) \n\nplot(london.firms.sample, col = sp.cluster$cluster)"
   },
   {
     "objectID": "src/diversity.html#clusters-in-space-hdbscan",
