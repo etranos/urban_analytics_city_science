@@ -431,7 +431,7 @@ University of Bristol, Alan Turing Institute<br>
 <ul>
 <li><p>Within-sector or Marshall–Arrow–Romer (MAR) spillovers</p></li>
 <li><p>Between-sector or Jacobs spillovers</p></li>
-<li><p>Large empirical literature trying to identify the write ratio, e.g. <span class="citation" data-cites="saviotti2008export">Saviotti and Frenken (<a href="#/ref-saviotti2008export" role="doc-biblioref" onclick="return false;">2008</a>)</span> and <span class="citation" data-cites="caragliu2016both">Caragliu, Dominicis, and Groot (<a href="#/ref-caragliu2016both" role="doc-biblioref" onclick="return false;">2016</a>)</span></p></li>
+<li><p>Large empirical literature trying to identify the optimal ratio, e.g. <span class="citation" data-cites="saviotti2008export">Saviotti and Frenken (<a href="#/ref-saviotti2008export" role="doc-biblioref" onclick="return false;">2008</a>)</span> and <span class="citation" data-cites="caragliu2016both">Caragliu, Dominicis, and Groot (<a href="#/ref-caragliu2016both" role="doc-biblioref" onclick="return false;">2016</a>)</span></p></li>
 <li><p>MAR externalities (or spillovers): good for productivity and short-term growth</p></li>
 <li><p>Jacobean externalities: good for innovation and long-term growth</p></li>
 </ul>
@@ -563,7 +563,7 @@ University of Bristol, Alan Turing Institute<br>
 <section id="measuring-diversity-1" class="slide level2">
 <h2>Measuring diversity</h2>
 <ul>
-<li><p>Go to <a href="https://data.london.gov.uk/dataset/directory-of-london-businesses">data.london.gov.uk</a></p></li>
+<li><p>Go to <a href="https://data.london.gov.uk/dataset/directory-of-london-businesses" target="_blank">data.london.gov.uk</a></p></li>
 <li><p>Download and and save locally the <code>Businesses-in-London.csv</code></p></li>
 <li><p>Make sure you know the file location!</p></li>
 <li><p>We will use the <code>REAT</code> and <code>entropy</code> packages. Check what these packages do <a href="https://cran.r-project.org/web/packages/REAT/REAT.pdf" target="_blank">here</a> and <a href="https://cran.r-project.org/web/packages/entropy/entropy.pdf" target="_blank">here</a>.</p></li>
@@ -831,7 +831,7 @@ University of Bristol, Alan Turing Institute<br>
 <p><strong>Tip</strong></p>
 </div>
 <div class="callout-content">
-<p>You don’t know what local authorities these codes refer to. You should download the codes and names and join them with your data from <a href="https://geoportal.statistics.gov.uk/documents/c4f647d8a4a648d7b4a1ebf057f8aaa3/about">here</a>.</p>
+<p>You don’t know what local authorities these codes refer to. You should download the codes and names and join them with your data from <a href="https://geoportal.statistics.gov.uk/documents/c4f647d8a4a648d7b4a1ebf057f8aaa3/about" target="_blank">here</a>.</p>
 </div>
 </div>
 </div>
@@ -850,8 +850,8 @@ University of Bristol, Alan Turing Institute<br>
 </div>
 </div>
 </section>
-<section id="measuring-diversity-4" class="slide level2 scrollable">
-<h2>Measuring diversity</h2>
+<section id="mapping-diversity" class="slide level2 scrollable">
+<h2>Mapping diversity</h2>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>path.shape <span class="ot">&lt;-</span> <span class="fu">paste0</span>(path, <span class="st">"/data/Local_Authority_Districts_(May_2021)_UK_BFE.geojson"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2"></a></span>
 <span id="cb6-3"><a href="#cb6-3"></a>london <span class="ot">&lt;-</span> <span class="fu">st_read</span>(path.shape, <span class="at">quiet =</span> T) <span class="sc">%&gt;%</span></span>
@@ -878,23 +878,23 @@ University of Bristol, Alan Turing Institute<br>
 <li><p>Classification of observations into (exclusive) groups</p></li>
 <li><p>Distance or (dis)similarity between each pair of observations to create a distance or dissimilarity or matrix</p></li>
 <li><p>Observations within the same group are as similar as possible</p></li>
-<li><p>Based on <span class="citation" data-cites="boehmke2019hands">Boehmke and Greenwell (<a href="#/ref-boehmke2019hands" role="doc-biblioref" onclick="return false;">2019</a>)</span> available <a href="https://bradleyboehmke.github.io/HOML/">here</a></p></li>
+<li><p>Based on <span class="citation" data-cites="boehmke2019hands">Boehmke and Greenwell (<a href="#/ref-boehmke2019hands" role="doc-biblioref" onclick="return false;">2019</a>)</span> available <a href="https://bradleyboehmke.github.io/HOML/" target="_blank">here</a></p></li>
 <li><p>Plenty of other resources online and in textbooks</p></li>
 </ul>
 </section>
 <section class="slide level2">
 
 
-<img data-src="images/classical_ml.png" class="r-stretch quarto-figure-center"><p class="caption">Source: <a href="https://medium.com/@recrosoft.io/supervised-vs-unsupervised-learning-key-differences-cdd46206cdcb">medium.com</a></p></section>
+<img data-src="images/classical_ml.png" target="_blank" class="r-stretch quarto-figure-center"><p class="caption">Source: <a href="https://medium.com/@recrosoft.io/supervised-vs-unsupervised-learning-key-differences-cdd46206cdcb">medium.com</a></p></section>
 <section id="clustering-1" class="slide level2">
 <h2>Clustering</h2>
 <ol type="1">
-<li><p><em>K</em>-means</p></li>
+<li><p><em>k</em>-means</p></li>
 <li><p>Hierarchical clustering</p></li>
 </ol>
 </section>
 <section id="k-means" class="slide level2">
-<h2><em>K</em>-means</h2>
+<h2><em>k</em>-means</h2>
 <div class="r-fit-text">
 <ol type="1">
 <li><p><em>k</em> is the number of clusters and is pre-defined</p></li>
@@ -908,7 +908,7 @@ University of Bristol, Alan Turing Institute<br>
 <p><span class="math inline">\(SS_{within} = \sum_{k=1}^k W(C_{k}) = \sum_{k=1}^k \sum_{x_i\in C_K}(x_i-\mu_k)^2\)</span></p>
 </section>
 <section id="k-means-1" class="slide level2 scrollable">
-<h2><em>K</em>-means</h2>
+<h2><em>k</em>-means</h2>
 <p>First, create an appropriate data frame</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>la.sic <span class="ot">&lt;-</span> london.firms <span class="sc">%&gt;%</span> </span>
@@ -1687,23 +1687,23 @@ University of Bristol, Alan Turing Institute<br>
 </div>
 </section>
 <section id="k-means-2" class="slide level2 scrollable">
-<h2><em>K</em>-means</h2>
+<h2><em>k</em>-means</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>kclust <span class="ot">=</span> <span class="fu">kmeans</span>(la.sic[,<span class="sc">-</span><span class="dv">1</span>], <span class="at">centers =</span> <span class="dv">10</span>, <span class="at">nstart =</span> <span class="dv">10</span>) <span class="co"># be aware of the [,-1]</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="fu">str</span>(kclust)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 9
- $ cluster     : int [1:33] 2 3 1 4 1 6 10 8 1 8 ...
- $ centers     : num [1:10, 1:1036] 0.0419 0.099 0.0343 0.0419 0.0591 ...
+ $ cluster     : int [1:33] 2 1 9 7 1 3 10 8 1 8 ...
+ $ centers     : num [1:10, 1:1036] 0.0361 0.099 0.0444 0.0591 0.0443 ...
   ..- attr(*, "dimnames")=List of 2
   .. ..$ : chr [1:10] "1" "2" "3" "4" ...
   .. ..$ : chr [1:1036] "82990 - Other business support service activities n.e.c." "64209 - Activities of other holding companies n.e.c." "70229 - Management consultancy activities other than financial management" "64999 - Financial intermediation not elsewhere classified" ...
  $ totss       : num 0.0945
- $ withinss    : num [1:10] 0.00512 0.00271 0.00205 0.00502 0.00112 ...
- $ tot.withinss: num 0.0239
- $ betweenss   : num 0.0706
- $ size        : int [1:10] 7 2 3 6 2 6 1 2 1 3
- $ iter        : int 4
+ $ withinss    : num [1:10] 0.00609 0.00271 0.0042 0.00112 0 ...
+ $ tot.withinss: num 0.0235
+ $ betweenss   : num 0.071
+ $ size        : int [1:10] 8 2 6 2 1 1 5 2 3 3
+ $ iter        : int 3
  $ ifault      : int 0
  - attr(*, "class")= chr "kmeans"</code></pre>
 </div>
@@ -1711,19 +1711,19 @@ University of Bristol, Alan Turing Institute<br>
 <p><code>centers</code> is 10 x 1036: 1036 is the number of SIC codes.</p>
 </section>
 <section id="choosing-k" class="slide level2">
-<h2>Choosing <em>K</em></h2>
+<h2>Choosing <em>k</em></h2>
 <ol type="1">
 <li><p>Rule of thumb: <span class="math inline">\(k = \sqrt{n/2}\)</span></p></li>
 <li><p>The <em>elbow</em> method</p>
 <ul>
-<li><p>Compute k-means clustering for different values of <em>k</em></p></li>
+<li><p>Compute <em>k</em>-means clustering for different values of <em>k</em></p></li>
 <li><p>Calculate <span class="math inline">\(SS_{within}\)</span></p></li>
 <li><p>Plot and spot the loction of a bend</p></li>
 </ul></li>
 </ol>
 </section>
 <section id="choosing-k-1" class="slide level2">
-<h2>Choosing <em>K</em></h2>
+<h2>Choosing <em>k</em></h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">fviz_nbclust</span>(</span>
 <span id="cb10-2"><a href="#cb10-2"></a>  la.sic[,<span class="sc">-</span><span class="dv">1</span>], </span>
@@ -1739,7 +1739,7 @@ University of Bristol, Alan Turing Institute<br>
 <div class="columns">
 <div class="column" style="width:60%;">
 <p><img data-src="images/dendrogram.png"></p>
-<p><small> Source: <a href="https://bradleyboehmke.github.io/HOML">@boehmke2019hands</a> </small></p>
+<p><small> Source: <a href="https://bradleyboehmke.github.io/HOML" target="_blank">@boehmke2019hands</a> </small></p>
 </div><div class="column" style="width:40%;">
 <ol type="1">
 <li><p>Agglomerative clustering (AGNES – AGglomerative NESting)</p></li>
@@ -1815,11 +1815,9 @@ $ n                 &lt;int&gt; 72756, 58526, 55309, 52058, 46572, 45312, 44270,
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>london.firms.sample <span class="ot">&lt;-</span> london.firms <span class="sc">%&gt;%</span> </span>
-<span id="cb15-2"><a href="#cb15-2"></a>  <span class="co">#filter(SICCode.SicText_1=="70229 - Management consultancy activities other than financial management") %&gt;%</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a>  <span class="co">#filter(SICCode.SicText_1=="59111 - Motion picture production activities") %&gt;% </span></span>
-<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">filter</span>(SICCode.SicText_1<span class="sc">==</span><span class="st">"70221 - Financial management"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">select</span>(oseast1m, osnrth1m) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-6"><a href="#cb15-6"></a>  <span class="fu">drop_na</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">filter</span>(SICCode.SicText_1<span class="sc">==</span><span class="st">"70221 - Financial management"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">select</span>(oseast1m, osnrth1m) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">drop_na</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="financial-management-in-london" class="slide level2">
@@ -1859,7 +1857,7 @@ $ n                 &lt;int&gt; 72756, 58526, 55309, 52058, 46572, 45312, 44270,
 <li><p>Condense the cluster hierarchy based on minimum cluster size</p></li>
 <li><p>Extract the stable clusters from the condensed tree.</p></li>
 </ol>
-<p>Resources: <a href="https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html">SciKit-learn docs</a> and <a href="https://cran.r-project.org/web/packages/dbscan/vignettes/hdbscan.html">dbscan package</a></p>
+<p>Resources: <a href="https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html" target="_blank">SciKit-learn docs</a> and <a href="https://cran.r-project.org/web/packages/dbscan/vignettes/hdbscan.html" target="_blank">dbscan package</a></p>
 </section>
 <section id="clusters-in-space-hdbscan-1" class="slide level2">
 <h2>Clusters in space, hdbscan</h2>

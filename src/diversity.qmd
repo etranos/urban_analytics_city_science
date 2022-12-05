@@ -49,7 +49,7 @@ In general is *a good thing* for:
 
 -   Between-sector or Jacobs spillovers
 
--   Large empirical literature trying to identify the write ratio, e.g. @saviotti2008export and @caragliu2016both
+-   Large empirical literature trying to identify the optimal ratio, e.g. @saviotti2008export and @caragliu2016both
 
 -   MAR externalities (or spillovers): good for productivity and short-term growth
 
@@ -182,7 +182,7 @@ For a review, check @hidalgo2021economic and @balland2022new.
 
 ## Measuring diversity
 
--   Go to [data.london.gov.uk](https://data.london.gov.uk/dataset/directory-of-london-businesses)
+-   Go to [data.london.gov.uk](https://data.london.gov.uk/dataset/directory-of-london-businesses){target="_blank"}
 
 -   Download and and save locally the `Businesses-in-London.csv`
 
@@ -233,7 +233,7 @@ london.firms.sum %>% kbl() %>%
 ## Measuring diversity
 
 ::: callout-tip
-You don't know what local authorities these codes refer to. You should download the codes and names and join them with your data from [here](https://geoportal.statistics.gov.uk/documents/c4f647d8a4a648d7b4a1ebf057f8aaa3/about).
+You don't know what local authorities these codes refer to. You should download the codes and names and join them with your data from [here](https://geoportal.statistics.gov.uk/documents/c4f647d8a4a648d7b4a1ebf057f8aaa3/about){target="_blank"}.
 :::
 
 ::: callout-tip
@@ -242,7 +242,7 @@ Discuss what we can learn from this exercise.
 Can you think of a way to understand how different these indices are among London's Local Authorities?
 :::
 
-## Measuring diversity {.scrollable}
+## Mapping diversity {.scrollable}
 
 ```{r, }
 #| label: maps
@@ -280,21 +280,21 @@ ggplot() +
 
 -   Observations within the same group are as similar as possible
 
--   Based on @boehmke2019hands available [here](https://bradleyboehmke.github.io/HOML/)
+-   Based on @boehmke2019hands available [here](https://bradleyboehmke.github.io/HOML/){target="_blank"}
 
 -   Plenty of other resources online and in textbooks
 
 ------------------------------------------------------------------------
 
-![Source: [medium.com](https://medium.com/@recrosoft.io/supervised-vs-unsupervised-learning-key-differences-cdd46206cdcb)](images/classical_ml.png)
+![Source: [medium.com](https://medium.com/@recrosoft.io/supervised-vs-unsupervised-learning-key-differences-cdd46206cdcb)](images/classical_ml.png){target="_blank"}
 
 ## Clustering
 
-1.  *K*-means
+1.  *k*-means
 
 2.  Hierarchical clustering
 
-## *K*-means
+## *k*-means
 
 ::: r-fit-text
 1.  *k* is the number of clusters and is pre-defined
@@ -312,7 +312,7 @@ ggplot() +
 
 $SS_{within} = \sum_{k=1}^k W(C_{k}) = \sum_{k=1}^k \sum_{x_i\in C_K}(x_i-\mu_k)^2$
 
-## *K*-means {.scrollable}
+## *k*-means {.scrollable}
 
 First, create an appropriate data frame
 
@@ -335,7 +335,7 @@ la.sic %>%
   kable_styling()   #Nice(r) table
 ```
 
-## *K*-means {.scrollable}
+## *k*-means {.scrollable}
 
 ```{r, echo=TRUE}
 kclust = kmeans(la.sic[,-1], centers = 10, nstart = 10) # be aware of the [,-1]
@@ -344,19 +344,19 @@ str(kclust)
 
 `centers` is 10 x 1036: 1036 is the number of SIC codes.
 
-## Choosing *K*
+## Choosing *k*
 
 1.  Rule of thumb: $k = \sqrt{n/2}$
 
 2.  The *elbow* method
 
-    -   Compute k-means clustering for different values of *k*
+    -   Compute *k*-means clustering for different values of *k*
 
     -   Calculate $SS_{within}$
 
     -   Plot and spot the loction of a bend
 
-## Choosing *K*
+## Choosing *k*
 
 ```{r, echo=TRUE}
 
@@ -375,7 +375,7 @@ fviz_nbclust(
 ::: {.column width="60%"}
 ![](images/dendrogram.png)
 
-<small> Source: [\@boehmke2019hands](https://bradleyboehmke.github.io/HOML) </small>
+<small> Source: [\@boehmke2019hands](https://bradleyboehmke.github.io/HOML){target="_blank"} </small>
 :::
 
 ::: {.column width="40%"}
@@ -473,8 +473,6 @@ london.firms %>%
 
 ```{r, echo=TRUE}
 london.firms.sample <- london.firms %>% 
-  #filter(SICCode.SicText_1=="70229 - Management consultancy activities other than financial management") %>%
-  #filter(SICCode.SicText_1=="59111 - Motion picture production activities") %>% 
   filter(SICCode.SicText_1=="70221 - Financial management") %>% 
   select(oseast1m, osnrth1m) %>% 
   drop_na() 
@@ -517,7 +515,7 @@ plot(london.firms.sample, col = sp.cluster$cluster)
 
 5.  Extract the stable clusters from the condensed tree.
 
-Resources: [SciKit-learn docs](https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html) and [dbscan package](https://cran.r-project.org/web/packages/dbscan/vignettes/hdbscan.html)
+Resources: [SciKit-learn docs](https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html){target="_blank"} and [dbscan package](https://cran.r-project.org/web/packages/dbscan/vignettes/hdbscan.html){target="_blank"}
 
 ## Clusters in space, hdbscan
 
