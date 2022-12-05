@@ -74,6 +74,6 @@ editor: source
 
       Why is diversity important in cities and how do we measure it?
 
-12. Urban policies and causality
+12. [Urban policies and causality](Urban_policy___causal_design.pdf){target="_blank"}
 
-    From urban analysis to urban policies. And how to assess such policies. Causality.
+    From urban analysis to urban policies. And how to assess such policies. An introduction to causality.
