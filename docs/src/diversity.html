@@ -912,20 +912,20 @@ University of Bristol, Alan Turing Institute<br>
 <p>First, create an appropriate data frame</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>la.sic <span class="ot">&lt;-</span> london.firms <span class="sc">%&gt;%</span> </span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">filter</span>(SICCode.SicText_1<span class="sc">!=</span><span class="st">"None Supplied"</span>) <span class="sc">%&gt;%</span> <span class="co"># Droping firms which haven't declared SIC code</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">group_by</span>(oslaua, SICCode.SicText_1) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-5"><a href="#cb7-5"></a>  <span class="fu">mutate</span>(<span class="at">total =</span> <span class="fu">sum</span>(n),</span>
-<span id="cb7-6"><a href="#cb7-6"></a>         <span class="at">freq =</span> n <span class="sc">/</span> total) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-7"><a href="#cb7-7"></a>  <span class="fu">arrange</span>(oslaua,<span class="sc">-</span>n) <span class="sc">%&gt;%</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a>  <span class="fu">select</span>(<span class="sc">-</span>n, <span class="sc">-</span>total) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-9"><a href="#cb7-9"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> SICCode.SicText_1, <span class="at">values_from =</span> freq) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-10"><a href="#cb7-10"></a>  <span class="fu">replace</span>(<span class="fu">is.na</span>(.), <span class="dv">0</span>)</span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">filter</span>(SICCode.SicText_1<span class="sc">!=</span><span class="st">"None Supplied"</span>) <span class="sc">%&gt;%</span> <span class="co"># Drop firms which haven't declared SIC code</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">group_by</span>(oslaua, SICCode.SicText_1) <span class="sc">%&gt;%</span>        <span class="co"># Group by Local Authorities and SIC code</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span>                         <span class="co"># Summarise; n = number of observations</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>  <span class="fu">mutate</span>(<span class="at">total =</span> <span class="fu">sum</span>(n),                         <span class="co"># New column: total number of observations</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>         <span class="at">freq =</span> n <span class="sc">/</span> total) <span class="sc">%&gt;%</span>                   <span class="co"># New column: frequency</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>  <span class="fu">arrange</span>(oslaua,<span class="sc">-</span>n) <span class="sc">%&gt;%</span>                         <span class="co"># Just arrange by Local Authority and descenting order of n</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>  <span class="fu">select</span>(<span class="sc">-</span>n, <span class="sc">-</span>total) <span class="sc">%&gt;%</span>                         <span class="co"># Drop n and total, we don't need them any more.</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> SICCode.SicText_1, <span class="at">values_from =</span> freq) <span class="sc">%&gt;%</span> <span class="co"># Data transformation: from long to wide. Have a look: https://tidyr.tidyverse.org/reference/pivot_wider.html</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>  <span class="fu">replace</span>(<span class="fu">is.na</span>(.), <span class="dv">0</span>)                          <span class="co"># Replace any missing values with 0 as missing value represent SIC codes with 0 frequency</span></span>
 <span id="cb7-11"><a href="#cb7-11"></a></span>
 <span id="cb7-12"><a href="#cb7-12"></a>la.sic <span class="sc">%&gt;%</span>  </span>
-<span id="cb7-13"><a href="#cb7-13"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">%&gt;%</span>  <span class="co">#Select the first 20 columns as there 1037 in total</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">%&gt;%</span>  <span class="co"># Select the first 20 columns as there 1037 in total</span></span>
 <span id="cb7-14"><a href="#cb7-14"></a>  <span class="fu">kbl</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a>  <span class="fu">kable_styling</span>()   <span class="co">#Nice(r) table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-15"><a href="#cb7-15"></a>  <span class="fu">kable_styling</span>()   <span class="co"># Nice(r) table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -1693,16 +1693,16 @@ University of Bristol, Alan Turing Institute<br>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="fu">str</span>(kclust)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 9
- $ cluster     : int [1:33] 2 1 9 7 1 3 10 8 1 8 ...
- $ centers     : num [1:10, 1:1036] 0.0361 0.099 0.0444 0.0591 0.0443 ...
+ $ cluster     : int [1:33] 6 4 7 8 4 1 5 2 4 2 ...
+ $ centers     : num [1:10, 1:1036] 0.0444 0.036 0.0443 0.0361 0.0521 ...
   ..- attr(*, "dimnames")=List of 2
   .. ..$ : chr [1:10] "1" "2" "3" "4" ...
   .. ..$ : chr [1:1036] "82990 - Other business support service activities n.e.c." "64209 - Activities of other holding companies n.e.c." "70229 - Management consultancy activities other than financial management" "64999 - Financial intermediation not elsewhere classified" ...
  $ totss       : num 0.0945
- $ withinss    : num [1:10] 0.00609 0.00271 0.0042 0.00112 0 ...
+ $ withinss    : num [1:10] 0.0042 0.00182 0 0.00609 0.0019 ...
  $ tot.withinss: num 0.0235
  $ betweenss   : num 0.071
- $ size        : int [1:10] 8 2 6 2 1 1 5 2 3 3
+ $ size        : int [1:10] 6 2 1 8 3 2 3 5 2 1
  $ iter        : int 3
  $ ifault      : int 0
  - attr(*, "class")= chr "kmeans"</code></pre>

@@ -319,20 +319,20 @@ First, create an appropriate data frame
 ```{r, echo = TRUE}
 
 la.sic <- london.firms %>% 
-  filter(SICCode.SicText_1!="None Supplied") %>% # Droping firms which haven't declared SIC code
-  group_by(oslaua, SICCode.SicText_1) %>% 
-  summarise(n = n()) %>% 
-  mutate(total = sum(n),
-         freq = n / total) %>% 
-  arrange(oslaua,-n) %>%
-  select(-n, -total) %>% 
-  pivot_wider(names_from = SICCode.SicText_1, values_from = freq) %>% 
-  replace(is.na(.), 0)
+  filter(SICCode.SicText_1!="None Supplied") %>% # Drop firms which haven't declared SIC code
+  group_by(oslaua, SICCode.SicText_1) %>%        # Group by Local Authorities and SIC code
+  summarise(n = n()) %>%                         # Summarise; n = number of observations
+  mutate(total = sum(n),                         # New column: total number of observations
+         freq = n / total) %>%                   # New column: frequency
+  arrange(oslaua,-n) %>%                         # Just arrange by Local Authority and descenting order of n
+  select(-n, -total) %>%                         # Drop n and total, we don't need them any more.
+  pivot_wider(names_from = SICCode.SicText_1, values_from = freq) %>% # Data transformation: from long to wide. Have a look: https://tidyr.tidyverse.org/reference/pivot_wider.html
+  replace(is.na(.), 0)                          # Replace any missing values with 0 as missing value represent SIC codes with 0 frequency
 
 la.sic %>%  
-  select(1:20) %>%  #Select the first 20 columns as there 1037 in total
+  select(1:20) %>%  # Select the first 20 columns as there 1037 in total
   kbl() %>%
-  kable_styling()   #Nice(r) table
+  kable_styling()   # Nice(r) table
 ```
 
 ## *k*-means {.scrollable}
