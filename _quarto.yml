@@ -19,6 +19,7 @@ project:
   - src/transport_geography.qmd
   - src/accessibility_full.Rmd
   - src/sim.Rmd
+  - src/causality.Rmd
 
 website:
   title: "Urban analytics and city science"
@@ -55,6 +56,8 @@ website:
           - src/network_models.Rmd
           - src/sim.Rmd
           - src/accessibility_full.Rmd
+          - text: "Causal design and urban policy evaluation"
+            file: src/causality.Rmd
       - section: "Unit leader"
         contents: 
           - text: "Professor Emmanouil Tranos"
