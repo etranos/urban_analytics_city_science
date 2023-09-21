@@ -8,7 +8,7 @@ materials/*
 lectures/*
 practicals/*
 data/*
-assignments/*
+assignments/marking/*
 .quarto/
 src_help/*
 
