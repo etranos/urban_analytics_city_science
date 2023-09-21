@@ -51,18 +51,24 @@ Source of:
 
 ## Why should we care about cities?
 
-::: columns
-::: {.column width="70%"}
-<iframe src="https://data.worldbank.org/share/widget?indicators=SP.URB.TOTL.IN.ZS&amp;view=map" width="675" height="450" frameBorder="0" scrolling="no">
+:::: {.columns}
 
-</iframe>
+::: {.column width="70%"}
+
+<!-- <iframe src="https://data.worldbank.org/share/widget?indicators=SP.URB.TOTL.IN.ZS&amp;view=map" width="675" height="450" frameBorder="0" scrolling="no"></iframe> -->
+
+<iframe src="https://data.worldbank.org/share/widget?end=2022&indicators=SP.URB.TOTL.IN.ZS&start=2022&type=shaded&view=map" width='675' height='450' frameBorder='0' scrolling="no" ></iframe>
+
 :::
 
 ::: {.column width="30%"}
+
 -   Tremendous growth
 -   Not the same everywhere
+
 :::
-:::
+
+::::
 
 ## Urban analytics and city science
 

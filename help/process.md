@@ -8,4 +8,6 @@ https://quarto.org/docs/publishing/github-pages.html
 
 4.  library(quarto) quarto.cmd preview on terminal keeps the development server on and automatically re-renders what is changed. quarto_render() or quarto.cmd renders
 
-5.  For Git: git add --all git commit git push
+5.  For Git: git add --all 
+             git commit -m"..."
+             git push
