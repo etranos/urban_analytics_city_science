@@ -7,7 +7,7 @@
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.0.37">
+  <meta name="generator" content="quarto-1.2.335">
 
   <title>Urban analytics and city science - Networks</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -18,10 +18,15 @@
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
@@ -334,22 +339,25 @@
   <script src="../site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
   <script src="../site_libs/viz-1.8.2/viz.js"></script>
   <link href="../site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
-  <script src="../site_libs/grViz-binding-1.0.9.9000/grViz.js"></script>
+  <script src="../site_libs/grViz-binding-1.0.9/grViz.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="center">
+<section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Networks</h1>
   <p class="subtitle">An introduction</p>
-  <p class="author"></p><p><br>
-Emmanouil Tranos<br>
-<br>
-University of Bristol, Alan Turing Institute<br>
-<a href="mailto:e.tranos@bristol.ac.uk">e.tranos@bristol.ac.uk</a>, <a href="https://twitter.com/EmmanouilTranos">@EmmanouilTranos</a>, <a href="https://etranos.info/">etranos.info</a></p><p></p>
-</section>
 
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+ 
+</div>
+</div>
+</div>
+
+</section>
 <section id="outline" class="slide level2">
 <h2>Outline</h2>
 <ul>
@@ -406,7 +414,7 @@ University of Bristol, Alan Turing Institute<br>
 <td>A -- Macro</td>
 <td>Cities</td>
 <td>City as a whole entity</td>
-<td>Central place system <span class="citation" data-cites="christaller1966central">(<a href="#/ref-christaller1966central" role="doc-biblioref" onclick="return false;">Christaller 1966</a>)</span></td>
+<td>Central place system <span class="citation" data-cites="christaller1966central">(<a href="#/references" role="doc-biblioref" onclick="">Christaller 1966</a>)</span></td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -426,7 +434,7 @@ University of Bristol, Alan Turing Institute<br>
 </tbody>
 </table>
 </small></small><p><small><small></small></small></p>
-<p><small><small> Source: <span class="citation" data-cites="neal2021handbook">(<a href="#/ref-neal2021handbook" role="doc-biblioref" onclick="return false;">Neal and Rozenblat 2021</a>)</span> </small></small></p>
+<p><small><small> Source: <span class="citation" data-cites="neal2021handbook">(<a href="#/references" role="doc-biblioref" onclick="">Neal and Rozenblat 2021</a>)</span> </small></small></p>
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
@@ -496,7 +504,7 @@ University of Bristol, Alan Turing Institute<br>
 </tbody>
 </table>
 </small><p><small></small></p>
-<aside><ol class="aside-footnotes"><li id="fn1" role="doc-endnote"><p><span class="citation" data-cites="hanneman2005introduction">Hanneman and Riddle (<a href="#/ref-hanneman2005introduction" role="doc-biblioref" onclick="return false;">2005</a>)</span> is a very useful <a href="http://faculty.ucr.edu/~hanneman/nettext/" target="_blank">online source</a> for most of the concepts presented here.</p></li></ol></aside></section>
+<aside><ol class="aside-footnotes"><li id="fn1"><p><span class="citation" data-cites="hanneman2005introduction">Hanneman and Riddle (<a href="#/references" role="doc-biblioref" onclick="">2005</a>)</span> is a very useful <a href="http://faculty.ucr.edu/~hanneman/nettext/" target="_blank">online source</a> for most of the concepts presented here.</p></li></ol></aside></section>
 <section id="directed-non-weighted-networks-1" class="slide level2">
 <h2>1. Directed, non-weighted networks</h2>
 <p><small></small></p><small>
@@ -560,8 +568,8 @@ University of Bristol, Alan Turing Institute<br>
 </small><p><small></small></p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-9be3b990b95ff80889d0" style="width:960px;height:288px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9be3b990b95ff80889d0">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = neato]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B\nA -> C\nA -> D\n<U+0392> -> C\nC -> D\nD -> C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a61559a1fb41d2d18a1c" style="width:960px;height:288px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a61559a1fb41d2d18a1c">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = neato]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B\nA -> C\nA -> D\nΒ -> C\nC -> D\nD -> C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -685,8 +693,8 @@ University of Bristol, Alan Turing Institute<br>
 <h2>2. Undirected, non-weighted networks</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-c0cca2aff65c814ce255" style="width:960px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c0cca2aff65c814ce255">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B\nA -> C\nA -> D\nB -> A\nB -> C\nC -> A\nC -> B\nC -> D\nD -> A\nD -> C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-eb1a73b84aa1ec0c6139" style="width:960px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-eb1a73b84aa1ec0c6139">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B\nA -> C\nA -> D\nB -> A\nB -> C\nC -> A\nC -> B\nC -> D\nD -> A\nD -> C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -788,8 +796,8 @@ University of Bristol, Alan Turing Institute<br>
 <h2>3. Directed, weighted networks</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-e3df6b190b889e0b9106" style="width:960px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e3df6b190b889e0b9106">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B [ penwidth = 3]\nA -> C [ penwidth = 1]\nA -> D [ penwidth = 5]\nB -> C [ penwidth = 1]\nC -> D [ penwidth = 6]\nD -> C [ penwidth = 7]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-c8cc2c70cb8a0e0c6208" style="width:960px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c8cc2c70cb8a0e0c6208">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B [ penwidth = 3]\nA -> C [ penwidth = 1]\nA -> D [ penwidth = 5]\nB -> C [ penwidth = 1]\nC -> D [ penwidth = 6]\nD -> C [ penwidth = 7]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -911,8 +919,8 @@ University of Bristol, Alan Turing Institute<br>
 <h2>4. Undirected, weighted networks</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-c76ddac5ea22649cad5e" style="width:960px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c76ddac5ea22649cad5e">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B [ penwidth = 3]\nA -> C [ penwidth = 1]\nA -> D [ penwidth = 5]\nB -> C [ penwidth = 1]\nB -> A [ penwidth = 3]\nC -> A [ penwidth = 1]\nC -> B [ penwidth = 1]\nC -> D [ penwidth = 6]\nD -> C [ penwidth = 6]\nD -> A [ penwidth = 5]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-597d6ac4fa31d4b8e53e" style="width:960px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-597d6ac4fa31d4b8e53e">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B [ penwidth = 3]\nA -> C [ penwidth = 1]\nA -> D [ penwidth = 5]\nB -> C [ penwidth = 1]\nB -> A [ penwidth = 3]\nC -> A [ penwidth = 1]\nC -> B [ penwidth = 1]\nC -> D [ penwidth = 6]\nD -> C [ penwidth = 6]\nD -> A [ penwidth = 5]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -951,8 +959,8 @@ University of Bristol, Alan Turing Institute<br>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-a9cac642c1e56029cdf8" style="width:960px;height:288px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a9cac642c1e56029cdf8">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-138f6c627cc43d530299" style="width:960px;height:288px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-138f6c627cc43d530299">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -967,8 +975,8 @@ University of Bristol, Alan Turing Institute<br>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-d78dcea6af39ff094d97" style="width:960px;height:288px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d78dcea6af39ff094d97">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a6a1def9b83f6da796dc" style="width:960px;height:288px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a6a1def9b83f6da796dc">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -985,8 +993,8 @@ University of Bristol, Alan Turing Institute<br>
 </small><p><small></small></p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-3f8e0b92b9d66a0a9a16" style="width:960px;height:268.8px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3f8e0b92b9d66a0a9a16">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-788d89455008630d5a23" style="width:960px;height:268.8px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-788d89455008630d5a23">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1002,8 +1010,8 @@ University of Bristol, Alan Turing Institute<br>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-bf49edf5ddfc709dec00" style="width:960px;height:192px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-bf49edf5ddfc709dec00">{"x":{"diagram":"\ndigraph  {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C;   \n      \n# an edge statement\nedge [color = grey]\nA -> B\nB -> A\nB -> C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-2a1befebfd1fdc1e815e" style="width:960px;height:192px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2a1befebfd1fdc1e815e">{"x":{"diagram":"\ndigraph  {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C;   \n      \n# an edge statement\nedge [color = grey]\nA -> B\nB -> A\nB -> C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1027,8 +1035,8 @@ University of Bristol, Alan Turing Institute<br>
 </small><p><small></small></p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-9549e120e9cd6129b9d7" style="width:960px;height:240px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9549e120e9cd6129b9d7">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\nnode [fillcolor = red]\nEGO\n\n# an edge statement\nedge [color = grey]\n\nEGO -- {A B C D E}\nB -- {C D E}\nC -- {E}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-217d3e93a1c9a974e2f9" style="width:960px;height:240px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-217d3e93a1c9a974e2f9">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\nnode [fillcolor = red]\nEGO\n\n# an edge statement\nedge [color = grey]\n\nEGO -- {A B C D E}\nB -- {C D E}\nC -- {E}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1046,7 +1054,7 @@ University of Bristol, Alan Turing Institute<br>
 <ul>
 <li><p>Exploratory process</p></li>
 <li><p>The emphasis is not on the behaviour of single entities, but on the information of who is connected to whom</p></li>
-<li><p>“The problem of community detection requires the partition of a network into communities of densely connected nodes, with the nodes belonging to different communities being only sparsely connected” <span class="citation" data-cites="blondel2008fast">(<a href="#/ref-blondel2008fast" role="doc-biblioref" onclick="return false;">Blondel et al. 2008, 2</a>)</span></p></li>
+<li><p>“The problem of community detection requires the partition of a network into communities of densely connected nodes, with the nodes belonging to different communities being only sparsely connected” <span class="citation" data-cites="blondel2008fast">(<a href="#/references" role="doc-biblioref" onclick="">Blondel et al. 2008, 2</a>)</span></p></li>
 <li><p>Clusters of nodes with dense connections <em>inside</em> the clusters, but <em>not between</em> the clusters</p></li>
 </ul>
 </section>
@@ -1054,7 +1062,7 @@ University of Bristol, Alan Turing Institute<br>
 <h2>Community detection</h2>
 <div class="r-fit-text">
 <ul>
-<li><p>Louvain method <span class="citation" data-cites="blondel2008fast">(<a href="#/ref-blondel2008fast" role="doc-biblioref" onclick="return false;">Blondel et al. 2008</a>)</span>: maximization of links inside the communities (modularity)</p></li>
+<li><p>Louvain method <span class="citation" data-cites="blondel2008fast">(<a href="#/references" role="doc-biblioref" onclick="">Blondel et al. 2008</a>)</span>: maximization of links inside the communities (modularity)</p></li>
 <li><p>Network of communities extracted from a Belgian mobile phone network</p></li>
 <li><p>Node size proportional to the number of individuals in the community</p></li>
 <li><p>Colour represents the main language spoken in the community (red for French and green for Dutch)</p></li>
@@ -1066,7 +1074,7 @@ University of Bristol, Alan Turing Institute<br>
 <section id="community-detection-2" class="slide level2">
 <h2>Community detection</h2>
 <div class="r-fit-text">
-<p>Redrawing the Map of Great Britain from a Network of Human Interactions <span class="citation" data-cites="ratti2010redrawing">(<a href="#/ref-ratti2010redrawing" role="doc-biblioref" onclick="return false;">Ratti et al. 2010</a>)</span></p>
+<p>Redrawing the Map of Great Britain from a Network of Human Interactions <span class="citation" data-cites="ratti2010redrawing">(<a href="#/references" role="doc-biblioref" onclick="">Ratti et al. 2010</a>)</span></p>
 <ul>
 <li><p>Do administrative boundaries follow the more natural ways people interact across space?</p></li>
 <li><p>Large telecommunications database in Great Britain.</p></li>
@@ -1120,8 +1128,8 @@ University of Bristol, Alan Turing Institute<br>
 <h2>Degree cenralities</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="htmlwidget-9b53bfa1338b9e575dfc" style="width:960px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9b53bfa1338b9e575dfc">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\nnode [fillcolor = red]\nEGO\n\n# an edge statement\nedge [color = grey]\n\nEGO -- {A B C D E}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-76c6d6ee3acb720657aa" style="width:960px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-76c6d6ee3acb720657aa">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\nnode [fillcolor = red]\nEGO\n\n# an edge statement\nedge [color = grey]\n\nEGO -- {A B C D E}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1129,8 +1137,8 @@ University of Bristol, Alan Turing Institute<br>
 <h2>Degree cenralities</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="htmlwidget-505cde6f8568d05977ff" style="width:960px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-505cde6f8568d05977ff">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\n# an edge statement\nedge [color = grey]\n\nA -- B\nB -- C\nC -- D\nD -- E\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-08cb3b63eb0b22e39167" style="width:960px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-08cb3b63eb0b22e39167">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\n# an edge statement\nedge [color = grey]\n\nA -- B\nB -- C\nC -- D\nD -- E\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1138,8 +1146,8 @@ University of Bristol, Alan Turing Institute<br>
 <h2>Degree cenralities</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="htmlwidget-d95faf74d50223b3e83f" style="width:960px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d95faf74d50223b3e83f">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = circo,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\n# an edge statement\nedge [color = grey]\n\nA -- B\nB -- C\nC -- D\nD -- E\nE -- A\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7c3a3190b29b48e93a66" style="width:960px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7c3a3190b29b48e93a66">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = circo,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\n# an edge statement\nedge [color = grey]\n\nA -- B\nB -- C\nC -- D\nD -- E\nE -- A\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1220,8 +1228,8 @@ University of Bristol, Alan Turing Institute<br>
 <p><span class="math inline">\(B_{k} = \sum_{i \not=j \not=k} \frac{g_{ij}(k)}{g_{ij}}\)</span></p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-6322bd4bd7fa776fa856" style="width:960px;height:192px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6322bd4bd7fa776fa856">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = BT]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E; G; H; I; J; K\n\nnode [fillcolor = red]\nF\n\n# an edge statement\nedge [color = grey]\n\nA -- {B C D E}\nB -- {C D E}\nC -- {E}\n\nF -- {A H I J K}\nG -- { I J K }\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-c4c5dcc4935594b5ed73" style="width:960px;height:192px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c4c5dcc4935594b5ed73">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = BT]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E; G; H; I; J; K\n\nnode [fillcolor = red]\nF\n\n# an edge statement\nedge [color = grey]\n\nA -- {B C D E}\nB -- {C D E}\nC -- {E}\n\nF -- {A H I J K}\nG -- { I J K }\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1255,7 +1263,7 @@ University of Bristol, Alan Turing Institute<br>
 </section>
 <section class="slide level2">
 
-<p><img data-src="images/tranos_epb.png"> <small> Source: <span class="citation" data-cites="tranos2015international">Tranos, Gheasi, and Nijkamp (<a href="#/ref-tranos2015international" role="doc-biblioref" onclick="return false;">2015</a>)</span> </small></p>
+<p><img data-src="images/tranos_epb.png"> <small> Source: <span class="citation" data-cites="tranos2015international">Tranos, Gheasi, and Nijkamp (<a href="#/references" role="doc-biblioref" onclick="">2015</a>)</span> </small></p>
 </section>
 <section id="other-types-of-networks" class="slide level2">
 <h2>Other types of networks</h2>
@@ -1265,7 +1273,7 @@ University of Bristol, Alan Turing Institute<br>
 <li><p>Dynamic</p></li>
 <li><p>Spatial</p></li>
 </ul>
-<p>See also <span class="citation" data-cites="light2020oxford">Light and Moody (<a href="#/ref-light2020oxford" role="doc-biblioref" onclick="return false;">2020</a>)</span></p>
+<p>See also <span class="citation" data-cites="light2020oxford">Light and Moody (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span></p>
 </section>
 <section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>
@@ -1515,12 +1523,15 @@ Tranos, Emmanouil, Masood Gheasi, and Peter Nijkamp. 2015. <span>“Internationa
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
       // slide changes (different for each slide format).
       (function () {
-        function fireSlideChanged(previousSlide, currentSlide) {
-
-          // dispatch for htmlwidgets
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
           const event = window.document.createEvent("Event");
           event.initEvent("slideenter", true, true);
           window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
 
           // dispatch for shiny
           if (window.jQuery) {
@@ -1531,13 +1542,6 @@ Tranos, Emmanouil, Masood Gheasi, and Peter Nijkamp. 2015. <span>“Internationa
               window.jQuery(currentSlide).trigger("shown");
             }
           }
-        }
-
-        // hookup for reveal
-        if (window.Reveal) {
-          window.Reveal.addEventListener("slidechanged", function(event) {
-            fireSlideChanged(event.previousSlide, event.currentSlide);
-          });
         }
 
         // hookup for slidy
@@ -1589,7 +1593,24 @@ Tranos, Emmanouil, Masood Gheasi, and Peter Nijkamp. 2015. <span>“Internationa
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
         button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
         setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
           button.setAttribute("title", currentTitle);
           button.classList.remove('code-copy-button-checked');
         }, 1000);
@@ -1619,31 +1640,50 @@ Tranos, Emmanouil, Masood Gheasi, and Peter Nijkamp. 2015. <span>“Internationa
       for (var i=0; i<noterefs.length; i++) {
         const ref = noterefs[i];
         tippyHover(ref, function() {
-          let href = ref.getAttribute('href');
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
           return note.innerHTML;
         });
       }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
       var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
       for (var i=0; i<bibliorefs.length; i++) {
         const ref = bibliorefs[i];
-        const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-        tippyHover(ref, function() {
-          var popup = window.document.createElement('div');
-          cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
-            }
-            popup.appendChild(citeDiv);
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
           });
-          return popup.innerHTML;
-        });
+        }
       }
     });
     </script>

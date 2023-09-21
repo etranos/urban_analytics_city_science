@@ -2,21 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.37">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Emmanouil Tranos">
-<meta name="dcterms.date" content="2022-11-27">
+<meta name="dcterms.date" content="2023-09-21">
 
 <title>Urban analytics and city science - Accessibility in practice</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -55,7 +60,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -68,7 +73,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -241,6 +246,11 @@ div.csl-indent {
   <a href="../src/diversity.html" class="sidebar-item-text sidebar-link">Diversity in cities</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/Urban_policy___causal_design.pdf" class="sidebar-item-text sidebar-link">Urban policies and causality</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -281,6 +291,11 @@ div.csl-indent {
   <a href="../src/accessibility_full.html" class="sidebar-item-text sidebar-link active">Accessibility in practice</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/causality.html" class="sidebar-item-text sidebar-link">Causal design and urban policy evaluation</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -303,7 +318,7 @@ div.csl-indent {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -335,9 +350,10 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 27, 2022</p>
+      <p class="date">September 21, 2023</p>
     </div>
   </div>
+  
     
   </div>
   
@@ -533,8 +549,8 @@ Columns: 5
 $ code           &lt;chr&gt; "E09000001", "E09000002", "E09000003", "E09000004", "E0…
 $ area           &lt;chr&gt; "City of London", "Barking and Dagenham", "Barnet", "Be…
 $ year           &lt;dbl&gt; 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2…
-$ number_of_jobs &lt;dbl&gt; 630000, 71000, 164000, 85000, 149000, 129000, 389000, 1…
-$ job_density    &lt;dbl&gt; 83.71, 0.52, 0.64, 0.54, 0.69, 0.62, 1.97, 0.58, 0.72, …</code></pre>
+$ number_of_jobs &lt;dbl&gt; 630000, 71000, 163000, 85000, 149000, 129000, 391000, 1…
+$ job_density    &lt;dbl&gt; 83.73, 0.52, 0.64, 0.54, 0.69, 0.62, 1.98, 0.58, 0.72, …</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pop <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://data.london.gov.uk/download/land-area-and-population-density-ward-and-borough/77e9257d-ad9d-47aa-aeed-59a00741f301/housing-density-borough.csv"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> <span class="co"># This is a projection, but it will work for now</span></span>
@@ -592,7 +608,7 @@ $ Population_per_square_kilometre &lt;dbl&gt; 2770.7, 6047.6, 4693.4, 4208.8, 79
    <td style="text-align:left;"> City of London </td>
    <td style="text-align:right;"> 2020 </td>
    <td style="text-align:right;"> 630000 </td>
-   <td style="text-align:right;"> 83.71 </td>
+   <td style="text-align:right;"> 83.73 </td>
    <td style="text-align:left;"> City of London </td>
    <td style="text-align:right;"> 2020 </td>
    <td style="text-align:left;"> GLA Population Projections </td>
@@ -623,7 +639,7 @@ $ Population_per_square_kilometre &lt;dbl&gt; 2770.7, 6047.6, 4693.4, 4208.8, 79
    <td style="text-align:left;"> E09000003 </td>
    <td style="text-align:left;"> Barnet </td>
    <td style="text-align:right;"> 2020 </td>
-   <td style="text-align:right;"> 164000 </td>
+   <td style="text-align:right;"> 163000 </td>
    <td style="text-align:right;"> 0.64 </td>
    <td style="text-align:left;"> Barnet </td>
    <td style="text-align:right;"> 2020 </td>
@@ -687,8 +703,8 @@ $ Population_per_square_kilometre &lt;dbl&gt; 2770.7, 6047.6, 4693.4, 4208.8, 79
    <td style="text-align:left;"> E09000007 </td>
    <td style="text-align:left;"> Camden </td>
    <td style="text-align:right;"> 2020 </td>
-   <td style="text-align:right;"> 389000 </td>
-   <td style="text-align:right;"> 1.97 </td>
+   <td style="text-align:right;"> 391000 </td>
+   <td style="text-align:right;"> 1.98 </td>
    <td style="text-align:left;"> Camden </td>
    <td style="text-align:right;"> 2020 </td>
    <td style="text-align:left;"> GLA Population Projections </td>
@@ -703,7 +719,7 @@ $ Population_per_square_kilometre &lt;dbl&gt; 2770.7, 6047.6, 4693.4, 4208.8, 79
    <td style="text-align:left;"> E09000008 </td>
    <td style="text-align:left;"> Croydon </td>
    <td style="text-align:right;"> 2020 </td>
-   <td style="text-align:right;"> 143000 </td>
+   <td style="text-align:right;"> 144000 </td>
    <td style="text-align:right;"> 0.58 </td>
    <td style="text-align:left;"> Croydon </td>
    <td style="text-align:right;"> 2020 </td>
@@ -719,7 +735,7 @@ $ Population_per_square_kilometre &lt;dbl&gt; 2770.7, 6047.6, 4693.4, 4208.8, 79
    <td style="text-align:left;"> E09000009 </td>
    <td style="text-align:left;"> Ealing </td>
    <td style="text-align:right;"> 2020 </td>
-   <td style="text-align:right;"> 159000 </td>
+   <td style="text-align:right;"> 160000 </td>
    <td style="text-align:right;"> 0.72 </td>
    <td style="text-align:left;"> Ealing </td>
    <td style="text-align:right;"> 2020 </td>
@@ -751,7 +767,7 @@ $ Population_per_square_kilometre &lt;dbl&gt; 2770.7, 6047.6, 4693.4, 4208.8, 79
    <td style="text-align:left;"> E09000011 </td>
    <td style="text-align:left;"> Greenwich </td>
    <td style="text-align:right;"> 2020 </td>
-   <td style="text-align:right;"> 101000 </td>
+   <td style="text-align:right;"> 102000 </td>
    <td style="text-align:right;"> 0.52 </td>
    <td style="text-align:left;"> Greenwich </td>
    <td style="text-align:right;"> 2020 </td>
@@ -783,8 +799,8 @@ $ Population_per_square_kilometre &lt;dbl&gt; 2770.7, 6047.6, 4693.4, 4208.8, 79
    <td style="text-align:left;"> E09000013 </td>
    <td style="text-align:left;"> Hammersmith and Fulham </td>
    <td style="text-align:right;"> 2020 </td>
-   <td style="text-align:right;"> 166000 </td>
-   <td style="text-align:right;"> 1.29 </td>
+   <td style="text-align:right;"> 165000 </td>
+   <td style="text-align:right;"> 1.28 </td>
    <td style="text-align:left;"> Hammersmith and Fulham </td>
    <td style="text-align:right;"> 2020 </td>
    <td style="text-align:left;"> GLA Population Projections </td>
@@ -815,7 +831,7 @@ $ Population_per_square_kilometre &lt;dbl&gt; 2770.7, 6047.6, 4693.4, 4208.8, 79
    <td style="text-align:left;"> E09000015 </td>
    <td style="text-align:left;"> Harrow </td>
    <td style="text-align:right;"> 2020 </td>
-   <td style="text-align:right;"> 89000 </td>
+   <td style="text-align:right;"> 90000 </td>
    <td style="text-align:right;"> 0.57 </td>
    <td style="text-align:left;"> Harrow </td>
    <td style="text-align:right;"> 2020 </td>
@@ -831,8 +847,8 @@ $ Population_per_square_kilometre &lt;dbl&gt; 2770.7, 6047.6, 4693.4, 4208.8, 79
    <td style="text-align:left;"> E09000016 </td>
    <td style="text-align:left;"> Havering </td>
    <td style="text-align:right;"> 2020 </td>
-   <td style="text-align:right;"> 96000 </td>
-   <td style="text-align:right;"> 0.60 </td>
+   <td style="text-align:right;"> 95000 </td>
+   <td style="text-align:right;"> 0.59 </td>
    <td style="text-align:left;"> Havering </td>
    <td style="text-align:right;"> 2020 </td>
    <td style="text-align:left;"> GLA Population Projections </td>
@@ -879,7 +895,7 @@ $ Population_per_square_kilometre &lt;dbl&gt; 2770.7, 6047.6, 4693.4, 4208.8, 79
    <td style="text-align:left;"> E09000019 </td>
    <td style="text-align:left;"> Islington </td>
    <td style="text-align:right;"> 2020 </td>
-   <td style="text-align:right;"> 246000 </td>
+   <td style="text-align:right;"> 247000 </td>
    <td style="text-align:right;"> 1.32 </td>
    <td style="text-align:left;"> Islington </td>
    <td style="text-align:right;"> 2020 </td>
@@ -895,7 +911,7 @@ $ Population_per_square_kilometre &lt;dbl&gt; 2770.7, 6047.6, 4693.4, 4208.8, 79
    <td style="text-align:left;"> E09000020 </td>
    <td style="text-align:left;"> Kensington and Chelsea </td>
    <td style="text-align:right;"> 2020 </td>
-   <td style="text-align:right;"> 148000 </td>
+   <td style="text-align:right;"> 149000 </td>
    <td style="text-align:right;"> 1.41 </td>
    <td style="text-align:left;"> Kensington and Chelsea </td>
    <td style="text-align:right;"> 2020 </td>
@@ -927,7 +943,7 @@ $ Population_per_square_kilometre &lt;dbl&gt; 2770.7, 6047.6, 4693.4, 4208.8, 79
    <td style="text-align:left;"> E09000022 </td>
    <td style="text-align:left;"> Lambeth </td>
    <td style="text-align:right;"> 2020 </td>
-   <td style="text-align:right;"> 174000 </td>
+   <td style="text-align:right;"> 175000 </td>
    <td style="text-align:right;"> 0.73 </td>
    <td style="text-align:left;"> Lambeth </td>
    <td style="text-align:right;"> 2020 </td>
@@ -992,7 +1008,7 @@ $ Population_per_square_kilometre &lt;dbl&gt; 2770.7, 6047.6, 4693.4, 4208.8, 79
    <td style="text-align:left;"> Redbridge </td>
    <td style="text-align:right;"> 2020 </td>
    <td style="text-align:right;"> 90000 </td>
-   <td style="text-align:right;"> 0.45 </td>
+   <td style="text-align:right;"> 0.46 </td>
    <td style="text-align:left;"> Redbridge </td>
    <td style="text-align:right;"> 2020 </td>
    <td style="text-align:left;"> GLA Population Projections </td>
@@ -1024,7 +1040,7 @@ $ Population_per_square_kilometre &lt;dbl&gt; 2770.7, 6047.6, 4693.4, 4208.8, 79
    <td style="text-align:left;"> Southwark </td>
    <td style="text-align:right;"> 2020 </td>
    <td style="text-align:right;"> 310000 </td>
-   <td style="text-align:right;"> 1.33 </td>
+   <td style="text-align:right;"> 1.34 </td>
    <td style="text-align:left;"> Southwark </td>
    <td style="text-align:right;"> 2020 </td>
    <td style="text-align:left;"> GLA Population Projections </td>
@@ -1055,7 +1071,7 @@ $ Population_per_square_kilometre &lt;dbl&gt; 2770.7, 6047.6, 4693.4, 4208.8, 79
    <td style="text-align:left;"> E09000030 </td>
    <td style="text-align:left;"> Tower Hamlets </td>
    <td style="text-align:right;"> 2020 </td>
-   <td style="text-align:right;"> 320000 </td>
+   <td style="text-align:right;"> 321000 </td>
    <td style="text-align:right;"> 1.32 </td>
    <td style="text-align:left;"> Tower Hamlets </td>
    <td style="text-align:right;"> 2020 </td>
@@ -1087,8 +1103,8 @@ $ Population_per_square_kilometre &lt;dbl&gt; 2770.7, 6047.6, 4693.4, 4208.8, 79
    <td style="text-align:left;"> E09000032 </td>
    <td style="text-align:left;"> Wandsworth </td>
    <td style="text-align:right;"> 2020 </td>
-   <td style="text-align:right;"> 146000 </td>
-   <td style="text-align:right;"> 0.61 </td>
+   <td style="text-align:right;"> 147000 </td>
+   <td style="text-align:right;"> 0.62 </td>
    <td style="text-align:left;"> Wandsworth </td>
    <td style="text-align:right;"> 2020 </td>
    <td style="text-align:left;"> GLA Population Projections </td>
@@ -1103,7 +1119,7 @@ $ Population_per_square_kilometre &lt;dbl&gt; 2770.7, 6047.6, 4693.4, 4208.8, 79
    <td style="text-align:left;"> E09000033 </td>
    <td style="text-align:left;"> Westminster </td>
    <td style="text-align:right;"> 2020 </td>
-   <td style="text-align:right;"> 749000 </td>
+   <td style="text-align:right;"> 747000 </td>
    <td style="text-align:right;"> 3.93 </td>
    <td style="text-align:left;"> Westminster </td>
    <td style="text-align:right;"> 2020 </td>
@@ -1190,12 +1206,12 @@ Geodetic CRS:  WGS 84</code></pre>
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mtc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         id number_of_jobs
-1 E09000001        2970000
-2 E09000007        2721000
-3 E09000012        2142000
-4 E09000019        2580000
-5 E09000020        2377000
-6 E09000022        1344000</code></pre>
+1 E09000001        2973000
+2 E09000007        2570000
+3 E09000012        2146000
+4 E09000019        2261000
+5 E09000022        1346000
+6 E09000028        1622000</code></pre>
 </div>
 </div>
 <p>And finally, we plot our accessibility map.</p>
@@ -1316,7 +1332,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -1344,31 +1377,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>

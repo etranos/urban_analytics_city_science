@@ -162,14 +162,14 @@ commuting.bicycle <- commuting %>%
   filter(Bicycle!=0)
 ```
 
-Unless you know the local authority codes by hard, it might be useful to also add the corresponding local authority names. These can be easily obtained from the [ONS](https://geoportal.statistics.gov.uk/datasets/ons::census-merged-local-authority-districts-december-2011-generalised-clipped-boundaries-in-great-britain/about). The below code directly downloads a `GeoJSON` file with the local authorities in England and Wales. If you don't know what a `GeoJSON` file is, have a look [here](https://en.wikipedia.org/wiki/GeoJSON). Boundary data can also be obtained by [UK Data Service](https://borders.ukdataservice.ac.uk/easy_download.html).
+Unless you know the local authority codes by hard, it might be useful to also add the corresponding local authority names. These can be easily obtained from the [ONS](https://geoportal.statistics.gov.uk/datasets/ons::cmlad-dec-2011-super-generalised-clipped-boundaries-gb/explore?showTable=true). The below code directly downloads a `GeoJSON` file with the local authorities in England and Wales. If you don't know what a `GeoJSON` file is, have a look [here](https://en.wikipedia.org/wiki/GeoJSON). Boundary data can also be obtained by [UK Data Service](https://borders.ukdataservice.ac.uk/easy_download.html).
 
 For the time being we are only interested in the local authority names and codes. We will use the spatial object later.
 
 **Tip**: the below code downloads the `GeoJSON` file over the web. If you want to run the code multiple times, it might be faster to download the file ones, save it on your hard drive and the point this location to `st_read()`.
 
 ```{r la1, include=TRUE, results= 'hide', message=FALSE}
-la <-st_read("https://opendata.arcgis.com/datasets/d54f953d633b45f5a82fdd3c89b4c955_0.geojson")
+la <-st_read("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/CMLAD_Dec_2011_SGCB_GB_2022/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson")
 glimpse(la) 
 
 la.names <- as.data.frame(la) %>% 

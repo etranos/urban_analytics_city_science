@@ -138,7 +138,6 @@ net = sfnetwork(nodes, edges, node_key = "name")
 
 ```{r}
 st_geometry(edges) = NULL
-
 other_net = sfnetwork(nodes, edges, edges_as_lines = TRUE)
 ```
 
@@ -157,7 +156,6 @@ The `as_sfnetwork()` function converts the spatial object to a network. So, this
 
 ```{r roxel}
 roxel
-
 plot(st_geometry(roxel))
 ```
 
@@ -172,7 +170,7 @@ Instead of `plot()` we can also use `ggplot2` functions. `autoplot()` does what 
 
 ```{r roxel_ggplot}
 autoplot(net) + 
-  ggtitle("Road network of Münster Roxel")
+  ggtitle("Road network, Münster Roxel")
 ```
 
 We have a network, so let's do some network analysis.
@@ -194,7 +192,7 @@ We can now create a map of this spatial network, the size and the colour of its 
 ggplot() +
   geom_sf(data = st_as_sf(net, "edges"), col = "grey50") +            
   geom_sf(data = st_as_sf(net, "nodes"), aes(col = bc), size = 1.5) + 
-  ggtitle("Betweenness centrality in Münster Roxel")
+  ggtitle("Betweenness centrality")
 ```
 
 To better understand the structure of the above `ggplot()` look up `geom_sf()` and `st_as_sf`. If you only run `net` and `st_as_sf(net, "edges")` you can see what was the type of `net` originally and what it was transformed to with the `st_as_sf`.
@@ -227,6 +225,8 @@ Keep an eye on the below. Depending on your internet connections and the OSM's A
 
 ```{r}
 bristol_data <- opq(bbox = 'Bristol') %>%
+   # getbb ("bristol uk") %>%
+   #  opq () %>%
   add_osm_feature(
     key = 'highway', 
     value = c("motorway", "trunk", "primary", "secondary", "tertiary", "residential", "unclassified", "motorway_link", "trunk_link", "primary_link", "secondary_link","tertiary_link", "residential_link")

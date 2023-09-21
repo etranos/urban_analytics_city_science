@@ -1,0 +1,5 @@
+# Urban Analytics and City Science
+
+Arguably, the New York City Taxi was the most popular dataset with two exceptions: Uber movement data and railway networks.  In general, I am quite happy with the capacity you developed during this unit to handle unknown to you, real world data, with attributes that are close to the notion of big data. Most of the submissions illustrated good or very good capacity to access, clean, analyse and critically present aspects of these data. Some submissions also illustrated very good visualisation and modelling skills. In terms of setting up a valid and interesting research project, there was quite some variation: from well justified projects to poorly defined research questions and, consequently, workflows. I enjoyed the interactive maps and figures some of you created as well as the overall .html outputs. Equally, the visual outputs and the structure of some of the submissions  were below what I was hoping. All in all, I am happy with the skills the group developed during the past term.
+
+Prof Emmanouil Tranos

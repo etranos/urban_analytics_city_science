@@ -2,21 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.37">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Emmanouil Tranos">
-<meta name="dcterms.date" content="2022-11-23">
+<meta name="dcterms.date" content="2023-09-21">
 
 <title>Urban analytics and city science - Spatial interaction modelling</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -55,7 +60,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -68,7 +73,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -310,7 +315,7 @@ div.csl-indent {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -344,9 +349,10 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 23, 2022</p>
+      <p class="date">September 21, 2023</p>
     </div>
   </div>
+  
     
   </div>
   
@@ -534,11 +540,11 @@ $ `Other method of travel to work`           &lt;dbl&gt; 4, 2, 7, 0, 0, 0, 0, 0,
 <span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>  <span class="co"># these edges from the network.</span></span>
 <span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Bicycle<span class="sc">!=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Unless you know the local authority codes by hard, it might be useful to also add the corresponding local authority names. These can be easily obtained from the <a href="https://geoportal.statistics.gov.uk/datasets/ons::census-merged-local-authority-districts-december-2011-generalised-clipped-boundaries-in-great-britain/about">ONS</a>. The below code directly downloads a <code>GeoJSON</code> file with the local authorities in England and Wales. If you don’t know what a <code>GeoJSON</code> file is, have a look <a href="https://en.wikipedia.org/wiki/GeoJSON">here</a>. Boundary data can also be obtained by <a href="https://borders.ukdataservice.ac.uk/easy_download.html">UK Data Service</a>.</p>
+<p>Unless you know the local authority codes by hard, it might be useful to also add the corresponding local authority names. These can be easily obtained from the <a href="https://geoportal.statistics.gov.uk/datasets/ons::cmlad-dec-2011-super-generalised-clipped-boundaries-gb/explore?showTable=true">ONS</a>. The below code directly downloads a <code>GeoJSON</code> file with the local authorities in England and Wales. If you don’t know what a <code>GeoJSON</code> file is, have a look <a href="https://en.wikipedia.org/wiki/GeoJSON">here</a>. Boundary data can also be obtained by <a href="https://borders.ukdataservice.ac.uk/easy_download.html">UK Data Service</a>.</p>
 <p>For the time being we are only interested in the local authority names and codes. We will use the spatial object later.</p>
 <p><strong>Tip</strong>: the below code downloads the <code>GeoJSON</code> file over the web. If you want to run the code multiple times, it might be faster to download the file ones, save it on your hard drive and the point this location to <code>st_read()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>la <span class="ot">&lt;-</span><span class="fu">st_read</span>(<span class="st">"https://opendata.arcgis.com/datasets/d54f953d633b45f5a82fdd3c89b4c955_0.geojson"</span>)</span>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>la <span class="ot">&lt;-</span><span class="fu">st_read</span>(<span class="st">"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/CMLAD_Dec_2011_SGCB_GB_2022/FeatureServer/0/query?outFields=*&amp;where=1%3D1&amp;f=geojson"</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(la) </span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>la.names <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(la) <span class="sc">%&gt;%</span> </span>
@@ -576,7 +582,7 @@ $ `Other method of travel to work`           &lt;dbl&gt; 4, 2, 7, 0, 0, 0, 0, 0,
 Columns: 3
 $ Var1  &lt;fct&gt; E41000001, E41000002, E41000003, E41000004, E41000005, E41000006…
 $ Var2  &lt;fct&gt; E41000001, E41000001, E41000001, E41000001, E41000001, E41000001…
-$ value &lt;dbl&gt; 0.00, 14370.86, 20185.71, 11427.54, 23175.73, 175329.74, 164912.…</code></pre>
+$ value &lt;dbl&gt; 0.00, 14338.99, 20147.01, 12892.19, 23203.28, 175341.09, 164899.…</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Please note that the elements of the diagonal are present in this distance matrix.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -591,7 +597,7 @@ $ value &lt;dbl&gt; 0.00, 14370.86, 20185.71, 11427.54, 23175.73, 175329.74, 164
 Columns: 3
 $ Var1  &lt;fct&gt; E41000002, E41000003, E41000004, E41000005, E41000006, E41000007…
 $ Var2  &lt;fct&gt; E41000001, E41000001, E41000001, E41000001, E41000001, E41000001…
-$ value &lt;dbl&gt; 14370.86, 20185.71, 11427.54, 23175.73, 175329.74, 164912.66, 13…</code></pre>
+$ value &lt;dbl&gt; 14338.99, 20147.01, 12892.19, 23203.28, 175341.09, 164899.50, 13…</code></pre>
 </div>
 </div>
 <p>What we want to do is to match the data frame with all the distances with the commuting flows data frame. To do that we will (1) create a new data frame for the origin-destination pair and (2) match the two data frames.</p>
@@ -604,7 +610,7 @@ $ value &lt;dbl&gt; 14370.86, 20185.71, 11427.54, 23175.73, 175329.74, 164912.66
 Columns: 4
 $ Var1    &lt;fct&gt; E41000002, E41000003, E41000004, E41000005, E41000006, E410000…
 $ Var2    &lt;fct&gt; E41000001, E41000001, E41000001, E41000001, E41000001, E410000…
-$ value   &lt;dbl&gt; 14370.86, 20185.71, 11427.54, 23175.73, 175329.74, 164912.66, …
+$ value   &lt;dbl&gt; 14338.99, 20147.01, 12892.19, 23203.28, 175341.09, 164899.50, …
 $ ij.code &lt;chr&gt; "E41000002_E41000001", "E41000003_E41000001", "E41000004_E4100…</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>commuting <span class="ot">&lt;-</span> commuting <span class="sc">%&gt;%</span> </span>
@@ -642,7 +648,7 @@ $ ij.code                                    &lt;chr&gt; "E41000001_E41000002", 
 Columns: 18
 $ Var1                                       &lt;fct&gt; E41000002, E41000003, E4100…
 $ Var2                                       &lt;fct&gt; E41000001, E41000001, E4100…
-$ value                                      &lt;dbl&gt; 14370.86, 20185.71, 11427.5…
+$ value                                      &lt;dbl&gt; 14338.99, 20147.01, 12892.1…
 $ ij.code                                    &lt;chr&gt; "E41000002_E41000001", "E41…
 $ `Area of usual residence`                  &lt;chr&gt; "E41000002", "E41000003", "…
 $ `Area of workplace`                        &lt;chr&gt; "E41000001", "E41000001", "…
@@ -672,7 +678,7 @@ $ `Other method of travel to work`           &lt;dbl&gt; 0, 1, 2, 0, 0, 0, 0, NA
 Columns: 16
 $ i                                          &lt;fct&gt; E41000002, E41000003, E4100…
 $ j                                          &lt;fct&gt; E41000001, E41000001, E4100…
-$ distance                                   &lt;dbl&gt; 14370.86, 20185.71, 11427.5…
+$ distance                                   &lt;dbl&gt; 14338.99, 20147.01, 12892.1…
 $ ij.code                                    &lt;chr&gt; "E41000002_E41000001", "E41…
 $ `All categories: Method of travel to work` &lt;dbl&gt; 990, 558, 2590, 266, 1, 4, …
 $ `Work mainly at or from home`              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, NA, 0,…
@@ -794,21 +800,21 @@ lm(formula = log(`All categories: Method of travel to work` +
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--4.2623 -0.7149 -0.0430  0.6429  8.6146 
+-4.2614 -0.7144 -0.0429  0.6430  8.6140 
 
 Coefficients:
                 Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)     7.961526   0.106137   75.01   &lt;2e-16 ***
-log(distance)  -1.839355   0.004611 -398.87   &lt;2e-16 ***
-log(resident)   0.514276   0.005403   95.19   &lt;2e-16 ***
-log(workplace)  0.852536   0.005186  164.38   &lt;2e-16 ***
+(Intercept)     7.967357   0.106119   75.08   &lt;2e-16 ***
+log(distance)  -1.839401   0.004610 -399.01   &lt;2e-16 ***
+log(resident)   0.514034   0.005402   95.16   &lt;2e-16 ***
+log(workplace)  0.852322   0.005185  164.37   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 1.104 on 115932 degrees of freedom
   (4816 observations deleted due to missingness)
-Multiple R-squared:  0.6442,    Adjusted R-squared:  0.6442 
-F-statistic: 6.997e+04 on 3 and 115932 DF,  p-value: &lt; 2.2e-16</code></pre>
+Multiple R-squared:  0.6444,    Adjusted R-squared:  0.6444 
+F-statistic: 7.002e+04 on 3 and 115932 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>So, the OLS regression estimated the four parameters:</p>
@@ -833,23 +839,23 @@ glm(formula = (`All categories: Method of travel to work`) ~
 
 Deviance Residuals: 
     Min       1Q   Median       3Q      Max  
--343.27    -4.94    -3.17    -1.82   346.33  
+-341.39    -4.93    -3.16    -1.82   340.85  
 
 Coefficients:
                  Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)    11.6302968  0.0091305  1273.8   &lt;2e-16 ***
-log(distance)  -1.8155761  0.0002800 -6483.1   &lt;2e-16 ***
-log(resident)   0.3189626  0.0005445   585.8   &lt;2e-16 ***
-log(workplace)  0.8202729  0.0004197  1954.4   &lt;2e-16 ***
+(Intercept)    11.6641641  0.0091381    1276   &lt;2e-16 ***
+log(distance)  -1.8164748  0.0002803   -6480   &lt;2e-16 ***
+log(resident)   0.3179209  0.0005444     584   &lt;2e-16 ***
+log(workplace)  0.8191649  0.0004200    1951   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for poisson family taken to be 1)
 
     Null deviance: 71855219  on 115935  degrees of freedom
-Residual deviance: 14140526  on 115932  degrees of freedom
+Residual deviance: 14104694  on 115932  degrees of freedom
   (4816 observations deleted due to missingness)
-AIC: 14483130
+AIC: 14447299
 
 Number of Fisher Scoring iterations: 6</code></pre>
 </div>
@@ -954,7 +960,7 @@ log(resident)
 0.514<sup>***</sup>
 </td>
 <td>
-0.319<sup>***</sup>
+0.318<sup>***</sup>
 </td>
 </tr>
 <tr>
@@ -980,10 +986,10 @@ log(resident)
 log(workplace)
 </td>
 <td>
-0.853<sup>***</sup>
+0.852<sup>***</sup>
 </td>
 <td>
-0.820<sup>***</sup>
+0.819<sup>***</sup>
 </td>
 </tr>
 <tr>
@@ -1009,10 +1015,10 @@ log(workplace)
 Constant
 </td>
 <td>
-7.962<sup>***</sup>
+7.967<sup>***</sup>
 </td>
 <td>
-11.630<sup>***</sup>
+11.664<sup>***</sup>
 </td>
 </tr>
 <tr>
@@ -1075,7 +1081,7 @@ Log Likelihood
 <td>
 </td>
 <td>
--7,241,561.000
+-7,223,645.000
 </td>
 </tr>
 <tr>
@@ -1085,7 +1091,7 @@ Akaike Inf. Crit.
 <td>
 </td>
 <td>
-14,483,130.000
+14,447,299.000
 </td>
 </tr>
 <tr>
@@ -1103,7 +1109,7 @@ Residual Std. Error
 F Statistic
 </td>
 <td>
-69,973.050<sup>***</sup> (df = 3; 115932)
+70,016.600<sup>***</sup> (df = 3; 115932)
 </td>
 <td>
 </td>
@@ -1192,14 +1198,14 @@ F Statistic
   <tr>
    <td style="text-align:left;"> lm </td>
    <td style="text-align:right;"> 0.067 </td>
-   <td style="text-align:right;"> 824.062 </td>
-   <td style="text-align:right;"> 214.027 </td>
+   <td style="text-align:right;"> 824.067 </td>
+   <td style="text-align:right;"> 214.033 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> glm </td>
-   <td style="text-align:right;"> 0.423 </td>
-   <td style="text-align:right;"> 687.778 </td>
-   <td style="text-align:right;"> 112.517 </td>
+   <td style="text-align:right;"> 0.422 </td>
+   <td style="text-align:right;"> 687.811 </td>
+   <td style="text-align:right;"> 112.527 </td>
   </tr>
 </tbody>
 </table>
@@ -1289,7 +1295,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -1317,31 +1340,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
