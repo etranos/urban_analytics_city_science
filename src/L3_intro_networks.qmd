@@ -1,5 +1,5 @@
 ---
-title: "Lecture 3: Networks"
+title: "L3: Networks"
 subtitle: "An introduction"
 author: |
   | 

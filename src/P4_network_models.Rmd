@@ -1,5 +1,5 @@
 ---
-title: "Practical 4: Network models in practice"
+title: "P4: Network models in practice"
 author: Emmanouil Tranos
 date: "`r Sys.Date()`"
 output:

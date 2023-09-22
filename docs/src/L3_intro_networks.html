@@ -10,7 +10,7 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.3.353">
 
-  <title>Urban analytics and city science - Lecture 3: Networks</title>
+  <title>Urban analytics and city science - L3: Networks</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -347,7 +347,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Lecture 3: Networks</h1>
+  <h1 class="title">L3: Networks</h1>
   <p class="subtitle">An introduction</p>
 
 <div class="quarto-title-authors">
@@ -569,8 +569,8 @@
 </small><p><small></small></p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-922f87afe136a731d324" style="width:960px;height:288px;"></div>
-<script type="application/json" data-for="htmlwidget-922f87afe136a731d324">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = neato]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B\nA -> C\nA -> D\nΒ -> C\nC -> D\nD -> C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-322f4b381cf896c30f38" style="width:960px;height:288px;"></div>
+<script type="application/json" data-for="htmlwidget-322f4b381cf896c30f38">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = neato]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B\nA -> C\nA -> D\nΒ -> C\nC -> D\nD -> C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -694,8 +694,8 @@
 <h2>2. Undirected, non-weighted networks</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-a52a5269a3e14c487dae" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-a52a5269a3e14c487dae">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B\nA -> C\nA -> D\nB -> A\nB -> C\nC -> A\nC -> B\nC -> D\nD -> A\nD -> C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-c632d3414d1bccf90665" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-c632d3414d1bccf90665">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B\nA -> C\nA -> D\nB -> A\nB -> C\nC -> A\nC -> B\nC -> D\nD -> A\nD -> C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -797,8 +797,8 @@
 <h2>3. Directed, weighted networks</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-5631223ca6d290cab649" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-5631223ca6d290cab649">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B [ penwidth = 3]\nA -> C [ penwidth = 1]\nA -> D [ penwidth = 5]\nB -> C [ penwidth = 1]\nC -> D [ penwidth = 6]\nD -> C [ penwidth = 7]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-85075ff78d749c3c46b1" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-85075ff78d749c3c46b1">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B [ penwidth = 3]\nA -> C [ penwidth = 1]\nA -> D [ penwidth = 5]\nB -> C [ penwidth = 1]\nC -> D [ penwidth = 6]\nD -> C [ penwidth = 7]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -920,8 +920,8 @@
 <h2>4. Undirected, weighted networks</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-4ad7994c29ffce8eb2af" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-4ad7994c29ffce8eb2af">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B [ penwidth = 3]\nA -> C [ penwidth = 1]\nA -> D [ penwidth = 5]\nB -> C [ penwidth = 1]\nB -> A [ penwidth = 3]\nC -> A [ penwidth = 1]\nC -> B [ penwidth = 1]\nC -> D [ penwidth = 6]\nD -> C [ penwidth = 6]\nD -> A [ penwidth = 5]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-1379119617467cba73ba" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-1379119617467cba73ba">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B [ penwidth = 3]\nA -> C [ penwidth = 1]\nA -> D [ penwidth = 5]\nB -> C [ penwidth = 1]\nB -> A [ penwidth = 3]\nC -> A [ penwidth = 1]\nC -> B [ penwidth = 1]\nC -> D [ penwidth = 6]\nD -> C [ penwidth = 6]\nD -> A [ penwidth = 5]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -960,8 +960,8 @@
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-8ce7fa58df2c58b80e35" style="width:960px;height:288px;"></div>
-<script type="application/json" data-for="htmlwidget-8ce7fa58df2c58b80e35">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-27a73c70238a8ac50439" style="width:960px;height:288px;"></div>
+<script type="application/json" data-for="htmlwidget-27a73c70238a8ac50439">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -976,8 +976,8 @@
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-704481c47e68fb2b9adf" style="width:960px;height:288px;"></div>
-<script type="application/json" data-for="htmlwidget-704481c47e68fb2b9adf">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-2d4b1d9dba4a151b4ef1" style="width:960px;height:288px;"></div>
+<script type="application/json" data-for="htmlwidget-2d4b1d9dba4a151b4ef1">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -994,8 +994,8 @@
 </small><p><small></small></p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-6bb14e7a9a8d342aa315" style="width:960px;height:268.8px;"></div>
-<script type="application/json" data-for="htmlwidget-6bb14e7a9a8d342aa315">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-77f2d37818f5eff07f60" style="width:960px;height:268.8px;"></div>
+<script type="application/json" data-for="htmlwidget-77f2d37818f5eff07f60">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1011,8 +1011,8 @@
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-7132a1c61a4409038912" style="width:960px;height:192px;"></div>
-<script type="application/json" data-for="htmlwidget-7132a1c61a4409038912">{"x":{"diagram":"\ndigraph  {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C;   \n      \n# an edge statement\nedge [color = grey]\nA -> B\nB -> A\nB -> C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-524c92a2a9dfdd0dd1af" style="width:960px;height:192px;"></div>
+<script type="application/json" data-for="htmlwidget-524c92a2a9dfdd0dd1af">{"x":{"diagram":"\ndigraph  {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C;   \n      \n# an edge statement\nedge [color = grey]\nA -> B\nB -> A\nB -> C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1036,8 +1036,8 @@
 </small><p><small></small></p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-25000f2e69457e0325b0" style="width:960px;height:240px;"></div>
-<script type="application/json" data-for="htmlwidget-25000f2e69457e0325b0">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\nnode [fillcolor = red]\nEGO\n\n# an edge statement\nedge [color = grey]\n\nEGO -- {A B C D E}\nB -- {C D E}\nC -- {E}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-823ea4d4d42d276269df" style="width:960px;height:240px;"></div>
+<script type="application/json" data-for="htmlwidget-823ea4d4d42d276269df">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\nnode [fillcolor = red]\nEGO\n\n# an edge statement\nedge [color = grey]\n\nEGO -- {A B C D E}\nB -- {C D E}\nC -- {E}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1129,8 +1129,8 @@
 <h2>Degree cenralities</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-b7f35e47b8135689e929" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-b7f35e47b8135689e929">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\nnode [fillcolor = red]\nEGO\n\n# an edge statement\nedge [color = grey]\n\nEGO -- {A B C D E}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-53f56be975b2933844f0" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-53f56be975b2933844f0">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\nnode [fillcolor = red]\nEGO\n\n# an edge statement\nedge [color = grey]\n\nEGO -- {A B C D E}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1138,8 +1138,8 @@
 <h2>Degree cenralities</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-d4990b877bd5c607fa8e" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-d4990b877bd5c607fa8e">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\n# an edge statement\nedge [color = grey]\n\nA -- B\nB -- C\nC -- D\nD -- E\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-4dcb613b01e79693263b" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-4dcb613b01e79693263b">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\n# an edge statement\nedge [color = grey]\n\nA -- B\nB -- C\nC -- D\nD -- E\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1147,8 +1147,8 @@
 <h2>Degree cenralities</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-6a0a6d368f617078224b" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-6a0a6d368f617078224b">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = circo,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\n# an edge statement\nedge [color = grey]\n\nA -- B\nB -- C\nC -- D\nD -- E\nE -- A\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-f276a3059f1ed3d7579a" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-f276a3059f1ed3d7579a">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = circo,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\n# an edge statement\nedge [color = grey]\n\nA -- B\nB -- C\nC -- D\nD -- E\nE -- A\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1229,8 +1229,8 @@
 <p><span class="math inline">\(B_{k} = \sum_{i \not=j \not=k} \frac{g_{ij}(k)}{g_{ij}}\)</span></p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-49d610d7947b5c1488e6" style="width:960px;height:192px;"></div>
-<script type="application/json" data-for="htmlwidget-49d610d7947b5c1488e6">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = BT]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E; G; H; I; J; K\n\nnode [fillcolor = red]\nF\n\n# an edge statement\nedge [color = grey]\n\nA -- {B C D E}\nB -- {C D E}\nC -- {E}\n\nF -- {A H I J K}\nG -- { I J K }\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-32d1db4d498432185b36" style="width:960px;height:192px;"></div>
+<script type="application/json" data-for="htmlwidget-32d1db4d498432185b36">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = BT]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E; G; H; I; J; K\n\nnode [fillcolor = red]\nF\n\n# an edge statement\nedge [color = grey]\n\nA -- {B C D E}\nB -- {C D E}\nC -- {E}\n\nF -- {A H I J K}\nG -- { I J K }\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>

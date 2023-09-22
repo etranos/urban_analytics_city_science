@@ -1,5 +1,5 @@
 ---
-title: "Practical 3: Street network analysis practical: networks within cities"
+title: "P3: Street network analysis practical: networks within cities"
 author: Emmanouil Tranos
 date: "`r Sys.Date()`"
 output:

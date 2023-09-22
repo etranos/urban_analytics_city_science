@@ -1,5 +1,5 @@
 ---
-title: 'Practical 7: Causal design and urban policy evaluation: Potential outcomes & Geo RDD practical'
+title: 'P7: Causal design and urban policy evaluation: Potential outcomes & Geo RDD practical'
 author: "Nick dorward"
 date: "`r Sys.Date()`"
 output:

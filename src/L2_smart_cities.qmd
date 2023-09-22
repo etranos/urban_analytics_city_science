@@ -1,5 +1,5 @@
 ---
-title: "Lecture 2: Smart cities, urban big data, digital twins and other buzz terms"
+title: "L2: Smart cities, urban big data, digital twins and other buzz terms"
 author: |
   | 
   | Emmanouil Tranos

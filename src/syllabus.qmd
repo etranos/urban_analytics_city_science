@@ -19,7 +19,7 @@ editor: source
 |     Week 10    |     27/11/2023    |     30/11/2023    |                     Lecture 6                     |      Practical 6      |                                                          |
 |     Week 11    |     04/12/2023    |     07/12/2023    |                                                   |      Practical 6      |                                                          |
 |     Week 12    |     11/12/2023    |     14/12/2023    |  Mini Causal lecture + catching up on practicals  |                       | Lecture 7 and   Practical 7 is optional          |
-| **Christmass** |   **Christmass**  |   **Christmass**  |                   **Christmass**                  |     **Christmass**    |                      **Christmass**                      |
+| **Christmas** |   **Christmas**  |   **Christmas**  |                   **Christmas**                  |     **Christmas**    |                      **Christmas**                      |
 |                |                   |     11/01/2024    | Assignment submission - accounts for 100% of mark |                       |                                                          |
 
 **Decompressed Schedule**

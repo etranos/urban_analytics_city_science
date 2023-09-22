@@ -1,5 +1,5 @@
 ---
-title: "Lecture 6: Diversity in cities"
+title: "L6: Diversity in cities"
 author: |
   | 
   | Emmanouil Tranos

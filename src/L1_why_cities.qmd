@@ -1,5 +1,5 @@
 ---
-title: "Lecture 1: Cities, a very very brief introduction"
+title: "L1: Cities, a very very brief introduction"
 author: |
   | 
   | Emmanouil Tranos

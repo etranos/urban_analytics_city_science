@@ -1,5 +1,5 @@
 ---
-title: "Pracctical 6: Accessibility in practice"
+title: "P6: Accessibility in practice"
 author: Emmanouil Tranos
 date: "`r Sys.Date()`"
 output:
