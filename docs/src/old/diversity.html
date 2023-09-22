@@ -1,0 +1,2279 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Urban analytics and city science - Diversity in cities</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../src/why_cities.html">Lectures</a></li><li class="breadcrumb-item"><a href="../src/diversity.html">Diversity in cities</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Urban analytics and city science</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/etranos/urban_analytics_city_science" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Content</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/description.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit description and aims</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/readings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Key readings</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/project.md" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assessment</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Lectures</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/why_cities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cities, a very very brief introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/smart_cities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Smart cities, urban big data, digital twins and other buzz terms</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/intro_networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Networks: an introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/network_science.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Network science, urban laws and scaling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/transport_geography.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Methods in transport geography</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/diversity.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Diversity in cities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/Urban_policy___causal_design.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Urban policies and causality</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Practicals</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/apis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">APIs and urban data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/network_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Network analysis practical: networks of cities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/street_networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Street network analysis practical: networks within cities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/network_models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Network models in practice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/sim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial interaction modelling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/accessibility_full.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Accessibility in practice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/causality.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Causal design and urban policy evaluation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Unit leader</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://etranos.info/" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Professor Emmanouil Tranos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#economic-diversity" id="toc-economic-diversity" class="nav-link active" data-scroll-target="#economic-diversity">Economic diversity</a></li>
+  <li><a href="#opposing-forces" id="toc-opposing-forces" class="nav-link" data-scroll-target="#opposing-forces">Opposing forces</a></li>
+  <li><a href="#opposing-forces-1" id="toc-opposing-forces-1" class="nav-link" data-scroll-target="#opposing-forces-1">Opposing forces</a></li>
+  <li><a href="#on-the-ground" id="toc-on-the-ground" class="nav-link" data-scroll-target="#on-the-ground">On the ground</a></li>
+  <li><a href="#spieces-richness" id="toc-spieces-richness" class="nav-link" data-scroll-target="#spieces-richness">Spieces richness…</a></li>
+  <li><a href="#shannon-entropy" id="toc-shannon-entropy" class="nav-link" data-scroll-target="#shannon-entropy">Shannon entropy</a></li>
+  <li><a href="#herfindahl-hirschman-index" id="toc-herfindahl-hirschman-index" class="nav-link" data-scroll-target="#herfindahl-hirschman-index">Herfindahl-Hirschman index</a></li>
+  <li><a href="#herfindahl-hirschman-index-1" id="toc-herfindahl-hirschman-index-1" class="nav-link" data-scroll-target="#herfindahl-hirschman-index-1">Herfindahl-Hirschman index</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
+  <ul class="collapse">
+  <li><a href="#relatedness" id="toc-relatedness" class="nav-link" data-scroll-target="#relatedness">Relatedness</a></li>
+  <li><a href="#relatedness-1" id="toc-relatedness-1" class="nav-link" data-scroll-target="#relatedness-1">Relatedness</a></li>
+  <li><a href="#economic-complexity" id="toc-economic-complexity" class="nav-link" data-scroll-target="#economic-complexity">Economic complexity</a></li>
+  <li><a href="#measuring-diversity" id="toc-measuring-diversity" class="nav-link" data-scroll-target="#measuring-diversity">Measuring diversity</a></li>
+  <li><a href="#measuring-diversity-1" id="toc-measuring-diversity-1" class="nav-link" data-scroll-target="#measuring-diversity-1">Measuring diversity</a></li>
+  <li><a href="#measuring-diversity-2" id="toc-measuring-diversity-2" class="nav-link" data-scroll-target="#measuring-diversity-2">Measuring diversity</a></li>
+  <li><a href="#measuring-diversity-3" id="toc-measuring-diversity-3" class="nav-link" data-scroll-target="#measuring-diversity-3">Measuring diversity</a></li>
+  <li><a href="#mapping-diversity" id="toc-mapping-diversity" class="nav-link" data-scroll-target="#mapping-diversity">Mapping diversity</a></li>
+  <li><a href="#clustering" id="toc-clustering" class="nav-link" data-scroll-target="#clustering">Clustering</a></li>
+  <li><a href="#clustering-1" id="toc-clustering-1" class="nav-link" data-scroll-target="#clustering-1">Clustering</a></li>
+  <li><a href="#k-means" id="toc-k-means" class="nav-link" data-scroll-target="#k-means"><em>k</em>-means</a></li>
+  <li><a href="#k-means-1" id="toc-k-means-1" class="nav-link" data-scroll-target="#k-means-1"><em>k</em>-means</a></li>
+  <li><a href="#k-means-2" id="toc-k-means-2" class="nav-link" data-scroll-target="#k-means-2"><em>k</em>-means</a></li>
+  <li><a href="#choosing-k" id="toc-choosing-k" class="nav-link" data-scroll-target="#choosing-k">Choosing <em>k</em></a></li>
+  <li><a href="#choosing-k-1" id="toc-choosing-k-1" class="nav-link" data-scroll-target="#choosing-k-1">Choosing <em>k</em></a></li>
+  <li><a href="#hierarchical-clustering" id="toc-hierarchical-clustering" class="nav-link" data-scroll-target="#hierarchical-clustering">Hierarchical clustering</a></li>
+  <li><a href="#hierarchical-clustering-1" id="toc-hierarchical-clustering-1" class="nav-link" data-scroll-target="#hierarchical-clustering-1">Hierarchical clustering</a></li>
+  <li><a href="#optimal-number-of-clusters" id="toc-optimal-number-of-clusters" class="nav-link" data-scroll-target="#optimal-number-of-clusters">Optimal number of clusters</a></li>
+  <li><a href="#optimal-number-of-clusters-1" id="toc-optimal-number-of-clusters-1" class="nav-link" data-scroll-target="#optimal-number-of-clusters-1">Optimal number of clusters</a></li>
+  <li><a href="#clusters-in-space" id="toc-clusters-in-space" class="nav-link" data-scroll-target="#clusters-in-space">Clusters in space</a></li>
+  <li><a href="#clusters-in-space-1" id="toc-clusters-in-space-1" class="nav-link" data-scroll-target="#clusters-in-space-1">Clusters in space</a></li>
+  <li><a href="#financial-management-in-london" id="toc-financial-management-in-london" class="nav-link" data-scroll-target="#financial-management-in-london">Financial management in London</a></li>
+  <li><a href="#clusters-in-space-k-means" id="toc-clusters-in-space-k-means" class="nav-link" data-scroll-target="#clusters-in-space-k-means">Clusters in space, <em>k</em>-means</a></li>
+  <li><a href="#clusters-in-space-k-means-1" id="toc-clusters-in-space-k-means-1" class="nav-link" data-scroll-target="#clusters-in-space-k-means-1">Clusters in space, <em>k</em>-means</a></li>
+  <li><a href="#clusters-in-space-hdbscan" id="toc-clusters-in-space-hdbscan" class="nav-link" data-scroll-target="#clusters-in-space-hdbscan">Clusters in space, hdbscan</a></li>
+  <li><a href="#clusters-in-space-hdbscan-1" id="toc-clusters-in-space-hdbscan-1" class="nav-link" data-scroll-target="#clusters-in-space-hdbscan-1">Clusters in space, hdbscan</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="diversity.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Diversity in cities</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p> </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="economic-diversity" class="level2">
+<h2 class="anchored" data-anchor-id="economic-diversity">Economic diversity</h2>
+<ul>
+<li><p>Production, i.e.&nbsp;firms</p></li>
+<li><p>Consumption, i.e.&nbsp;product variety</p></li>
+<li><p>Labour pool, i.e.&nbsp;skills in labour market</p></li>
+</ul>
+<p>In general is <em>a good thing</em> for:</p>
+<ul>
+<li><p>urban economies</p></li>
+<li><p>productivity</p></li>
+<li><p>urban and industrial agglomeration</p></li>
+</ul>
+</section>
+<section id="opposing-forces" class="level2">
+<h2 class="anchored" data-anchor-id="opposing-forces">Opposing forces</h2>
+<ul>
+<li><p>Within-sector or Marshall–Arrow–Romer (MAR) spillovers</p></li>
+<li><p>Between-sector or Jacobs spillovers</p></li>
+<li><p>Large empirical literature trying to identify the optimal ratio, e.g. <span class="citation" data-cites="saviotti2008export">Saviotti and Frenken (<a href="#ref-saviotti2008export" role="doc-biblioref">2008</a>)</span> and <span class="citation" data-cites="caragliu2016both">Caragliu, Dominicis, and Groot (<a href="#ref-caragliu2016both" role="doc-biblioref">2016</a>)</span></p></li>
+<li><p>MAR externalities (or spillovers): good for productivity and short-term growth</p></li>
+<li><p>Jacobean externalities: good for innovation and long-term growth</p></li>
+</ul>
+</section>
+<section id="opposing-forces-1" class="level2">
+<h2 class="anchored" data-anchor-id="opposing-forces-1">Opposing forces</h2>
+<p>Using more clear economics terminology <span class="citation" data-cites="fujita1989urban">(<a href="#ref-fujita1989urban" role="doc-biblioref">Fujita et al. 1989</a>)</span>:</p>
+<ul>
+<li><p>Diverse cities (heterogeneous agglomerations) enjoy economies of scope</p></li>
+<li><p>Homogeneous agglomeration enjoy increasing returns from economies of scale</p></li>
+</ul>
+</section>
+<section id="on-the-ground" class="level2">
+<h2 class="anchored" data-anchor-id="on-the-ground">On the ground</h2>
+<ul>
+<li><p>Ambiguous concepts</p></li>
+<li><p>Variety, diversity, difference: a relative concept of agglomeration and the clustering of activities</p></li>
+<li><p>Not only higher ‘abundance’, ‘difference’ or ‘number’, but also the degrees of ‘richness’, ‘concentration’ or ‘evenness’ <span class="citation" data-cites="yuo2021environmental">(<a href="#ref-yuo2021environmental" role="doc-biblioref">Yuo and Tseng 2021</a>)</span></p></li>
+<li><p>Different ways to measure <span class="citation" data-cites="bettencourt2021introduction">(<a href="#ref-bettencourt2021introduction" role="doc-biblioref">Bettencourt 2021</a>)</span></p></li>
+</ul>
+</section>
+<section id="spieces-richness" class="level2">
+<h2 class="anchored" data-anchor-id="spieces-richness">Spieces richness…</h2>
+<ul>
+<li><p>… aka variety</p></li>
+<li><p><span class="math inline">\(D = \sum_{i}^n p_{i}^0\)</span></p></li>
+<li><p><span class="math inline">\(p_i\)</span> is the proportion of data points in the <span class="math inline">\(i\)</span>th category</p></li>
+<li><p><span class="math inline">\(n\)</span> is the number of total categories</p></li>
+<li><p>A count of different species / categories / …</p></li>
+</ul>
+<p><strong>Interpretation:</strong></p>
+<ul>
+<li><p>Plurality</p></li>
+<li><p>Availability of options</p></li>
+</ul>
+</section>
+<section id="shannon-entropy" class="level2">
+<h2 class="anchored" data-anchor-id="shannon-entropy">Shannon entropy</h2>
+<ul>
+<li><p><span class="math inline">\(H = -\sum_{i}^n p_{i} \ln{p_{i}}\)</span></p></li>
+<li><p><span class="math inline">\(n\)</span> is the number of total categories</p></li>
+<li><p><span class="math inline">\(p_i\)</span> is the proportion of data points in the <span class="math inline">\(i\)</span>th category</p></li>
+<li><p>Probably the most common diversity index.</p></li>
+<li><p><strong>Interpretation:</strong></p>
+<ul>
+<li><p>If one category dominates ➔ less surprise ➔ low entropy</p></li>
+<li><p>No category dominates ➔ more surprise ➔ high entropy</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="herfindahl-hirschman-index" class="level2">
+<h2 class="anchored" data-anchor-id="herfindahl-hirschman-index">Herfindahl-Hirschman index</h2>
+<ul>
+<li><p><span class="math inline">\(HHI = \sum_{i}^{n}(p_{i}^2)\)</span></p></li>
+<li><p><span class="math inline">\(p_i\)</span> is the proportion of data points in the <span class="math inline">\(i\)</span>th category</p></li>
+<li><p>Concentration of the market.</p></li>
+<li><p><strong>Interpretation:</strong></p>
+<ul>
+<li><p><span class="math inline">\(1/n \leq HHI \leq 1\)</span></p></li>
+<li><p>Two scenarios:</p></li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>HHI_1 <span class="ot">=</span> .<span class="dv">8</span><span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> .<span class="dv">05</span><span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> .<span class="dv">05</span><span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> .<span class="dv">1</span><span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>HHI_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.655</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>HHI_2 <span class="ot">=</span> .<span class="dv">25</span><span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> .<span class="dv">25</span><span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> .<span class="dv">25</span><span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> .<span class="dv">25</span><span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>HHI_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.25</code></pre>
+</div>
+</div>
+</section>
+<section id="herfindahl-hirschman-index-1" class="level2">
+<h2 class="anchored" data-anchor-id="herfindahl-hirschman-index-1">Herfindahl-Hirschman index</h2>
+<ul>
+<li><p>Caution: alternative specification</p></li>
+<li><p><span class="math inline">\(HHI = 1- \sum_{i}^{n}(p_{i}^2)\)</span></p></li>
+</ul>
+</section>
+<section id="examples" class="level1">
+<h1>Examples</h1>
+<hr>
+<p><img src="images/paper_example1.png" class="img-fluid"></p>
+<hr>
+<p><img src="images/paper_example2.png" class="img-fluid"></p>
+<section id="relatedness" class="level2">
+<h2 class="anchored" data-anchor-id="relatedness">Relatedness</h2>
+<ul>
+<li><p><em>Relatedness</em> spans the continuum between MAR and Jacobs <span class="citation" data-cites="hidalgo2021economic">(<a href="#ref-hidalgo2021economic" role="doc-biblioref">Hidalgo 2021</a>)</span></p></li>
+<li><p>Related activities are neither exactly the same nor completely different <span class="citation" data-cites="frenken2007related boschma2012technological">(<a href="#ref-frenken2007related" role="doc-biblioref">Frenken, Van Oort, and Verburg 2007</a>; <a href="#ref-boschma2012technological" role="doc-biblioref">Boschma et al. 2012</a>)</span></p></li>
+<li><p>Why? Because:</p>
+<ul>
+<li><p>identical activities compete for customers and resources,</p></li>
+<li><p>no learning between very dissimilar economic activities</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="relatedness-1" class="level2">
+<h2 class="anchored" data-anchor-id="relatedness-1">Relatedness</h2>
+<ul>
+<li>Absorptive capacity: a firm’s capacity to absorb new knowledge depends on its prior level of related knowledge <span class="citation" data-cites="cohen1990absorptive">(<a href="#ref-cohen1990absorptive" role="doc-biblioref">Cohen and Levinthal 1990</a>)</span></li>
+</ul>
+</section>
+<section id="economic-complexity" class="level2">
+<h2 class="anchored" data-anchor-id="economic-complexity">Economic complexity</h2>
+<ul>
+<li><p>Large scale fine-grained data on economic activities</p></li>
+<li><p>Learn about abstract factors of production and the way they combine into outputs</p></li>
+<li><p>Dimensionality reduction techniques to data on the geography of activities, e.g.&nbsp;employment by industry or patents by technology</p></li>
+<li><p>Machine learning and network techniques to predict and explain the economic trajectories of countries, cities and regions</p></li>
+</ul>
+<p>For a review, check <span class="citation" data-cites="hidalgo2021economic">Hidalgo (<a href="#ref-hidalgo2021economic" role="doc-biblioref">2021</a>)</span> and <span class="citation" data-cites="balland2022new">Balland et al. (<a href="#ref-balland2022new" role="doc-biblioref">2022</a>)</span>.</p>
+</section>
+<section id="measuring-diversity" class="level2">
+<h2 class="anchored" data-anchor-id="measuring-diversity">Measuring diversity</h2>
+<iframe src="https://www.gov.uk/government/organisations/companies-house" width="800" height="600" frameborder="0" scrolling="yes">
+</iframe>
+</section>
+<section id="measuring-diversity-1" class="level2">
+<h2 class="anchored" data-anchor-id="measuring-diversity-1">Measuring diversity</h2>
+<ul>
+<li><p>Go to <a href="https://data.london.gov.uk/dataset/directory-of-london-businesses" target="_blank">data.london.gov.uk</a></p></li>
+<li><p>Download and and save locally the <code>Businesses-in-London.csv</code></p></li>
+<li><p>Make sure you know the file location!</p></li>
+<li><p>We will use the <code>REAT</code> and <code>entropy</code> packages. Check what these packages do <a href="https://cran.r-project.org/web/packages/REAT/REAT.pdf" target="_blank">here</a> and <a href="https://cran.r-project.org/web/packages/entropy/entropy.pdf" target="_blank">here</a>.</p></li>
+<li><p>Install them if needed with <code>install.packages("packagename")</code></p></li>
+</ul>
+</section>
+<section id="measuring-diversity-2" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="measuring-diversity-2">Measuring diversity</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co"># for data wrangling</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rprojroot)  <span class="co"># for relative paths</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(REAT)       <span class="co"># for diversity measures</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'REAT'
+
+The following object is masked from 'package:readr':
+
+    spec</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(entropy)    <span class="co"># for entropy</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cluster)    <span class="co"># for cluster analysis</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra) <span class="co"># help functions for clustering </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra) <span class="co"># for nice html tables</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'kableExtra'
+
+The following object is masked from 'package:dplyr':
+
+    group_rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dbscan)     <span class="co"># for HDBSCAL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dbscan'
+
+The following object is masked from 'package:stats':
+
+    as.dendrogram</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)         <span class="co"># for mapping</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Linking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is the project path</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">find_rstudio_root_file</span>()</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>path.data <span class="ot">&lt;-</span> <span class="fu">paste0</span>(path, <span class="st">"/data/businesses-in-london.csv"</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>london.firms <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(path.data) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: One or more parsing issues, call `problems()` on your data frame for details,
+e.g.:
+  dat &lt;- vroom(...)
+  problems(dat)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 1403160 Columns: 104
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (71): CompanyName, CompanyNumber, RegAddress.CareOf, RegAddress.POBox, R...
+dbl (19): Accounts.AccountRefDay, Accounts.AccountRefMonth, Mortgages.NumMor...
+lgl (14): DissolutionDate, PreviousName_5.CONDATE, PreviousName_5.CompanyNam...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>london.firms.sum <span class="ot">&lt;-</span> london.firms <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(SICCode.SicText_1<span class="sc">!=</span><span class="st">"None Supplied"</span>) <span class="sc">%&gt;%</span> <span class="co"># dropping NAs in essence</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(oslaua, SICCode.SicText_1) <span class="sc">%&gt;%</span>        <span class="co"># grouping by Local Authority and SIC code</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span>                         <span class="co"># summarise: n is the number of firms per Local Authority and SIC code</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total =</span> <span class="fu">sum</span>(n),                         <span class="co"># total equal all firms</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">freq =</span> n <span class="sc">/</span> total) <span class="sc">%&gt;%</span>                   <span class="co"># just a frequency</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(oslaua) <span class="sc">%&gt;%</span>                           <span class="co"># grouping again only by Local Authority</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">richness =</span> <span class="fu">n_distinct</span>(SICCode.SicText_1), <span class="co"># the number of distinct SIC per Local Authority</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">entropy =</span> <span class="fu">entropy</span>(freq, <span class="at">method =</span> <span class="st">"ML"</span>),   <span class="co"># entropy for each Local Authority, we did the first group_by() and mutate() to be                                                           able to calculate freq so we can calculate entropy</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">herf =</span> <span class="fu">herf</span>(n)) <span class="sc">%&gt;%</span>                       <span class="co"># HHI for each local authority</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>herf)                                      <span class="co"># sort based on HHI (descending)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'oslaua'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>london.firms.sum <span class="sc">%&gt;%</span> <span class="fu">kbl</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> F) <span class="sc">%&gt;%</span>                   <span class="co"># A nice(r) table</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">"800px"</span>, <span class="at">height =</span> <span class="st">"300px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:800px; ">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">oslaua</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">richness</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">entropy</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">herf</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">E09000013</td>
+<td style="text-align: right;">602</td>
+<td style="text-align: right;">4.637865</td>
+<td style="text-align: right;">0.0301165</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000001</td>
+<td style="text-align: right;">744</td>
+<td style="text-align: right;">4.520774</td>
+<td style="text-align: right;">0.0288396</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000033</td>
+<td style="text-align: right;">827</td>
+<td style="text-align: right;">4.607933</td>
+<td style="text-align: right;">0.0258339</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000003</td>
+<td style="text-align: right;">723</td>
+<td style="text-align: right;">4.671225</td>
+<td style="text-align: right;">0.0233361</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000008</td>
+<td style="text-align: right;">678</td>
+<td style="text-align: right;">4.786546</td>
+<td style="text-align: right;">0.0221182</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000027</td>
+<td style="text-align: right;">558</td>
+<td style="text-align: right;">4.712318</td>
+<td style="text-align: right;">0.0220274</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000015</td>
+<td style="text-align: right;">633</td>
+<td style="text-align: right;">4.730619</td>
+<td style="text-align: right;">0.0205194</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000010</td>
+<td style="text-align: right;">667</td>
+<td style="text-align: right;">4.790814</td>
+<td style="text-align: right;">0.0204714</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000007</td>
+<td style="text-align: right;">827</td>
+<td style="text-align: right;">4.829186</td>
+<td style="text-align: right;">0.0204085</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000020</td>
+<td style="text-align: right;">577</td>
+<td style="text-align: right;">4.774282</td>
+<td style="text-align: right;">0.0196181</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000030</td>
+<td style="text-align: right;">690</td>
+<td style="text-align: right;">4.802693</td>
+<td style="text-align: right;">0.0193494</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000025</td>
+<td style="text-align: right;">623</td>
+<td style="text-align: right;">4.816502</td>
+<td style="text-align: right;">0.0188794</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000032</td>
+<td style="text-align: right;">571</td>
+<td style="text-align: right;">4.831936</td>
+<td style="text-align: right;">0.0184425</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000026</td>
+<td style="text-align: right;">630</td>
+<td style="text-align: right;">4.806874</td>
+<td style="text-align: right;">0.0180738</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000012</td>
+<td style="text-align: right;">729</td>
+<td style="text-align: right;">4.915068</td>
+<td style="text-align: right;">0.0178886</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000014</td>
+<td style="text-align: right;">595</td>
+<td style="text-align: right;">4.830779</td>
+<td style="text-align: right;">0.0178559</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000019</td>
+<td style="text-align: right;">803</td>
+<td style="text-align: right;">4.904964</td>
+<td style="text-align: right;">0.0178424</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000006</td>
+<td style="text-align: right;">599</td>
+<td style="text-align: right;">4.833756</td>
+<td style="text-align: right;">0.0177523</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000021</td>
+<td style="text-align: right;">529</td>
+<td style="text-align: right;">4.856868</td>
+<td style="text-align: right;">0.0176720</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000004</td>
+<td style="text-align: right;">569</td>
+<td style="text-align: right;">4.849445</td>
+<td style="text-align: right;">0.0176348</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000024</td>
+<td style="text-align: right;">582</td>
+<td style="text-align: right;">4.860828</td>
+<td style="text-align: right;">0.0168338</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000018</td>
+<td style="text-align: right;">603</td>
+<td style="text-align: right;">4.906424</td>
+<td style="text-align: right;">0.0163947</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000029</td>
+<td style="text-align: right;">543</td>
+<td style="text-align: right;">4.879529</td>
+<td style="text-align: right;">0.0162662</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000022</td>
+<td style="text-align: right;">594</td>
+<td style="text-align: right;">4.925276</td>
+<td style="text-align: right;">0.0157286</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000017</td>
+<td style="text-align: right;">640</td>
+<td style="text-align: right;">4.960676</td>
+<td style="text-align: right;">0.0153900</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000005</td>
+<td style="text-align: right;">644</td>
+<td style="text-align: right;">4.958913</td>
+<td style="text-align: right;">0.0146799</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000016</td>
+<td style="text-align: right;">564</td>
+<td style="text-align: right;">4.936603</td>
+<td style="text-align: right;">0.0145663</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000028</td>
+<td style="text-align: right;">681</td>
+<td style="text-align: right;">4.996227</td>
+<td style="text-align: right;">0.0145643</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000002</td>
+<td style="text-align: right;">543</td>
+<td style="text-align: right;">4.916217</td>
+<td style="text-align: right;">0.0143203</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000009</td>
+<td style="text-align: right;">645</td>
+<td style="text-align: right;">4.992793</td>
+<td style="text-align: right;">0.0142574</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000031</td>
+<td style="text-align: right;">587</td>
+<td style="text-align: right;">4.977460</td>
+<td style="text-align: right;">0.0136438</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000011</td>
+<td style="text-align: right;">565</td>
+<td style="text-align: right;">4.995980</td>
+<td style="text-align: right;">0.0136430</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000023</td>
+<td style="text-align: right;">540</td>
+<td style="text-align: right;">5.008342</td>
+<td style="text-align: right;">0.0130329</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+</div>
+</section>
+<section id="measuring-diversity-3" class="level2">
+<h2 class="anchored" data-anchor-id="measuring-diversity-3">Measuring diversity</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You don’t know what local authorities these codes refer to. You should download the codes and names and join them with your data from <a href="https://geoportal.statistics.gov.uk/datasets/ons::local-authority-districts-december-2021-uk-bfe-1/explore" target="_blank">here</a>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Discuss what we can learn from this exercise.</p>
+<p>Can you think of a way to understand how different these indices are among London’s Local Authorities?</p>
+</div>
+</div>
+</section>
+<section id="mapping-diversity" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="mapping-diversity">Mapping diversity</h2>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>path.shape <span class="ot">&lt;-</span> <span class="fu">paste0</span>(path, <span class="st">"/data/Local_Authority_Districts_(May_2021)_UK_BFE.geojson"</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>london <span class="ot">&lt;-</span> <span class="fu">st_read</span>(path.shape, <span class="at">quiet =</span> T) <span class="sc">%&gt;%</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(LAD21CD <span class="sc">%in%</span> (london.firms<span class="sc">$</span>oslaua))</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>london <span class="ot">&lt;-</span> <span class="fu">merge</span>(london, london.firms.sum, <span class="at">by.x =</span> <span class="st">"LAD21CD"</span>, <span class="at">by.y =</span> <span class="st">"oslaua"</span> )</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> london, <span class="fu">aes</span>(<span class="at">fill =</span> entropy), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Business diversity in London' Local Autorities"</span>,</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Entropy"</span>) <span class="sc">+</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="co"># centres the title</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="diversity_files/figure-html/maps-1.png" class="img-fluid" width="672"></p>
+</section>
+<section id="clustering" class="level2">
+<h2 class="anchored" data-anchor-id="clustering">Clustering</h2>
+<ul>
+<li><p>Reducing the dimensions of the observation space</p></li>
+<li><p>Classification of observations into (exclusive) groups</p></li>
+<li><p>Distance or (dis)similarity between each pair of observations to create a distance or dissimilarity or matrix</p></li>
+<li><p>Observations within the same group are as similar as possible</p></li>
+<li><p>Based on <span class="citation" data-cites="boehmke2019hands">Boehmke and Greenwell (<a href="#ref-boehmke2019hands" role="doc-biblioref">2019</a>)</span> available <a href="https://bradleyboehmke.github.io/HOML/" target="_blank">here</a></p></li>
+<li><p>Plenty of other resources online and in textbooks</p></li>
+</ul>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/classical_ml.png" class="img-fluid figure-img" target="_blank"></p>
+<figcaption class="figure-caption">Source: <a href="https://medium.com/@recrosoft.io/supervised-vs-unsupervised-learning-key-differences-cdd46206cdcb">medium.com</a></figcaption>
+</figure>
+</div>
+</section>
+<section id="clustering-1" class="level2">
+<h2 class="anchored" data-anchor-id="clustering-1">Clustering</h2>
+<ol type="1">
+<li><p><em>k</em>-means</p></li>
+<li><p>Hierarchical clustering</p></li>
+</ol>
+</section>
+<section id="k-means" class="level2">
+<h2 class="anchored" data-anchor-id="k-means"><em>k</em>-means</h2>
+<div class="r-fit-text">
+<ol type="1">
+<li><p><em>k</em> is the number of clusters and is pre-defined</p></li>
+<li><p>The algorithm selects <em>k</em> random observations (starting centres)</p></li>
+<li><p>The remaining observations are assigned to the nearest centre</p></li>
+<li><p>Recalculates the new centres</p></li>
+<li><p>Re-check cluster assignment</p></li>
+<li><p>Iterative process to minimise <em>within-cluster variation</em> until convergence</p></li>
+</ol>
+</div>
+<p><span class="math inline">\(SS_{within} = \sum_{k=1}^k W(C_{k}) = \sum_{k=1}^k \sum_{x_i\in C_K}(x_i-\mu_k)^2\)</span></p>
+</section>
+<section id="k-means-1" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="k-means-1"><em>k</em>-means</h2>
+<p>First, create an appropriate data frame</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>la.sic <span class="ot">&lt;-</span> london.firms <span class="sc">%&gt;%</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(SICCode.SicText_1<span class="sc">!=</span><span class="st">"None Supplied"</span>) <span class="sc">%&gt;%</span> <span class="co"># Drop firms which haven't declared SIC code</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(oslaua, SICCode.SicText_1) <span class="sc">%&gt;%</span>        <span class="co"># Group by Local Authorities and SIC code</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span>                         <span class="co"># Summarise; n = number of observations</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total =</span> <span class="fu">sum</span>(n),                         <span class="co"># New column: total number of observations</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">freq =</span> n <span class="sc">/</span> total) <span class="sc">%&gt;%</span>                   <span class="co"># New column: frequency</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(oslaua,<span class="sc">-</span>n) <span class="sc">%&gt;%</span>                         <span class="co"># Just arrange by Local Authority and descenting order of n</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n, <span class="sc">-</span>total) <span class="sc">%&gt;%</span>                         <span class="co"># Drop n and total, we don't need them any more.</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> SICCode.SicText_1, <span class="at">values_from =</span> freq) <span class="sc">%&gt;%</span> <span class="co"># Data transformation: from long to wide. Have a look: https://tidyr.tidyverse.org/reference/pivot_wider.html</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace</span>(<span class="fu">is.na</span>(.), <span class="dv">0</span>)                          <span class="co"># Replace any missing values with 0 as missing value represent SIC codes with 0 frequency</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'oslaua'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>la.sic <span class="sc">%&gt;%</span>  </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">%&gt;%</span>  <span class="co"># Select the first 20 columns as there 1037 in total</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()   <span class="co"># Nice(r) table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">oslaua</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">82990 - Other business support service activities n.e.c.</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">64209 - Activities of other holding companies n.e.c.</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">70229 - Management consultancy activities other than financial management</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">64999 - Financial intermediation not elsewhere classified</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">99999 - Dormant Company</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">74990 - Non-trading company</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">70100 - Activities of head offices</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">68209 - Other letting and operating of own or leased real estate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">62020 - Information technology consultancy activities</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">68100 - Buying and selling of own real estate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">65120 - Non-life insurance</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">96090 - Other service activities n.e.c.</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">41100 - Development of building projects</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">62012 - Business and domestic software development</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">62090 - Other information technology service activities</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">35110 - Production of electricity</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">64205 - Activities of financial services holding companies</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">74909 - Other professional, scientific and technical activities n.e.c.</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">65110 - Life insurance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">E09000001</td>
+<td style="text-align: right;">0.1108145</td>
+<td style="text-align: right;">0.0606884</td>
+<td style="text-align: right;">0.0401823</td>
+<td style="text-align: right;">0.0379038</td>
+<td style="text-align: right;">0.0363252</td>
+<td style="text-align: right;">0.0361787</td>
+<td style="text-align: right;">0.0271462</td>
+<td style="text-align: right;">0.0261046</td>
+<td style="text-align: right;">0.0247376</td>
+<td style="text-align: right;">0.0239889</td>
+<td style="text-align: right;">0.0239238</td>
+<td style="text-align: right;">0.0232403</td>
+<td style="text-align: right;">0.0208642</td>
+<td style="text-align: right;">0.0198714</td>
+<td style="text-align: right;">0.0193018</td>
+<td style="text-align: right;">0.0183579</td>
+<td style="text-align: right;">0.0161282</td>
+<td style="text-align: right;">0.0155586</td>
+<td style="text-align: right;">0.0117829</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000002</td>
+<td style="text-align: right;">0.0270344</td>
+<td style="text-align: right;">0.0027363</td>
+<td style="text-align: right;">0.0241340</td>
+<td style="text-align: right;">0.0024626</td>
+<td style="text-align: right;">0.0061840</td>
+<td style="text-align: right;">0.0026816</td>
+<td style="text-align: right;">0.0013681</td>
+<td style="text-align: right;">0.0173480</td>
+<td style="text-align: right;">0.0254474</td>
+<td style="text-align: right;">0.0313030</td>
+<td style="text-align: right;">0.0001095</td>
+<td style="text-align: right;">0.0348602</td>
+<td style="text-align: right;">0.0163629</td>
+<td style="text-align: right;">0.0068954</td>
+<td style="text-align: right;">0.0107262</td>
+<td style="text-align: right;">0.0000547</td>
+<td style="text-align: right;">0.0004378</td>
+<td style="text-align: right;">0.0078258</td>
+<td style="text-align: right;">0.0000547</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000003</td>
+<td style="text-align: right;">0.0600694</td>
+<td style="text-align: right;">0.0131911</td>
+<td style="text-align: right;">0.0403222</td>
+<td style="text-align: right;">0.0081328</td>
+<td style="text-align: right;">0.0314536</td>
+<td style="text-align: right;">0.0152407</td>
+<td style="text-align: right;">0.0037313</td>
+<td style="text-align: right;">0.0658109</td>
+<td style="text-align: right;">0.0258041</td>
+<td style="text-align: right;">0.0686751</td>
+<td style="text-align: right;">0.0003942</td>
+<td style="text-align: right;">0.0442374</td>
+<td style="text-align: right;">0.0313223</td>
+<td style="text-align: right;">0.0093678</td>
+<td style="text-align: right;">0.0109181</td>
+<td style="text-align: right;">0.0010511</td>
+<td style="text-align: right;">0.0012876</td>
+<td style="text-align: right;">0.0106816</td>
+<td style="text-align: right;">0.0003022</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000004</td>
+<td style="text-align: right;">0.0714510</td>
+<td style="text-align: right;">0.0073915</td>
+<td style="text-align: right;">0.0429860</td>
+<td style="text-align: right;">0.0039316</td>
+<td style="text-align: right;">0.0150975</td>
+<td style="text-align: right;">0.0074963</td>
+<td style="text-align: right;">0.0025163</td>
+<td style="text-align: right;">0.0291466</td>
+<td style="text-align: right;">0.0347033</td>
+<td style="text-align: right;">0.0404173</td>
+<td style="text-align: right;">0.0004718</td>
+<td style="text-align: right;">0.0300377</td>
+<td style="text-align: right;">0.0214406</td>
+<td style="text-align: right;">0.0071818</td>
+<td style="text-align: right;">0.0114280</td>
+<td style="text-align: right;">0.0004194</td>
+<td style="text-align: right;">0.0004194</td>
+<td style="text-align: right;">0.0112183</td>
+<td style="text-align: right;">0.0001573</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000005</td>
+<td style="text-align: right;">0.0357725</td>
+<td style="text-align: right;">0.0060626</td>
+<td style="text-align: right;">0.0302829</td>
+<td style="text-align: right;">0.0057610</td>
+<td style="text-align: right;">0.0234964</td>
+<td style="text-align: right;">0.0061229</td>
+<td style="text-align: right;">0.0027749</td>
+<td style="text-align: right;">0.0451228</td>
+<td style="text-align: right;">0.0273572</td>
+<td style="text-align: right;">0.0451529</td>
+<td style="text-align: right;">0.0002111</td>
+<td style="text-align: right;">0.0339326</td>
+<td style="text-align: right;">0.0193039</td>
+<td style="text-align: right;">0.0080533</td>
+<td style="text-align: right;">0.0110394</td>
+<td style="text-align: right;">0.0003318</td>
+<td style="text-align: right;">0.0006937</td>
+<td style="text-align: right;">0.0120951</td>
+<td style="text-align: right;">0.0000603</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000006</td>
+<td style="text-align: right;">0.0475336</td>
+<td style="text-align: right;">0.0079285</td>
+<td style="text-align: right;">0.0482441</td>
+<td style="text-align: right;">0.0065073</td>
+<td style="text-align: right;">0.0258798</td>
+<td style="text-align: right;">0.0078537</td>
+<td style="text-align: right;">0.0035529</td>
+<td style="text-align: right;">0.0407644</td>
+<td style="text-align: right;">0.0376977</td>
+<td style="text-align: right;">0.0391937</td>
+<td style="text-align: right;">0.0012716</td>
+<td style="text-align: right;">0.0269270</td>
+<td style="text-align: right;">0.0253562</td>
+<td style="text-align: right;">0.0119675</td>
+<td style="text-align: right;">0.0129773</td>
+<td style="text-align: right;">0.0002618</td>
+<td style="text-align: right;">0.0007854</td>
+<td style="text-align: right;">0.0157448</td>
+<td style="text-align: right;">0.0001870</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000007</td>
+<td style="text-align: right;">0.0541925</td>
+<td style="text-align: right;">0.0147704</td>
+<td style="text-align: right;">0.0451042</td>
+<td style="text-align: right;">0.0091985</td>
+<td style="text-align: right;">0.0176188</td>
+<td style="text-align: right;">0.0095582</td>
+<td style="text-align: right;">0.0063354</td>
+<td style="text-align: right;">0.0248425</td>
+<td style="text-align: right;">0.0352450</td>
+<td style="text-align: right;">0.0353404</td>
+<td style="text-align: right;">0.0002790</td>
+<td style="text-align: right;">0.0431734</td>
+<td style="text-align: right;">0.0260612</td>
+<td style="text-align: right;">0.0269274</td>
+<td style="text-align: right;">0.0163561</td>
+<td style="text-align: right;">0.0019454</td>
+<td style="text-align: right;">0.0036706</td>
+<td style="text-align: right;">0.0121643</td>
+<td style="text-align: right;">0.0001688</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000008</td>
+<td style="text-align: right;">0.0358566</td>
+<td style="text-align: right;">0.0042869</td>
+<td style="text-align: right;">0.0328511</td>
+<td style="text-align: right;">0.0057082</td>
+<td style="text-align: right;">0.0886745</td>
+<td style="text-align: right;">0.0097621</td>
+<td style="text-align: right;">0.0027492</td>
+<td style="text-align: right;">0.0308940</td>
+<td style="text-align: right;">0.0316861</td>
+<td style="text-align: right;">0.0352275</td>
+<td style="text-align: right;">0.0002563</td>
+<td style="text-align: right;">0.0260246</td>
+<td style="text-align: right;">0.0205261</td>
+<td style="text-align: right;">0.0105543</td>
+<td style="text-align: right;">0.0156800</td>
+<td style="text-align: right;">0.0003728</td>
+<td style="text-align: right;">0.0027026</td>
+<td style="text-align: right;">0.0091098</td>
+<td style="text-align: right;">0.0002097</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000009</td>
+<td style="text-align: right;">0.0325698</td>
+<td style="text-align: right;">0.0062051</td>
+<td style="text-align: right;">0.0333419</td>
+<td style="text-align: right;">0.0044036</td>
+<td style="text-align: right;">0.0177290</td>
+<td style="text-align: right;">0.0084928</td>
+<td style="text-align: right;">0.0036602</td>
+<td style="text-align: right;">0.0394327</td>
+<td style="text-align: right;">0.0277087</td>
+<td style="text-align: right;">0.0445226</td>
+<td style="text-align: right;">0.0002002</td>
+<td style="text-align: right;">0.0352864</td>
+<td style="text-align: right;">0.0220468</td>
+<td style="text-align: right;">0.0095222</td>
+<td style="text-align: right;">0.0106374</td>
+<td style="text-align: right;">0.0002860</td>
+<td style="text-align: right;">0.0011152</td>
+<td style="text-align: right;">0.0100369</td>
+<td style="text-align: right;">0.0000858</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000010</td>
+<td style="text-align: right;">0.0361647</td>
+<td style="text-align: right;">0.0106993</td>
+<td style="text-align: right;">0.0303793</td>
+<td style="text-align: right;">0.0056159</td>
+<td style="text-align: right;">0.0855462</td>
+<td style="text-align: right;">0.0089807</td>
+<td style="text-align: right;">0.0024207</td>
+<td style="text-align: right;">0.0462347</td>
+<td style="text-align: right;">0.0218102</td>
+<td style="text-align: right;">0.0379076</td>
+<td style="text-align: right;">0.0004115</td>
+<td style="text-align: right;">0.0357532</td>
+<td style="text-align: right;">0.0213987</td>
+<td style="text-align: right;">0.0127811</td>
+<td style="text-align: right;">0.0115466</td>
+<td style="text-align: right;">0.0002421</td>
+<td style="text-align: right;">0.0017913</td>
+<td style="text-align: right;">0.0091501</td>
+<td style="text-align: right;">0.0002421</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000011</td>
+<td style="text-align: right;">0.0352018</td>
+<td style="text-align: right;">0.0036909</td>
+<td style="text-align: right;">0.0420300</td>
+<td style="text-align: right;">0.0038754</td>
+<td style="text-align: right;">0.0134717</td>
+<td style="text-align: right;">0.0044752</td>
+<td style="text-align: right;">0.0021223</td>
+<td style="text-align: right;">0.0251903</td>
+<td style="text-align: right;">0.0373702</td>
+<td style="text-align: right;">0.0333564</td>
+<td style="text-align: right;">0.0003691</td>
+<td style="text-align: right;">0.0352480</td>
+<td style="text-align: right;">0.0183622</td>
+<td style="text-align: right;">0.0120877</td>
+<td style="text-align: right;">0.0130104</td>
+<td style="text-align: right;">0.0004614</td>
+<td style="text-align: right;">0.0014302</td>
+<td style="text-align: right;">0.0120415</td>
+<td style="text-align: right;">0.0000923</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000012</td>
+<td style="text-align: right;">0.0512285</td>
+<td style="text-align: right;">0.0097657</td>
+<td style="text-align: right;">0.0496767</td>
+<td style="text-align: right;">0.0063622</td>
+<td style="text-align: right;">0.0329695</td>
+<td style="text-align: right;">0.0031242</td>
+<td style="text-align: right;">0.0022862</td>
+<td style="text-align: right;">0.0412559</td>
+<td style="text-align: right;">0.0384524</td>
+<td style="text-align: right;">0.0476801</td>
+<td style="text-align: right;">0.0002897</td>
+<td style="text-align: right;">0.0205038</td>
+<td style="text-align: right;">0.0148865</td>
+<td style="text-align: right;">0.0235245</td>
+<td style="text-align: right;">0.0167486</td>
+<td style="text-align: right;">0.0015621</td>
+<td style="text-align: right;">0.0025449</td>
+<td style="text-align: right;">0.0118450</td>
+<td style="text-align: right;">0.0000621</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000013</td>
+<td style="text-align: right;">0.0423722</td>
+<td style="text-align: right;">0.0123893</td>
+<td style="text-align: right;">0.0448190</td>
+<td style="text-align: right;">0.0076899</td>
+<td style="text-align: right;">0.0190306</td>
+<td style="text-align: right;">0.0101755</td>
+<td style="text-align: right;">0.0087774</td>
+<td style="text-align: right;">0.1304179</td>
+<td style="text-align: right;">0.0213220</td>
+<td style="text-align: right;">0.0310704</td>
+<td style="text-align: right;">0.0001554</td>
+<td style="text-align: right;">0.0332453</td>
+<td style="text-align: right;">0.0167780</td>
+<td style="text-align: right;">0.0116126</td>
+<td style="text-align: right;">0.0129719</td>
+<td style="text-align: right;">0.0013982</td>
+<td style="text-align: right;">0.0015147</td>
+<td style="text-align: right;">0.0148361</td>
+<td style="text-align: right;">0.0000388</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000014</td>
+<td style="text-align: right;">0.0339895</td>
+<td style="text-align: right;">0.0056534</td>
+<td style="text-align: right;">0.0407460</td>
+<td style="text-align: right;">0.0045848</td>
+<td style="text-align: right;">0.0256127</td>
+<td style="text-align: right;">0.0055500</td>
+<td style="text-align: right;">0.0031370</td>
+<td style="text-align: right;">0.0527423</td>
+<td style="text-align: right;">0.0272674</td>
+<td style="text-align: right;">0.0578096</td>
+<td style="text-align: right;">0.0001379</td>
+<td style="text-align: right;">0.0438829</td>
+<td style="text-align: right;">0.0167879</td>
+<td style="text-align: right;">0.0113758</td>
+<td style="text-align: right;">0.0085491</td>
+<td style="text-align: right;">0.0003792</td>
+<td style="text-align: right;">0.0009307</td>
+<td style="text-align: right;">0.0091696</td>
+<td style="text-align: right;">0.0000345</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000015</td>
+<td style="text-align: right;">0.0486010</td>
+<td style="text-align: right;">0.0124162</td>
+<td style="text-align: right;">0.0466257</td>
+<td style="text-align: right;">0.0083570</td>
+<td style="text-align: right;">0.0189498</td>
+<td style="text-align: right;">0.0074019</td>
+<td style="text-align: right;">0.0031692</td>
+<td style="text-align: right;">0.0576744</td>
+<td style="text-align: right;">0.0423495</td>
+<td style="text-align: right;">0.0634049</td>
+<td style="text-align: right;">0.0002605</td>
+<td style="text-align: right;">0.0342313</td>
+<td style="text-align: right;">0.0266123</td>
+<td style="text-align: right;">0.0127418</td>
+<td style="text-align: right;">0.0140876</td>
+<td style="text-align: right;">0.0002171</td>
+<td style="text-align: right;">0.0012373</td>
+<td style="text-align: right;">0.0184940</td>
+<td style="text-align: right;">0.0001954</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000016</td>
+<td style="text-align: right;">0.0449873</td>
+<td style="text-align: right;">0.0058253</td>
+<td style="text-align: right;">0.0335324</td>
+<td style="text-align: right;">0.0070981</td>
+<td style="text-align: right;">0.0186019</td>
+<td style="text-align: right;">0.0052379</td>
+<td style="text-align: right;">0.0017623</td>
+<td style="text-align: right;">0.0327981</td>
+<td style="text-align: right;">0.0270217</td>
+<td style="text-align: right;">0.0414137</td>
+<td style="text-align: right;">0.0008811</td>
+<td style="text-align: right;">0.0315743</td>
+<td style="text-align: right;">0.0251126</td>
+<td style="text-align: right;">0.0092520</td>
+<td style="text-align: right;">0.0097415</td>
+<td style="text-align: right;">0.0000979</td>
+<td style="text-align: right;">0.0009301</td>
+<td style="text-align: right;">0.0105248</td>
+<td style="text-align: right;">0.0000979</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000017</td>
+<td style="text-align: right;">0.0340671</td>
+<td style="text-align: right;">0.0094125</td>
+<td style="text-align: right;">0.0317595</td>
+<td style="text-align: right;">0.0047062</td>
+<td style="text-align: right;">0.0160012</td>
+<td style="text-align: right;">0.0068316</td>
+<td style="text-align: right;">0.0052528</td>
+<td style="text-align: right;">0.0389252</td>
+<td style="text-align: right;">0.0357674</td>
+<td style="text-align: right;">0.0526188</td>
+<td style="text-align: right;">0.0003036</td>
+<td style="text-align: right;">0.0352513</td>
+<td style="text-align: right;">0.0235616</td>
+<td style="text-align: right;">0.0123273</td>
+<td style="text-align: right;">0.0135722</td>
+<td style="text-align: right;">0.0002429</td>
+<td style="text-align: right;">0.0015181</td>
+<td style="text-align: right;">0.0123577</td>
+<td style="text-align: right;">0.0002429</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000018</td>
+<td style="text-align: right;">0.0348997</td>
+<td style="text-align: right;">0.0088552</td>
+<td style="text-align: right;">0.0347881</td>
+<td style="text-align: right;">0.0054322</td>
+<td style="text-align: right;">0.0130223</td>
+<td style="text-align: right;">0.0102690</td>
+<td style="text-align: right;">0.0069576</td>
+<td style="text-align: right;">0.0298396</td>
+<td style="text-align: right;">0.0549540</td>
+<td style="text-align: right;">0.0416341</td>
+<td style="text-align: right;">0.0002232</td>
+<td style="text-align: right;">0.0361275</td>
+<td style="text-align: right;">0.0193474</td>
+<td style="text-align: right;">0.0161848</td>
+<td style="text-align: right;">0.0141385</td>
+<td style="text-align: right;">0.0004093</td>
+<td style="text-align: right;">0.0013766</td>
+<td style="text-align: right;">0.0104178</td>
+<td style="text-align: right;">0.0001488</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000019</td>
+<td style="text-align: right;">0.0509646</td>
+<td style="text-align: right;">0.0133515</td>
+<td style="text-align: right;">0.0490896</td>
+<td style="text-align: right;">0.0090981</td>
+<td style="text-align: right;">0.0198825</td>
+<td style="text-align: right;">0.0094630</td>
+<td style="text-align: right;">0.0062919</td>
+<td style="text-align: right;">0.0248783</td>
+<td style="text-align: right;">0.0370846</td>
+<td style="text-align: right;">0.0317616</td>
+<td style="text-align: right;">0.0005537</td>
+<td style="text-align: right;">0.0470006</td>
+<td style="text-align: right;">0.0223615</td>
+<td style="text-align: right;">0.0277725</td>
+<td style="text-align: right;">0.0190771</td>
+<td style="text-align: right;">0.0017617</td>
+<td style="text-align: right;">0.0040646</td>
+<td style="text-align: right;">0.0131753</td>
+<td style="text-align: right;">0.0002139</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000020</td>
+<td style="text-align: right;">0.0499206</td>
+<td style="text-align: right;">0.0187149</td>
+<td style="text-align: right;">0.0547281</td>
+<td style="text-align: right;">0.0133494</td>
+<td style="text-align: right;">0.0227926</td>
+<td style="text-align: right;">0.0141649</td>
+<td style="text-align: right;">0.0104735</td>
+<td style="text-align: right;">0.0411641</td>
+<td style="text-align: right;">0.0188866</td>
+<td style="text-align: right;">0.0365712</td>
+<td style="text-align: right;">0.0002575</td>
+<td style="text-align: right;">0.0403056</td>
+<td style="text-align: right;">0.0202601</td>
+<td style="text-align: right;">0.0148517</td>
+<td style="text-align: right;">0.0121475</td>
+<td style="text-align: right;">0.0031335</td>
+<td style="text-align: right;">0.0041207</td>
+<td style="text-align: right;">0.0146371</td>
+<td style="text-align: right;">0.0000000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000021</td>
+<td style="text-align: right;">0.0478516</td>
+<td style="text-align: right;">0.0081613</td>
+<td style="text-align: right;">0.0512695</td>
+<td style="text-align: right;">0.0039063</td>
+<td style="text-align: right;">0.0151367</td>
+<td style="text-align: right;">0.0095564</td>
+<td style="text-align: right;">0.0043248</td>
+<td style="text-align: right;">0.0353655</td>
+<td style="text-align: right;">0.0399693</td>
+<td style="text-align: right;">0.0358538</td>
+<td style="text-align: right;">0.0006975</td>
+<td style="text-align: right;">0.0272740</td>
+<td style="text-align: right;">0.0177176</td>
+<td style="text-align: right;">0.0142997</td>
+<td style="text-align: right;">0.0145787</td>
+<td style="text-align: right;">0.0002790</td>
+<td style="text-align: right;">0.0014648</td>
+<td style="text-align: right;">0.0150670</td>
+<td style="text-align: right;">0.0002790</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000022</td>
+<td style="text-align: right;">0.0335485</td>
+<td style="text-align: right;">0.0086577</td>
+<td style="text-align: right;">0.0420129</td>
+<td style="text-align: right;">0.0044448</td>
+<td style="text-align: right;">0.0180111</td>
+<td style="text-align: right;">0.0090055</td>
+<td style="text-align: right;">0.0052951</td>
+<td style="text-align: right;">0.0372976</td>
+<td style="text-align: right;">0.0252773</td>
+<td style="text-align: right;">0.0306497</td>
+<td style="text-align: right;">0.0001546</td>
+<td style="text-align: right;">0.0331620</td>
+<td style="text-align: right;">0.0143006</td>
+<td style="text-align: right;">0.0117497</td>
+<td style="text-align: right;">0.0112472</td>
+<td style="text-align: right;">0.0028215</td>
+<td style="text-align: right;">0.0009276</td>
+<td style="text-align: right;">0.0134890</td>
+<td style="text-align: right;">0.0000773</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000023</td>
+<td style="text-align: right;">0.0320543</td>
+<td style="text-align: right;">0.0035557</td>
+<td style="text-align: right;">0.0378921</td>
+<td style="text-align: right;">0.0041925</td>
+<td style="text-align: right;">0.0113570</td>
+<td style="text-align: right;">0.0044579</td>
+<td style="text-align: right;">0.0016982</td>
+<td style="text-align: right;">0.0268535</td>
+<td style="text-align: right;">0.0312583</td>
+<td style="text-align: right;">0.0294008</td>
+<td style="text-align: right;">0.0000531</td>
+<td style="text-align: right;">0.0311522</td>
+<td style="text-align: right;">0.0145412</td>
+<td style="text-align: right;">0.0110917</td>
+<td style="text-align: right;">0.0118877</td>
+<td style="text-align: right;">0.0001061</td>
+<td style="text-align: right;">0.0013268</td>
+<td style="text-align: right;">0.0110917</td>
+<td style="text-align: right;">0.0000531</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000024</td>
+<td style="text-align: right;">0.0354735</td>
+<td style="text-align: right;">0.0083443</td>
+<td style="text-align: right;">0.0490793</td>
+<td style="text-align: right;">0.0051381</td>
+<td style="text-align: right;">0.0251973</td>
+<td style="text-align: right;">0.0069878</td>
+<td style="text-align: right;">0.0037817</td>
+<td style="text-align: right;">0.0349803</td>
+<td style="text-align: right;">0.0517511</td>
+<td style="text-align: right;">0.0415571</td>
+<td style="text-align: right;">0.0005344</td>
+<td style="text-align: right;">0.0318563</td>
+<td style="text-align: right;">0.0206347</td>
+<td style="text-align: right;">0.0218267</td>
+<td style="text-align: right;">0.0152088</td>
+<td style="text-align: right;">0.0011098</td>
+<td style="text-align: right;">0.0009865</td>
+<td style="text-align: right;">0.0107284</td>
+<td style="text-align: right;">0.0001644</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000025</td>
+<td style="text-align: right;">0.0443489</td>
+<td style="text-align: right;">0.0029330</td>
+<td style="text-align: right;">0.0243489</td>
+<td style="text-align: right;">0.0040202</td>
+<td style="text-align: right;">0.0653097</td>
+<td style="text-align: right;">0.0060430</td>
+<td style="text-align: right;">0.0018710</td>
+<td style="text-align: right;">0.0201770</td>
+<td style="text-align: right;">0.0310999</td>
+<td style="text-align: right;">0.0305689</td>
+<td style="text-align: right;">0.0001517</td>
+<td style="text-align: right;">0.0287737</td>
+<td style="text-align: right;">0.0136030</td>
+<td style="text-align: right;">0.0141087</td>
+<td style="text-align: right;">0.0113780</td>
+<td style="text-align: right;">0.0001264</td>
+<td style="text-align: right;">0.0010619</td>
+<td style="text-align: right;">0.0068015</td>
+<td style="text-align: right;">0.0001517</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000026</td>
+<td style="text-align: right;">0.0483713</td>
+<td style="text-align: right;">0.0060341</td>
+<td style="text-align: right;">0.0313726</td>
+<td style="text-align: right;">0.0041454</td>
+<td style="text-align: right;">0.0177836</td>
+<td style="text-align: right;">0.0118475</td>
+<td style="text-align: right;">0.0019133</td>
+<td style="text-align: right;">0.0443240</td>
+<td style="text-align: right;">0.0351011</td>
+<td style="text-align: right;">0.0608320</td>
+<td style="text-align: right;">0.0003434</td>
+<td style="text-align: right;">0.0384615</td>
+<td style="text-align: right;">0.0226403</td>
+<td style="text-align: right;">0.0095418</td>
+<td style="text-align: right;">0.0106211</td>
+<td style="text-align: right;">0.0001962</td>
+<td style="text-align: right;">0.0008830</td>
+<td style="text-align: right;">0.0094192</td>
+<td style="text-align: right;">0.0001472</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000027</td>
+<td style="text-align: right;">0.0492061</td>
+<td style="text-align: right;">0.0080081</td>
+<td style="text-align: right;">0.0828589</td>
+<td style="text-align: right;">0.0082396</td>
+<td style="text-align: right;">0.0301810</td>
+<td style="text-align: right;">0.0121742</td>
+<td style="text-align: right;">0.0049067</td>
+<td style="text-align: right;">0.0392075</td>
+<td style="text-align: right;">0.0431422</td>
+<td style="text-align: right;">0.0453641</td>
+<td style="text-align: right;">0.0007406</td>
+<td style="text-align: right;">0.0244410</td>
+<td style="text-align: right;">0.0208767</td>
+<td style="text-align: right;">0.0152294</td>
+<td style="text-align: right;">0.0154145</td>
+<td style="text-align: right;">0.0006018</td>
+<td style="text-align: right;">0.0010647</td>
+<td style="text-align: right;">0.0200435</td>
+<td style="text-align: right;">0.0002314</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000028</td>
+<td style="text-align: right;">0.0530189</td>
+<td style="text-align: right;">0.0184414</td>
+<td style="text-align: right;">0.0437391</td>
+<td style="text-align: right;">0.0094275</td>
+<td style="text-align: right;">0.0362030</td>
+<td style="text-align: right;">0.0226084</td>
+<td style="text-align: right;">0.0137424</td>
+<td style="text-align: right;">0.0285782</td>
+<td style="text-align: right;">0.0310016</td>
+<td style="text-align: right;">0.0226084</td>
+<td style="text-align: right;">0.0004433</td>
+<td style="text-align: right;">0.0282235</td>
+<td style="text-align: right;">0.0125307</td>
+<td style="text-align: right;">0.0165204</td>
+<td style="text-align: right;">0.0143630</td>
+<td style="text-align: right;">0.0043148</td>
+<td style="text-align: right;">0.0039306</td>
+<td style="text-align: right;">0.0142152</td>
+<td style="text-align: right;">0.0001773</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000029</td>
+<td style="text-align: right;">0.0425879</td>
+<td style="text-align: right;">0.0045226</td>
+<td style="text-align: right;">0.0459799</td>
+<td style="text-align: right;">0.0059673</td>
+<td style="text-align: right;">0.0157663</td>
+<td style="text-align: right;">0.0069724</td>
+<td style="text-align: right;">0.0035176</td>
+<td style="text-align: right;">0.0339824</td>
+<td style="text-align: right;">0.0466080</td>
+<td style="text-align: right;">0.0415829</td>
+<td style="text-align: right;">0.0005025</td>
+<td style="text-align: right;">0.0298995</td>
+<td style="text-align: right;">0.0246859</td>
+<td style="text-align: right;">0.0138191</td>
+<td style="text-align: right;">0.0140704</td>
+<td style="text-align: right;">0.0002513</td>
+<td style="text-align: right;">0.0020101</td>
+<td style="text-align: right;">0.0120603</td>
+<td style="text-align: right;">0.0000628</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000030</td>
+<td style="text-align: right;">0.0652078</td>
+<td style="text-align: right;">0.0159285</td>
+<td style="text-align: right;">0.0484445</td>
+<td style="text-align: right;">0.0199271</td>
+<td style="text-align: right;">0.0342956</td>
+<td style="text-align: right;">0.0172467</td>
+<td style="text-align: right;">0.0089199</td>
+<td style="text-align: right;">0.0253977</td>
+<td style="text-align: right;">0.0509271</td>
+<td style="text-align: right;">0.0293084</td>
+<td style="text-align: right;">0.0007250</td>
+<td style="text-align: right;">0.0367343</td>
+<td style="text-align: right;">0.0160603</td>
+<td style="text-align: right;">0.0187187</td>
+<td style="text-align: right;">0.0393927</td>
+<td style="text-align: right;">0.0019554</td>
+<td style="text-align: right;">0.0097109</td>
+<td style="text-align: right;">0.0105457</td>
+<td style="text-align: right;">0.0001977</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000031</td>
+<td style="text-align: right;">0.0310170</td>
+<td style="text-align: right;">0.0067606</td>
+<td style="text-align: right;">0.0308121</td>
+<td style="text-align: right;">0.0036876</td>
+<td style="text-align: right;">0.0120052</td>
+<td style="text-align: right;">0.0036057</td>
+<td style="text-align: right;">0.0014750</td>
+<td style="text-align: right;">0.0304024</td>
+<td style="text-align: right;">0.0251168</td>
+<td style="text-align: right;">0.0375727</td>
+<td style="text-align: right;">0.0002049</td>
+<td style="text-align: right;">0.0402360</td>
+<td style="text-align: right;">0.0259772</td>
+<td style="text-align: right;">0.0095059</td>
+<td style="text-align: right;">0.0092190</td>
+<td style="text-align: right;">0.0006556</td>
+<td style="text-align: right;">0.0009424</td>
+<td style="text-align: right;">0.0093420</td>
+<td style="text-align: right;">0.0000410</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E09000032</td>
+<td style="text-align: right;">0.0381731</td>
+<td style="text-align: right;">0.0072472</td>
+<td style="text-align: right;">0.0655832</td>
+<td style="text-align: right;">0.0074624</td>
+<td style="text-align: right;">0.0180461</td>
+<td style="text-align: right;">0.0091845</td>
+<td style="text-align: right;">0.0041976</td>
+<td style="text-align: right;">0.0402540</td>
+<td style="text-align: right;">0.0311771</td>
+<td style="text-align: right;">0.0355900</td>
+<td style="text-align: right;">0.0003946</td>
+<td style="text-align: right;">0.0311771</td>
+<td style="text-align: right;">0.0202346</td>
+<td style="text-align: right;">0.0123417</td>
+<td style="text-align: right;">0.0119470</td>
+<td style="text-align: right;">0.0008969</td>
+<td style="text-align: right;">0.0018297</td>
+<td style="text-align: right;">0.0158935</td>
+<td style="text-align: right;">0.0000359</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E09000033</td>
+<td style="text-align: right;">0.0871492</td>
+<td style="text-align: right;">0.0369990</td>
+<td style="text-align: right;">0.0475242</td>
+<td style="text-align: right;">0.0180250</td>
+<td style="text-align: right;">0.0727706</td>
+<td style="text-align: right;">0.0228702</td>
+<td style="text-align: right;">0.0137720</td>
+<td style="text-align: right;">0.0385974</td>
+<td style="text-align: right;">0.0192951</td>
+<td style="text-align: right;">0.0375056</td>
+<td style="text-align: right;">0.0004424</td>
+<td style="text-align: right;">0.0307623</td>
+<td style="text-align: right;">0.0292781</td>
+<td style="text-align: right;">0.0150850</td>
+<td style="text-align: right;">0.0143358</td>
+<td style="text-align: right;">0.0047239</td>
+<td style="text-align: right;">0.0074997</td>
+<td style="text-align: right;">0.0153490</td>
+<td style="text-align: right;">0.0001570</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="k-means-2" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="k-means-2"><em>k</em>-means</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>kclust <span class="ot">=</span> <span class="fu">kmeans</span>(la.sic[,<span class="sc">-</span><span class="dv">1</span>], <span class="at">centers =</span> <span class="dv">10</span>, <span class="at">nstart =</span> <span class="dv">10</span>) <span class="co"># be aware of the [,-1]</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(kclust)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 9
+ $ cluster     : int [1:33] 6 10 5 9 10 4 8 1 10 1 ...
+ $ centers     : num [1:10, 1:1036] 0.036 0.0443 0.0591 0.0444 0.0476 ...
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : chr [1:10] "1" "2" "3" "4" ...
+  .. ..$ : chr [1:1036] "82990 - Other business support service activities n.e.c." "64209 - Activities of other holding companies n.e.c." "70229 - Management consultancy activities other than financial management" "64999 - Financial intermediation not elsewhere classified" ...
+ $ totss       : num 0.0945
+ $ withinss    : num [1:10] 0.00182 0 0.00112 0.0042 0.00194 ...
+ $ tot.withinss: num 0.0235
+ $ betweenss   : num 0.071
+ $ size        : int [1:10] 2 1 2 6 3 2 1 3 5 8
+ $ iter        : int 3
+ $ ifault      : int 0
+ - attr(*, "class")= chr "kmeans"</code></pre>
+</div>
+</div>
+<p><code>centers</code> is 10 x 1036: 1036 is the number of SIC codes.</p>
+</section>
+<section id="choosing-k" class="level2">
+<h2 class="anchored" data-anchor-id="choosing-k">Choosing <em>k</em></h2>
+<ol type="1">
+<li><p>Rule of thumb: <span class="math inline">\(k = \sqrt{n/2}\)</span></p></li>
+<li><p>The <em>elbow</em> method</p>
+<ul>
+<li><p>Compute <em>k</em>-means clustering for different values of <em>k</em></p></li>
+<li><p>Calculate <span class="math inline">\(SS_{within}\)</span></p></li>
+<li><p>Plot and spot the loction of a bend</p></li>
+</ul></li>
+</ol>
+</section>
+<section id="choosing-k-1" class="level2">
+<h2 class="anchored" data-anchor-id="choosing-k-1">Choosing <em>k</em></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  la.sic[,<span class="sc">-</span><span class="dv">1</span>], </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  kmeans, </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">k.max =</span> <span class="dv">20</span>,</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"wss"</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="diversity_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="hierarchical-clustering" class="level2">
+<h2 class="anchored" data-anchor-id="hierarchical-clustering">Hierarchical clustering</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><img src="images/dendrogram.png" class="img-fluid"></p>
+<p><small> Source: <a href="https://bradleyboehmke.github.io/HOML" target="_blank">@boehmke2019hands</a> </small></p>
+</div><div class="column" style="width:40%;">
+<ol type="1">
+<li><p>Agglomerative clustering (AGNES – AGglomerative NESting)</p></li>
+<li><p>Divisive hierarchical clustering (DIANA – DIvise ANAlysis)</p></li>
+</ol>
+<p>Dissimilarity (distance) of observations</p>
+</div>
+</div>
+</section>
+<section id="hierarchical-clustering-1" class="level2">
+<h2 class="anchored" data-anchor-id="hierarchical-clustering-1">Hierarchical clustering</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># distances between observations</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">dist</span>(la.sic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in dist(la.sic): NAs introduced by coercion</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creates labels for the dendrogam</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> london.firms <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(oslaua) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(oslaua)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>hclust <span class="ot">=</span> <span class="fu">hclust</span>(d)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hclust, <span class="at">hang=</span><span class="sc">-</span><span class="dv">1</span>, <span class="at">labels=</span>l<span class="sc">$</span>oslaua, <span class="at">main=</span><span class="st">'Default from hclust'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="diversity_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#hang: the fraction of the plot height by which labels should hang below the rest of the plot. A negative value will cause the labels to hang down from 0.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="optimal-number-of-clusters" class="level2">
+<h2 class="anchored" data-anchor-id="optimal-number-of-clusters">Optimal number of clusters</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">fviz_nbclust</span>(la.sic, <span class="at">FUN =</span> hcut, </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">method =</span> <span class="st">"wss"</span>, </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">k.max =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"(A) Elbow method"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in stats::dist(x): NAs introduced by coercion</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in stats::dist(x, method = method, ...): NAs introduced by coercion
+
+Warning in stats::dist(x, method = method, ...): NAs introduced by coercion
+
+Warning in stats::dist(x, method = method, ...): NAs introduced by coercion
+
+Warning in stats::dist(x, method = method, ...): NAs introduced by coercion
+
+Warning in stats::dist(x, method = method, ...): NAs introduced by coercion
+
+Warning in stats::dist(x, method = method, ...): NAs introduced by coercion
+
+Warning in stats::dist(x, method = method, ...): NAs introduced by coercion
+
+Warning in stats::dist(x, method = method, ...): NAs introduced by coercion
+
+Warning in stats::dist(x, method = method, ...): NAs introduced by coercion
+
+Warning in stats::dist(x, method = method, ...): NAs introduced by coercion</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">fviz_nbclust</span>(la.sic, <span class="at">FUN =</span> hcut, </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">method =</span> <span class="st">"silhouette"</span>, </span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">k.max =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"(B) Silhouette method"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in stats::dist(x): NAs introduced by coercion
+
+Warning in stats::dist(x): NAs introduced by coercion
+
+Warning in stats::dist(x): NAs introduced by coercion
+
+Warning in stats::dist(x): NAs introduced by coercion
+
+Warning in stats::dist(x): NAs introduced by coercion
+
+Warning in stats::dist(x): NAs introduced by coercion
+
+Warning in stats::dist(x): NAs introduced by coercion
+
+Warning in stats::dist(x): NAs introduced by coercion
+
+Warning in stats::dist(x): NAs introduced by coercion
+
+Warning in stats::dist(x): NAs introduced by coercion</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">fviz_nbclust</span>(la.sic[<span class="sc">-</span><span class="dv">1</span>], <span class="at">FUN =</span> hcut, </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">method =</span> <span class="st">"gap_stat"</span>, </span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">k.max =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"(C) Gap statistic"</span>)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Display plots side by side</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(p1, p2, p3, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="diversity_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="optimal-number-of-clusters-1" class="level2">
+<h2 class="anchored" data-anchor-id="optimal-number-of-clusters-1">Optimal number of clusters</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Explore what the 2 cluster solution tells us about London?</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>hc5 <span class="ot">&lt;-</span> <span class="fu">hclust</span>(d, <span class="at">method =</span> <span class="st">"ward.D2"</span> )</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>dend_plot <span class="ot">&lt;-</span> <span class="fu">fviz_dend</span>(hclust)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>dend_data <span class="ot">&lt;-</span> <span class="fu">attr</span>(dend_plot, <span class="st">"dendrogram"</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>dend_cuts <span class="ot">&lt;-</span> <span class="fu">cut</span>(dend_data, <span class="at">h =</span> .<span class="dv">15</span>)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_dend</span>(dend_cuts<span class="sc">$</span>lower[[<span class="dv">2</span>]])</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>sub_grp <span class="ot">&lt;-</span> <span class="fu">cutree</span>(hclust, <span class="at">k =</span> <span class="dv">2</span>)</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sub_grp)</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_dend</span>(</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>  hclust,</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">k =</span> <span class="dv">2</span>,</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">horiz =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">rect =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">rect_fill =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">rect_border =</span> <span class="st">"jco"</span>,</span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">k_colors =</span> <span class="st">"jco"</span>,</span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">cex =</span> <span class="fl">0.1</span></span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="clusters-in-space" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="clusters-in-space">Clusters in space</h2>
+<ul>
+<li>Create a SIC frequency table</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This will build an SIC frequency table</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>london.firms <span class="sc">%&gt;%</span> </span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SICCode.SicText_1) <span class="sc">%&gt;%</span> </span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n=</span><span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>n) <span class="sc">%&gt;%</span> </span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,037
+Columns: 2
+$ SICCode.SicText_1 &lt;chr&gt; "82990 - Other business support service activities n…
+$ n                 &lt;int&gt; 72756, 58526, 55309, 52058, 46572, 45312, 44270, 439…</code></pre>
+</div>
+</div>
+</section>
+<section id="clusters-in-space-1" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="clusters-in-space-1">Clusters in space</h2>
+<ul>
+<li>Focus on, let’s say “70221 - Financial management”</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>london.firms.sample <span class="ot">&lt;-</span> london.firms <span class="sc">%&gt;%</span> </span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(SICCode.SicText_1<span class="sc">==</span><span class="st">"70221 - Financial management"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(oseast1m, osnrth1m) <span class="sc">%&gt;%</span> </span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="financial-management-in-london" class="level2">
+<h2 class="anchored" data-anchor-id="financial-management-in-london">Financial management in London</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(london.firms.sample)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="diversity_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="clusters-in-space-k-means" class="level2">
+<h2 class="anchored" data-anchor-id="clusters-in-space-k-means">Clusters in space, <em>k</em>-means</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  london.firms.sample, </span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  kmeans, </span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">k.max =</span> <span class="dv">10</span>,</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"wss"</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="diversity_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="clusters-in-space-k-means-1" class="level2">
+<h2 class="anchored" data-anchor-id="clusters-in-space-k-means-1">Clusters in space, <em>k</em>-means</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>sp.cluster <span class="ot">=</span> <span class="fu">kmeans</span>(london.firms.sample, <span class="dv">6</span>) </span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(london.firms.sample, <span class="at">col =</span> sp.cluster<span class="sc">$</span>cluster)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="diversity_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="clusters-in-space-hdbscan" class="level2">
+<h2 class="anchored" data-anchor-id="clusters-in-space-hdbscan">Clusters in space, hdbscan</h2>
+<ol type="1">
+<li><p>Transform the space according to the density/sparsity</p></li>
+<li><p>Build the minimum spanning tree of the distance weighted graph</p></li>
+<li><p>Construct a cluster hierarchy of connected components</p></li>
+<li><p>Condense the cluster hierarchy based on minimum cluster size</p></li>
+<li><p>Extract the stable clusters from the condensed tree.</p></li>
+</ol>
+<p>Resources: <a href="https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html" target="_blank">SciKit-learn docs</a> and <a href="https://cran.r-project.org/web/packages/dbscan/vignettes/hdbscan.html" target="_blank">dbscan package</a></p>
+</section>
+<section id="clusters-in-space-hdbscan-1" class="level2">
+<h2 class="anchored" data-anchor-id="clusters-in-space-hdbscan-1">Clusters in space, hdbscan</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>cl <span class="ot">&lt;-</span> <span class="fu">hdbscan</span>(london.firms.sample, </span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">minPts =</span> <span class="dv">10</span>)         <span class="co">#minimum size of clusters</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(london.firms.sample, <span class="at">col=</span>cl<span class="sc">$</span>cluster<span class="sc">+</span><span class="dv">1</span>, <span class="at">pch=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="diversity_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="references" class="level2">
+
+
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-balland2022new" class="csl-entry" role="listitem">
+Balland, Pierre-Alexandre, Tom Broekel, Dario Diodato, Elisa Giuliani, Ricardo Hausmann, Neave O’Clery, and David Rigby. 2022. <span>“The New Paradigm of Economic Complexity.”</span> <em>Research Policy</em> 51 (3): 104450.
+</div>
+<div id="ref-bettencourt2021introduction" class="csl-entry" role="listitem">
+Bettencourt, Luı́s MA. 2021. <span>“Introduction to Urban Science: Evidence and Theory of Cities as Complex Systems.”</span>
+</div>
+<div id="ref-boehmke2019hands" class="csl-entry" role="listitem">
+Boehmke, Brad, and Brandon Greenwell. 2019. <em>Hands-on Machine Learning with r</em>. Chapman; Hall/CRC.
+</div>
+<div id="ref-boschma2012technological" class="csl-entry" role="listitem">
+Boschma, Ron, Koen Frenken, H Bathelt, M Feldman, D Kogler, et al. 2012. <span>“Technological Relatedness and Regional Branching.”</span> <em>Beyond Territory. Dynamic Geographies of Knowledge Creation, Diffusion and Innovation</em> 29: 64–68.
+</div>
+<div id="ref-caragliu2016both" class="csl-entry" role="listitem">
+Caragliu, Andrea, Laura de Dominicis, and Henri LF de Groot. 2016. <span>“Both Marshall and Jacobs Were Right!”</span> <em>Economic Geography</em> 92 (1): 87–111.
+</div>
+<div id="ref-cohen1990absorptive" class="csl-entry" role="listitem">
+Cohen, Wesley M, and Daniel A Levinthal. 1990. <span>“Absorptive Capacity: A New Perspective on Learning and Innovation.”</span> <em>Administrative Science Quarterly</em>, 128–52.
+</div>
+<div id="ref-frenken2007related" class="csl-entry" role="listitem">
+Frenken, Koen, Frank Van Oort, and Thijs Verburg. 2007. <span>“Related Variety, Unrelated Variety and Regional Economic Growth.”</span> <em>Regional Studies</em> 41 (5): 685–97.
+</div>
+<div id="ref-fujita1989urban" class="csl-entry" role="listitem">
+Fujita, Masahisa et al. 1989. <span>“Urban Economic Theory.”</span> <em>Cambridge Books</em>.
+</div>
+<div id="ref-hidalgo2021economic" class="csl-entry" role="listitem">
+Hidalgo, César A. 2021. <span>“Economic Complexity Theory and Applications.”</span> <em>Nature Reviews Physics</em> 3 (2): 92–113.
+</div>
+<div id="ref-saviotti2008export" class="csl-entry" role="listitem">
+Saviotti, Pier Paolo, and Koen Frenken. 2008. <span>“Export Variety and the Economic Performance of Countries.”</span> <em>Journal of Evolutionary Economics</em> 18 (2): 201–18.
+</div>
+<div id="ref-yuo2021environmental" class="csl-entry" role="listitem">
+Yuo, Tony Shun-Te, and Tzuhui Angie Tseng. 2021. <span>“The Environmental Product Variety and Retail Rents on Central Urban Shopping Areas: A Multi-Stage Spatial Data Mining Method.”</span> <em>Environment and Planning B: Urban Analytics and City Science</em> 48 (8): 2167–87.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
