@@ -1,5 +1,5 @@
 ---
-title: "P1: APIs and urban data"
+title: "APIs and urban data"
 author: Emmanouil Tranos
 date: "`r Sys.Date()`"
 editor: source

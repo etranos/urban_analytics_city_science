@@ -1,5 +1,5 @@
 ---
-title: "L5: Methods in transport geography"
+title: "Methods in transport geography"
 author: |
   | 
   | Emmanouil Tranos

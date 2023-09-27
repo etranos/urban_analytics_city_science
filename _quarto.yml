@@ -42,12 +42,12 @@ website:
         contents:
           - src/L1_why_cities.qmd
           - src/L2_smart_cities.qmd
-          - text: "L2: Networks: an introduction"
+          - text: "Networks: an introduction"
             file: src/L3_intro_networks.qmd
           - src/L4_network_science.qmd
           - src/L5_transport_geography.qmd
           - src/L6_diversity.qmd
-          - text: "L7: Urban policies and causality"
+          - text: "Urban policies and causality"
             file: src/L7_Urban_policy___causal_design.pdf
       - section: "Practicals"
         contents:
@@ -57,7 +57,7 @@ website:
           - src/P4_network_models.Rmd
           - src/P5_sim.Rmd
           - src/P6_accessibility_full.Rmd
-          - text: "P7: Causal design and urban policy evaluation"
+          - text: "Causal design and urban policy evaluation"
             file: src/P7_causality.Rmd
       - section: "Unit leader"
         contents: 

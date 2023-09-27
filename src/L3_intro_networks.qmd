@@ -1,5 +1,5 @@
 ---
-title: "L3: Networks"
+title: "Networks"
 subtitle: "An introduction"
 author: |
   | 

@@ -1,5 +1,5 @@
 ---
-title: "L2: Smart cities, urban big data, digital twins and other buzz terms"
+title: "Smart cities, urban big data, digital twins and other buzz terms"
 author: |
   | 
   | Emmanouil Tranos
@@ -79,7 +79,7 @@ Or, whatever doesn't fit in an excel spreadsheet (Batty, anecdotal)
 
 -   *Big data can speak for themselves*. Not really [@kitchin2013big]
 
-## Smart cities, different approaces
+## Smart cities, different approaches
 
 The **digital technologies** approach
 
@@ -200,8 +200,7 @@ Rio de Janeiro, Brazil: The first *smart city*
 
 > A variety of digital simulation models that run alongside real-time processes that pertain to social and economic systems as well as physical systems
 
-<br>
-Models are simplifications not replications of the real thing
+<br> Models are simplifications not replications of the real thing
 
 ::: footer
 Based on @batty2018digital

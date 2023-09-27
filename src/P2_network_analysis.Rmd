@@ -1,5 +1,5 @@
 ---
-title: "P2: Network analysis practical: networks of cities"
+title: "Network analysis practical: networks of cities"
 author: Emmanouil Tranos
 date: "`r Sys.Date()`"
 output:

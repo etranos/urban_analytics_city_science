@@ -1,5 +1,5 @@
 ---
-title: "P5: Spatial interaction modelling"
+title: "Spatial interaction modelling"
 author: Emmanouil Tranos
 date: "`r Sys.Date()`"
 output:

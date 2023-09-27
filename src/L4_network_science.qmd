@@ -1,5 +1,5 @@
 ---
-title: "L4: Network science, urban laws and scaling"
+title: "Network science, urban laws and scaling"
 author: |
   | 
   | Emmanouil Tranos
