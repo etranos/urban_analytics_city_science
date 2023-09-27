@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Urban analytics and city science - Methods in transport geography</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../src/L1_why_cities.html">Lectures</a></li><li class="breadcrumb-item"><a href="../src/L5_transport_geography.html">Methods in transport geography</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Urban analytics and city science</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/etranos/urban_analytics_city_science" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Content</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/description.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit description and aims</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/readings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Key readings</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assessment</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Lectures</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/L1_why_cities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cities, a very very brief introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/L2_smart_cities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Smart cities, urban big data, digital twins and other buzz terms</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/L3_intro_networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Networks: an introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/L4_network_science.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Network science, urban laws and scaling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/L5_transport_geography.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Methods in transport geography</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/L6_diversity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L6: Diversity in cities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/L7_Urban_policy___causal_design.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Urban policies and causality</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Practicals</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/P1_apis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">APIs and urban data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/P2_network_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Network analysis practical: networks of cities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/P3_street_networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Street network analysis practical: networks within cities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/P4_network_models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Network models in practice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/P5_sim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial interaction modelling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/P6_accessibility_full.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Accessibility in practice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/P7_causality.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Causal design and urban policy evaluation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Unit leader</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://etranos.info/" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Professor Emmanouil Tranos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#transport-geography-quantitative-dimension" id="toc-transport-geography-quantitative-dimension" class="nav-link active" data-scroll-target="#transport-geography-quantitative-dimension">Transport geography: quantitative dimension</a></li>
+  <li><a href="#transport-geography-key-elements" id="toc-transport-geography-key-elements" class="nav-link" data-scroll-target="#transport-geography-key-elements">Transport geography: key elements</a></li>
+  <li><a href="#graph-theory-aka-network-analysis" id="toc-graph-theory-aka-network-analysis" class="nav-link" data-scroll-target="#graph-theory-aka-network-analysis">Graph theory, aka network analysis</a></li>
+  <li><a href="#graph-theory-aka-network-analysis-1" id="toc-graph-theory-aka-network-analysis-1" class="nav-link" data-scroll-target="#graph-theory-aka-network-analysis-1">Graph theory, aka network analysis</a></li>
+  <li><a href="#graph-theory-aka-network-analysis-2" id="toc-graph-theory-aka-network-analysis-2" class="nav-link" data-scroll-target="#graph-theory-aka-network-analysis-2">Graph theory, aka network analysis</a></li>
+  <li><a href="#closeness-centrality-from-lecture-3" id="toc-closeness-centrality-from-lecture-3" class="nav-link" data-scroll-target="#closeness-centrality-from-lecture-3">Closeness centrality (from Lecture 3)</a></li>
+  <li><a href="#the-gini-coefficient" id="toc-the-gini-coefficient" class="nav-link" data-scroll-target="#the-gini-coefficient">The Gini coefficient</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a></li>
+  <li><a href="#the-location-quotient-coefficient" id="toc-the-location-quotient-coefficient" class="nav-link" data-scroll-target="#the-location-quotient-coefficient">The Location Quotient Coefficient</a></li>
+  <li><a href="#the-location-quotient-coefficient-1" id="toc-the-location-quotient-coefficient-1" class="nav-link" data-scroll-target="#the-location-quotient-coefficient-1">The Location Quotient Coefficient</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"></a></li>
+  <li><a href="#spatial-interactions-and-the-gravity-model" id="toc-spatial-interactions-and-the-gravity-model" class="nav-link" data-scroll-target="#spatial-interactions-and-the-gravity-model">Spatial interactions and the gravity model</a></li>
+  <li><a href="#spatial-interactions-and-the-gravity-model-1" id="toc-spatial-interactions-and-the-gravity-model-1" class="nav-link" data-scroll-target="#spatial-interactions-and-the-gravity-model-1">Spatial interactions and the gravity model</a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"></a></li>
+  <li><a href="#spatial-interactions-and-the-gravity-model-2" id="toc-spatial-interactions-and-the-gravity-model-2" class="nav-link" data-scroll-target="#spatial-interactions-and-the-gravity-model-2">Spatial interactions and the gravity model</a></li>
+  <li><a href="#spatial-interactions-and-the-gravity-model-3" id="toc-spatial-interactions-and-the-gravity-model-3" class="nav-link" data-scroll-target="#spatial-interactions-and-the-gravity-model-3">Spatial interactions and the gravity model</a></li>
+  <li><a href="#spatial-interactions-and-the-gravity-model-4" id="toc-spatial-interactions-and-the-gravity-model-4" class="nav-link" data-scroll-target="#spatial-interactions-and-the-gravity-model-4">Spatial interactions and the gravity model</a></li>
+  <li><a href="#spatial-interactions-and-the-gravity-model-5" id="toc-spatial-interactions-and-the-gravity-model-5" class="nav-link" data-scroll-target="#spatial-interactions-and-the-gravity-model-5">Spatial interactions and the gravity model</a></li>
+  <li><a href="#spatial-interactions-and-the-gravity-model-6" id="toc-spatial-interactions-and-the-gravity-model-6" class="nav-link" data-scroll-target="#spatial-interactions-and-the-gravity-model-6">Spatial interactions and the gravity model</a></li>
+  <li><a href="#what-can-we-do-with-this" id="toc-what-can-we-do-with-this" class="nav-link" data-scroll-target="#what-can-we-do-with-this">What can we do with this?</a>
+  <ul class="collapse">
+  <li><a href="#calculate-flows-naive" id="toc-calculate-flows-naive" class="nav-link" data-scroll-target="#calculate-flows-naive">1. Calculate flows (naive)</a></li>
+  <li><a href="#calculate-flows-naive-1" id="toc-calculate-flows-naive-1" class="nav-link" data-scroll-target="#calculate-flows-naive-1">1. Calculate flows (naive)</a></li>
+  <li><a href="#calculate-flows-naive-2" id="toc-calculate-flows-naive-2" class="nav-link" data-scroll-target="#calculate-flows-naive-2">1. Calculate flows (naive)</a></li>
+  <li><a href="#estimate-lambda-alpha-beta-and-k" id="toc-estimate-lambda-alpha-beta-and-k" class="nav-link" data-scroll-target="#estimate-lambda-alpha-beta-and-k">2. Estimate <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(k\)</span></a></li>
+  <li><a href="#estimate-lambda-alpha-beta-and-k-1" id="toc-estimate-lambda-alpha-beta-and-k-1" class="nav-link" data-scroll-target="#estimate-lambda-alpha-beta-and-k-1">2. Estimate <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(k\)</span></a></li>
+  <li><a href="#estimate-lambda-alpha-beta-and-k-2" id="toc-estimate-lambda-alpha-beta-and-k-2" class="nav-link" data-scroll-target="#estimate-lambda-alpha-beta-and-k-2">2. Estimate <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(k\)</span></a></li>
+  <li><a href="#estimate-lambda-alpha-beta-and-k-3" id="toc-estimate-lambda-alpha-beta-and-k-3" class="nav-link" data-scroll-target="#estimate-lambda-alpha-beta-and-k-3">2. Estimate <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(k\)</span></a></li>
+  <li><a href="#estimate-accessibility-indicators" id="toc-estimate-accessibility-indicators" class="nav-link" data-scroll-target="#estimate-accessibility-indicators">3. Estimate accessibility indicators</a></li>
+  <li><a href="#estimate-accessibility-indicators-1" id="toc-estimate-accessibility-indicators-1" class="nav-link" data-scroll-target="#estimate-accessibility-indicators-1">3. Estimate accessibility indicators</a></li>
+  <li><a href="#estimate-accessibility-indicators-2" id="toc-estimate-accessibility-indicators-2" class="nav-link" data-scroll-target="#estimate-accessibility-indicators-2">3. Estimate accessibility indicators</a></li>
+  <li><a href="#estimate-accessibility-indicators-3" id="toc-estimate-accessibility-indicators-3" class="nav-link" data-scroll-target="#estimate-accessibility-indicators-3">3. Estimate accessibility indicators</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="L5_transport_geography.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Methods in transport geography</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p> </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="transport-geography-quantitative-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="transport-geography-quantitative-dimension">Transport geography: quantitative dimension</h2>
+<ul>
+<li><p>Empirical data</p></li>
+<li><p>Data analytics</p></li>
+<li><p>Applied science: improve the efficiency of movements / spatial constraints</p></li>
+<li><p>Why in this unit?</p></li>
+</ul>
+</section>
+<section id="transport-geography-key-elements" class="level2">
+<h2 class="anchored" data-anchor-id="transport-geography-key-elements">Transport geography: key elements</h2>
+<ul>
+<li><p>Distance</p></li>
+<li><p>Accessibility: the capacity of a location to be reached by, or to reach different locations</p></li>
+<li><p>Spatial interaction: movement of people, freight or information between an origin and destination</p></li>
+<li><p>Transportation and land use models</p></li>
+</ul>
+<hr>
+<p><img src="images/keyelements.png" class="img-fluid"></p>
+<p><small> Source: <span class="citation" data-cites="rodrigue2020geography">Rodrigue (<a href="#ref-rodrigue2020geography" role="doc-biblioref">2020</a>)</span> </small></p>
+<hr>
+<p><img src="images/transport_geog_methods.png" class="img-fluid"></p>
+<p><small> Source: <span class="citation" data-cites="rodrigue2020geography">Rodrigue (<a href="#ref-rodrigue2020geography" role="doc-biblioref">2020</a>)</span> </small></p>
+</section>
+<section id="graph-theory-aka-network-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="graph-theory-aka-network-analysis">Graph theory, aka network analysis</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><small></small></p><small>
+<ul>
+<li><p>Abstraction</p></li>
+<li><p>Represent the structure not the appearance</p></li>
+<li><p>Terminal = node</p></li>
+<li><p>Node (vertex)</p></li>
+<li><p>Link (edge)</p></li>
+<li><p>Sub-graph - Loop (buckle)</p></li>
+<li><p>Planar graph</p></li>
+<li><p>Non-planar graph</p></li>
+<li><p>Cycle, circuit</p></li>
+<li><p>Tree <span class="math inline">\((e = v-1)\)</span></p></li>
+</ul>
+</small><p><small></small></p>
+</div><div class="column" style="width:60%;">
+<p><img src="images/transport_networks.png" class="img-fluid"> <small> Source: <span class="citation" data-cites="rodrigue2020geography">Rodrigue (<a href="#ref-rodrigue2020geography" role="doc-biblioref">2020</a>)</span> </small></p>
+</div>
+</div>
+</section>
+<section id="graph-theory-aka-network-analysis-1" class="level2">
+<h2 class="anchored" data-anchor-id="graph-theory-aka-network-analysis-1">Graph theory, aka network analysis</h2>
+<ul>
+<li><p><span class="math inline">\(\beta = e / v\)</span>, where <span class="math inline">\(e\)</span> is the number of links &amp; <span class="math inline">\(v\)</span> the number of nodes</p></li>
+<li><p><span class="math inline">\(Gamma\)</span> AKA network density (number of liks / maximum number of links)</p>
+<ul>
+<li><p>planar: <span class="math inline">\(\gamma = \frac{e}{3(v-2)}\)</span></p></li>
+<li><p>non-planar: <span class="math inline">\(\gamma = \frac{2e}{v(v-1)}\)</span></p></li>
+</ul></li>
+</ul>
+</section>
+<section id="graph-theory-aka-network-analysis-2" class="level2">
+<h2 class="anchored" data-anchor-id="graph-theory-aka-network-analysis-2">Graph theory, aka network analysis</h2>
+<ul>
+<li><p>Degree centrality</p></li>
+<li><p>Eccentricity: the distance from a given node to the farthest node from it in the network</p></li>
+<li><p>Shimbel index, or nodal accessibility, or Fareness (see <a href="https://etranos.info/urban_analytics_city_science/src/intro_networks.html#/title-slide" target="_blank">Lecture 3</a></p>
+<ul>
+<li><p><span class="math inline">\(c_𝑖= \sum_j d_{ij}\)</span></p></li>
+<li><p>This is a purely topological accessibility metric, remember this for later.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="closeness-centrality-from-lecture-3" class="level2">
+<h2 class="anchored" data-anchor-id="closeness-centrality-from-lecture-3">Closeness centrality (from Lecture 3)</h2>
+<ul>
+<li><p>Which node has the shortest distance to other nodes</p></li>
+<li><p>Instead of focusing on the number of links, the focus turns to the network distances</p></li>
+<li><p>Different definitions:</p></li>
+<li><p>Closeness, <span class="math inline">\(c_{i} = 1/\sum_{j} d_{ij}\)</span></p></li>
+<li><p>Fareness, <span class="math inline">\(c_{i} = \sum_{j} d_{ij}\)</span></p></li>
+<li><p><code>igraph</code> calculates closeness</p></li>
+</ul>
+</section>
+<section id="the-gini-coefficient" class="level2">
+<h2 class="anchored" data-anchor-id="the-gini-coefficient">The Gini coefficient</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li><p>Inequality measure</p>
+<ul>
+<li>0: perfect equality</li>
+<li>1 :perfect inequality</li>
+</ul></li>
+<li><p>Ordered X and Y, cumulative percentage</p></li>
+<li><p>Mostly used for income inequalities, but can be more widely used</p></li>
+<li><p><span class="math inline">\(Gini = A / (A + B)\)</span></p></li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><img src="images/gini.png" class="img-fluid"></p>
+<p><small> Source: <span class="citation" data-cites="rodrigue2020geography">Rodrigue (<a href="#ref-rodrigue2020geography" role="doc-biblioref">2020</a>)</span> </small></p>
+</div>
+</div>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<p><img src="images/gini2.png" class="img-fluid"> <small> Source: <span class="citation" data-cites="rodrigue2020geography">Rodrigue (<a href="#ref-rodrigue2020geography" role="doc-biblioref">2020</a>)</span> </small></p>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1"></h2>
+<p><img src="images/gini_map.png" class="img-fluid"> <small> Source: <span class="citation" data-cites="rodrigue2020geography">Rodrigue (<a href="#ref-rodrigue2020geography" role="doc-biblioref">2020</a>)</span> </small></p>
+</section>
+<section id="the-location-quotient-coefficient" class="level2">
+<h2 class="anchored" data-anchor-id="the-location-quotient-coefficient">The Location Quotient Coefficient</h2>
+<ul>
+<li><p>Degree of concentration of a certain activities</p></li>
+<li><p>Very common for regional analysis too</p></li>
+<li><p><span class="math inline">\(M_{ti}\)</span> is the traffic of a merchandise <span class="math inline">\(t\)</span> at a terminal <span class="math inline">\(i\)</span></p></li>
+<li><p><span class="math inline">\(Mi\)</span> is the traffic of all merchandise at a terminal <span class="math inline">\(i\)</span></p></li>
+<li><p><span class="math inline">\(M_{t}\)</span> is the total of all merchandises of type <span class="math inline">\(t\)</span> for all terminals, and</p></li>
+<li><p><span class="math inline">\(M\)</span> is the total of all types of merchandises for all terminals</p></li>
+</ul>
+</section>
+<section id="the-location-quotient-coefficient-1" class="level2">
+<h2 class="anchored" data-anchor-id="the-location-quotient-coefficient-1">The Location Quotient Coefficient</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><br> <br> <br></p>
+<p><span class="math inline">\(LQ = \frac{\frac{M_{it}}{M_i}}{\frac{M_t}{M}}\)</span></p>
+</div><div class="column" style="width:60%;">
+<ul>
+<li><p><span class="math inline">\(LQ &lt;1\)</span>: traffic of merchandise <span class="math inline">\(t\)</span> in terminal <span class="math inline">\(i\)</span> is under-represented compared to the same merchandise in all terminals</p></li>
+<li><p><span class="math inline">\(LQ = 1\)</span> traffic of merchandise <span class="math inline">\(t\)</span> in terminal <span class="math inline">\(i\)</span> is proportional to its participation to total traffic</p></li>
+<li><p><span class="math inline">\(LQ &gt; 1\)</span> traffic of merchandise <span class="math inline">\(t\)</span> in a terminal <span class="math inline">\(i\)</span> is preponderant in total traffic.</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2"></h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<p><img src="images/lq_map.png" class="img-fluid" style="width:60.0%"></p>
+</div><div class="column" style="width:30%;">
+<p>Employment in manufacturing sector</p>
+<p><small> Source: <a href="https://webarchive.nationalarchives.gov.uk/ukgwa/20160105185113/http://www.ons.gov.uk/ons/rel/regional-trends/regional-economic-analysis/the-spatial-distribution-of-industries/sty-employment-by-industry.html">ONS</a></small></p>
+</div>
+</div>
+</section>
+<section id="spatial-interactions-and-the-gravity-model" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-interactions-and-the-gravity-model">Spatial interactions and the gravity model</h2>
+<ul>
+<li><p>A spatial interaction is a realised movement of people, freight or information between an origin and a destination</p></li>
+<li><p>It is a transport demand/supply relationship expressed over geographical space.</p></li>
+</ul>
+</section>
+<section id="spatial-interactions-and-the-gravity-model-1" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-interactions-and-the-gravity-model-1">Spatial interactions and the gravity model</h2>
+<p>Conditions for spatial interaction to be materialised</p>
+<ul>
+<li><p>Complementarity</p></li>
+<li><p>Intervening opportunity</p></li>
+<li><p>Transferability</p></li>
+</ul>
+</section>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3"></h2>
+<p><img src="images/si.png" class="img-fluid"> <small> Source: <span class="citation" data-cites="rodrigue2020geography">Rodrigue (<a href="#ref-rodrigue2020geography" role="doc-biblioref">2020</a>)</span> </small></p>
+</section>
+<section id="spatial-interactions-and-the-gravity-model-2" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-interactions-and-the-gravity-model-2">Spatial interactions and the gravity model</h2>
+<ul>
+<li><p>Origin/destination matrices</p></li>
+<li><p>Very large matrices</p></li>
+<li><p>Missing data/0s</p></li>
+<li><p>Estimation of flows</p></li>
+</ul>
+<p><img src="images/si2.png" class="img-fluid"></p>
+</section>
+<section id="spatial-interactions-and-the-gravity-model-3" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-interactions-and-the-gravity-model-3">Spatial interactions and the gravity model</h2>
+<p><span class="math inline">\(T_{ij} = f(V_i, W_j, S_{ij})\)</span></p>
+<ul>
+<li>Flows are a function of the attributes of the locations of origin, the attributes of the locations of destination and the friction of distance between the concerned origins and the destinations</li>
+</ul>
+</section>
+<section id="spatial-interactions-and-the-gravity-model-4" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-interactions-and-the-gravity-model-4">Spatial interactions and the gravity model</h2>
+<p><span class="math inline">\(T_{ij} = f(V_i, W_j, S_{ij})\)</span></p>
+<ul>
+<li><p><span class="math inline">\(T_{ij}\)</span>: Interaction between location <span class="math inline">\(i\)</span> (origin) and location <span class="math inline">\(j\)</span> (destination)</p></li>
+<li><p><span class="math inline">\(V_i\)</span>: Attributes of the location of origin <span class="math inline">\(i\)</span> (e.g.&nbsp;population, number of jobs available, industrial output, GDP); push factors; the potential of origins</p></li>
+</ul>
+</section>
+<section id="spatial-interactions-and-the-gravity-model-5" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-interactions-and-the-gravity-model-5">Spatial interactions and the gravity model</h2>
+<p><span class="math inline">\(T_{ij} = f(V_i, W_j, S_{ij})\)</span></p>
+<ul>
+<li><p><span class="math inline">\(W_j\)</span>: Attributes of the location of destination <span class="math inline">\(j\)</span>, pull factors; attractiveness of destinations</p></li>
+<li><p><span class="math inline">\(S_{ij}\)</span>: Attributes of separation between <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> (e.g.&nbsp;distance, transport costs, or travel time); cost of overcoming the separation between origins and destinations</p></li>
+</ul>
+</section>
+<section id="spatial-interactions-and-the-gravity-model-6" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-interactions-and-the-gravity-model-6">Spatial interactions and the gravity model</h2>
+<p><span class="math inline">\(T_{ij} = k\frac{V_i^\lambda W_j^\alpha}{d_{ij}^\beta}\)</span></p>
+<ul>
+<li><p><span class="math inline">\(\beta\)</span>: transport friction parameter</p></li>
+<li><p><span class="math inline">\(\lambda\)</span>: Potential to generate movements</p></li>
+<li><p><span class="math inline">\(\alpha\)</span>: Potential to attract movements</p></li>
+</ul>
+</section>
+<section id="what-can-we-do-with-this" class="level1">
+<h1>What can we do with this?</h1>
+<section id="calculate-flows-naive" class="level2">
+<h2 class="anchored" data-anchor-id="calculate-flows-naive">1. Calculate flows (naive)</h2>
+<p><span class="math inline">\(T_{ij} = k\frac{V_i^\lambda W_j^\alpha}{d_{ij}^\beta}\)</span></p>
+<ul>
+<li><p>Known: <span class="math inline">\(V\)</span>, <span class="math inline">\(W\)</span>, and <span class="math inline">\(d\)</span></p></li>
+<li><p>Define: <span class="math inline">\(\lambda=1\)</span>, <span class="math inline">\(\alpha=1\)</span>, <span class="math inline">\(\beta=2\)</span>, and <span class="math inline">\(k=0.00001\)</span></p></li>
+<li><p>These are some standard results from past empirical studies</p></li>
+<li><p>Big unknown: <span class="math inline">\(T\)</span></p></li>
+<li><p>Example from <span class="citation" data-cites="tranos2015international">Tranos, Gheasi, and Nijkamp (<a href="#ref-tranos2015international" role="doc-biblioref">2015</a>)</span></p></li>
+</ul>
+</section>
+<section id="calculate-flows-naive-1" class="level2">
+<h2 class="anchored" data-anchor-id="calculate-flows-naive-1">1. Calculate flows (naive)</h2>
+<p><img src="images/sim_calc.png" class="img-fluid"></p>
+</section>
+<section id="calculate-flows-naive-2" class="level2">
+<h2 class="anchored" data-anchor-id="calculate-flows-naive-2">1. Calculate flows (naive)</h2>
+<ul>
+<li><p>Fairly good estimation of reality for such an oversimplified model, but…</p></li>
+<li><p>… not good enough.</p></li>
+</ul>
+</section>
+<section id="estimate-lambda-alpha-beta-and-k" class="level2">
+<h2 class="anchored" data-anchor-id="estimate-lambda-alpha-beta-and-k">2. Estimate <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(k\)</span></h2>
+<ul>
+<li><p>Known: <span class="math inline">\(T\)</span>, <span class="math inline">\(V\)</span>, <span class="math inline">\(W\)</span>, <span class="math inline">\(d\)</span> and <span class="math inline">\(k\)</span></p></li>
+<li><p>Estiamte: <span class="math inline">\(\lambda=1\)</span>, <span class="math inline">\(\alpha=1\)</span>, and <span class="math inline">\(\beta=2\)</span></p></li>
+<li><p><em>Why?</em> To understand the effect of distance, pull and push factors</p></li>
+<li><p>How? Regression</p></li>
+</ul>
+</section>
+<section id="estimate-lambda-alpha-beta-and-k-1" class="level2">
+<h2 class="anchored" data-anchor-id="estimate-lambda-alpha-beta-and-k-1">2. Estimate <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(k\)</span></h2>
+<div class="incremental">
+<ul class="incremental">
+<li><p><span class="math inline">\(T_{ij} = k\frac{V_i^\lambda W_j^\alpha}{d_{ij}^\beta}\)</span></p></li>
+<li><p>Look up properties of logarithms, e.g.&nbsp;<a href="http://dl.uncw.edu/digilib/Mathematics/Algebra/mat111hb/EandL/logprop/logprop.html">here</a></p></li>
+<li><p><span class="math inline">\(T_{ij} = kV_i^\lambda W_j^\alpha d_{ij}^{-\beta}\)</span></p></li>
+<li><p><span class="math inline">\(ln T_{ij} = ln (kV_i^\lambda W_j^\alpha d_{ij}^{-\beta})\)</span></p></li>
+<li><p><span class="math inline">\(ln T_{ij} = lnk + lnV_i^\lambda + ln W_j^\alpha + lnd_{ij}^{-\beta}\)</span></p></li>
+<li><p><span class="math inline">\(\color{red}{ln T_{ij}} = \color{blue}{lnk} + \lambda \color{green}{lnV_i} + \alpha \color{orange}{ln W_j} -\beta \color{purple}{lnd_{ij}}\)</span></p></li>
+<li><p><span class="math inline">\(\color{red}{y} = \color{blue}{c} + \lambda \color{green}{x_1} + \alpha \color{orange}{x_2} + \beta \color{purple}{x_3}\)</span></p></li>
+<li><p>Multivariate linear regression</p></li>
+</ul>
+</div>
+</section>
+<section id="estimate-lambda-alpha-beta-and-k-2" class="level2">
+<h2 class="anchored" data-anchor-id="estimate-lambda-alpha-beta-and-k-2">2. Estimate <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(k\)</span></h2>
+<center>
+<img src="images/sim_regression.png" class="img-fluid" style="width:55.0%">
+</center>
+</section>
+<section id="estimate-lambda-alpha-beta-and-k-3" class="level2">
+<h2 class="anchored" data-anchor-id="estimate-lambda-alpha-beta-and-k-3">2. Estimate <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(k\)</span></h2>
+<ul>
+<li><p><span class="math inline">\(c = lnk = 13.84\)</span></p></li>
+<li><p><span class="math inline">\(\lambda = lnV_i = 0.727\)</span></p></li>
+<li><p><span class="math inline">\(\alpha = lnW_j = 0.464\)</span></p></li>
+<li><p><span class="math inline">\(\beta = lnd_{ij} = -0.624\)</span></p></li>
+<li><p>What did we learn?</p></li>
+<li><p>How can we use these coefficients</p></li>
+</ul>
+</section>
+<section id="estimate-accessibility-indicators" class="level2">
+<h2 class="anchored" data-anchor-id="estimate-accessibility-indicators">3. Estimate accessibility indicators</h2>
+<ul>
+<li><p>The potential of opportunities for interaction</p></li>
+<li><p>Ease of spatial interaction</p></li>
+<li><p>Attractiveness of a node in a network taking into account the mass of other nodes and the costs to reach those nodes via the network</p></li>
+</ul>
+</section>
+<section id="estimate-accessibility-indicators-1" class="level2">
+<h2 class="anchored" data-anchor-id="estimate-accessibility-indicators-1">3. Estimate accessibility indicators</h2>
+<p>Different typologies <span class="citation" data-cites="HOLL2007286">(<a href="#ref-HOLL2007286" role="doc-biblioref">Holl 2007</a>)</span></p>
+<ol type="1">
+<li><p>Network access</p>
+<ul>
+<li><p>distance to access the network</p></li>
+<li><p>travel opportunities</p></li>
+</ul></li>
+<li><p>Travel cost measures</p>
+<ul>
+<li>network access + distance/time travelled on the network</li>
+</ul></li>
+<li><p>Market potential accessibility</p>
+<ul>
+<li>destinations at greater distance provide diminishing opportunities</li>
+</ul></li>
+</ol>
+<hr>
+<center>
+<img src="images/accessibility_typo1.png" class="img-fluid" style="width:60.0%" data-fig-align="center">
+</center>
+<hr>
+<center>
+<img src="images/accessibility_typo2.png" class="img-fluid" style="width:80.0%" data-fig-align="center">
+</center>
+<center>
+<small> Source: <span class="citation" data-cites="bruinsma1998accessibility">Bruinsma and Rietveld (<a href="#ref-bruinsma1998accessibility" role="doc-biblioref">1998</a>)</span> </small>
+</center>
+</section>
+<section id="estimate-accessibility-indicators-2" class="level2">
+<h2 class="anchored" data-anchor-id="estimate-accessibility-indicators-2">3. Estimate accessibility indicators</h2>
+<ul>
+<li><span class="math inline">\(Acc_{i} = \sum_j \frac{W_j}{d_{ij}^2}\)</span></li>
+</ul>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/accessibility.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<center>
+<small>Source:<span class="citation" data-cites="rodrigue2020geography">Rodrigue (<a href="#ref-rodrigue2020geography" role="doc-biblioref">2020</a>)</span></small>
+</center>
+<hr>
+<center>
+<img src="images/accessibility1.png" class="img-fluid" style="width:80.0%">
+</center>
+<hr>
+<center>
+<img src="images/accessibility2.png" class="img-fluid" style="width:35.0%">
+</center>
+</section>
+<section id="estimate-accessibility-indicators-3" class="level2">
+<h2 class="anchored" data-anchor-id="estimate-accessibility-indicators-3">3. Estimate accessibility indicators</h2>
+<ul>
+<li><p>Geographical indicator</p></li>
+<li><p>Spatial structure (e.g.&nbsp;distance) and economic activities (e.g.&nbsp;population)</p></li>
+<li><p>The potential for interaction</p></li>
+<li><p>Opportunities</p></li>
+</ul>
+</section>
+<section id="references" class="level2">
+
+
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-bruinsma1998accessibility" class="csl-entry" role="listitem">
+Bruinsma, Frank, and Pieter Rietveld. 1998. <span>“The Accessibility of European Cities: Theoretical Framework and Comparison of Approaches.”</span> <em>Environment and Planning A</em> 30 (3): 499–521.
+</div>
+<div id="ref-HOLL2007286" class="csl-entry" role="listitem">
+Holl, Adelheid. 2007. <span>“Twenty Years of Accessibility Improvements. The Case of the Spanish Motorway Building Programme.”</span> <em>Journal of Transport Geography</em> 15 (4): 286–97. https://doi.org/<a href="https://doi.org/10.1016/j.jtrangeo.2006.09.003">https://doi.org/10.1016/j.jtrangeo.2006.09.003</a>.
+</div>
+<div id="ref-rodrigue2020geography" class="csl-entry" role="listitem">
+Rodrigue, Jean-Paul. 2020. <em>The Geography of Transport Systems</em>. Routledge. <a href="https://transportgeography.org/">https://transportgeography.org/</a>.
+</div>
+<div id="ref-tranos2015international" class="csl-entry" role="listitem">
+Tranos, Emmanouil, Masood Gheasi, and Peter Nijkamp. 2015. <span>“International Migration: A Global Complex Network.”</span> <em>Environment and Planning B: Planning and Design</em> 42 (1): 4–22.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

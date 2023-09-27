@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Urban analytics and city science - Cities, a very very brief introduction</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="../site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="../site_libs/d3-3.3.8/d3.min.js"></script>
+<script src="../site_libs/dagre-0.4.0/dagre-d3.min.js"></script>
+<link href="../site_libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet">
+<script src="../site_libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
+<link href="../site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="../site_libs/chromatography-0.1/chromatography.js"></script>
+<script src="../site_libs/DiagrammeR-binding-1.0.10/DiagrammeR.js"></script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../src/L1_why_cities.html">Lectures</a></li><li class="breadcrumb-item"><a href="../src/L1_why_cities.html">Cities, a very very brief introduction</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Urban analytics and city science</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/etranos/urban_analytics_city_science" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Content</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/description.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit description and aims</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/readings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Key readings</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assessment</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Lectures</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/L1_why_cities.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Cities, a very very brief introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/L2_smart_cities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Smart cities, urban big data, digital twins and other buzz terms</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/L3_intro_networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Networks: an introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/L4_network_science.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Network science, urban laws and scaling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/L5_transport_geography.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Methods in transport geography</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/L6_diversity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L6: Diversity in cities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/L7_Urban_policy___causal_design.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Urban policies and causality</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Practicals</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/P1_apis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">APIs and urban data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/P2_network_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Network analysis practical: networks of cities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/P3_street_networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Street network analysis practical: networks within cities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/P4_network_models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Network models in practice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/P5_sim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial interaction modelling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/P6_accessibility_full.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Accessibility in practice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/P7_causality.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Causal design and urban policy evaluation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Unit leader</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://etranos.info/" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Professor Emmanouil Tranos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why-should-we-care-about-cities" id="toc-why-should-we-care-about-cities" class="nav-link active" data-scroll-target="#why-should-we-care-about-cities">Why should we care about cities?</a></li>
+  <li><a href="#why-should-we-care-about-cities-1" id="toc-why-should-we-care-about-cities-1" class="nav-link" data-scroll-target="#why-should-we-care-about-cities-1">Why should we care about cities?</a></li>
+  <li><a href="#why-should-we-care-about-cities-2" id="toc-why-should-we-care-about-cities-2" class="nav-link" data-scroll-target="#why-should-we-care-about-cities-2">Why should we care about cities?</a></li>
+  <li><a href="#why-should-we-care-about-cities-3" id="toc-why-should-we-care-about-cities-3" class="nav-link" data-scroll-target="#why-should-we-care-about-cities-3">Why should we care about cities?</a></li>
+  <li><a href="#why-should-we-care-about-cities-4" id="toc-why-should-we-care-about-cities-4" class="nav-link" data-scroll-target="#why-should-we-care-about-cities-4">Why should we care about cities?</a></li>
+  <li><a href="#why-should-we-care-about-cities-5" id="toc-why-should-we-care-about-cities-5" class="nav-link" data-scroll-target="#why-should-we-care-about-cities-5">Why should we care about cities?</a></li>
+  <li><a href="#why-should-we-care-about-cities-6" id="toc-why-should-we-care-about-cities-6" class="nav-link" data-scroll-target="#why-should-we-care-about-cities-6">Why should we care about cities?</a></li>
+  <li><a href="#urban-analytics-and-city-science" id="toc-urban-analytics-and-city-science" class="nav-link" data-scroll-target="#urban-analytics-and-city-science">Urban analytics and city science</a></li>
+  <li><a href="#different-terms" id="toc-different-terms" class="nav-link" data-scroll-target="#different-terms">Different terms</a></li>
+  <li><a href="#brief-description-of-evolution-of-cities" id="toc-brief-description-of-evolution-of-cities" class="nav-link" data-scroll-target="#brief-description-of-evolution-of-cities">Brief description of evolution of cities</a></li>
+  <li><a href="#brief-description-of-evolution-of-cities-1" id="toc-brief-description-of-evolution-of-cities-1" class="nav-link" data-scroll-target="#brief-description-of-evolution-of-cities-1">Brief description of evolution of cities</a></li>
+  <li><a href="#why-do-cities-exist" id="toc-why-do-cities-exist" class="nav-link" data-scroll-target="#why-do-cities-exist">Why do cities exist?</a></li>
+  <li><a href="#why-do-cities-exist-1" id="toc-why-do-cities-exist-1" class="nav-link" data-scroll-target="#why-do-cities-exist-1">Why do cities exist?</a></li>
+  <li><a href="#scale-economies" id="toc-scale-economies" class="nav-link" data-scroll-target="#scale-economies">Scale economies</a></li>
+  <li><a href="#scale-economies-1" id="toc-scale-economies-1" class="nav-link" data-scroll-target="#scale-economies-1">Scale economies</a></li>
+  <li><a href="#scale-economies-2" id="toc-scale-economies-2" class="nav-link" data-scroll-target="#scale-economies-2">Scale economies</a></li>
+  <li><a href="#scale-economies-3" id="toc-scale-economies-3" class="nav-link" data-scroll-target="#scale-economies-3">Scale economies</a></li>
+  <li><a href="#scale-economies-4" id="toc-scale-economies-4" class="nav-link" data-scroll-target="#scale-economies-4">Scale economies</a></li>
+  <li><a href="#scale-economies-5" id="toc-scale-economies-5" class="nav-link" data-scroll-target="#scale-economies-5">Scale economies</a></li>
+  <li><a href="#scale-economies-6" id="toc-scale-economies-6" class="nav-link" data-scroll-target="#scale-economies-6">Scale economies</a></li>
+  <li><a href="#scale-economies-7" id="toc-scale-economies-7" class="nav-link" data-scroll-target="#scale-economies-7">Scale economies</a></li>
+  <li><a href="#scale-economies-8" id="toc-scale-economies-8" class="nav-link" data-scroll-target="#scale-economies-8">Scale economies</a></li>
+  <li><a href="#agglomeration-economies" id="toc-agglomeration-economies" class="nav-link" data-scroll-target="#agglomeration-economies">Agglomeration economies</a></li>
+  <li><a href="#agglomeration-economies-1" id="toc-agglomeration-economies-1" class="nav-link" data-scroll-target="#agglomeration-economies-1">Agglomeration economies</a></li>
+  <li><a href="#localization-economies" id="toc-localization-economies" class="nav-link" data-scroll-target="#localization-economies">Localization Economies</a></li>
+  <li><a href="#localization-economies-1" id="toc-localization-economies-1" class="nav-link" data-scroll-target="#localization-economies-1">Localization Economies</a></li>
+  <li><a href="#urbanization-economies" id="toc-urbanization-economies" class="nav-link" data-scroll-target="#urbanization-economies">Urbanization economies</a></li>
+  <li><a href="#agglomeration-economies-2" id="toc-agglomeration-economies-2" class="nav-link" data-scroll-target="#agglomeration-economies-2">Agglomeration economies</a></li>
+  <li><a href="#the-sources-of-agglomeration" id="toc-the-sources-of-agglomeration" class="nav-link" data-scroll-target="#the-sources-of-agglomeration">The sources of agglomeration</a></li>
+  <li><a href="#the-sources-of-agglomeration-economies" id="toc-the-sources-of-agglomeration-economies" class="nav-link" data-scroll-target="#the-sources-of-agglomeration-economies">The sources of agglomeration economies</a></li>
+  <li><a href="#the-sources-of-agglomeration-economies-1" id="toc-the-sources-of-agglomeration-economies-1" class="nav-link" data-scroll-target="#the-sources-of-agglomeration-economies-1">The sources of agglomeration economies</a></li>
+  <li><a href="#the-sources-of-agglomeration-economies-2" id="toc-the-sources-of-agglomeration-economies-2" class="nav-link" data-scroll-target="#the-sources-of-agglomeration-economies-2">The sources of agglomeration economies</a></li>
+  <li><a href="#agglomeration-economies-pecuniary-vs.-technological" id="toc-agglomeration-economies-pecuniary-vs.-technological" class="nav-link" data-scroll-target="#agglomeration-economies-pecuniary-vs.-technological">Agglomeration economies: pecuniary vs.&nbsp;technological</a></li>
+  <li><a href="#agglomeration-economies-a-citique" id="toc-agglomeration-economies-a-citique" class="nav-link" data-scroll-target="#agglomeration-economies-a-citique">Agglomeration economies: a citique</a></li>
+  <li><a href="#why-cities-do-exist" id="toc-why-cities-do-exist" class="nav-link" data-scroll-target="#why-cities-do-exist">Why cities do exist?</a></li>
+  <li><a href="#cities-as-complex-system" id="toc-cities-as-complex-system" class="nav-link" data-scroll-target="#cities-as-complex-system">Cities as complex system</a></li>
+  <li><a href="#cities-as-complex-system-scale" id="toc-cities-as-complex-system-scale" class="nav-link" data-scroll-target="#cities-as-complex-system-scale">Cities as complex system: scale</a></li>
+  <li><a href="#urban-models-looking-into-cities" id="toc-urban-models-looking-into-cities" class="nav-link" data-scroll-target="#urban-models-looking-into-cities">Urban models: looking into cities</a></li>
+  <li><a href="#urban-models-looking-into-cities-1" id="toc-urban-models-looking-into-cities-1" class="nav-link" data-scroll-target="#urban-models-looking-into-cities-1">Urban models: looking into cities</a></li>
+  <li><a href="#urban-models-looking-into-cities-2" id="toc-urban-models-looking-into-cities-2" class="nav-link" data-scroll-target="#urban-models-looking-into-cities-2">Urban models: looking into cities</a></li>
+  <li><a href="#urban-models-looking-into-cities-3" id="toc-urban-models-looking-into-cities-3" class="nav-link" data-scroll-target="#urban-models-looking-into-cities-3">Urban models: looking into cities</a></li>
+  <li><a href="#urban-models-systems-of-cities" id="toc-urban-models-systems-of-cities" class="nav-link" data-scroll-target="#urban-models-systems-of-cities">Urban models: systems of cities</a></li>
+  <li><a href="#urban-models-systems-of-cities-1" id="toc-urban-models-systems-of-cities-1" class="nav-link" data-scroll-target="#urban-models-systems-of-cities-1">Urban models: systems of cities</a></li>
+  <li><a href="#urban-models-systems-of-cities-2" id="toc-urban-models-systems-of-cities-2" class="nav-link" data-scroll-target="#urban-models-systems-of-cities-2">Urban models: systems of cities</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="L1_why_cities.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Cities, a very very brief introduction</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p> </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="why-should-we-care-about-cities" class="level2">
+<h2 class="anchored" data-anchor-id="why-should-we-care-about-cities">Why should we care about cities?</h2>
+</section>
+<section id="why-should-we-care-about-cities-1" class="level2">
+<h2 class="anchored" data-anchor-id="why-should-we-care-about-cities-1">Why should we care about cities?</h2>
+<p>Aristotle said…</p>
+<blockquote class="blockquote">
+<p>“While coming into being for the sake of living, the city exists for the sake of living well.”</p>
+</blockquote>
+<p>The most overused figure <span class="citation" data-cites="un_urban_rural">(<a href="#ref-un_urban_rural" role="doc-biblioref">Nations 2009</a>)</span>…</p>
+<blockquote class="blockquote">
+<p>In 2009 for the first time in history 2009 more than 50% of the population lived within cities</p>
+</blockquote>
+<p>… but still true!</p>
+</section>
+<section id="why-should-we-care-about-cities-2" class="level2">
+<h2 class="anchored" data-anchor-id="why-should-we-care-about-cities-2">Why should we care about cities?</h2>
+<p>Source of:</p>
+<ul>
+<li><p>economic growth - places of trade, employment and productivity</p></li>
+<li><p>the knowledge centre - innovation and technology</p></li>
+<li><p>but also - pandemics (!)</p></li>
+</ul>
+</section>
+<section id="why-should-we-care-about-cities-3" class="level2">
+<h2 class="anchored" data-anchor-id="why-should-we-care-about-cities-3">Why should we care about cities?</h2>
+<ul>
+<li>Strong links historically between <span class="citation" data-cites="mccann2011globalization">(<a href="#ref-mccann2011globalization" role="doc-biblioref">McCann and Acs 2011</a>)</span>:
+<ul>
+<li>Globalisation</li>
+<li>Urbanisation</li>
+<li>Industrialisation</li>
+</ul></li>
+</ul>
+</section>
+<section id="why-should-we-care-about-cities-4" class="level2">
+<h2 class="anchored" data-anchor-id="why-should-we-care-about-cities-4">Why should we care about cities?</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<iframe src="https://data.worldbank.org/share/widget?indicators=SP.URB.TOTL.IN.ZS&amp;view=map" width="675" height="450" frameborder="0" scrolling="no">
+</iframe>
+</div><div class="column" style="width:30%;">
+<ul>
+<li>Tremendous growth</li>
+<li>Not the same everywhere</li>
+</ul>
+</div>
+</div>
+<p>https://data.worldbank.org/share/widget?indicators=SP.URB.TOTL.IN.ZS&amp;view=map</p>
+</section>
+<section id="why-should-we-care-about-cities-5" class="level2">
+<h2 class="anchored" data-anchor-id="why-should-we-care-about-cities-5">Why should we care about cities?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img src="images/urban_population_diff.jpg" class="img-fluid"></p>
+</div><div class="column" style="width:50%;">
+<p>Even the definition of what is ‘urban’ can be different</p>
+<p><span class="citation" data-cites="hanberry_imposing_2022">Hanberry (<a href="#ref-hanberry_imposing_2022" role="doc-biblioref">2022</a>)</span></p>
+</div>
+</div>
+</section>
+<section id="why-should-we-care-about-cities-6" class="level2">
+<h2 class="anchored" data-anchor-id="why-should-we-care-about-cities-6">Why should we care about cities?</h2>
+<p><img src="images/03lit01.png" class="img-fluid"></p>
+</section>
+<section id="urban-analytics-and-city-science" class="level2">
+<h2 class="anchored" data-anchor-id="urban-analytics-and-city-science">Urban analytics and city science</h2>
+<ul>
+<li>Understand cities and how they change</li>
+<li>Use critically and effectively urban data</li>
+<li>Understand and master methodological tools</li>
+<li>Support urban policy making</li>
+</ul>
+</section>
+<section id="different-terms" class="level2">
+<h2 class="anchored" data-anchor-id="different-terms">Different terms</h2>
+<ul>
+<li>Academics love inventing new terms</li>
+<li>Urban science, city science, urban analytics, urban geography, geographic data science, urban data science, complexity science, TheNextBigThing</li>
+<li>Have a look: <span class="citation" data-cites="urbananalytics">Batty (<a href="#ref-urbananalytics" role="doc-biblioref">2019</a>)</span></li>
+</ul>
+</section>
+<section id="brief-description-of-evolution-of-cities" class="level2">
+<h2 class="anchored" data-anchor-id="brief-description-of-evolution-of-cities">Brief description of evolution of cities</h2>
+</section>
+<section id="brief-description-of-evolution-of-cities-1" class="level2">
+<h2 class="anchored" data-anchor-id="brief-description-of-evolution-of-cities-1">Brief description of evolution of cities</h2>
+<ol type="1">
+<li>8000 BCE - first settled agriculture</li>
+<li>by 4000 BCE we have notes of cities existing in Sumeria</li>
+<li>low level of urbanization up until Industrial Revolution (2%-3% of urbanization)</li>
+<li>18th-19th century - emergence of cities as we know them (25% urbanization in 1950)</li>
+<li>20th-21th century - Knowledge Revolution (58% urbanization in 2022)</li>
+</ol>
+</section>
+<section id="why-do-cities-exist" class="level2">
+<h2 class="anchored" data-anchor-id="why-do-cities-exist">Why do cities exist?</h2>
+</section>
+<section id="why-do-cities-exist-1" class="level2">
+<h2 class="anchored" data-anchor-id="why-do-cities-exist-1">Why do cities exist?</h2>
+<ul>
+<li>An economist’s answer: to <em>economise</em>!</li>
+<li>Because of economies of scale and agglomeration economies</li>
+</ul>
+</section>
+<section id="scale-economies" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies">Scale economies</h2>
+<ul>
+<li>AKA <em>increasing returns to scale</em>, or</li>
+<li>AKA <em>economies of scale</em></li>
+<li>Business enterprises become more efﬁcient at large scales of operation</li>
+<li>More output per unit of input than at smaller scales</li>
+<li>➔ larger enterprises</li>
+<li>Within firms</li>
+</ul>
+</section>
+<section id="scale-economies-1" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-1">Scale economies</h2>
+<p><img src="images/scale_economies.png" class="img-fluid" style="width:50.0%"></p>
+</section>
+<section id="scale-economies-2" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-2">Scale economies</h2>
+<p>Increasing returns to scale</p>
+<div class="incremental">
+<ul class="incremental">
+<li>double ALL the inputs ➔</li>
+<li>more than double output</li>
+</ul>
+</div>
+</section>
+<section id="scale-economies-3" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-3">Scale economies</h2>
+<p><img src="images/scale_economies.png" class="img-fluid" style="width:50.0%"></p>
+</section>
+<section id="scale-economies-4" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-4">Scale economies</h2>
+<p>Constant returns to scale:</p>
+<div class="incremental">
+<ul class="incremental">
+<li>double ALL the inputs ➔</li>
+<li>double output</li>
+</ul>
+</div>
+</section>
+<section id="scale-economies-5" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-5">Scale economies</h2>
+<p><img src="images/scale_economies.png" class="img-fluid" style="width:50.0%"></p>
+</section>
+<section id="scale-economies-6" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-6">Scale economies</h2>
+<p>Decreasing returns to scale</p>
+<div class="incremental">
+<ul class="incremental">
+<li>double ALL the inputs ➔</li>
+<li>less than double output</li>
+</ul>
+</div>
+</section>
+<section id="scale-economies-7" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-7">Scale economies</h2>
+<p><img src="images/scale_economies.png" class="img-fluid" style="width:50.0%"></p>
+</section>
+<section id="scale-economies-8" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-8">Scale economies</h2>
+<p>How do they affect space?</p>
+<div class="incremental">
+<ul class="incremental">
+<li>Clustering of workers near factories</li>
+<li>Clustering of services for workers near factories</li>
+<li>The <em>company town</em> example</li>
+<li>Illustrative</li>
+</ul>
+</div>
+</section>
+<section id="agglomeration-economies" class="level2">
+<h2 class="anchored" data-anchor-id="agglomeration-economies">Agglomeration economies</h2>
+<!-- Agglomeration economies are the benefits that come when firms and people locate near one another together in cities and industrial clusters. -->
+<ul>
+<li>AKA <em>external economies of scale</em></li>
+<li>External to the firm</li>
+<li><strong>Very important for cities</strong></li>
+<li>Two types:
+<ul>
+<li>Localisation economies AKA Marshallian externalities</li>
+<li>Urbanisation economies AKA Jacobian externalities</li>
+</ul></li>
+</ul>
+<!-- Marshallian externalities are the benefits obtained by a sector due to geographical agglomeration, -->
+<!-- Jacobian effects are spillovers related to the novel combinations that can occur in cities with diversified economic activities. -->
+</section>
+<section id="agglomeration-economies-1" class="level2">
+<h2 class="anchored" data-anchor-id="agglomeration-economies-1">Agglomeration economies</h2>
+<!-- explain the example on shopping centre -->
+<p><img src="images/economies_agglomeration2.png" class="img-fluid"> ## Agglomeration economies</p>
+<p>Two main types</p>
+<ul>
+<li><p>Localization economies</p></li>
+<li><p>Urbanization economies</p></li>
+</ul>
+<!-- Agglomeration economies can take the form of either “localization” economies (the benefits from colocation of similar producers) or “urbanization” economies (the benefits from conglomeration of diverse producers). -->
+</section>
+<section id="localization-economies" class="level2">
+<h2 class="anchored" data-anchor-id="localization-economies">Localization Economies</h2>
+<!-- Localization economies arise from the presence of a large number of firms in the same industry in the same place.-->
+<ul>
+<li>Within a group of firms of the same industry</li>
+<li>Clustered together at the same place</li>
+<li>Why?
+<ul>
+<li>Information exchange</li>
+<li>Labour mobility</li>
+<li>Specialist services</li>
+</ul></li>
+</ul>
+<p>Examples: Silicon Valley (micro-electronics), The City of London (finance), Detroit and Michigan (automobile), Seattle (aerospace), etc.</p>
+</section>
+<section id="localization-economies-1" class="level2">
+<h2 class="anchored" data-anchor-id="localization-economies-1">Localization Economies</h2>
+<p><img src="images/nesta_clusters.png" class="img-fluid" style="width:50.0%"></p>
+</section>
+<section id="urbanization-economies" class="level2">
+<h2 class="anchored" data-anchor-id="urbanization-economies">Urbanization economies</h2>
+<ul>
+<li>Firms across different sectors</li>
+<li>Clustered together at the same place <span class="citation" data-cites="lifedeathcities">(<a href="#ref-lifedeathcities" role="doc-biblioref">Jane Jacobs 1961</a>)</span></li>
+<li>A city</li>
+<li>Why?
+<ul>
+<li>Support services to firms experiencing internal and localization economies</li>
+<li>Clustering</li>
+<li>Increased local factor prices</li>
+<li>Economies of scale</li>
+</ul></li>
+</ul>
+</section>
+<section id="agglomeration-economies-2" class="level2">
+<h2 class="anchored" data-anchor-id="agglomeration-economies-2">Agglomeration economies</h2>
+<ul>
+<li>Diversity vs.&nbsp;specialization</li>
+<li>Internal economies of scale (firm specific)</li>
+<li>Localization economies (industry specific)</li>
+<li>Urbanization economies (city specific)</li>
+</ul>
+</section>
+<section id="the-sources-of-agglomeration" class="level2">
+<h2 class="anchored" data-anchor-id="the-sources-of-agglomeration">The sources of agglomeration</h2>
+<ol type="1">
+<li>Knowledge spillovers <span class="citation" data-cites="marshall1890principles">(<a href="#ref-marshall1890principles" role="doc-biblioref">Marshall 1890</a>)</span></li>
+</ol>
+<ul>
+<li>Interactions between employees of different firms</li>
+<li>Proximity</li>
+<li>Tacit knowledge</li>
+<li>Mutual trading of information</li>
+</ul>
+</section>
+<section id="the-sources-of-agglomeration-economies" class="level2">
+<h2 class="anchored" data-anchor-id="the-sources-of-agglomeration-economies">The sources of agglomeration economies</h2>
+<ol start="2" type="1">
+<li>Non-traded local inputs</li>
+</ol>
+<ul>
+<li>Efficient provision of specialist inputs</li>
+<li>Infrastructure</li>
+</ul>
+</section>
+<section id="the-sources-of-agglomeration-economies-1" class="level2">
+<h2 class="anchored" data-anchor-id="the-sources-of-agglomeration-economies-1">The sources of agglomeration economies</h2>
+<ol start="3" type="1">
+<li>Local skilled labour pool</li>
+</ol>
+<ul>
+<li>Sufficient quantity of labour to respond to market changes</li>
+<li>Specialised labour / cost of training</li>
+</ul>
+</section>
+<section id="the-sources-of-agglomeration-economies-2" class="level2">
+<h2 class="anchored" data-anchor-id="the-sources-of-agglomeration-economies-2">The sources of agglomeration economies</h2>
+<ul>
+<li>Processes of learning, sharing and matching <span class="citation" data-cites="duranton2004">(<a href="#ref-duranton2004" role="doc-biblioref">Duranton and Puga 2004</a>)</span></li>
+<li>Clustering:
+<ul>
+<li>Interaction</li>
+<li>Dynamic</li>
+<li>➔ reduces knowledge and information transaction cost</li>
+</ul></li>
+<li>Higher profitability for firms within the cluster than those outside the cluster</li>
+</ul>
+</section>
+<section id="agglomeration-economies-pecuniary-vs.-technological" class="level2">
+<h2 class="anchored" data-anchor-id="agglomeration-economies-pecuniary-vs.-technological">Agglomeration economies: pecuniary vs.&nbsp;technological</h2>
+<ul>
+<li>Pecuniary ➔ input cost reduction</li>
+<li><em>make inputs cheaper in larger cities</em></li>
+<li>Technological ➔ raise productivity</li>
+<li><em>make inputs more productive in larger cities</em></li>
+</ul>
+<div class="footer">
+<p>Based on <span class="citation" data-cites="brueckner2011lectures">Brueckner (<a href="#ref-brueckner2011lectures" role="doc-biblioref">2011</a>)</span></p>
+</div>
+</section>
+<section id="agglomeration-economies-a-citique" class="level2">
+<h2 class="anchored" data-anchor-id="agglomeration-economies-a-citique">Agglomeration economies: a citique</h2>
+<p>Bounded rationality <span class="citation" data-cites="simon1955behavioral simon1966theories">(<a href="#ref-simon1955behavioral" role="doc-biblioref">Simon 1955</a>, <a href="#ref-simon1966theories" role="doc-biblioref">1966</a>)</span> <!-- Human decision making is limited by cognitive strains. Time, information and cognitive abilities. People almost never know the full set of possibilities and make choices based on those possibilities they have available --></p>
+<ul>
+<li>Information about space and location in limited</li>
+<li>Relocation issues, the ability of a rational decision is limited</li>
+<li>Relocation cost</li>
+</ul>
+</section>
+<section id="why-cities-do-exist" class="level2">
+<h2 class="anchored" data-anchor-id="why-cities-do-exist">Why cities do exist?</h2>
+<p>To <em>economise</em>!</p>
+<p>In other words, collocation of people and firms increases efficiency.</p>
+</section>
+<section id="cities-as-complex-system" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="cities-as-complex-system">Cities as complex system</h2>
+<div class="r-fit-text">
+<table class="table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 64%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Heterogeneity</td>
+<td>Differences in information, profession, culture, race, ethnicity, and economic status</td>
+</tr>
+<tr class="even">
+<td>Interconnectivity</td>
+<td>Interdependence between people, organizations, and infrastructure in networks</td>
+</tr>
+<tr class="odd">
+<td>Scaling</td>
+<td>Self-similar economies of scale per capita in material infrastructure and increasing returns to socioeconomic activity</td>
+</tr>
+<tr class="even">
+<td>Circular causality</td>
+<td>Interdependence dynamics between socioeconomic activities, institutions, and services</td>
+</tr>
+<tr class="odd">
+<td>Evolution</td>
+<td>Open-ended change supported by new information, investment, and collective action</td>
+</tr>
+</tbody>
+</table>
+<p><small> Source: <span class="citation" data-cites="bettencourt2021introduction">Bettencourt (<a href="#ref-bettencourt2021introduction" role="doc-biblioref">2021</a>)</span> </small></p>
+</div>
+</section>
+<section id="cities-as-complex-system-scale" class="level2">
+<h2 class="anchored" data-anchor-id="cities-as-complex-system-scale">Cities as complex system: scale</h2>
+<center>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DiagrammeR)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># suppressPackageStartupMessages(library(widgetframe))</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mermaid</span>(<span class="st">"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="st">graph TB</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="st">A[Individual] --&gt; B[Neighbourhood]</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">B --&gt; C[City]</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">C --&gt; D[Urban systems]</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="DiagrammeR html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-b69f8f6a032831d1faaa" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-b69f8f6a032831d1faaa">{"x":{"diagram":"\ngraph TB\nA[Individual] --> B[Neighbourhood]\nB --> C[City]\nC --> D[Urban systems]\n"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># widgetframe::frameWidget(l)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</center>
+</section>
+<section id="urban-models-looking-into-cities" class="level2">
+<h2 class="anchored" data-anchor-id="urban-models-looking-into-cities">Urban models: looking into cities</h2>
+<p>The Von Thünen model (The isolated state in 1826)</p>
+<ul>
+<li>Basic idea: Agricultural land uses follow predictable patterns around cities, which are the markets for the farm goods</li>
+<li>Goods with greatest demand and having the highest transport costs should be produced closest to the city</li>
+</ul>
+</section>
+<section id="urban-models-looking-into-cities-1" class="level2">
+<h2 class="anchored" data-anchor-id="urban-models-looking-into-cities-1">Urban models: looking into cities</h2>
+<p><img src="images/vonthunen.png" class="img-fluid"></p>
+<p><small> Source: <span class="citation" data-cites="coe2019economic">Coe, Kelly, and Yeung (<a href="#ref-coe2019economic" role="doc-biblioref">2019</a>)</span> </small></p>
+</section>
+<section id="urban-models-looking-into-cities-2" class="level2">
+<h2 class="anchored" data-anchor-id="urban-models-looking-into-cities-2">Urban models: looking into cities</h2>
+<p>The Burgess model</p>
+<ul>
+<li>Created by E.W. Burgess in 1925</li>
+<li>Developed in rings, reflecting waves of immigrants</li>
+<li>Used Chicago as his model</li>
+<li>Most European cities developed this way (pre-automobile)</li>
+</ul>
+</section>
+<section id="urban-models-looking-into-cities-3" class="level2">
+<h2 class="anchored" data-anchor-id="urban-models-looking-into-cities-3">Urban models: looking into cities</h2>
+<p>The Burgess model</p>
+<p><img src="images/burgess.png" class="img-fluid"></p>
+<p><small> Source: <a href="https://www.bbc.co.uk/bitesize/guides/zckdg82/revision/1">bbc.co.uk</a> </small></p>
+</section>
+<section id="urban-models-systems-of-cities" class="level2">
+<h2 class="anchored" data-anchor-id="urban-models-systems-of-cities">Urban models: systems of cities</h2>
+<p>Why aren’t we all clustered in a huge city?</p>
+<div class="incremental">
+<ul class="incremental">
+<li><p>Diseconomies of scale</p></li>
+<li><p>AKA Decreasing returns to scale</p>
+<p><img src="images/diseconomies.png" class="img-fluid" style="width:50.0%"></p>
+<p><small> Source: <span class="citation" data-cites="bettencourt2021introduction">Bettencourt (<a href="#ref-bettencourt2021introduction" role="doc-biblioref">2021</a>)</span></small></p></li>
+</ul>
+</div>
+</section>
+<section id="urban-models-systems-of-cities-1" class="level2">
+<h2 class="anchored" data-anchor-id="urban-models-systems-of-cities-1">Urban models: systems of cities</h2>
+<p>Central place theory</p>
+<p><img src="images/christaller.jpg" class="img-fluid" style="width:150.0%"></p>
+<p><small> Source: <span class="citation" data-cites="wood2012economic">Wood and Roberts (<a href="#ref-wood2012economic" role="doc-biblioref">2012</a>)</span> adapted from <span class="citation" data-cites="christaller1966central">Christaller (<a href="#ref-christaller1966central" role="doc-biblioref">1966</a>)</span> </small></p>
+</section>
+<section id="urban-models-systems-of-cities-2" class="level2">
+<h2 class="anchored" data-anchor-id="urban-models-systems-of-cities-2">Urban models: systems of cities</h2>
+<p>Central place theory</p>
+<!-- Central Place Theory sought to explain the economic relationships of cities with smaller settlements. It also seeks to explain why cities are located where they are geographically and how they serve the surrounding smaller settlements with speciality goods and services. 
+
+In 1933, Walter Christaller introduced Central Place Theory (CPT) as a way to explain the location, number, and size of settlements, where these locations acted as central places that provided services to surrounding areas.-->
+<ul>
+<li>Walter Christaller <span class="citation" data-cites="brush_walter_1966">Christaller and Brush (<a href="#ref-brush_walter_1966" role="doc-biblioref">1966</a>)</span></li>
+<li>Spatial distribution of cities and towns in Southern Germany</li>
+<li>Inductive instead of deductive</li>
+<li>Hierarchy of 3 different goods (3, 2, 1), 3 different market areas and 3 different levels of urban centres (Village, Town and City)</li>
+<li>Assumptions: homogeneous land and equal</li>
+<li>Transport possibilities in all directions</li>
+</ul>
+<!-- ## Urban models: systems of cities
+
+The core-periphery model
+
+::: r-fit-text
+::: incremental
+-   2 region model
+
+-   Transport cost steadily fall over time
+
+-   As transport cost ⟱, separation of production and consumption becomes feasible
+
+-   ⤇ Core-periphery
+:::
+:::
+
+![](images/core_periphery.png){width="80%"}
+
+<small><small> Source: @krugman1996trade </small></small> -->
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<ul>
+<li>Urban structure is not random</li>
+<li>Multiple scales: individual, neighbourhoods, cities, urban networks</li>
+<li>Cities are complex adaptive systems</li>
+</ul>
+</section>
+<section id="references" class="level2 scrollable">
+
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-urbananalytics" class="csl-entry" role="listitem">
+Batty, Michael. 2019. <span>“Urban Analytics Defined.”</span> <em>Environment and Planning B: Urban Analytics and City Science</em> 46 (3): 403–5. <a href="https://doi.org/10.1177/2399808319839494">https://doi.org/10.1177/2399808319839494</a>.
+</div>
+<div id="ref-bettencourt2021introduction" class="csl-entry" role="listitem">
+Bettencourt, Luı́s MA. 2021. <span>“Introduction to Urban Science: Evidence and Theory of Cities as Complex Systems.”</span>
+</div>
+<div id="ref-brueckner2011lectures" class="csl-entry" role="listitem">
+Brueckner, Jan K. 2011. <em>Lectures on Urban Economics</em>. MIT press.
+</div>
+<div id="ref-christaller1966central" class="csl-entry" role="listitem">
+Christaller, Walter. 1966. <em>Central Places in Southern Germany</em>. Vol. 10. Prentice-Hall.
+</div>
+<div id="ref-brush_walter_1966" class="csl-entry" role="listitem">
+Christaller, Walter, and John E. Brush. 1966. <span>“Walter <span>Christaller</span>. <span>Central</span> <span>Places</span> in <span>Southern</span> <span>Germany</span>.”</span> <em>The Annals of the American Academy of Political and Social Science</em> 368 (1): 187–87. <a href="https://doi.org/10.1177/000271626636800132">https://doi.org/10.1177/000271626636800132</a>.
+</div>
+<div id="ref-coe2019economic" class="csl-entry" role="listitem">
+Coe, Neil M, Philip F Kelly, and Henry WC Yeung. 2019. <em>Economic Geography: A Contemporary Introduction</em>. John Wiley &amp; Sons.
+</div>
+<div id="ref-duranton2004" class="csl-entry" role="listitem">
+Duranton, Gilles, and Diego Puga. 2004. <span>“Micro-Foundations of Urban Agglomeration Economies.”</span> <em>Handbook of Regional and Urban Economics</em> 4: 2063–2117.
+</div>
+<div id="ref-hanberry_imposing_2022" class="csl-entry" role="listitem">
+Hanberry, Brice B. 2022. <span>“Imposing Consistent Global Definitions of Urban Populations with Gridded Population Density Models: <span>Irreconcilable</span> Differences at the National Scale.”</span> <em>Landscape and Urban Planning</em> 226: 104493. https://doi.org/<a href="https://doi.org/10.1016/j.landurbplan.2022.104493">https://doi.org/10.1016/j.landurbplan.2022.104493</a>.
+</div>
+<div id="ref-lifedeathcities" class="csl-entry" role="listitem">
+Jane Jacobs. 1961. <em>The Death and Life of Great American Cities</em>. Vintage Books.
+</div>
+<div id="ref-marshall1890principles" class="csl-entry" role="listitem">
+Marshall, Alfred. 1890. <span>“Principles of Economics: An Introductory Volume.”</span> The Macmillan Press Ltd.
+</div>
+<div id="ref-mccann2011globalization" class="csl-entry" role="listitem">
+McCann, Philip, and Zoltan J Acs. 2011. <span>“Globalization: Countries, Cities and Multinationals.”</span> <em>Regional Studies</em> 45 (1): 17–32.
+</div>
+<div id="ref-un_urban_rural" class="csl-entry" role="listitem">
+Nations, United. 2009. <em>Urban and Rural Areas</em>. New Yorl: United Nations.
+</div>
+<div id="ref-simon1955behavioral" class="csl-entry" role="listitem">
+Simon, Herbert A. 1955. <span>“A Behavioral Model of Rational Choice.”</span> <em>The Quarterly Journal of Economics</em> 69 (1): 99–118.
+</div>
+<div id="ref-simon1966theories" class="csl-entry" role="listitem">
+———. 1966. <span>“Theories of Decision-Making in Economics and Behavioural Science.”</span> In <em>Surveys of Economic Theory</em>, 1–28. Springer.
+</div>
+<div id="ref-wood2012economic" class="csl-entry" role="listitem">
+Wood, Andrew, and Susan Roberts. 2012. <em>Economic Geography: Places, Networks and Flows</em>. Routledge.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
