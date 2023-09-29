@@ -85,7 +85,13 @@ images.path <- paste0(path, "/images/")
 
 <small> Source: <http://www.opte.org/> </small>
 
-# Network data
+## Network data
+
+Different types and shapes
+- Basic building blocks
+- Directionality
+- Weights
+- 
 
 ## 1. Directed, non-weighted networks^[@hanneman2005introduction is a very useful [online source](http://faculty.ucr.edu/~hanneman/nettext/){target="_blank"} for most of the concepts presented here.]
 
@@ -562,7 +568,10 @@ B -> C
 
 -   ego-networks
 
+-   sub-graphs: selection of connected nodes 
+
 -   cliques: the maximum number of actors who have all possible ties present among themselves; a maximal complete sub-graph
+
 
 </small>
 
@@ -876,6 +885,8 @@ G -- { I J K }
 -   Dynamic
 
 -   Spatial
+
+-   Multipirtite
 
 See also @light2020oxford
 
