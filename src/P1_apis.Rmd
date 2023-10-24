@@ -50,7 +50,8 @@ It adopts a hierarchical structure such as `attribute:value` instead of the fixe
 
 These attributes might be organised hierarchically:
 
-("city":"Bristol,"mean income": "27000", "internet speed": "55", "jobs":("2019":"15000", "2020":"14000")), ("city":"Newcastle,"mean income": "25000", "internet speed": "45", "jobs":("2019":"11000", "2020":"10000"))
+("city":"Bristol,"mean income": "27000", "internet speed": "55", "jobs":("2019":"15000", "2020":"14000")), ("city":"Newcastle,"mean income": "25000", "internet speed": "45", "jobs":("2019":"11000", "2020":"10000")
+
 
 Although this format is more verbose (attribute names are repeated) it is more flexible (not all observations need to have all attributes) [@singleton2017urban]
 
@@ -82,15 +83,31 @@ dat <- jsonlite::fromJSON("https://services2.arcgis.com/a4vR8lmmksFixzmB/ArcGIS/
 
 We now have an `R` object called `dat`. Let's try to see how it looks like
 
+
+```{r}
+dat1 <- jsonlite::fromJSON("https://maps2.bristol.gov.uk/server2/rest/services/ext/ll_leisure_and_culture/MapServer/3/query?outFields=*&where=1%3D1&f=geojson", flatten = TRUE)
+
+```
+```{r}
+re
+```
+
+
+
+```{r}
+dat1 <- dat1$features %>% select(-type, -id, -geometry.type, -geometry.coordinates, -properties.OBJECTID, -`properties.SHAPE.STArea()`, 
+         -`properties.SHAPE.STLength()`) 
+```
+
+
+
 ```{r type}
 typeof(dat)
 ```
 
 So, this is a list. If you need a reminder for what a list is, see [here](http://adv-r.had.co.nz/Data-structures.html). Now the difficult part. Let's try to figure out the structure of this `JSON` formatted data.
 
-```{r structure}
-str(dat)
-```
+
 
 Well, it's complicated. Looking on the above output of `list()` the object that looks most useful to us is the `dat$features`.
 
@@ -116,6 +133,18 @@ Looking into the above, I can think of the the following necessary data cleaning
 3.  although not necessary, it is common practice for the first columns to contain identification data such as the ward names and codes.
 
 To do all the above, we will use the below functions from the `dplyr` package, which is part of the [`tidyverse` ecosystem](https://www.tidyverse.org/).
+
+```{r wrangling}
+dat <- dat$features %>% select(-type, -id, -geometry.type, -geometry.coordinates, -properties.OBJECTID, -properties.Shape__Area, 
+         -properties.Shape__Length) 
+
+%>%                       # remove useless columns
+  rename_with(~sub("properties.", "", .)) %>%                 # ~ introduces a formula: function `sub` substitutes (in other words replaces) the string "properties." with an empty sting "" for all columns (symbol .) 
+  relocate(Ward, Ward_code_1) %>%                             # looks better
+  rename(Ward_code = Ward_code_1) %>%                         # as above, Ward_code looks better than Ward_code_1
+  glimpse()                                                   # a glimpse of the output
+
+
 
 ```{r wrangling}
 dat <- dat$features %>% 
