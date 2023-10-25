@@ -697,21 +697,21 @@
     "href": "src/L2_smart_cities.html#outline",
     "title": "Smart cities, urban big data, digital twins and other buzz terms",
     "section": "Outline",
-    "text": "Outline\n\nBig data vs. just data\nSmart city\nUrban dashboards\nDigital twins"
+    "text": "Outline\n\nSmart city\nUrban dashboards\nDigital twins\nBig data vs. just data"
   },
   {
     "objectID": "src/L2_smart_cities.html#big-data-vs.-just-data",
     "href": "src/L2_smart_cities.html#big-data-vs.-just-data",
     "title": "Smart cities, urban big data, digital twins and other buzz terms",
     "section": "Big data vs. just data",
-    "text": "Big data vs. just data\n\nDigital traces human activities leave behind\nAccidental (Arribas-Bel 2014)\nWhy?\nComputing power\nDigital turn\nGeospatial technologies [important for urban researchers]"
+    "text": "Big data vs. just data\nDifference in volume, variety, velocity, complexity, and potential value\n\n\nBig Data - large - complex - constantly changing\n\nJust Data - small - structured - static"
   },
   {
     "objectID": "src/L2_smart_cities.html#big-data-vs.-just-data-1",
     "href": "src/L2_smart_cities.html#big-data-vs.-just-data-1",
     "title": "Smart cities, urban big data, digital twins and other buzz terms",
     "section": "Big data vs. just data",
-    "text": "Big data vs. just data\n\n\nVolume [how big is big?]\nVelocity, being created in or near real time\nVariety, being structured and unstructured in nature\nExhaustive in scope, capture entire populations or systems\nFine-grained in resolution\nRelational in nature, common fields that enable the merging of different data sets\nFlexible, extensionable (can add new fields easily) and scalable (can expand in size rapidly) (Kitchin 2013).\n\nOr, whatever doesn’t fit in an excel spreadsheet (Batty, anecdotal)"
+    "text": "Big data vs. just data\n\n\nBig Data - Digital traces human activities leave behind - Accidental (Arribas-Bel 2014) - Geospatial technologies [important for urban researchers] - Fine-grained in resolution - Flexible\n\nJust Data - Collected for purpose - Low-grained resolution - Less-flexible"
   },
   {
     "objectID": "src/L2_smart_cities.html#big-data-vs.-just-data-2",
@@ -746,7 +746,7 @@
     "href": "src/L2_smart_cities.html#smart-cities-different-approaches-2",
     "title": "Smart cities, urban big data, digital twins and other buzz terms",
     "section": "Smart cities, different approaches",
-    "text": "Smart cities, different approaches\nThe just approach\n\nICT-led, citizen-centric model of development\n➔ social innovation and social justice, civic engagement and activism\n➔ transparent and accountable governance\n\n\nBased on Kitchin (2019)"
+    "text": "Smart cities, different approaches\n\nThe people-centric approach\n\nICT-led, citizen-centric model of development\n➔ social innovation and social justice, civic engagement and activism\n➔ transparent and accountable governance\n\n\nBased on Kitchin (2019)"
   },
   {
     "objectID": "src/L2_smart_cities.html#smart-cities-and-data",
@@ -816,7 +816,7 @@
     "href": "src/L2_smart_cities.html#references",
     "title": "Smart cities, urban big data, digital twins and other buzz terms",
     "section": "References",
-    "text": "References\n\n\n\n\n\n\nArribas-Bel, Daniel. 2014. “Accidental, Open and Everywhere: Emerging Data Sources for the Understanding of Cities.” Applied Geography 49: 45–53.\n\n\nBatty, Michael. 2018. “Digital Twins.” Environment and Planning B: Urban Analytics and City Science. SAGE Publications Sage UK: London, England.\n\n\nBolton, Alexandra, Lorraine Butler, Ian Dabson, Mark Enzer, Matthew Evans, Tim Fenemore, Fergus Harradence, et al. 2018. “Gemini Principles.”\n\n\nFew, Stephen, and Perceptual Edge. 2007. “Dashboard Confusion Revisited.” Perceptual Edge, 1–6.\n\n\nKitchin, Rob. 2013. “Big Data and Human Geography: Opportunities, Challenges and Risks.” Dialogues in Human Geography 3 (3): 262–67.\n\n\n———. 2019. “The Timescape of Smart Cities.” Annals of the American Association of Geographers 109 (3): 775–90.\n\n\nKitchin, Rob, Sophia Maalsen, and Gavin McArdle. 2016. “The Praxis and Politics of Building Urban Dashboards.” Geoforum 77: 93–101.\n\n\nKitchin, Rob, and Niamh Moore-Cherry. 2021. “Fragmented Governance, the Urban Data Ecosystem and Smart City-Regions: The Case of Metropolitan Boston.” Regional Studies 55 (12): 1913–23.\n\n\nYoung, Gareth W, Rob Kitchin, and Jeneen Naji. 2022. “Building City Dashboards for Different Types of Users.” In Sustainable Smart City Transitions, 259–79. Routledge."
+    "text": "References\n\n\n\n\n\n\nArribas-Bel, Daniel. 2014. “Accidental, Open and Everywhere: Emerging Data Sources for the Understanding of Cities.” Applied Geography 49: 45–53.\n\n\nBatty, Michael. 2018. “Digital Twins.” Environment and Planning B: Urban Analytics and City Science. SAGE Publications Sage UK: London, England.\n\n\nBolton, Alexandra, Lorraine Butler, Ian Dabson, Mark Enzer, Matthew Evans, Tim Fenemore, Fergus Harradence, et al. 2018. “Gemini Principles.”\n\n\nFew, Stephen, and Perceptual Edge. 2007. “Dashboard Confusion Revisited.” Perceptual Edge, 1–6.\n\n\nKitchin, Rob. 2019. “The Timescape of Smart Cities.” Annals of the American Association of Geographers 109 (3): 775–90.\n\n\nKitchin, Rob, Sophia Maalsen, and Gavin McArdle. 2016. “The Praxis and Politics of Building Urban Dashboards.” Geoforum 77: 93–101.\n\n\nKitchin, Rob, and Niamh Moore-Cherry. 2021. “Fragmented Governance, the Urban Data Ecosystem and Smart City-Regions: The Case of Metropolitan Boston.” Regional Studies 55 (12): 1913–23.\n\n\nYoung, Gareth W, Rob Kitchin, and Jeneen Naji. 2022. “Building City Dashboards for Different Types of Users.” In Sustainable Smart City Transitions, 259–79. Routledge."
   },
   {
     "objectID": "src/L3_intro_networks.html#outline",
@@ -2301,5 +2301,26 @@
     "title": "Smart cities, urban big data, digital twins and other buzz terms",
     "section": "Smart cities, different approaches",
     "text": "Smart cities, different approaches\nIn reality…\n… a blend of all these approached\nRio de Janeiro, Brazil: The first smart city\n\n Source: Centro De Operacoes Prefeitura Do Rio"
+  },
+  {
+    "objectID": "src/L2_smart_cities.html#what-is-smart-city",
+    "href": "src/L2_smart_cities.html#what-is-smart-city",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "What is smart city ?",
+    "text": "What is smart city ?\n\n\n3 dimensions to understanding what smart city is\n\n\ndigitial technologies, 2) focus on outputs, 3) people-centric"
+  },
+  {
+    "objectID": "src/L2_smart_cities.html#big-data",
+    "href": "src/L2_smart_cities.html#big-data",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "Big data",
+    "text": "Big data\n\nNeed for new methods\nBiases"
+  },
+  {
+    "objectID": "src/L2_smart_cities.html#todays-practical",
+    "href": "src/L2_smart_cities.html#todays-practical",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "Today’s practical",
+    "text": "Today’s practical\nAPI’s - way to access big data"
   }
 ]
