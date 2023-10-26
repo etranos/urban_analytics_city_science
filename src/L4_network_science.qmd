@@ -1,5 +1,5 @@
 ---
-title: "Network science, urban laws and scaling"
+title: "Lecture 4: Network science, urban laws and scaling"
 author: |
   | 
   | Emmanouil Tranos
@@ -27,6 +27,16 @@ path <- find_rstudio_root_file()
 images.path <- paste0(path, "/images/")
 ```
 
+## Network science, urban laws and scaling
+
+1. Development of network science: 1980-2000
+  1st Milestone - regular vs random networks
+  2nd Milestone - small worlds
+  3rd Milestone - scale free networks
+2. Epistemological discussion
+3. What do we mean by scaling
+4. The five laws of urban scaling
+  
 ## Network Science: The Evolution of a 'New' Science
 
 -   Not really new
@@ -163,7 +173,7 @@ C -- F
 
 -   Disease spread
 
--   Real world examples?
+-   Real world examples? 
 
 ## 3rd milestone: Scale-free (SF) networks
 
@@ -203,9 +213,9 @@ C -- F
 
 <small> Source: @albert2000error </small>
 
-## 3rd milestone: Scale-free (SF) networks
+<!-- ## 3rd milestone: Scale-free (SF) networks
 
-![](images/sf.png)
+![](images/sf.png) -->
 
 ## 3rd milestone: Scale-free (SF) networks
 
@@ -278,6 +288,14 @@ And finally the power law...
 -   Spatial networks, but also dynamic networks
 
 # Scaling
+
+## What do we mean by scaling
+
+![](images/scaling_mammals.png)
+
+## What do we mean by scaling
+
+![](images/scaling_city.jpg)
 
 ## What is scale and scaling
 
