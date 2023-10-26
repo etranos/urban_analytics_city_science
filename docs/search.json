@@ -697,21 +697,21 @@
     "href": "src/L2_smart_cities.html#outline",
     "title": "Smart cities, urban big data, digital twins and other buzz terms",
     "section": "Outline",
-    "text": "Outline\n\nBig data vs. just data\nSmart city\nUrban dashboards\nDigital twins"
+    "text": "Outline\n\nSmart city\nUrban dashboards\nDigital twins\nBig data vs. just data"
   },
   {
     "objectID": "src/L2_smart_cities.html#big-data-vs.-just-data",
     "href": "src/L2_smart_cities.html#big-data-vs.-just-data",
     "title": "Smart cities, urban big data, digital twins and other buzz terms",
     "section": "Big data vs. just data",
-    "text": "Big data vs. just data\n\nDigital traces human activities leave behind\nAccidental (Arribas-Bel 2014)\nWhy?\nComputing power\nDigital turn\nGeospatial technologies [important for urban researchers]"
+    "text": "Big data vs. just data\nDifference in volume, variety, velocity, complexity, and potential value\n\n\nBig Data - large - complex - constantly changing\n\nJust Data - small - structured - static"
   },
   {
     "objectID": "src/L2_smart_cities.html#big-data-vs.-just-data-1",
     "href": "src/L2_smart_cities.html#big-data-vs.-just-data-1",
     "title": "Smart cities, urban big data, digital twins and other buzz terms",
     "section": "Big data vs. just data",
-    "text": "Big data vs. just data\n\n\nVolume [how big is big?]\nVelocity, being created in or near real time\nVariety, being structured and unstructured in nature\nExhaustive in scope, capture entire populations or systems\nFine-grained in resolution\nRelational in nature, common fields that enable the merging of different data sets\nFlexible, extensionable (can add new fields easily) and scalable (can expand in size rapidly) (Kitchin 2013).\n\nOr, whatever doesn’t fit in an excel spreadsheet (Batty, anecdotal)"
+    "text": "Big data vs. just data\n\n\nBig Data - Digital traces human activities leave behind - Accidental (Arribas-Bel 2014) - Geospatial technologies [important for urban researchers] - Fine-grained in resolution - Flexible\n\nJust Data - Collected for purpose - Low-grained resolution - Less-flexible"
   },
   {
     "objectID": "src/L2_smart_cities.html#big-data-vs.-just-data-2",
@@ -746,7 +746,7 @@
     "href": "src/L2_smart_cities.html#smart-cities-different-approaches-2",
     "title": "Smart cities, urban big data, digital twins and other buzz terms",
     "section": "Smart cities, different approaches",
-    "text": "Smart cities, different approaches\nThe just approach\n\nICT-led, citizen-centric model of development\n➔ social innovation and social justice, civic engagement and activism\n➔ transparent and accountable governance\n\n\nBased on Kitchin (2019)"
+    "text": "Smart cities, different approaches\n\nThe people-centric approach\n\nICT-led, citizen-centric model of development\n➔ social innovation and social justice, civic engagement and activism\n➔ transparent and accountable governance\n\n\nBased on Kitchin (2019)"
   },
   {
     "objectID": "src/L2_smart_cities.html#smart-cities-and-data",
@@ -816,7 +816,7 @@
     "href": "src/L2_smart_cities.html#references",
     "title": "Smart cities, urban big data, digital twins and other buzz terms",
     "section": "References",
-    "text": "References\n\n\n\n\n\n\nArribas-Bel, Daniel. 2014. “Accidental, Open and Everywhere: Emerging Data Sources for the Understanding of Cities.” Applied Geography 49: 45–53.\n\n\nBatty, Michael. 2018. “Digital Twins.” Environment and Planning B: Urban Analytics and City Science. SAGE Publications Sage UK: London, England.\n\n\nBolton, Alexandra, Lorraine Butler, Ian Dabson, Mark Enzer, Matthew Evans, Tim Fenemore, Fergus Harradence, et al. 2018. “Gemini Principles.”\n\n\nFew, Stephen, and Perceptual Edge. 2007. “Dashboard Confusion Revisited.” Perceptual Edge, 1–6.\n\n\nKitchin, Rob. 2013. “Big Data and Human Geography: Opportunities, Challenges and Risks.” Dialogues in Human Geography 3 (3): 262–67.\n\n\n———. 2019. “The Timescape of Smart Cities.” Annals of the American Association of Geographers 109 (3): 775–90.\n\n\nKitchin, Rob, Sophia Maalsen, and Gavin McArdle. 2016. “The Praxis and Politics of Building Urban Dashboards.” Geoforum 77: 93–101.\n\n\nKitchin, Rob, and Niamh Moore-Cherry. 2021. “Fragmented Governance, the Urban Data Ecosystem and Smart City-Regions: The Case of Metropolitan Boston.” Regional Studies 55 (12): 1913–23.\n\n\nYoung, Gareth W, Rob Kitchin, and Jeneen Naji. 2022. “Building City Dashboards for Different Types of Users.” In Sustainable Smart City Transitions, 259–79. Routledge."
+    "text": "References\n\n\n\n\n\n\nArribas-Bel, Daniel. 2014. “Accidental, Open and Everywhere: Emerging Data Sources for the Understanding of Cities.” Applied Geography 49: 45–53.\n\n\nBatty, Michael. 2018. “Digital Twins.” Environment and Planning B: Urban Analytics and City Science. SAGE Publications Sage UK: London, England.\n\n\nBolton, Alexandra, Lorraine Butler, Ian Dabson, Mark Enzer, Matthew Evans, Tim Fenemore, Fergus Harradence, et al. 2018. “Gemini Principles.”\n\n\nFew, Stephen, and Perceptual Edge. 2007. “Dashboard Confusion Revisited.” Perceptual Edge, 1–6.\n\n\nKitchin, Rob. 2019. “The Timescape of Smart Cities.” Annals of the American Association of Geographers 109 (3): 775–90.\n\n\nKitchin, Rob, Sophia Maalsen, and Gavin McArdle. 2016. “The Praxis and Politics of Building Urban Dashboards.” Geoforum 77: 93–101.\n\n\nKitchin, Rob, and Niamh Moore-Cherry. 2021. “Fragmented Governance, the Urban Data Ecosystem and Smart City-Regions: The Case of Metropolitan Boston.” Regional Studies 55 (12): 1913–23.\n\n\nYoung, Gareth W, Rob Kitchin, and Jeneen Naji. 2022. “Building City Dashboards for Different Types of Users.” In Sustainable Smart City Transitions, 259–79. Routledge."
   },
   {
     "objectID": "src/L3_intro_networks.html#outline",
@@ -1096,7 +1096,7 @@
     "href": "src/L3_intro_networks.html#other-types-of-networks",
     "title": "Networks",
     "section": "Other types of networks",
-    "text": "Other types of networks\n\nTwo mode networks\nMultilayer\nDynamic\nSpatial\n\nSee also Light and Moody (2020)"
+    "text": "Other types of networks\n\nTwo mode networks\nMultilayer\nDynamic\nSpatial\nMultipirtite\n\nSee also Light and Moody (2020)"
   },
   {
     "objectID": "src/L3_intro_networks.html#references",
@@ -1108,114 +1108,114 @@
   {
     "objectID": "src/L4_network_science.html#network-science-the-evolution-of-a-new-science",
     "href": "src/L4_network_science.html#network-science-the-evolution-of-a-new-science",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "Network Science: The Evolution of a ‘New’ Science",
     "text": "Network Science: The Evolution of a ‘New’ Science\n\nNot really new\nGraph Theory in the 18th century\nLeonhard Euler’s work on small graphs\nHigh degree of regularity: similar degree centrality among different nodes"
   },
   {
     "objectID": "src/L4_network_science.html#regular-graphs",
     "href": "src/L4_network_science.html#regular-graphs",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "Regular graphs",
     "text": "Regular graphs"
   },
   {
     "objectID": "src/L4_network_science.html#st-milestone-random-networks-rn",
     "href": "src/L4_network_science.html#st-milestone-random-networks-rn",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "1st milestone: Random networks (RN)",
     "text": "1st milestone: Random networks (RN)\n\n20th Century: advances in mathematics and statistics\nAlgorithmic network analysis\nErdős, Rényi, et al. (1960)\nLarge scale networks with no obvious structure\nNodes degree follows a Poisson distribution: similar degree, close to the average degree , rare exceptions\nRepresentative of real world network?"
   },
   {
     "objectID": "src/L4_network_science.html#st-milestone-random-networks-rn-1",
     "href": "src/L4_network_science.html#st-milestone-random-networks-rn-1",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "1st milestone: Random networks (RN)",
     "text": "1st milestone: Random networks (RN)\n\n Source: Watts and Strogatz (1998)"
   },
   {
     "objectID": "src/L4_network_science.html#st-milestone-random-networks-rn-2",
     "href": "src/L4_network_science.html#st-milestone-random-networks-rn-2",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "1st milestone: Random networks (RN)",
     "text": "1st milestone: Random networks (RN)\n\n Source: Torres et al. (2009)"
   },
   {
     "objectID": "src/L4_network_science.html#networks-become-important",
     "href": "src/L4_network_science.html#networks-become-important",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "Networks become important…",
     "text": "Networks become important…\n\n… in different fields, from social science to biology\nDigitization of data in many different fields + large databases ➔ real world systems as networks\nAdvances in computer science and in computing\nLooseness between different disciplinary boundaries\nReductionist approaches lose ground in favor of holistic research approaches, which try to understand the system as a whole"
   },
   {
     "objectID": "src/L4_network_science.html#nd-milestone-small-worlds",
     "href": "src/L4_network_science.html#nd-milestone-small-worlds",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "2nd milestone: Small-worlds",
     "text": "2nd milestone: Small-worlds\n\nSmall world effect\nMilgram’s six degrees of separation (1967)\nBacon number\nShort average distances, enabling nodes to reach each other within a few steps\nCharacteristic of numerous real world networks\nStructural characteristic rather than an organizing principle\nEven RN networks are characterized by short average distances"
   },
   {
     "objectID": "src/L4_network_science.html#nd-milestone-small-worlds-1",
     "href": "src/L4_network_science.html#nd-milestone-small-worlds-1",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "2nd milestone: Small-worlds",
     "text": "2nd milestone: Small-worlds\n\nWatts and Strogatz (1998) Small-world (SW) model\nCoexistence of short average distance with high clustering coefficient\nSW networks are located between regular and random networks:\n\nHighly clustered like regular lattices\nSmall distances like random networks\nNode degree distribution is quite similar with the RN and decays exponentially"
   },
   {
     "objectID": "src/L4_network_science.html#nd-milestone-small-worlds-2",
     "href": "src/L4_network_science.html#nd-milestone-small-worlds-2",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "2nd milestone: Small-worlds",
     "text": "2nd milestone: Small-worlds\n\nA set of intensively interconnected local clusters, which gain global connectivity via a few links, which span the entire network linking distant clusters\nNodes in SW networks benefit from the high local connectivity and easy distant communication with remote clusters using the intra-cluster links\nProbability of finding a highly connected node decreases exponentially as highly connected nodes are practically absent in RN and SW models"
   },
   {
     "objectID": "src/L4_network_science.html#nd-milestone-small-worlds-3",
     "href": "src/L4_network_science.html#nd-milestone-small-worlds-3",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "2nd milestone: Small-worlds",
     "text": "2nd milestone: Small-worlds\n\n Source: Watts and Strogatz (1998)"
   },
   {
     "objectID": "src/L4_network_science.html#nd-milestone-small-worlds-4",
     "href": "src/L4_network_science.html#nd-milestone-small-worlds-4",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "2nd milestone: Small-worlds",
     "text": "2nd milestone: Small-worlds\nPros and cons\n\nSocial capital (bridging and bonding)\nDisease spread\nReal world examples?"
   },
   {
     "objectID": "src/L4_network_science.html#rd-milestone-scale-free-sf-networks",
     "href": "src/L4_network_science.html#rd-milestone-scale-free-sf-networks",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "3rd milestone: Scale-free (SF) networks",
     "text": "3rd milestone: Scale-free (SF) networks\n\n\nBarabási and Albert (1999)\nVery few super connected nodes and a vast majority of less connected nodes\nSF: nodes degree distribution follows a power law distribution regardless the scale of observation\n2 main formation mechanisms:\n\ngrowth: expansion of networks over time\npreferential attachment: growth is not equally dispersed across the nodes; highly connected nodes are more likely to receive new links than the lower degree nodes"
   },
   {
     "objectID": "src/L4_network_science.html#rd-milestone-scale-free-sf-networks-1",
     "href": "src/L4_network_science.html#rd-milestone-scale-free-sf-networks-1",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "3rd milestone: Scale-free (SF) networks",
     "text": "3rd milestone: Scale-free (SF) networks\n\nAn initial difference in the connectivity between two nodes will increase further as the network grows\nThis is a cumulative — rich get richer — process\nThe probability \\(P(k)\\) that a node has a degree \\(k\\) decays following a power function, with usually \\(2 < \\gamma < 3\\)\n\\(P(k)≈𝑘^{−\\gamma}\\)\nPower laws in networks are related with the existence of both of the above two mechanisms\nLater versions of SF models included more realistic options for the network growth"
   },
   {
     "objectID": "src/L4_network_science.html#rd-milestone-scale-free-sf-networks-2",
     "href": "src/L4_network_science.html#rd-milestone-scale-free-sf-networks-2",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "3rd milestone: Scale-free (SF) networks",
     "text": "3rd milestone: Scale-free (SF) networks\n\n Source: Albert, Jeong, and Barabási (2000)"
   },
   {
     "objectID": "src/L4_network_science.html#rd-milestone-scale-free-sf-networks-3",
     "href": "src/L4_network_science.html#rd-milestone-scale-free-sf-networks-3",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "3rd milestone: Scale-free (SF) networks",
-    "text": "3rd milestone: Scale-free (SF) networks"
+    "text": "3rd milestone: Scale-free (SF) networks\nAnd finally the power law…"
   },
   {
     "objectID": "src/L4_network_science.html#rd-milestone-scale-free-sf-networks-4",
     "href": "src/L4_network_science.html#rd-milestone-scale-free-sf-networks-4",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "3rd milestone: Scale-free (SF) networks",
-    "text": "3rd milestone: Scale-free (SF) networks\nAnd finally the power law…"
+    "text": "3rd milestone: Scale-free (SF) networks\nPros and cons?\n\nEfficiency\nResilience\nDisease spread prevention\nVulnerability towards targeted attacks\nReal world examples?"
   },
   {
     "objectID": "src/L4_network_science.html#rd-milestone-scale-free-sf-networks-5",
@@ -1227,154 +1227,154 @@
   {
     "objectID": "src/L4_network_science.html#network-science-a-summary",
     "href": "src/L4_network_science.html#network-science-a-summary",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "Network Science: a summary",
     "text": "Network Science: a summary\n\nBoth RN and SW have short average distances\nRN cannot be included in SW because they lack the high clustering coefficient\nSF networks share the short average distance and the high cluster coefficient of SW ones, but the SW are not characterized by the scale-free distribution\nAll scale free networks display small world properties, while all small-world networks are not necessarily scale free"
   },
   {
     "objectID": "src/L4_network_science.html#network-science-an-epistemological-discussion",
     "href": "src/L4_network_science.html#network-science-an-epistemological-discussion",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "Network science: An epistemological discussion",
     "text": "Network science: An epistemological discussion\n1. Complexity Science\n\nMost studies in the network science domain have a starting point in statistical physics\nStochastic approaches\nUnderlying probability model which usually follows a power law\nMain objective: identification of the underlying mechanisms using generative modeling and simulation\nPotential risk: the probability model might not follow a power law mechanism, which is a common assumption"
   },
   {
     "objectID": "src/L4_network_science.html#network-science-an-epistemological-discussion-1",
     "href": "src/L4_network_science.html#network-science-an-epistemological-discussion-1",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "Network science: An epistemological discussion",
     "text": "Network science: An epistemological discussion\n2. Social Network Analysis\n\nSociology and graph theory\nFocus on social networks\nExtensive utilization of network metrics"
   },
   {
     "objectID": "src/L4_network_science.html#network-science-an-epistemological-discussion-2",
     "href": "src/L4_network_science.html#network-science-an-epistemological-discussion-2",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "Network science: An epistemological discussion",
     "text": "Network science: An epistemological discussion\n3. Geography and Urban Analytics\n\nSofter’ approaches\nEx-post empirical modeling for identifying characteristics of theoretical network models in real world networks\nGlobal and local network statistics\nUse of network measures in mainstream statistical modeling\nEmpirical verification of the functions that better explain the node degree distribution (power vs. exponential functions)\nSpatial networks, but also dynamic networks"
   },
   {
     "objectID": "src/L4_network_science.html#what-is-scale-and-scaling",
     "href": "src/L4_network_science.html#what-is-scale-and-scaling",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "What is scale and scaling",
     "text": "What is scale and scaling\n\n\nScale in geography\nScale in math:\n\n\\(y(x_i)\\) a function of \\(x_i\\) where \\(i\\) is a spatial unit\nIf we scale \\(x\\) by some scalar \\(\\lambda\\), the function scales if its scaled value is proportional to its previous value: \\(y(\\lambda x_i) \\propto y(x_i)\\)\n\\(y(x_i) = x_i^a\\)\n\\(y(\\lambda x_i) = (\\lambda x_i)^a = \\lambda^a x_i^a = \\lambda^a y(x_i)\\)\n➔ Power law"
   },
   {
     "objectID": "src/L4_network_science.html#laws-of-urban-scaling",
     "href": "src/L4_network_science.html#laws-of-urban-scaling",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "Laws of urban scaling",
     "text": "Laws of urban scaling\n\nRegularities\nQuantitative revolution post WW2\nCultural turn\n… today …\n\n\nBased on Batty (2013). See also Bettencourt (2021)"
   },
   {
     "objectID": "src/L4_network_science.html#metcalfes-law-moores-law",
     "href": "src/L4_network_science.html#metcalfes-law-moores-law",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "Metcalfe’s law / Moore’s law",
     "text": "Metcalfe’s law / Moore’s law\n\nAs cities grow…\n… the number of potential connections increases as the square of population.\n\\(C = p(p-1)/2 \\propto p^2\\)"
   },
   {
     "objectID": "src/L4_network_science.html#von-thunens-law",
     "href": "src/L4_network_science.html#von-thunens-law",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "von Thunen’s law",
     "text": "von Thunen’s law\n\nAs cities grow in size …\nland values decline non-linearly from the centre\n\n\nSource: Coe, Kelly, and Yeung (2019)"
   },
   {
     "objectID": "src/L4_network_science.html#law-of-gravitation-toblers-law",
     "href": "src/L4_network_science.html#law-of-gravitation-toblers-law",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "Law of gravitation / Tobler’s law",
     "text": "Law of gravitation / Tobler’s law\n\nAs cities grow…\n.. interactions between them decline with increasing distance\nNewton law of gravitation\n\n\nSource: I, Dennis Nilsson, CC BY 3.0, https://commons.wikimedia.org/w/index.php?curid=3455682"
   },
   {
     "objectID": "src/L4_network_science.html#zipf-law",
     "href": "src/L4_network_science.html#zipf-law",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "Zipf law",
     "text": "Zipf law\n\nAs cities get larger…\n… there are less of them\nRegularity in the distribution of cities within a country\nEmpirical observation and quantification\nHierarchical urban systems:\n\none/a few big cities\nmore medium size cities\nlarge number of very small cities"
   },
   {
     "objectID": "src/L4_network_science.html#zipf-law-1",
     "href": "src/L4_network_science.html#zipf-law-1",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "Zipf law",
     "text": "Zipf law"
   },
   {
     "objectID": "src/L4_network_science.html#zipf-law-2",
     "href": "src/L4_network_science.html#zipf-law-2",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "Zipf law",
     "text": "Zipf law"
   },
   {
     "objectID": "src/L4_network_science.html#zipf-law-3",
     "href": "src/L4_network_science.html#zipf-law-3",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "Zipf law",
     "text": "Zipf law\n\n\n\nSource: O’sullivan (2012) \n\nRank size rule\n\\(pop_i = pop_d r_i^{-a}\\)\nif \\(a=1\\): Zipf law\n\\(pop_i = pop_d / r_i\\)"
   },
   {
     "objectID": "src/L4_network_science.html#zipf-law-4",
     "href": "src/L4_network_science.html#zipf-law-4",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "Zipf law",
     "text": "Zipf law\n\n\n\n\nRank size rule\n\\(pop_i = pop_d r_i^{-a}\\)\nif \\(a=1\\): Zipf law\n\\(pop_i = pop_d / r_i\\)"
   },
   {
     "objectID": "src/L4_network_science.html#zipf-law-5",
     "href": "src/L4_network_science.html#zipf-law-5",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "Zipf law",
     "text": "Zipf law\n\nPrimary cities above what a Zipf law would predict\nNewly industrialised countries\nNo overall consensus why the rank-size rule holds\nStatistical regularity or an underpinning micro-economic process?"
   },
   {
     "objectID": "src/L4_network_science.html#bettencourt-west-or-marshalls-law",
     "href": "src/L4_network_science.html#bettencourt-west-or-marshalls-law",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "Bettencourt-West or Marshall’s law",
     "text": "Bettencourt-West or Marshall’s law\n\nAs cities grow…\n… their average real income (and wealth) increases more than proportionately (Bettencourt et al. 2007)\n\n\\(Y_i = Y_0P_i^\\beta\\)\n\n\\(Y_i\\): material resources (energy or infrastructure) or social activity (wealth, patents, and pollution) in city \\(i\\)\n\\(Y_o\\): normalization constant\n\\(P_i\\): population of city i\n\\(\\beta\\): exponent"
   },
   {
     "objectID": "src/L4_network_science.html#bettencourt-west-or-marshalls-law-1",
     "href": "src/L4_network_science.html#bettencourt-west-or-marshalls-law-1",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "Bettencourt-West or Marshall’s law",
     "text": "Bettencourt-West or Marshall’s law\n\n\n\nSource: Bettencourt et al. (2007) \n\n\nNot surprisingly another straight line\nAnother power law"
   },
   {
     "objectID": "src/L4_network_science.html#bettencourt-west-or-marshalls-law-2",
     "href": "src/L4_network_science.html#bettencourt-west-or-marshalls-law-2",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "Bettencourt-West or Marshall’s law",
     "text": "Bettencourt-West or Marshall’s law\n\nSource: Bettencourt et al. (2007)"
   },
   {
     "objectID": "src/L4_network_science.html#bettencourt-west-or-marshalls-law-3",
     "href": "src/L4_network_science.html#bettencourt-west-or-marshalls-law-3",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "Bettencourt-West or Marshall’s law",
     "text": "Bettencourt-West or Marshall’s law\n\n\n\n\n An average urban dweller in the capital, Lisbon, has approximately twice as many reciprocated mobile phone contacts, k, as an average individual in the rural town of Lixa.\nSource: Bettencourt (2021)"
   },
   {
     "objectID": "src/L4_network_science.html#bettencourt-west-or-marshalls-law-4",
     "href": "src/L4_network_science.html#bettencourt-west-or-marshalls-law-4",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "Bettencourt-West or Marshall’s law",
     "text": "Bettencourt-West or Marshall’s law\n\n\n\n\n\n\n\\(Y=3P^b\\)\n300 random observation\nPlotting the results\nEconomies of scale\n\\(b<1\\) decreasing returns to scale\n\\(b=1\\) constant returns\n\\(b>1\\) increasing returns\nSF networks, economies of scale?"
   },
   {
     "objectID": "src/L4_network_science.html#epilogue",
     "href": "src/L4_network_science.html#epilogue",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "Epilogue",
     "text": "Epilogue\nBettencourt (2021):\n\nCities, of course, do not really have their own dynamics; they depend on decisions made by people, corporations, governments, and others. The aggregate statistics of all their decisions will therefore emerge as key and provide another con- nection to the uses of information in urban science."
   },
   {
     "objectID": "src/L4_network_science.html#references",
     "href": "src/L4_network_science.html#references",
-    "title": "Network science, urban laws and scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
     "section": "References",
     "text": "References\n\n\n\n\n\n\nAlbert, Réka, Hawoong Jeong, and Albert-László Barabási. 2000. “Error and Attack Tolerance of Complex Networks.” Nature 406 (6794): 378–82.\n\n\nBarabási, Albert-László, and Réka Albert. 1999. “Emergence of Scaling in Random Networks.” Science 286 (5439): 509–12.\n\n\nBatty, Michael. 2013. The New Science of Cities. MIT press.\n\n\nBettencourt, Luı́s MA. 2021. “Introduction to Urban Science: Evidence and Theory of Cities as Complex Systems.”\n\n\nBettencourt, Luı́s MA, José Lobo, Dirk Helbing, Christian Kühnert, and Geoffrey B West. 2007. “Growth, Innovation, Scaling, and the Pace of Life in Cities.” Proceedings of the National Academy of Sciences 104 (17): 7301–6.\n\n\nCoe, Neil M, Philip F Kelly, and Henry WC Yeung. 2019. Economic Geography: A Contemporary Introduction. John Wiley & Sons.\n\n\nErdős, Paul, Alfréd Rényi, et al. 1960. “On the Evolution of Random Graphs.” Publ. Math. Inst. Hung. Acad. Sci 5 (1): 17–60.\n\n\nO’sullivan, Arthur. 2012. “Urban Economics 8th Ed.”\n\n\nTorres, Sonia H, Marı́a Montes de Oca, Eduardo Loeb, Priva Zabner-Oziel, Valentina Wallis, and Noelina Hernández. 2009. “Isoenzimas de Lactatodeshidrogenasa En El músculo Esquelético de Pacientes Con EPOC.” Archivos de Bronconeumologı́a 45 (2): 75–80.\n\n\nWatts, Duncan J, and Steven H Strogatz. 1998. “Collective Dynamics of ‘Small-World’networks.” Nature 393 (6684): 440–42."
   },
@@ -2301,5 +2301,68 @@
     "title": "Smart cities, urban big data, digital twins and other buzz terms",
     "section": "Smart cities, different approaches",
     "text": "Smart cities, different approaches\nIn reality…\n… a blend of all these approached\nRio de Janeiro, Brazil: The first smart city\n\n Source: Centro De Operacoes Prefeitura Do Rio"
+  },
+  {
+    "objectID": "src/L2_smart_cities.html#what-is-smart-city",
+    "href": "src/L2_smart_cities.html#what-is-smart-city",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "What is smart city ?",
+    "text": "What is smart city ?\n\n\n3 dimensions to understanding what smart city is\n\n\ndigitial technologies, 2) focus on outputs, 3) people-centric"
+  },
+  {
+    "objectID": "src/L2_smart_cities.html#big-data",
+    "href": "src/L2_smart_cities.html#big-data",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "Big data",
+    "text": "Big data\n\nNeed for new methods\nBiases"
+  },
+  {
+    "objectID": "src/L2_smart_cities.html#todays-practical",
+    "href": "src/L2_smart_cities.html#todays-practical",
+    "title": "Smart cities, urban big data, digital twins and other buzz terms",
+    "section": "Today’s practical",
+    "text": "Today’s practical\nAPI’s - way to access big data"
+  },
+  {
+    "objectID": "src/L3_intro_networks.html#brief-history-of-graphs",
+    "href": "src/L3_intro_networks.html#brief-history-of-graphs",
+    "title": "Networks",
+    "section": "Brief history of Graphs",
+    "text": "Brief history of Graphs\nLeonhard Euler (1707 – 1783)\n\nEuler’s number \\(e = 2.71828\\)\nFirst use of Graphs to solve mathematical problems\n\n\nexample: The Bridges of Königsberg"
+  },
+  {
+    "objectID": "src/L3_intro_networks.html#network-data",
+    "href": "src/L3_intro_networks.html#network-data",
+    "title": "Networks",
+    "section": "Network data",
+    "text": "Network data\nDifferent types and shapes\n\nBasic building blocks\nDirectionality\nWeights"
+  },
+  {
+    "objectID": "src/L3_intro_networks.html#exercise",
+    "href": "src/L3_intro_networks.html#exercise",
+    "title": "Networks",
+    "section": "Exercise",
+    "text": "Exercise"
+  },
+  {
+    "objectID": "src/L4_network_science.html#network-science-urban-laws-and-scaling",
+    "href": "src/L4_network_science.html#network-science-urban-laws-and-scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
+    "section": "Network science, urban laws and scaling",
+    "text": "Network science, urban laws and scaling\n\nDevelopment of network science: 1980-2000 1st Milestone - regular vs random networks 2nd Milestone - small worlds 3rd Milestone - scale free networks\nEpistemological discussion\nWhat do we mean by scaling\nThe five laws of urban scaling"
+  },
+  {
+    "objectID": "src/L4_network_science.html#what-do-we-mean-by-scaling",
+    "href": "src/L4_network_science.html#what-do-we-mean-by-scaling",
+    "title": "Lecture 4: Network science, urban laws and scaling",
+    "section": "What do we mean by scaling",
+    "text": "What do we mean by scaling"
+  },
+  {
+    "objectID": "src/L4_network_science.html#what-do-we-mean-by-scaling-1",
+    "href": "src/L4_network_science.html#what-do-we-mean-by-scaling-1",
+    "title": "Lecture 4: Network science, urban laws and scaling",
+    "section": "What do we mean by scaling",
+    "text": "What do we mean by scaling"
   }
 ]
