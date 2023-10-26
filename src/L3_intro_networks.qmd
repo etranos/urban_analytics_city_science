@@ -85,7 +85,27 @@ images.path <- paste0(path, "/images/")
 
 <small> Source: <http://www.opte.org/> </small>
 
-# Network data
+## Brief history of Graphs
+
+Leonhard Euler (1707 – 1783)
+
+- Euler's number $e = 2.71828$
+
+- First use of Graphs to solve mathematical problems 
+
+> example: The Bridges of Königsberg
+
+<!-- if raph has more than 2 nodes and odd number of links, single path cannot be found -->
+
+## Network data
+
+Different types and shapes
+
+- Basic building blocks
+
+- Directionality
+
+- Weights
 
 ## 1. Directed, non-weighted networks^[@hanneman2005introduction is a very useful [online source](http://faculty.ucr.edu/~hanneman/nettext/){target="_blank"} for most of the concepts presented here.]
 
@@ -376,6 +396,49 @@ D -> C [ penwidth = 6]
 D -> A [ penwidth = 5]
 }")
 ```
+# Sub-structures
+
+<small>
+
+-   dyads: pair of connected nodes
+
+-   triads: three connected nodes
+
+-   ego-networks
+
+-   sub-graphs: selection of connected nodes 
+
+-   cliques: the maximum number of actors who have all possible ties present among themselves; a maximal complete sub-graph
+
+
+</small>
+
+```{r, fig.height=2.5}
+grViz("
+graph {
+
+# a graph statement
+graph [layout = neato,
+      rankdir = LR]
+
+# a node statement
+node [shape = circle,
+      style = filled,
+      color = grey,
+      fillcolor = orange]
+A; B; C; D; E
+
+node [fillcolor = red]
+EGO
+
+# an edge statement
+edge [color = grey]
+
+EGO -- {A B C D E}
+B -- {C D E}
+C -- {E}
+}")
+```
 
 ## Network data: summary
 
@@ -398,6 +461,11 @@ D -> A [ penwidth = 5]
 
 -   Network data: actors and **their relations**
 :::
+
+## Exercise
+
+
+
 
 # Network measures
 
@@ -552,46 +620,7 @@ B -> C
 
 -   Assortativity coefficient is the Pearson correlation coefficient of the degree centralities of pairs of connected nodes
 
-# Sub-structures
 
-<small>
-
--   dyads: pair of connected nodes
-
--   triads: three connected nodes
-
--   ego-networks
-
--   cliques: the maximum number of actors who have all possible ties present among themselves; a maximal complete sub-graph
-
-</small>
-
-```{r, fig.height=2.5}
-grViz("
-graph {
-
-# a graph statement
-graph [layout = neato,
-      rankdir = LR]
-
-# a node statement
-node [shape = circle,
-      style = filled,
-      color = grey,
-      fillcolor = orange]
-A; B; C; D; E
-
-node [fillcolor = red]
-EGO
-
-# an edge statement
-edge [color = grey]
-
-EGO -- {A B C D E}
-B -- {C D E}
-C -- {E}
-}")
-```
 
 ## Clustering
 
@@ -876,6 +905,8 @@ G -- { I J K }
 -   Dynamic
 
 -   Spatial
+
+-   Multipirtite
 
 See also @light2020oxford
 

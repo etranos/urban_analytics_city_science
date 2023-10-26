@@ -27,57 +27,22 @@ images.path <- paste0(path, "/images/")
 
 ## Outline
 
--   Big data vs. just data
-
 -   Smart city
 
 -   Urban dashboards
 
 -   Digital twins
 
-## Big data vs. just data
+-   Big data vs. just data
 
--   Digital traces human activities leave behind
+## What is smart city ?
 
--   Accidental [@arribas2014accidental]
+::: incremental
+- 3 dimensions to understanding what smart city is
 
--   Why?
-
--   Computing power
-
--   Digital turn
-
--   Geospatial technologies \[*important for urban researchers*\]
-
-## Big data vs. just data
-
-::: r-fit-text
--   **Volume** \[how big is big?\]
-
--   **Velocity**, being created in or near real time
-
--   **Variety**, being structured and unstructured in nature
-
--   Exhaustive in scope, capture entire populations or systems
-
--   Fine-grained in resolution
-
--   Relational in nature, common fields that enable the merging of different data sets
-
--   Flexible, extensionable (can add new fields easily) and scalable (can expand in size rapidly) [@kitchin2013big].
-
-Or, whatever doesn't fit in an excel spreadsheet (Batty, anecdotal)
+1) digitial technologies, 2) focus on outputs, 3) people-centric
 :::
 
-## Big data vs. just data
-
--   Biases
-
--   Need for new methods
-
--   Accidental
-
--   *Big data can speak for themselves*. Not really [@kitchin2013big]
 
 ## Smart cities, different approaches
 
@@ -113,7 +78,8 @@ Based on @kitchin2019timescape
 
 ## Smart cities, different approaches
 
-The **just** approach
+<!-- The **just** approach -->
+The **people-centric** approach
 
 -   ICT-led, citizen-centric model of development
 
@@ -214,5 +180,97 @@ Based on @batty2018digital
 <!-- <small><small> Source: <https://webinars.sw.siemens.com/en-US/digital-twin-in-manufacturing/> </small></small> -->
 
 ![](images/digital_twin.png) <small><small> Source: [@bolton2018gemini] </small></small>
+
+
+## Big data vs. just data
+Difference in volume, variety, velocity, complexity, and potential value
+
+::: columns
+::: {.column width="50%"}
+Big Data
+- large 
+- complex
+- constantly changing
+:::
+
+::: {.column width="50%"}
+Just Data
+- small
+- structured
+- static
+:::
+:::
+
+
+## Big data vs. just data
+::: columns
+::: {.column width="50%"}
+Big Data
+-   Digital traces human activities leave behind
+-   Accidental [@arribas2014accidental]
+-   Geospatial technologies \[*important for urban researchers*\]
+-   Fine-grained in resolution
+-   Flexible
+:::
+
+::: {.column width="50%"}
+Just Data
+- Collected for purpose
+- Low-grained resolution
+- Less-flexible
+:::
+:::
+
+## Big data
+
+-   Need for new methods
+-   Biases
+
+## Today's practical
+
+API's - way to access big data
+<!--
+
+-   Digital traces human activities leave behind
+
+-   Accidental [@arribas2014accidental]
+
+-   Why?
+
+-   Computing power
+
+-   Digital turn
+
+-   Geospatial technologies \[*important for urban researchers*\]
+
+## Big data vs. just data
+
+::: r-fit-text
+-   **Volume** \[how big is big?\]
+
+-   **Velocity**, being created in or near real time
+
+-   **Variety**, being structured and unstructured in nature
+
+-   Exhaustive in scope, capture entire populations or systems
+
+-   Fine-grained in resolution
+
+-   Relational in nature, common fields that enable the merging of different data sets
+
+-   Flexible, extensionable (can add new fields easily) and scalable (can expand in size rapidly) [@kitchin2013big].
+
+Or, whatever doesn't fit in an excel spreadsheet (Batty, anecdotal)
+:::
+
+## Big data vs. just data
+
+-   Biases
+
+-   Need for new methods
+
+-   Accidental
+
+-   *Big data can speak for themselves*. Not really [@kitchin2013big] -->
 
 ## References {.scrollable}
