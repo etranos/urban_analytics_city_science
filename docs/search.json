@@ -205,532 +205,532 @@
   {
     "objectID": "src/L6_diversity.html#economic-diversity",
     "href": "src/L6_diversity.html#economic-diversity",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Economic diversity",
     "text": "Economic diversity\n\nProduction, i.e. firms\nConsumption, i.e. product variety\nLabour pool, i.e. skills in labour market\n\nIn general is a good thing for:\n\nurban economies\nproductivity\nurban and industrial agglomeration"
   },
   {
     "objectID": "src/L6_diversity.html#opposing-forces",
     "href": "src/L6_diversity.html#opposing-forces",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Opposing forces",
     "text": "Opposing forces\n\nWithin-sector or Marshall–Arrow–Romer (MAR) spillovers\nBetween-sector or Jacobs spillovers\nLarge empirical literature trying to identify the optimal ratio, e.g. Saviotti and Frenken (2008) and Caragliu, Dominicis, and Groot (2016)\nMAR externalities (or spillovers): good for productivity and short-term growth\nJacobean externalities: good for innovation and long-term growth"
   },
   {
     "objectID": "src/L6_diversity.html#opposing-forces-1",
     "href": "src/L6_diversity.html#opposing-forces-1",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Opposing forces",
     "text": "Opposing forces\nUsing more clear economics terminology (Fujita et al. 1989):\n\nDiverse cities (heterogeneous agglomerations) enjoy economies of scope\nHomogeneous agglomeration enjoy increasing returns from economies of scale"
   },
   {
     "objectID": "src/L6_diversity.html#on-the-ground",
     "href": "src/L6_diversity.html#on-the-ground",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "On the ground",
     "text": "On the ground\n\nAmbiguous concepts\nVariety, diversity, difference: a relative concept of agglomeration and the clustering of activities\nNot only higher ‘abundance’, ‘difference’ or ‘number’, but also the degrees of ‘richness’, ‘concentration’ or ‘evenness’ (Yuo and Tseng 2021)\nDifferent ways to measure (Bettencourt 2021)"
   },
   {
     "objectID": "src/L6_diversity.html#spieces-richness",
     "href": "src/L6_diversity.html#spieces-richness",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Spieces richness…",
     "text": "Spieces richness…\n\n… aka variety\n\\(D = \\sum_{i}^n p_{i}^0\\)\n\\(p_i\\) is the proportion of data points in the \\(i\\)th category\n\\(n\\) is the number of total categories\nA count of different species / categories / …\n\nInterpretation:\n\nPlurality\nAvailability of options"
   },
   {
     "objectID": "src/L6_diversity.html#shannon-entropy",
     "href": "src/L6_diversity.html#shannon-entropy",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Shannon entropy",
     "text": "Shannon entropy\n\n\\(H = -\\sum_{i}^n p_{i} \\ln{p_{i}}\\)\n\\(n\\) is the number of total categories\n\\(p_i\\) is the proportion of data points in the \\(i\\)th category\nProbably the most common diversity index.\nInterpretation:\n\nIf one category dominates ➔ less surprise ➔ low entropy\nNo category dominates ➔ more surprise ➔ high entropy"
   },
   {
     "objectID": "src/L6_diversity.html#herfindahl-hirschman-index",
     "href": "src/L6_diversity.html#herfindahl-hirschman-index",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Herfindahl-Hirschman index",
     "text": "Herfindahl-Hirschman index\n\n\\(HHI = \\sum_{i}^{n}(p_{i}^2)\\)\n\\(p_i\\) is the proportion of data points in the \\(i\\)th category\nConcentration of the market.\nInterpretation:\n\n\\(1/n \\leq HHI \\leq 1\\)\nTwo scenarios:\n\n\n\nHHI_1 = .8^2 + .05^2 + .05^2 + .1^2\nHHI_1\n\n[1] 0.655\n\nHHI_2 = .25^2 + .25^2 + .25^2 + .25^2\nHHI_2\n\n[1] 0.25"
   },
   {
     "objectID": "src/L6_diversity.html#herfindahl-hirschman-index-1",
     "href": "src/L6_diversity.html#herfindahl-hirschman-index-1",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Herfindahl-Hirschman index",
     "text": "Herfindahl-Hirschman index\n\nCaution: alternative specification\n\\(HHI = 1- \\sum_{i}^{n}(p_{i}^2)\\)"
   },
   {
     "objectID": "src/L6_diversity.html#relatedness",
     "href": "src/L6_diversity.html#relatedness",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Relatedness",
     "text": "Relatedness\n\nRelatedness spans the continuum between MAR and Jacobs (Hidalgo 2021)\nRelated activities are neither exactly the same nor completely different (Frenken, Van Oort, and Verburg 2007; Boschma et al. 2012)\nWhy? Because:\n\nidentical activities compete for customers and resources,\nno learning between very dissimilar economic activities"
   },
   {
     "objectID": "src/L6_diversity.html#relatedness-1",
     "href": "src/L6_diversity.html#relatedness-1",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Relatedness",
     "text": "Relatedness\n\nAbsorptive capacity: a firm’s capacity to absorb new knowledge depends on its prior level of related knowledge (Cohen and Levinthal 1990)"
   },
   {
     "objectID": "src/L6_diversity.html#economic-complexity",
     "href": "src/L6_diversity.html#economic-complexity",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Economic complexity",
     "text": "Economic complexity\n\nLarge scale fine-grained data on economic activities\nLearn about abstract factors of production and the way they combine into outputs\nDimensionality reduction techniques to data on the geography of activities, e.g. employment by industry or patents by technology\nMachine learning and network techniques to predict and explain the economic trajectories of countries, cities and regions\n\nFor a review, check Hidalgo (2021) and Balland et al. (2022)."
   },
   {
     "objectID": "src/L6_diversity.html#measuring-diversity",
     "href": "src/L6_diversity.html#measuring-diversity",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Measuring diversity",
     "text": "Measuring diversity"
   },
   {
     "objectID": "src/L6_diversity.html#measuring-diversity-1",
     "href": "src/L6_diversity.html#measuring-diversity-1",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Measuring diversity",
     "text": "Measuring diversity\n\nGo to data.london.gov.uk\nDownload and and save locally the Businesses-in-London.csv\nMake sure you know the file location!\nWe will use the REAT and entropy packages. Check what these packages do here and here.\nInstall them if needed with install.packages(\"packagename\")"
   },
   {
     "objectID": "src/L6_diversity.html#measuring-diversity-2",
     "href": "src/L6_diversity.html#measuring-diversity-2",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Measuring diversity",
     "text": "Measuring diversity\n\nlibrary(tidyverse)  # for data wrangling\nlibrary(rprojroot)  # for relative paths\nlibrary(REAT)       # for diversity measures\nlibrary(entropy)    # for entropy\nlibrary(cluster)    # for cluster analysis\nlibrary(factoextra) # help functions for clustering \nlibrary(kableExtra) # for nice html tables\nlibrary(dbscan)     # for HDBSCAL\nlibrary(sf)         # for mapping\n\n# This is the project path\npath &lt;- find_rstudio_root_file()\npath.data &lt;- paste0(path, \"/data/businesses-in-london.csv\")\n\nlondon.firms &lt;- read_csv(path.data) \n\nlondon.firms.sum &lt;- london.firms %&gt;% \n  filter(SICCode.SicText_1!=\"None Supplied\") %&gt;% # dropping NAs in essence\n  group_by(oslaua, SICCode.SicText_1) %&gt;%        # grouping by Local Authority and SIC code\n  summarise(n = n()) %&gt;%                         # summarise: n is the number of firms per Local Authority and SIC code\n  mutate(total = sum(n),                         # total equal all firms\n         freq = n / total) %&gt;%                   # just a frequency\n  group_by(oslaua) %&gt;%                           # grouping again only by Local Authority\n  summarise(richness = n_distinct(SICCode.SicText_1), # the number of distinct SIC per Local Authority\n            entropy = entropy(freq, method = \"ML\"),   # entropy for each Local Authority, we did the first group_by() and mutate() to be                                                           able to calculate freq so we can calculate entropy\n            herf = herf(n)) %&gt;%                       # HHI for each local authority\n  arrange(-herf)                                      # sort based on HHI (descending)\n\nlondon.firms.sum %&gt;% kbl() %&gt;%\n  kable_styling(full_width = F) %&gt;%                   # A nice(r) table\n  scroll_box(width = \"800px\", height = \"300px\")\n\n\n\n\n\noslaua\nrichness\nentropy\nherf\n\n\n\n\nE09000013\n602\n4.637865\n0.0301165\n\n\nE09000001\n744\n4.520774\n0.0288396\n\n\nE09000033\n827\n4.607933\n0.0258339\n\n\nE09000003\n723\n4.671225\n0.0233361\n\n\nE09000008\n678\n4.786546\n0.0221182\n\n\nE09000027\n558\n4.712318\n0.0220274\n\n\nE09000015\n633\n4.730619\n0.0205194\n\n\nE09000010\n667\n4.790814\n0.0204714\n\n\nE09000007\n827\n4.829186\n0.0204085\n\n\nE09000020\n577\n4.774282\n0.0196181\n\n\nE09000030\n690\n4.802693\n0.0193494\n\n\nE09000025\n623\n4.816502\n0.0188794\n\n\nE09000032\n571\n4.831936\n0.0184425\n\n\nE09000026\n630\n4.806874\n0.0180738\n\n\nE09000012\n729\n4.915068\n0.0178886\n\n\nE09000014\n595\n4.830779\n0.0178559\n\n\nE09000019\n803\n4.904964\n0.0178424\n\n\nE09000006\n599\n4.833756\n0.0177523\n\n\nE09000021\n529\n4.856868\n0.0176720\n\n\nE09000004\n569\n4.849445\n0.0176348\n\n\nE09000024\n582\n4.860828\n0.0168338\n\n\nE09000018\n603\n4.906424\n0.0163947\n\n\nE09000029\n543\n4.879529\n0.0162662\n\n\nE09000022\n594\n4.925276\n0.0157286\n\n\nE09000017\n640\n4.960676\n0.0153900\n\n\nE09000005\n644\n4.958913\n0.0146799\n\n\nE09000016\n564\n4.936603\n0.0145663\n\n\nE09000028\n681\n4.996227\n0.0145643\n\n\nE09000002\n543\n4.916217\n0.0143203\n\n\nE09000009\n645\n4.992793\n0.0142574\n\n\nE09000031\n587\n4.977460\n0.0136438\n\n\nE09000011\n565\n4.995980\n0.0136430\n\n\nE09000023\n540\n5.008342\n0.0130329"
   },
   {
     "objectID": "src/L6_diversity.html#measuring-diversity-3",
     "href": "src/L6_diversity.html#measuring-diversity-3",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Measuring diversity",
     "text": "Measuring diversity\n\n\n\n\n\n\nTip\n\n\nYou don’t know what local authorities these codes refer to. You should download the codes and names and join them with your data from here.\n\n\n\n\n\n\n\n\n\nTip\n\n\nDiscuss what we can learn from this exercise.\nCan you think of a way to understand how different these indices are among London’s Local Authorities?"
   },
   {
     "objectID": "src/L6_diversity.html#mapping-diversity",
     "href": "src/L6_diversity.html#mapping-diversity",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Mapping diversity",
     "text": "Mapping diversity\npath.shape &lt;- paste0(path, \"/data/Local_Authority_Districts_(May_2021)_UK_BFE.geojson\")\n\nlondon &lt;- st_read(path.shape, quiet = T) %&gt;%\n  dplyr::filter(LAD21CD %in% (london.firms$oslaua))\n\nlondon &lt;- merge(london, london.firms.sum, by.x = \"LAD21CD\", by.y = \"oslaua\" )\n  \nggplot() +\n  geom_sf(data = london, aes(fill = entropy), color = NA) +\n  labs(\n    title = \"Business diversity in London' Local Autorities\",\n    fill = \"Entropy\") +\n  scale_fill_viridis_c() +\n  theme_void() +\n  theme(plot.title = element_text(hjust = 0.5)) # centres the title"
   },
   {
     "objectID": "src/L6_diversity.html#clustering",
     "href": "src/L6_diversity.html#clustering",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Clustering",
     "text": "Clustering\n\nReducing the dimensions of the observation space\nClassification of observations into (exclusive) groups\nDistance or (dis)similarity between each pair of observations to create a distance or dissimilarity or matrix\nObservations within the same group are as similar as possible\nBased on Boehmke and Greenwell (2019) available here\nPlenty of other resources online and in textbooks"
   },
   {
     "objectID": "src/L6_diversity.html#clustering-1",
     "href": "src/L6_diversity.html#clustering-1",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Clustering",
     "text": "Clustering\n\nk-means\nHierarchical clustering"
   },
   {
     "objectID": "src/L6_diversity.html#k-means",
     "href": "src/L6_diversity.html#k-means",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "k-means",
     "text": "k-means\n\n\nk is the number of clusters and is pre-defined\nThe algorithm selects k random observations (starting centres)\nThe remaining observations are assigned to the nearest centre\nRecalculates the new centres\nRe-check cluster assignment\nIterative process to minimise within-cluster variation until convergence\n\n\n\\(SS_{within} = \\sum_{k=1}^k W(C_{k}) = \\sum_{k=1}^k \\sum_{x_i\\in C_K}(x_i-\\mu_k)^2\\)"
   },
   {
     "objectID": "src/L6_diversity.html#k-means-1",
     "href": "src/L6_diversity.html#k-means-1",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "k-means",
     "text": "k-means\nFirst, create an appropriate data frame\n\nla.sic &lt;- london.firms %&gt;% \n  filter(SICCode.SicText_1!=\"None Supplied\") %&gt;% # Drop firms which haven't declared SIC code\n  group_by(oslaua, SICCode.SicText_1) %&gt;%        # Group by Local Authorities and SIC code\n  summarise(n = n()) %&gt;%                         # Summarise; n = number of observations\n  mutate(total = sum(n),                         # New column: total number of observations\n         freq = n / total) %&gt;%                   # New column: frequency\n  arrange(oslaua,-n) %&gt;%                         # Just arrange by Local Authority and descenting order of n\n  select(-n, -total) %&gt;%                         # Drop n and total, we don't need them any more.\n  pivot_wider(names_from = SICCode.SicText_1, values_from = freq) %&gt;% # Data transformation: from long to wide. Have a look: https://tidyr.tidyverse.org/reference/pivot_wider.html\n  replace(is.na(.), 0)                          # Replace any missing values with 0 as missing value represent SIC codes with 0 frequency\n\nla.sic %&gt;%  \n  select(1:20) %&gt;%  # Select the first 20 columns as there 1037 in total\n  kbl() %&gt;%\n  kable_styling()   # Nice(r) table\n\n\n\n\noslaua\n82990 - Other business support service activities n.e.c.\n64209 - Activities of other holding companies n.e.c.\n70229 - Management consultancy activities other than financial management\n64999 - Financial intermediation not elsewhere classified\n99999 - Dormant Company\n74990 - Non-trading company\n70100 - Activities of head offices\n68209 - Other letting and operating of own or leased real estate\n62020 - Information technology consultancy activities\n68100 - Buying and selling of own real estate\n65120 - Non-life insurance\n96090 - Other service activities n.e.c.\n41100 - Development of building projects\n62012 - Business and domestic software development\n62090 - Other information technology service activities\n35110 - Production of electricity\n64205 - Activities of financial services holding companies\n74909 - Other professional, scientific and technical activities n.e.c.\n65110 - Life insurance\n\n\n\n\nE09000001\n0.1108145\n0.0606884\n0.0401823\n0.0379038\n0.0363252\n0.0361787\n0.0271462\n0.0261046\n0.0247376\n0.0239889\n0.0239238\n0.0232403\n0.0208642\n0.0198714\n0.0193018\n0.0183579\n0.0161282\n0.0155586\n0.0117829\n\n\nE09000002\n0.0270344\n0.0027363\n0.0241340\n0.0024626\n0.0061840\n0.0026816\n0.0013681\n0.0173480\n0.0254474\n0.0313030\n0.0001095\n0.0348602\n0.0163629\n0.0068954\n0.0107262\n0.0000547\n0.0004378\n0.0078258\n0.0000547\n\n\nE09000003\n0.0600694\n0.0131911\n0.0403222\n0.0081328\n0.0314536\n0.0152407\n0.0037313\n0.0658109\n0.0258041\n0.0686751\n0.0003942\n0.0442374\n0.0313223\n0.0093678\n0.0109181\n0.0010511\n0.0012876\n0.0106816\n0.0003022\n\n\nE09000004\n0.0714510\n0.0073915\n0.0429860\n0.0039316\n0.0150975\n0.0074963\n0.0025163\n0.0291466\n0.0347033\n0.0404173\n0.0004718\n0.0300377\n0.0214406\n0.0071818\n0.0114280\n0.0004194\n0.0004194\n0.0112183\n0.0001573\n\n\nE09000005\n0.0357725\n0.0060626\n0.0302829\n0.0057610\n0.0234964\n0.0061229\n0.0027749\n0.0451228\n0.0273572\n0.0451529\n0.0002111\n0.0339326\n0.0193039\n0.0080533\n0.0110394\n0.0003318\n0.0006937\n0.0120951\n0.0000603\n\n\nE09000006\n0.0475336\n0.0079285\n0.0482441\n0.0065073\n0.0258798\n0.0078537\n0.0035529\n0.0407644\n0.0376977\n0.0391937\n0.0012716\n0.0269270\n0.0253562\n0.0119675\n0.0129773\n0.0002618\n0.0007854\n0.0157448\n0.0001870\n\n\nE09000007\n0.0541925\n0.0147704\n0.0451042\n0.0091985\n0.0176188\n0.0095582\n0.0063354\n0.0248425\n0.0352450\n0.0353404\n0.0002790\n0.0431734\n0.0260612\n0.0269274\n0.0163561\n0.0019454\n0.0036706\n0.0121643\n0.0001688\n\n\nE09000008\n0.0358566\n0.0042869\n0.0328511\n0.0057082\n0.0886745\n0.0097621\n0.0027492\n0.0308940\n0.0316861\n0.0352275\n0.0002563\n0.0260246\n0.0205261\n0.0105543\n0.0156800\n0.0003728\n0.0027026\n0.0091098\n0.0002097\n\n\nE09000009\n0.0325698\n0.0062051\n0.0333419\n0.0044036\n0.0177290\n0.0084928\n0.0036602\n0.0394327\n0.0277087\n0.0445226\n0.0002002\n0.0352864\n0.0220468\n0.0095222\n0.0106374\n0.0002860\n0.0011152\n0.0100369\n0.0000858\n\n\nE09000010\n0.0361647\n0.0106993\n0.0303793\n0.0056159\n0.0855462\n0.0089807\n0.0024207\n0.0462347\n0.0218102\n0.0379076\n0.0004115\n0.0357532\n0.0213987\n0.0127811\n0.0115466\n0.0002421\n0.0017913\n0.0091501\n0.0002421\n\n\nE09000011\n0.0352018\n0.0036909\n0.0420300\n0.0038754\n0.0134717\n0.0044752\n0.0021223\n0.0251903\n0.0373702\n0.0333564\n0.0003691\n0.0352480\n0.0183622\n0.0120877\n0.0130104\n0.0004614\n0.0014302\n0.0120415\n0.0000923\n\n\nE09000012\n0.0512285\n0.0097657\n0.0496767\n0.0063622\n0.0329695\n0.0031242\n0.0022862\n0.0412559\n0.0384524\n0.0476801\n0.0002897\n0.0205038\n0.0148865\n0.0235245\n0.0167486\n0.0015621\n0.0025449\n0.0118450\n0.0000621\n\n\nE09000013\n0.0423722\n0.0123893\n0.0448190\n0.0076899\n0.0190306\n0.0101755\n0.0087774\n0.1304179\n0.0213220\n0.0310704\n0.0001554\n0.0332453\n0.0167780\n0.0116126\n0.0129719\n0.0013982\n0.0015147\n0.0148361\n0.0000388\n\n\nE09000014\n0.0339895\n0.0056534\n0.0407460\n0.0045848\n0.0256127\n0.0055500\n0.0031370\n0.0527423\n0.0272674\n0.0578096\n0.0001379\n0.0438829\n0.0167879\n0.0113758\n0.0085491\n0.0003792\n0.0009307\n0.0091696\n0.0000345\n\n\nE09000015\n0.0486010\n0.0124162\n0.0466257\n0.0083570\n0.0189498\n0.0074019\n0.0031692\n0.0576744\n0.0423495\n0.0634049\n0.0002605\n0.0342313\n0.0266123\n0.0127418\n0.0140876\n0.0002171\n0.0012373\n0.0184940\n0.0001954\n\n\nE09000016\n0.0449873\n0.0058253\n0.0335324\n0.0070981\n0.0186019\n0.0052379\n0.0017623\n0.0327981\n0.0270217\n0.0414137\n0.0008811\n0.0315743\n0.0251126\n0.0092520\n0.0097415\n0.0000979\n0.0009301\n0.0105248\n0.0000979\n\n\nE09000017\n0.0340671\n0.0094125\n0.0317595\n0.0047062\n0.0160012\n0.0068316\n0.0052528\n0.0389252\n0.0357674\n0.0526188\n0.0003036\n0.0352513\n0.0235616\n0.0123273\n0.0135722\n0.0002429\n0.0015181\n0.0123577\n0.0002429\n\n\nE09000018\n0.0348997\n0.0088552\n0.0347881\n0.0054322\n0.0130223\n0.0102690\n0.0069576\n0.0298396\n0.0549540\n0.0416341\n0.0002232\n0.0361275\n0.0193474\n0.0161848\n0.0141385\n0.0004093\n0.0013766\n0.0104178\n0.0001488\n\n\nE09000019\n0.0509646\n0.0133515\n0.0490896\n0.0090981\n0.0198825\n0.0094630\n0.0062919\n0.0248783\n0.0370846\n0.0317616\n0.0005537\n0.0470006\n0.0223615\n0.0277725\n0.0190771\n0.0017617\n0.0040646\n0.0131753\n0.0002139\n\n\nE09000020\n0.0499206\n0.0187149\n0.0547281\n0.0133494\n0.0227926\n0.0141649\n0.0104735\n0.0411641\n0.0188866\n0.0365712\n0.0002575\n0.0403056\n0.0202601\n0.0148517\n0.0121475\n0.0031335\n0.0041207\n0.0146371\n0.0000000\n\n\nE09000021\n0.0478516\n0.0081613\n0.0512695\n0.0039063\n0.0151367\n0.0095564\n0.0043248\n0.0353655\n0.0399693\n0.0358538\n0.0006975\n0.0272740\n0.0177176\n0.0142997\n0.0145787\n0.0002790\n0.0014648\n0.0150670\n0.0002790\n\n\nE09000022\n0.0335485\n0.0086577\n0.0420129\n0.0044448\n0.0180111\n0.0090055\n0.0052951\n0.0372976\n0.0252773\n0.0306497\n0.0001546\n0.0331620\n0.0143006\n0.0117497\n0.0112472\n0.0028215\n0.0009276\n0.0134890\n0.0000773\n\n\nE09000023\n0.0320543\n0.0035557\n0.0378921\n0.0041925\n0.0113570\n0.0044579\n0.0016982\n0.0268535\n0.0312583\n0.0294008\n0.0000531\n0.0311522\n0.0145412\n0.0110917\n0.0118877\n0.0001061\n0.0013268\n0.0110917\n0.0000531\n\n\nE09000024\n0.0354735\n0.0083443\n0.0490793\n0.0051381\n0.0251973\n0.0069878\n0.0037817\n0.0349803\n0.0517511\n0.0415571\n0.0005344\n0.0318563\n0.0206347\n0.0218267\n0.0152088\n0.0011098\n0.0009865\n0.0107284\n0.0001644\n\n\nE09000025\n0.0443489\n0.0029330\n0.0243489\n0.0040202\n0.0653097\n0.0060430\n0.0018710\n0.0201770\n0.0310999\n0.0305689\n0.0001517\n0.0287737\n0.0136030\n0.0141087\n0.0113780\n0.0001264\n0.0010619\n0.0068015\n0.0001517\n\n\nE09000026\n0.0483713\n0.0060341\n0.0313726\n0.0041454\n0.0177836\n0.0118475\n0.0019133\n0.0443240\n0.0351011\n0.0608320\n0.0003434\n0.0384615\n0.0226403\n0.0095418\n0.0106211\n0.0001962\n0.0008830\n0.0094192\n0.0001472\n\n\nE09000027\n0.0492061\n0.0080081\n0.0828589\n0.0082396\n0.0301810\n0.0121742\n0.0049067\n0.0392075\n0.0431422\n0.0453641\n0.0007406\n0.0244410\n0.0208767\n0.0152294\n0.0154145\n0.0006018\n0.0010647\n0.0200435\n0.0002314\n\n\nE09000028\n0.0530189\n0.0184414\n0.0437391\n0.0094275\n0.0362030\n0.0226084\n0.0137424\n0.0285782\n0.0310016\n0.0226084\n0.0004433\n0.0282235\n0.0125307\n0.0165204\n0.0143630\n0.0043148\n0.0039306\n0.0142152\n0.0001773\n\n\nE09000029\n0.0425879\n0.0045226\n0.0459799\n0.0059673\n0.0157663\n0.0069724\n0.0035176\n0.0339824\n0.0466080\n0.0415829\n0.0005025\n0.0298995\n0.0246859\n0.0138191\n0.0140704\n0.0002513\n0.0020101\n0.0120603\n0.0000628\n\n\nE09000030\n0.0652078\n0.0159285\n0.0484445\n0.0199271\n0.0342956\n0.0172467\n0.0089199\n0.0253977\n0.0509271\n0.0293084\n0.0007250\n0.0367343\n0.0160603\n0.0187187\n0.0393927\n0.0019554\n0.0097109\n0.0105457\n0.0001977\n\n\nE09000031\n0.0310170\n0.0067606\n0.0308121\n0.0036876\n0.0120052\n0.0036057\n0.0014750\n0.0304024\n0.0251168\n0.0375727\n0.0002049\n0.0402360\n0.0259772\n0.0095059\n0.0092190\n0.0006556\n0.0009424\n0.0093420\n0.0000410\n\n\nE09000032\n0.0381731\n0.0072472\n0.0655832\n0.0074624\n0.0180461\n0.0091845\n0.0041976\n0.0402540\n0.0311771\n0.0355900\n0.0003946\n0.0311771\n0.0202346\n0.0123417\n0.0119470\n0.0008969\n0.0018297\n0.0158935\n0.0000359\n\n\nE09000033\n0.0871492\n0.0369990\n0.0475242\n0.0180250\n0.0727706\n0.0228702\n0.0137720\n0.0385974\n0.0192951\n0.0375056\n0.0004424\n0.0307623\n0.0292781\n0.0150850\n0.0143358\n0.0047239\n0.0074997\n0.0153490\n0.0001570"
   },
   {
     "objectID": "src/L6_diversity.html#k-means-2",
     "href": "src/L6_diversity.html#k-means-2",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "k-means",
-    "text": "k-means\n\nkclust = kmeans(la.sic[,-1], centers = 10, nstart = 10) # be aware of the [,-1]\nstr(kclust)\n\nList of 9\n $ cluster     : int [1:33] 6 10 9 3 10 4 7 8 10 8 ...\n $ centers     : num [1:10, 1:1036] 0.0424 0.0591 0.0434 0.0444 0.0443 ...\n  ..- attr(*, \"dimnames\")=List of 2\n  .. ..$ : chr [1:10] \"1\" \"2\" \"3\" \"4\" ...\n  .. ..$ : chr [1:1036] \"82990 - Other business support service activities n.e.c.\" \"64209 - Activities of other holding companies n.e.c.\" \"70229 - Management consultancy activities other than financial management\" \"64999 - Financial intermediation not elsewhere classified\" ...\n $ totss       : num 0.0945\n $ withinss    : num [1:10] 0 0.00112 0.00373 0.0042 0 ...\n $ tot.withinss: num 0.0235\n $ betweenss   : num 0.071\n $ size        : int [1:10] 1 2 5 6 1 2 3 2 3 8\n $ iter        : int 3\n $ ifault      : int 0\n - attr(*, \"class\")= chr \"kmeans\"\n\n\ncenters is 10 x 1036: 1036 is the number of SIC codes."
+    "text": "k-means\n\nkclust = kmeans(la.sic[,-1], centers = 10, nstart = 10) # be aware of the [,-1]\nstr(kclust)\n\nList of 9\n $ cluster     : int [1:33] 7 6 8 10 6 5 1 2 6 2 ...\n $ centers     : num [1:10, 1:1036] 0.0521 0.036 0.0591 0.0443 0.0444 ...\n  ..- attr(*, \"dimnames\")=List of 2\n  .. ..$ : chr [1:10] \"1\" \"2\" \"3\" \"4\" ...\n  .. ..$ : chr [1:1036] \"82990 - Other business support service activities n.e.c.\" \"64209 - Activities of other holding companies n.e.c.\" \"70229 - Management consultancy activities other than financial management\" \"64999 - Financial intermediation not elsewhere classified\" ...\n $ totss       : num 0.0945\n $ withinss    : num [1:10] 0.0019 0.00182 0.00112 0 0.0042 ...\n $ tot.withinss: num 0.0235\n $ betweenss   : num 0.071\n $ size        : int [1:10] 3 2 2 1 6 8 2 3 1 5\n $ iter        : int 2\n $ ifault      : int 0\n - attr(*, \"class\")= chr \"kmeans\"\n\n\ncenters is 10 x 1036: 1036 is the number of SIC codes."
   },
   {
     "objectID": "src/L6_diversity.html#choosing-k",
     "href": "src/L6_diversity.html#choosing-k",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Choosing k",
     "text": "Choosing k\n\nRule of thumb: \\(k = \\sqrt{n/2}\\)\nThe elbow method\n\nCompute k-means clustering for different values of k\nCalculate \\(SS_{within}\\)\nPlot and spot the loction of a bend"
   },
   {
     "objectID": "src/L6_diversity.html#choosing-k-1",
     "href": "src/L6_diversity.html#choosing-k-1",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Choosing k",
     "text": "Choosing k\n\nfviz_nbclust(\n  la.sic[,-1], \n  kmeans, \n  k.max = 20,\n  method = \"wss\"\n)"
   },
   {
     "objectID": "src/L6_diversity.html#hierarchical-clustering",
     "href": "src/L6_diversity.html#hierarchical-clustering",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Hierarchical clustering",
     "text": "Hierarchical clustering\n\n\n\n Source: @boehmke2019hands \n\n\nAgglomerative clustering (AGNES – AGglomerative NESting)\nDivisive hierarchical clustering (DIANA – DIvise ANAlysis)\n\nDissimilarity (distance) of observations"
   },
   {
     "objectID": "src/L6_diversity.html#hierarchical-clustering-1",
     "href": "src/L6_diversity.html#hierarchical-clustering-1",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Hierarchical clustering",
     "text": "Hierarchical clustering\n\n# distances between observations\nd &lt;- dist(la.sic)\n\n# creates labels for the dendrogam\nl &lt;- london.firms %&gt;% distinct(oslaua) %&gt;% arrange(oslaua)\n\nhclust = hclust(d)\n\nplot(hclust, hang=-1, labels=l$oslaua, main='Default from hclust') \n\n#hang: the fraction of the plot height by which labels should hang below the rest of the plot. A negative value will cause the labels to hang down from 0."
   },
   {
     "objectID": "src/L6_diversity.html#optimal-number-of-clusters",
     "href": "src/L6_diversity.html#optimal-number-of-clusters",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Optimal number of clusters",
     "text": "Optimal number of clusters"
   },
   {
     "objectID": "src/L6_diversity.html#optimal-number-of-clusters-1",
     "href": "src/L6_diversity.html#optimal-number-of-clusters-1",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Optimal number of clusters",
     "text": "Optimal number of clusters\n\n\n\n\n\n\nTip\n\n\nExplore what the 2 cluster solution tells us about London?"
   },
   {
     "objectID": "src/L6_diversity.html#clusters-in-space",
     "href": "src/L6_diversity.html#clusters-in-space",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Clusters in space",
     "text": "Clusters in space\n\nCreate a SIC frequency table\n\n\n# This will build an SIC frequency table\nlondon.firms %&gt;% \n  group_by(SICCode.SicText_1) %&gt;% \n  summarise(n=n()) %&gt;% \n  arrange(-n) %&gt;% \n  glimpse()\n\nRows: 1,037\nColumns: 2\n$ SICCode.SicText_1 &lt;chr&gt; \"82990 - Other business support service activities n…\n$ n                 &lt;int&gt; 72756, 58526, 55309, 52058, 46572, 45312, 44270, 439…"
   },
   {
     "objectID": "src/L6_diversity.html#clusters-in-space-1",
     "href": "src/L6_diversity.html#clusters-in-space-1",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Clusters in space",
     "text": "Clusters in space\n\nFocus on, let’s say “70221 - Financial management”\n\n\nlondon.firms.sample &lt;- london.firms %&gt;% \n  filter(SICCode.SicText_1==\"70221 - Financial management\") %&gt;% \n  select(oseast1m, osnrth1m) %&gt;% \n  drop_na()"
   },
   {
     "objectID": "src/L6_diversity.html#financial-management-in-london",
     "href": "src/L6_diversity.html#financial-management-in-london",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Financial management in London",
     "text": "Financial management in London\n\nplot(london.firms.sample)"
   },
   {
     "objectID": "src/L6_diversity.html#clusters-in-space-k-means",
     "href": "src/L6_diversity.html#clusters-in-space-k-means",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Clusters in space, k-means",
     "text": "Clusters in space, k-means\n\nfviz_nbclust(\n  london.firms.sample, \n  kmeans, \n  k.max = 10,\n  method = \"wss\"\n)"
   },
   {
     "objectID": "src/L6_diversity.html#clusters-in-space-k-means-1",
     "href": "src/L6_diversity.html#clusters-in-space-k-means-1",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Clusters in space, k-means",
     "text": "Clusters in space, k-means\n\nsp.cluster = kmeans(london.firms.sample, 6) \n\nplot(london.firms.sample, col = sp.cluster$cluster)"
   },
   {
     "objectID": "src/L6_diversity.html#clusters-in-space-hdbscan",
     "href": "src/L6_diversity.html#clusters-in-space-hdbscan",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Clusters in space, hdbscan",
     "text": "Clusters in space, hdbscan\n\nTransform the space according to the density/sparsity\nBuild the minimum spanning tree of the distance weighted graph\nConstruct a cluster hierarchy of connected components\nCondense the cluster hierarchy based on minimum cluster size\nExtract the stable clusters from the condensed tree.\n\nResources: SciKit-learn docs and dbscan package"
   },
   {
     "objectID": "src/L6_diversity.html#clusters-in-space-hdbscan-1",
     "href": "src/L6_diversity.html#clusters-in-space-hdbscan-1",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "Clusters in space, hdbscan",
     "text": "Clusters in space, hdbscan\n\ncl &lt;- hdbscan(london.firms.sample, \n              minPts = 10)         #minimum size of clusters\n\nplot(london.firms.sample, col=cl$cluster+1, pch=20)"
   },
   {
     "objectID": "src/L6_diversity.html#references",
     "href": "src/L6_diversity.html#references",
-    "title": "L6: Diversity in cities",
+    "title": "Diversity in cities",
     "section": "References",
     "text": "References\n\n\n\n\n\n\nBalland, Pierre-Alexandre, Tom Broekel, Dario Diodato, Elisa Giuliani, Ricardo Hausmann, Neave O’Clery, and David Rigby. 2022. “The New Paradigm of Economic Complexity.” Research Policy 51 (3): 104450.\n\n\nBettencourt, Luı́s MA. 2021. “Introduction to Urban Science: Evidence and Theory of Cities as Complex Systems.”\n\n\nBoehmke, Brad, and Brandon Greenwell. 2019. Hands-on Machine Learning with r. Chapman; Hall/CRC.\n\n\nBoschma, Ron, Koen Frenken, H Bathelt, M Feldman, D Kogler, et al. 2012. “Technological Relatedness and Regional Branching.” Beyond Territory. Dynamic Geographies of Knowledge Creation, Diffusion and Innovation 29: 64–68.\n\n\nCaragliu, Andrea, Laura de Dominicis, and Henri LF de Groot. 2016. “Both Marshall and Jacobs Were Right!” Economic Geography 92 (1): 87–111.\n\n\nCohen, Wesley M, and Daniel A Levinthal. 1990. “Absorptive Capacity: A New Perspective on Learning and Innovation.” Administrative Science Quarterly, 128–52.\n\n\nFrenken, Koen, Frank Van Oort, and Thijs Verburg. 2007. “Related Variety, Unrelated Variety and Regional Economic Growth.” Regional Studies 41 (5): 685–97.\n\n\nFujita, Masahisa et al. 1989. “Urban Economic Theory.” Cambridge Books.\n\n\nHidalgo, César A. 2021. “Economic Complexity Theory and Applications.” Nature Reviews Physics 3 (2): 92–113.\n\n\nSaviotti, Pier Paolo, and Koen Frenken. 2008. “Export Variety and the Economic Performance of Countries.” Journal of Evolutionary Economics 18 (2): 201–18.\n\n\nYuo, Tony Shun-Te, and Tzuhui Angie Tseng. 2021. “The Environmental Product Variety and Retail Rents on Central Urban Shopping Areas: A Multi-Stage Spatial Data Mining Method.” Environment and Planning B: Urban Analytics and City Science 48 (8): 2167–87."
   },
   {
     "objectID": "src/L4_network_science.html#network-science-urban-laws-and-scaling",
     "href": "src/L4_network_science.html#network-science-urban-laws-and-scaling",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "Network science, urban laws and scaling",
     "text": "Network science, urban laws and scaling\n\nDevelopment of network science: 1980-2000 1st Milestone - regular vs random networks 2nd Milestone - small worlds 3rd Milestone - scale free networks\nEpistemological discussion\nWhat do we mean by scaling\nThe five laws of urban scaling"
   },
   {
     "objectID": "src/L4_network_science.html#network-science-the-evolution-of-a-new-science",
     "href": "src/L4_network_science.html#network-science-the-evolution-of-a-new-science",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "Network Science: The Evolution of a ‘New’ Science",
     "text": "Network Science: The Evolution of a ‘New’ Science\n\nNot really new\nGraph Theory in the 18th century\nLeonhard Euler’s work on small graphs\nHigh degree of regularity: similar degree centrality among different nodes"
   },
   {
     "objectID": "src/L4_network_science.html#regular-graphs",
     "href": "src/L4_network_science.html#regular-graphs",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "Regular graphs",
     "text": "Regular graphs"
   },
   {
     "objectID": "src/L4_network_science.html#st-milestone-random-networks-rn",
     "href": "src/L4_network_science.html#st-milestone-random-networks-rn",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "1st milestone: Random networks (RN)",
     "text": "1st milestone: Random networks (RN)\n\n20th Century: advances in mathematics and statistics\nAlgorithmic network analysis\nErdős, Rényi, et al. (1960)\nLarge scale networks with no obvious structure\nNodes degree follows a Poisson distribution: similar degree, close to the average degree , rare exceptions\nRepresentative of real world network?"
   },
   {
     "objectID": "src/L4_network_science.html#st-milestone-random-networks-rn-1",
     "href": "src/L4_network_science.html#st-milestone-random-networks-rn-1",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "1st milestone: Random networks (RN)",
     "text": "1st milestone: Random networks (RN)\n\n Source: Watts and Strogatz (1998)"
   },
   {
     "objectID": "src/L4_network_science.html#st-milestone-random-networks-rn-2",
     "href": "src/L4_network_science.html#st-milestone-random-networks-rn-2",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "1st milestone: Random networks (RN)",
     "text": "1st milestone: Random networks (RN)\n\n Source: Torres et al. (2009)"
   },
   {
     "objectID": "src/L4_network_science.html#networks-become-important",
     "href": "src/L4_network_science.html#networks-become-important",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "Networks become important…",
     "text": "Networks become important…\n\n… in different fields, from social science to biology\nDigitization of data in many different fields + large databases ➔ real world systems as networks\nAdvances in computer science and in computing\nLooseness between different disciplinary boundaries\nReductionist approaches lose ground in favor of holistic research approaches, which try to understand the system as a whole"
   },
   {
     "objectID": "src/L4_network_science.html#nd-milestone-small-worlds",
     "href": "src/L4_network_science.html#nd-milestone-small-worlds",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "2nd milestone: Small-worlds",
     "text": "2nd milestone: Small-worlds\n\nSmall world effect\nMilgram’s six degrees of separation (1967)\nBacon number\nShort average distances, enabling nodes to reach each other within a few steps\nCharacteristic of numerous real world networks\nStructural characteristic rather than an organizing principle\nEven RN networks are characterized by short average distances"
   },
   {
     "objectID": "src/L4_network_science.html#nd-milestone-small-worlds-1",
     "href": "src/L4_network_science.html#nd-milestone-small-worlds-1",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "2nd milestone: Small-worlds",
     "text": "2nd milestone: Small-worlds\n\nWatts and Strogatz (1998) Small-world (SW) model\nCoexistence of short average distance with high clustering coefficient\nSW networks are located between regular and random networks:\n\nHighly clustered like regular lattices\nSmall distances like random networks\nNode degree distribution is quite similar with the RN and decays exponentially"
   },
   {
     "objectID": "src/L4_network_science.html#nd-milestone-small-worlds-2",
     "href": "src/L4_network_science.html#nd-milestone-small-worlds-2",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "2nd milestone: Small-worlds",
     "text": "2nd milestone: Small-worlds\n\nA set of intensively interconnected local clusters, which gain global connectivity via a few links, which span the entire network linking distant clusters\nNodes in SW networks benefit from the high local connectivity and easy distant communication with remote clusters using the intra-cluster links\nProbability of finding a highly connected node decreases exponentially as highly connected nodes are practically absent in RN and SW models"
   },
   {
     "objectID": "src/L4_network_science.html#nd-milestone-small-worlds-3",
     "href": "src/L4_network_science.html#nd-milestone-small-worlds-3",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "2nd milestone: Small-worlds",
     "text": "2nd milestone: Small-worlds\n\n Source: Watts and Strogatz (1998)"
   },
   {
     "objectID": "src/L4_network_science.html#nd-milestone-small-worlds-4",
     "href": "src/L4_network_science.html#nd-milestone-small-worlds-4",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "2nd milestone: Small-worlds",
     "text": "2nd milestone: Small-worlds\nPros and cons\n\nSocial capital (bridging and bonding)\nDisease spread\nReal world examples?"
   },
   {
     "objectID": "src/L4_network_science.html#rd-milestone-scale-free-sf-networks",
     "href": "src/L4_network_science.html#rd-milestone-scale-free-sf-networks",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "3rd milestone: Scale-free (SF) networks",
     "text": "3rd milestone: Scale-free (SF) networks\n\n\nBarabási and Albert (1999)\nVery few super connected nodes and a vast majority of less connected nodes\nSF: nodes degree distribution follows a power law distribution regardless the scale of observation\n2 main formation mechanisms:\n\ngrowth: expansion of networks over time\npreferential attachment: growth is not equally dispersed across the nodes; highly connected nodes are more likely to receive new links than the lower degree nodes"
   },
   {
     "objectID": "src/L4_network_science.html#rd-milestone-scale-free-sf-networks-1",
     "href": "src/L4_network_science.html#rd-milestone-scale-free-sf-networks-1",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "3rd milestone: Scale-free (SF) networks",
     "text": "3rd milestone: Scale-free (SF) networks\n\nAn initial difference in the connectivity between two nodes will increase further as the network grows\nThis is a cumulative — rich get richer — process\nThe probability \\(P(k)\\) that a node has a degree \\(k\\) decays following a power function, with usually \\(2 &lt; \\gamma &lt; 3\\)\n\\(P(k)≈𝑘^{−\\gamma}\\)\nPower laws in networks are related with the existence of both of the above two mechanisms\nLater versions of SF models included more realistic options for the network growth"
   },
   {
     "objectID": "src/L4_network_science.html#rd-milestone-scale-free-sf-networks-2",
     "href": "src/L4_network_science.html#rd-milestone-scale-free-sf-networks-2",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "3rd milestone: Scale-free (SF) networks",
     "text": "3rd milestone: Scale-free (SF) networks\n\n Source: Albert, Jeong, and Barabási (2000)"
   },
   {
     "objectID": "src/L4_network_science.html#rd-milestone-scale-free-sf-networks-3",
     "href": "src/L4_network_science.html#rd-milestone-scale-free-sf-networks-3",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "3rd milestone: Scale-free (SF) networks",
     "text": "3rd milestone: Scale-free (SF) networks\nAnd finally the power law…"
   },
   {
     "objectID": "src/L4_network_science.html#rd-milestone-scale-free-sf-networks-4",
     "href": "src/L4_network_science.html#rd-milestone-scale-free-sf-networks-4",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "3rd milestone: Scale-free (SF) networks",
     "text": "3rd milestone: Scale-free (SF) networks\nPros and cons?\n\nEfficiency\nResilience\nDisease spread prevention\nVulnerability towards targeted attacks\nReal world examples?"
   },
   {
     "objectID": "src/L4_network_science.html#network-science-a-summary",
     "href": "src/L4_network_science.html#network-science-a-summary",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "Network Science: a summary",
     "text": "Network Science: a summary\n\nBoth RN and SW have short average distances\nRN cannot be included in SW because they lack the high clustering coefficient\nSF networks share the short average distance and the high cluster coefficient of SW ones, but the SW are not characterized by the scale-free distribution\nAll scale free networks display small world properties, while all small-world networks are not necessarily scale free"
   },
   {
     "objectID": "src/L4_network_science.html#network-science-an-epistemological-discussion",
     "href": "src/L4_network_science.html#network-science-an-epistemological-discussion",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "Network science: An epistemological discussion",
     "text": "Network science: An epistemological discussion\n1. Complexity Science\n\nMost studies in the network science domain have a starting point in statistical physics\nStochastic approaches\nUnderlying probability model which usually follows a power law\nMain objective: identification of the underlying mechanisms using generative modeling and simulation\nPotential risk: the probability model might not follow a power law mechanism, which is a common assumption"
   },
   {
     "objectID": "src/L4_network_science.html#network-science-an-epistemological-discussion-1",
     "href": "src/L4_network_science.html#network-science-an-epistemological-discussion-1",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "Network science: An epistemological discussion",
     "text": "Network science: An epistemological discussion\n2. Social Network Analysis\n\nSociology and graph theory\nFocus on social networks\nExtensive utilization of network metrics"
   },
   {
     "objectID": "src/L4_network_science.html#network-science-an-epistemological-discussion-2",
     "href": "src/L4_network_science.html#network-science-an-epistemological-discussion-2",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "Network science: An epistemological discussion",
     "text": "Network science: An epistemological discussion\n3. Geography and Urban Analytics\n\nSofter’ approaches\nEx-post empirical modeling for identifying characteristics of theoretical network models in real world networks\nGlobal and local network statistics\nUse of network measures in mainstream statistical modeling\nEmpirical verification of the functions that better explain the node degree distribution (power vs. exponential functions)\nSpatial networks, but also dynamic networks"
   },
   {
     "objectID": "src/L4_network_science.html#what-do-we-mean-by-scaling",
     "href": "src/L4_network_science.html#what-do-we-mean-by-scaling",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "What do we mean by scaling",
     "text": "What do we mean by scaling"
   },
   {
     "objectID": "src/L4_network_science.html#what-do-we-mean-by-scaling-1",
     "href": "src/L4_network_science.html#what-do-we-mean-by-scaling-1",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "What do we mean by scaling",
     "text": "What do we mean by scaling"
   },
   {
     "objectID": "src/L4_network_science.html#what-is-scale-and-scaling",
     "href": "src/L4_network_science.html#what-is-scale-and-scaling",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "What is scale and scaling",
     "text": "What is scale and scaling\n\n\nScale in geography\nScale in math:\n\n\\(y(x_i)\\) a function of \\(x_i\\) where \\(i\\) is a spatial unit\nIf we scale \\(x\\) by some scalar \\(\\lambda\\), the function scales if its scaled value is proportional to its previous value: \\(y(\\lambda x_i) \\propto y(x_i)\\)\n\\(y(x_i) = x_i^a\\)\n\\(y(\\lambda x_i) = (\\lambda x_i)^a = \\lambda^a x_i^a = \\lambda^a y(x_i)\\)\n➔ Power law"
   },
   {
     "objectID": "src/L4_network_science.html#laws-of-urban-scaling",
     "href": "src/L4_network_science.html#laws-of-urban-scaling",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "Laws of urban scaling",
     "text": "Laws of urban scaling\n\nRegularities\nQuantitative revolution post WW2\nCultural turn\n… today …\n\n\nBased on Batty (2013). See also Bettencourt (2021)"
   },
   {
     "objectID": "src/L4_network_science.html#metcalfes-law-moores-law",
     "href": "src/L4_network_science.html#metcalfes-law-moores-law",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "Metcalfe’s law / Moore’s law",
     "text": "Metcalfe’s law / Moore’s law\n\nAs cities grow…\n… the number of potential connections increases as the square of population.\n\\(C = p(p-1)/2 \\propto p^2\\)"
   },
   {
     "objectID": "src/L4_network_science.html#von-thunens-law",
     "href": "src/L4_network_science.html#von-thunens-law",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "von Thunen’s law",
     "text": "von Thunen’s law\n\nAs cities grow in size …\nland values decline non-linearly from the centre\n\n\nSource: Coe, Kelly, and Yeung (2019)"
   },
   {
     "objectID": "src/L4_network_science.html#law-of-gravitation-toblers-law",
     "href": "src/L4_network_science.html#law-of-gravitation-toblers-law",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "Law of gravitation / Tobler’s law",
     "text": "Law of gravitation / Tobler’s law\n\nAs cities grow…\n.. interactions between them decline with increasing distance\nNewton law of gravitation\n\n\nSource: I, Dennis Nilsson, CC BY 3.0, https://commons.wikimedia.org/w/index.php?curid=3455682"
   },
   {
     "objectID": "src/L4_network_science.html#zipf-law",
     "href": "src/L4_network_science.html#zipf-law",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "Zipf law",
     "text": "Zipf law\n\nAs cities get larger…\n… there are less of them\nRegularity in the distribution of cities within a country\nEmpirical observation and quantification\nHierarchical urban systems:\n\none/a few big cities\nmore medium size cities\nlarge number of very small cities"
   },
   {
     "objectID": "src/L4_network_science.html#zipf-law-1",
     "href": "src/L4_network_science.html#zipf-law-1",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "Zipf law",
     "text": "Zipf law"
   },
   {
     "objectID": "src/L4_network_science.html#zipf-law-2",
     "href": "src/L4_network_science.html#zipf-law-2",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "Zipf law",
     "text": "Zipf law"
   },
   {
     "objectID": "src/L4_network_science.html#zipf-law-3",
     "href": "src/L4_network_science.html#zipf-law-3",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "Zipf law",
     "text": "Zipf law\n\n\n\nSource: O’sullivan (2012) \n\nRank size rule\n\\(pop_i = pop_d r_i^{-a}\\)\nif \\(a=1\\): Zipf law\n\\(pop_i = pop_d / r_i\\)"
   },
   {
     "objectID": "src/L4_network_science.html#zipf-law-4",
     "href": "src/L4_network_science.html#zipf-law-4",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "Zipf law",
     "text": "Zipf law\n\n\n\n\nRank size rule\n\\(pop_i = pop_d r_i^{-a}\\)\nif \\(a=1\\): Zipf law\n\\(pop_i = pop_d / r_i\\)"
   },
   {
     "objectID": "src/L4_network_science.html#zipf-law-5",
     "href": "src/L4_network_science.html#zipf-law-5",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "Zipf law",
     "text": "Zipf law\n\nPrimary cities above what a Zipf law would predict\nNewly industrialised countries\nNo overall consensus why the rank-size rule holds\nStatistical regularity or an underpinning micro-economic process?"
   },
   {
     "objectID": "src/L4_network_science.html#bettencourt-west-or-marshalls-law",
     "href": "src/L4_network_science.html#bettencourt-west-or-marshalls-law",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "Bettencourt-West or Marshall’s law",
     "text": "Bettencourt-West or Marshall’s law\n\nAs cities grow…\n… their average real income (and wealth) increases more than proportionately (Bettencourt et al. 2007)\n\n\\(Y_i = Y_0P_i^\\beta\\)\n\n\\(Y_i\\): material resources (energy or infrastructure) or social activity (wealth, patents, and pollution) in city \\(i\\)\n\\(Y_o\\): normalization constant\n\\(P_i\\): population of city i\n\\(\\beta\\): exponent"
   },
   {
     "objectID": "src/L4_network_science.html#bettencourt-west-or-marshalls-law-1",
     "href": "src/L4_network_science.html#bettencourt-west-or-marshalls-law-1",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "Bettencourt-West or Marshall’s law",
     "text": "Bettencourt-West or Marshall’s law\n\n\n\nSource: Bettencourt et al. (2007) \n\n\nNot surprisingly another straight line\nAnother power law"
   },
   {
     "objectID": "src/L4_network_science.html#bettencourt-west-or-marshalls-law-2",
     "href": "src/L4_network_science.html#bettencourt-west-or-marshalls-law-2",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "Bettencourt-West or Marshall’s law",
     "text": "Bettencourt-West or Marshall’s law\n\nSource: Bettencourt et al. (2007)"
   },
   {
     "objectID": "src/L4_network_science.html#bettencourt-west-or-marshalls-law-3",
     "href": "src/L4_network_science.html#bettencourt-west-or-marshalls-law-3",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "Bettencourt-West or Marshall’s law",
     "text": "Bettencourt-West or Marshall’s law\n\n\n\n\n An average urban dweller in the capital, Lisbon, has approximately twice as many reciprocated mobile phone contacts, k, as an average individual in the rural town of Lixa.\nSource: Bettencourt (2021)"
   },
   {
     "objectID": "src/L4_network_science.html#bettencourt-west-or-marshalls-law-4",
     "href": "src/L4_network_science.html#bettencourt-west-or-marshalls-law-4",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "Bettencourt-West or Marshall’s law",
     "text": "Bettencourt-West or Marshall’s law\n\n\n\n\n\n\n\\(Y=3P^b\\)\n300 random observation\nPlotting the results\nEconomies of scale\n\\(b&lt;1\\) decreasing returns to scale\n\\(b=1\\) constant returns\n\\(b&gt;1\\) increasing returns\nSF networks, economies of scale?"
   },
   {
     "objectID": "src/L4_network_science.html#epilogue",
     "href": "src/L4_network_science.html#epilogue",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "Epilogue",
     "text": "Epilogue\nBettencourt (2021):\n\nCities, of course, do not really have their own dynamics; they depend on decisions made by people, corporations, governments, and others. The aggregate statistics of all their decisions will therefore emerge as key and provide another con- nection to the uses of information in urban science."
   },
   {
     "objectID": "src/L4_network_science.html#references",
     "href": "src/L4_network_science.html#references",
-    "title": "Lecture 4: Network science, urban laws and scaling",
+    "title": "Network science, urban laws and scaling",
     "section": "References",
     "text": "References\n\n\n\n\n\n\nAlbert, Réka, Hawoong Jeong, and Albert-László Barabási. 2000. “Error and Attack Tolerance of Complex Networks.” Nature 406 (6794): 378–82.\n\n\nBarabási, Albert-László, and Réka Albert. 1999. “Emergence of Scaling in Random Networks.” Science 286 (5439): 509–12.\n\n\nBatty, Michael. 2013. The New Science of Cities. MIT press.\n\n\nBettencourt, Luı́s MA. 2021. “Introduction to Urban Science: Evidence and Theory of Cities as Complex Systems.”\n\n\nBettencourt, Luı́s MA, José Lobo, Dirk Helbing, Christian Kühnert, and Geoffrey B West. 2007. “Growth, Innovation, Scaling, and the Pace of Life in Cities.” Proceedings of the National Academy of Sciences 104 (17): 7301–6.\n\n\nCoe, Neil M, Philip F Kelly, and Henry WC Yeung. 2019. Economic Geography: A Contemporary Introduction. John Wiley & Sons.\n\n\nErdős, Paul, Alfréd Rényi, et al. 1960. “On the Evolution of Random Graphs.” Publ. Math. Inst. Hung. Acad. Sci 5 (1): 17–60.\n\n\nO’sullivan, Arthur. 2012. “Urban Economics 8th Ed.”\n\n\nTorres, Sonia H, Marı́a Montes de Oca, Eduardo Loeb, Priva Zabner-Oziel, Valentina Wallis, and Noelina Hernández. 2009. “Isoenzimas de Lactatodeshidrogenasa En El músculo Esquelético de Pacientes Con EPOC.” Archivos de Bronconeumologı́a 45 (2): 75–80.\n\n\nWatts, Duncan J, and Steven H Strogatz. 1998. “Collective Dynamics of ‘Small-World’networks.” Nature 393 (6684): 440–42."
   },
