@@ -1,5 +1,5 @@
 ---
-title: "L6: Diversity in cities"
+title: "Diversity in cities"
 author: |
   | 
   | Emmanouil Tranos
