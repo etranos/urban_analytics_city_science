@@ -6,8 +6,9 @@ author: |
   |
   | University of Bristol, Alan Turing Institute 
   | [e.tranos@bristol.ac.uk](mailto:e.tranos@bristol.ac.uk), [\@EmmanouilTranos](https://twitter.com/EmmanouilTranos),  [etranos.info](https://etranos.info/)
-
-format: revealjs
+format:
+  revealjs:
+    embed-resources: true
 editor: source
 bibliography: references.bib
 ---

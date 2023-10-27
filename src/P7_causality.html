@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Nick dorward">
+<meta name="dcterms.date" content="2023-10-26">
+
+<title>Urban analytics and city science - Causal design and urban policy evaluation: Potential outcomes &amp; Geo RDD practical</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Causal design and urban policy evaluation: Potential outcomes &amp; Geo RDD practical</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Urban analytics and city science</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/etranos/urban_analytics_city_science" title="" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Content</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/description.html" class="sidebar-item-text sidebar-link">Unit description and aims</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/syllabus.html" class="sidebar-item-text sidebar-link">Syllabus</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/readings.html" class="sidebar-item-text sidebar-link">Key readings</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/project.html" class="sidebar-item-text sidebar-link">Assessment</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Lectures</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/L1_why_cities.html" class="sidebar-item-text sidebar-link">Cities, a very very brief introduction</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/L2_smart_cities.html" class="sidebar-item-text sidebar-link">Smart cities, urban big data, digital twins and other buzz terms</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/L3_intro_networks.html" class="sidebar-item-text sidebar-link">Networks: an introduction</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/L4_network_science.html" class="sidebar-item-text sidebar-link">Lecture 4: Network science, urban laws and scaling</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/L5_transport_geography.html" class="sidebar-item-text sidebar-link">Methods in transport geography</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/L6_diversity.html" class="sidebar-item-text sidebar-link">L6: Diversity in cities</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/L7_Urban_policy___causal_design.pdf" class="sidebar-item-text sidebar-link">Urban policies and causality</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Practicals</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/P1_apis.html" class="sidebar-item-text sidebar-link">APIs and urban data</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/P2_network_analysis.html" class="sidebar-item-text sidebar-link">Network analysis practical: networks of cities</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/P3_street_networks.html" class="sidebar-item-text sidebar-link">Street network analysis practical: networks within cities</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/P4_network_models.html" class="sidebar-item-text sidebar-link">Network models in practice</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/P5_sim.html" class="sidebar-item-text sidebar-link">Spatial interaction modelling</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/P6_accessibility_full.html" class="sidebar-item-text sidebar-link">Accessibility in practice</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/P7_causality.html" class="sidebar-item-text sidebar-link active">Causal design and urban policy evaluation</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Unit leader</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://etranos.info/" class="sidebar-item-text sidebar-link">Professor Emmanouil Tranos</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#potential-outcomes-in-action" id="toc-potential-outcomes-in-action" class="nav-link active" data-scroll-target="#potential-outcomes-in-action"><strong>1) Potential Outcomes in action</strong></a></li>
+  <li><a href="#geographic-boundaries-as-regression-discontinuities---landlord-licensing-in-bristol" id="toc-geographic-boundaries-as-regression-discontinuities---landlord-licensing-in-bristol" class="nav-link" data-scroll-target="#geographic-boundaries-as-regression-discontinuities---landlord-licensing-in-bristol"><strong>2) Geographic boundaries as regression discontinuities - Landlord licensing in Bristol</strong></a></li>
+  <li><a href="#assigning-the-treatment" id="toc-assigning-the-treatment" class="nav-link" data-scroll-target="#assigning-the-treatment">Assigning the treatment</a></li>
+  <li><a href="#assign-a-bandwidth" id="toc-assign-a-bandwidth" class="nav-link" data-scroll-target="#assign-a-bandwidth">Assign a bandwidth</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Causal design and urban policy evaluation: Potential outcomes &amp; Geo RDD practical</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Nick dorward </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 26, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)         <span class="co"># for spatial operations</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rdrobust)   <span class="co"># for tools and graphical output for regression discontinuity designs</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(units)      <span class="co"># for dealing with units</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rprojroot)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)    <span class="co"># for string cleaning</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sfheaders)  <span class="co"># for converting object to linestring</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(concaveman) <span class="co"># for convex hull</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">include=</span><span class="cn">TRUE</span>, <span class="at">message=</span><span class="cn">FALSE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">tidy.opts=</span><span class="fu">list</span>(<span class="at">width.cutoff=</span><span class="dv">60</span>),<span class="at">tidy=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The purpose of this practical is twofold: first it aims to provide a concrete example of the potential outcomes framework to support the lecture and second to provide an interactive walk through of implementing a regression discontinuity design where a geographic boundary is leveraged as the discontinuity.</p>
+<p>All the data required for this practical has been uploaded to the learning materials section of blackboard.</p>
+<section id="potential-outcomes-in-action" class="level2">
+<h2 class="anchored" data-anchor-id="potential-outcomes-in-action"><strong>1) Potential Outcomes in action</strong></h2>
+<p>Remember that the Potential Outcomes framework allows us to express causality as a comparison between two alternate versions of the world: one in which a unit, <span class="math inline">\(i\)</span>, receives a policy intervention (the treatment), <span class="math inline">\(Y_i^1\)</span>, and the counterfactual state in which it doesn’t, <span class="math inline">\(Y_i^0\)</span>. We call these realized and counterfactual states ‘potential outcomes’. This allows us to estimate causal effects, <span class="math inline">\(\delta_i\)</span>, as the difference between the world we observe and the world we don’t: <span class="math inline">\(\delta_i = Y_i^1 - Y_i^0\)</span>.</p>
+<p>For concreteness, suppose we wanted to understand the effect of gender on budgetary decisions across cities.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Specifically, we want to understand how a city having a woman as a mayor effects the proportion of the budget allocated to health programs including the provision of clean drinking water or maternal care. There is huge interest in questions like this within both political science and development economics. To do this, we collect data across seven cities recording whether the mayor was a man or a women (our treatment) and the share of the city’s budget allocated to health programs (the outcome). We observe the treatment status, gender of mayor, and outcome, budget allocation, for each city. Furthermore, suppose that, for the time being, men and women mayors have been assigned to cities at random. Also suppose that we are also able to observe the counterfactual scenario as well. In other words, we can see how a man would have allocated the budget of a city headed by a woman, and vice versa.</p>
+<p>Our data might look something like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>complete_information <span class="ot">=</span> <span class="fu">data.frame</span> (<span class="at">city_i =</span> <span class="fu">c</span>(<span class="st">"city_1"</span>, <span class="st">"city_2"</span>, <span class="st">"city_3"</span>, <span class="st">"city_4"</span>, </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                                              <span class="st">"city_5"</span>, <span class="st">"city_6"</span>, <span class="st">"city_7"</span>),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">Y_0_man =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">15</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">Y_1_woman =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">15</span>, <span class="dv">30</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">15</span>, <span class="dv">30</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>complete_information</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  city_i Y_0_man Y_1_woman
+1 city_1      10        15
+2 city_2      15        15
+3 city_3      20        30
+4 city_4      20        15
+5 city_5      10        20
+6 city_6      15        15
+7 city_7      15        30</code></pre>
+</div>
+</div>
+<p>In this example we can estimate individual treatment effects (the effect that being treated with some policy intervention has on specific units) because the data is complete (we’ve observed both potential outcomes). Remember, the Simple Difference in Outcomes (SDO) will return the effect of being treated for any individual unit: <span class="math inline">\(\delta_i = Y_i^1 - Y_i^0\)</span>.</p>
+<p>Exercise - calculate the individual treatment effects using the SDO:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Example code</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>complete_information <span class="ot">=</span> complete_information <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">treatment_effect_i =</span> Y_1_woman <span class="sc">-</span> Y_0_man)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>complete_information</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  city_i Y_0_man Y_1_woman treatment_effect_i
+1 city_1      10        15                  5
+2 city_2      15        15                  0
+3 city_3      20        30                 10
+4 city_4      20        15                 -5
+5 city_5      10        20                 10
+6 city_6      15        15                  0
+7 city_7      15        30                 15</code></pre>
+</div>
+</div>
+<p>We see that most places would received more healthcare spending under a women mayor whereas one, city 4, would have actually seen less healthcare spending.</p>
+<p>We can also estimate an Average Treatment Effect (ATE) across the two groups by comparing the difference in group means. Exercise, calculate the difference in means.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Example code</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(complete_information<span class="sc">$</span>Y_1_woman) <span class="sc">-</span> <span class="fu">mean</span>(complete_information<span class="sc">$</span>Y_0_man)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+<p>However, we can see that this presents us with a problem because we can only observe one of these potential outcomes in real life. We call this the fundamental problem in causal inference. This fact is formalized by the switching equation, which literally ‘switches’ our potential outcomes between the realized and counterfactual worlds depending on whether or not we observe the treatment being assigned:</p>
+<p><span class="math display">\[
+Y_i = D_iY_i^1 + (1-D_i)Y_i^0
+\]</span></p>
+<p>Where:</p>
+<p><span class="math display">\[Y_i \begin{cases} Y_i^1 \text{ if } D_i = 1, \\
+                     Y_i^0 \text{ if }  D_i = 0
+       \end{cases} \]</span></p>
+<p>So, in reality me might have a scenario something more like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>missing_information <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">city_i =</span> <span class="fu">c</span>(<span class="st">"city_1"</span>, <span class="st">"city_2"</span>, <span class="st">"city_3"</span>, <span class="st">"city_4"</span>, </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">"city_5"</span>, <span class="st">"city_6"</span>, <span class="st">"city_7"</span>),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">Y_0_man =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="cn">NA</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">Y_1_woman =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="dv">30</span>))</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>missing_information</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  city_i Y_0_man Y_1_woman
+1 city_1      NA        15
+2 city_2      15        NA
+3 city_3      20        NA
+4 city_4      20        NA
+5 city_5      10        NA
+6 city_6      15        NA
+7 city_7      NA        30</code></pre>
+</div>
+</div>
+<p>Can we calculate individual treatment effects?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Example code </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>missing_information <span class="ot">=</span> missing_information <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">treatment_effect_i =</span> Y_1_woman <span class="sc">-</span> Y_0_man)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>missing_information</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  city_i Y_0_man Y_1_woman treatment_effect_i
+1 city_1      NA        15                 NA
+2 city_2      15        NA                 NA
+3 city_3      20        NA                 NA
+4 city_4      20        NA                 NA
+5 city_5      10        NA                 NA
+6 city_6      15        NA                 NA
+7 city_7      NA        30                 NA</code></pre>
+</div>
+</div>
+<p>No, we can’t.</p>
+<p>But we have a distribution of both <span class="math inline">\(y_i^1\)</span> and <span class="math inline">\(y_i^0\)</span> in the population. So, we can estimate ‘average treatment effects’ (ATE) across the population by comparing outcomes for units in the ‘treatment’ (those with <span class="math inline">\(y_i^1\)</span>) and ‘control’ (those with <span class="math inline">\(y_i^0\)</span>) groups. We have also seen how the simple difference in means between the treated and control groups returns the ATE under random assignment into treatment (which I’ve said we have here). This is because the potential outcomes across these groups are the same. In other words, random assignment ensures that <span class="math inline">\(E[Y0|T=1] = E[Y0|T=0]\)</span> and selection bias has been reduced to zero.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>Calculate the average treatment effect (ATE) from missing infomation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(missing_information<span class="sc">$</span>Y_1_woman, <span class="at">na.rm =</span> T) <span class="sc">-</span> <span class="co"># na.rm = T ignores the NAs</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(missing_information<span class="sc">$</span>Y_0_man, <span class="at">na.rm =</span> T)   <span class="co"># na.rm = T ignores the NAs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.5</code></pre>
+</div>
+</div>
+<p>Note - we’ve had to remove the NA values in each vector.</p>
+<p>Also note, that we’ve calculated a different ATE, 6.5, compared to the example with complete information, 5. This is because, even under random assignment we have heterogeneity across individual treatment effects. We can’t recover these (at least not in this context) so we do get some bias from heterogeneous individual treatment effects.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+</section>
+<section id="geographic-boundaries-as-regression-discontinuities---landlord-licensing-in-bristol" class="level2">
+<h2 class="anchored" data-anchor-id="geographic-boundaries-as-regression-discontinuities---landlord-licensing-in-bristol"><strong>2) Geographic boundaries as regression discontinuities - Landlord licensing in Bristol</strong></h2>
+<p>About nine years ago Bristol city council introduced a policy requiring that landlords of rented Homes of Multiple Occupancy (HMOs) in certain inner-city areas to obtain licenses from the council.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> The scheme aimed to protect and improve the conditions of rented housing in the city and gives council housing officers increased powers to inspect and sanction rogue landlords. Over time the scheme has been rolled out across more and more city wards.</p>
+<p>We can map this data to observe the distribution of these wards throughout the city. We’ll call them Special Licencing Areas (SLAs). You can directly download the Bristol ward spatial data as a <code>.gpkg</code> file from the below URL we use in the <code>read_sf()</code>. To read more about the geopackage type format, use this [link]](https://www.geopackage.org/).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>bristol_wards <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"https://www.dropbox.com/s/3pujrbqtde5tpwr/wards_with_sla_date.gpkg?dl=1"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>sla_wards <span class="ot">=</span> bristol_wards <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#drop the wards without an SLA implementation data (i.e., no SLA)</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">drop_na</span>(sla_date) <span class="sc">%&gt;%</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_as_sf</span>()</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bristol_wards) <span class="sc">+</span> </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">size =</span> .<span class="dv">05</span>) <span class="sc">+</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(sla_wards, <span class="at">fill =</span> <span class="st">"red"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">mapping =</span> <span class="fu">aes</span>()) <span class="sc">+</span> </span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="P7_causality_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The landlords of properties within the SLA wards must have a licence to operate. Those outside don’t. Licences cost money to obtain and require that landlords invest in their properties to ensure they meet the minimum standards required of the scheme. We might, therefore, expect that this policy will have a knock on effect on the rental prices of properties within SLA wards. Specifically, we’d expect landlord to raise prices to cover the cost of the license fee and the additional investment required to keep their properties up to code.</p>
+<p>How has the SLA impacted the prices of rented property prices?</p>
+<p>This question seems well suited to a Regression Discontinuity Design with Geographic Boundaries (aka GeoRDD). We have a treatment that is assigned at a discrete cutoff. Remember RDD assumes that treated and untreated units immediately to either side of the cutoff are so similar in terms of their potential outcomes that we can deal with the treatment as if it were assigned at random. The closer we get to this boundary, the more similar units are.</p>
+<p>To answer this question we will also need to data on property listings. Ideally we’d use data from medium-long term rental listings in the city. However, this data is sensitive and tricky to come by. Instead, we’ll use data on AirBnB listings from Bristol which, as rented accommodation in the city, are also subject to the SLA policy. We get this data from <a href="http://insideairbnb.com/get-the-data/">InsideAirBNB</a>. The data contains the location and prices of AirBnB listings over the last twelve months alongside several ancillary attributes.</p>
+<p>This code reads the data in and plots it. Again, you can directly download the <code>.csv</code> file with the data we prepared for you using the below URL in the <code>read.csv()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>listings <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"https://www.dropbox.com/s/uaf9rj6wf95iy5m/airbnb_listings.csv?dl=1"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_as_sf</span>(., <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"longitude"</span>, <span class="st">"latitude"</span>), <span class="at">crs =</span> <span class="dv">4326</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_transform</span>(<span class="fu">st_crs</span>(bristol_wards)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#convert price to integer and remove £ sign</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">price =</span> <span class="fu">as.integer</span>(stringr<span class="sc">::</span><span class="fu">str_remove</span>(price, <span class="st">"[$]"</span>))) </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bristol_wards) <span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">size =</span> .<span class="dv">05</span>) <span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(sla_wards, <span class="at">fill =</span> <span class="st">"red"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">mapping =</span> <span class="fu">aes</span>()) <span class="sc">+</span> </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> listings, <span class="at">size =</span> .<span class="dv">1</span>, <span class="at">fill =</span> <span class="st">"darkred"</span>) <span class="sc">+</span> </span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="P7_causality_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can see from the map that we’ve got lots of listings in and around the SLA wards which means there should be plenty of data around the threshold that we can use for our Geo-RDD.</p>
+<p>The outcome variable will be the price of each listing within and outside of the SLA areas, our hypothesis being that, because landlords in SLA wards are subject to tighter controls and regulations and more checks, they must invest more intro their properties and will raise prices to compensate. We expect this to be observable in the average prices of properties.</p>
+<p>The price variable is skewed so we need to log transform it, there are also some zeros, which seems implausible, so we’ll need to address that by removing them.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(listings, <span class="fu">aes</span>(<span class="at">x=</span>price)) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="P7_causality_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>listings <span class="ot">=</span> listings <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(price <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">log_price =</span> <span class="fu">log</span>(price))</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(listings, <span class="fu">aes</span>(<span class="at">x=</span>log_price)) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="P7_causality_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>There, that looks better.</p>
+<p>With the dependent variable sorted, we’re going to do the following: 1) Assign a treatment status to each property based upon its (non)membership of the SLA wards 2) Select bandwidth that allows us to compare properties immediately to either side of the SLA boundary</p>
+</section>
+<section id="assigning-the-treatment" class="level2">
+<h2 class="anchored" data-anchor-id="assigning-the-treatment">Assigning the treatment</h2>
+<p>We’re interested in whether a listing falls within or outside of a special licensing area (SLA). We basically need to do two things here. First, we need to assign a <em>cutoff</em> or <em>threshold</em> at which a listing will be assigned to either the treatment or control group. We’ll do this by linking each listing to the SLA boundaries via a spatial join which used their geometric attributes to create the links. Second, we need to create our <em>running variable</em>. We’ll do this by calculating the minimum distance of each listing to the exterior boundary of the special licences areas. But we want to draw a distinction between listings that fall within SLAs and those that don’t. To do this we’ll assign all distances within an SLA as negative and those outside as positive. Meaning our cutoff is zero.</p>
+<p>The code below spatially joins SLA ward membership to the individual listings and creates a “treatment_status” variable that takes the value of 1 if the listing is within an SLA ward, otherwise zero.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>listings <span class="ot">=</span> listings <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#note we just want the name variable from the wards </span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_join</span>(., sla_wards <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(WD21NM, geom), st_within, <span class="at">left =</span> T, <span class="at">largest =</span> T) <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace</span>(<span class="fu">is.na</span>(.), <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#assign so zero = ctonrol and 1 = treated</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">treatment_status =</span> <span class="fu">as.factor</span>(<span class="fu">ifelse</span>(WD21NM <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>)))</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(listings<span class="sc">$</span>treatment_status)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+   0    1 
+ 758 1557 </code></pre>
+</div>
+</div>
+<p>We can see that we’ve got more listings in the treatment group than control. That tells us something about the geography of the SLA policy and the phenomenon it’s designed to address. This imbalance is fine however, as we’re going to be losing a lot of these listing when we define our bandwidth.</p>
+<p>Question: is this an example of a ‘sharp’ or ‘fuzzy’ regression discontinuity?</p>
+<p>Great, now that we’ve got our treatment status we need to create our our running variable. Remember, this is the variable along which the threshold sits and we’ll apply our bandwidth to. Usually in an RDD this would already be in our data, but here, because of the geographical nature of the problem we’ll have to create it ourselves. We’ll do this by calculating the distance of each listing from the threshold (i.e., the external boundary of the SLA neighborhoods).</p>
+<p>First, we need to create a single object for the external boundary of all the LSA wards from which the running variable can be calculated.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#st_union 'dissolves' internal boundaries creating a single polygon</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>sla_wards_boundary <span class="ot">=</span> sf<span class="sc">::</span><span class="fu">st_union</span>(sla_wards)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sla_wards_boundary) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">size =</span> .<span class="dv">05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="P7_causality_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>However, as you can see, we’ve got a problem here. The river is counted as an external boundary meaning that we now have a boundary running through the middle of our LSA wards. This is going to be a problem. Take a moment to think why before moving onto the next bit. Remember, that we’re trying to use the external boundary of the combined LSA areas as the discontinuity.</p>
+<p>Ok, so, the problem is that, when we calculate the distance of properties to the external boundary, those that are close to the river are going to be given false distances, as the algorithm will ‘snap onto’ the river rather than the external boundary. These properties won’t make for valid points of comparison to those immediately outside of the LSA wards because they’re not actually geographically close. Thus we can’t assume that, as the distance tends to zero, their potential outcomes will be the same in expectation. We are going to need to address this somehow by removing the river.</p>
+<p>We’ll do this by creating a <a href="https://gis.stackexchange.com/questions/1200/what-are-definition-algorithms-and-practical-solutions-for-concave-hull">concave hull</a> around our SLA wards which will cut out the river. Don’t worry too much about how I’m going to do this - just run the code - I’ve left it in for the interested student and it’s a good warm-up for the more GIS focused things you’ll be doing next term. It’s also a good example of the types of challeneges that get thrown up when we try to implement these research designs in practice.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The concave hull algorithm requires spatial points </span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#convert polygon boundary to points for the convex hull</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>boundary_points <span class="ot">=</span> sla_wards_boundary <span class="sc">%&gt;%</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># convert to multilinestring </span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_cast</span>(<span class="st">"MULTILINESTRING"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># convert to line string</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_cast</span>(<span class="st">"LINESTRING"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sample points from along this line at regular intervals</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_line_sample</span>(., <span class="at">n =</span> <span class="dv">500</span>)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co">#create concave hull</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>hull <span class="ot">=</span> concaveman<span class="sc">::</span><span class="fu">concaveman</span>(<span class="fu">st_coordinates</span>(boundary_points)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co">#conveert back to linestring</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>sla_linestring <span class="ot">=</span> sfheaders<span class="sc">::</span><span class="fu">sf_linestring</span>(hull, <span class="at">x =</span> <span class="st">"V1"</span>, <span class="at">y =</span> <span class="st">"V2"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_set_crs</span>(., <span class="fu">st_crs</span>(listings))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s see how that looks.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sla_linestring) <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(sla_wards, <span class="at">fill =</span> <span class="st">"red"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">mapping =</span> <span class="fu">aes</span>()) <span class="sc">+</span> </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="P7_causality_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Great. Now we need to calculate the distance of each listing from this boundary.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>listings <span class="ot">=</span> listings <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#use linestring to get non-zero values</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">distance_to_boundary =</span> sf<span class="sc">::</span><span class="fu">st_distance</span>(listings, sla_linestring)) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#drop units (m)</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  units<span class="sc">::</span><span class="fu">drop_units</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#multiply untreated by -1 to give negative sign</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">running_variable =</span> <span class="fu">ifelse</span>(treatment_status <span class="sc">==</span> <span class="dv">0</span>, distance_to_boundary<span class="sc">*-</span><span class="dv">1</span>, distance_to_boundary))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s check that this has done what we wanted it to.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sla_wards_boundary) <span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">size =</span> .<span class="dv">05</span>) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> listings, <span class="fu">aes</span>(<span class="at">color =</span> running_variable), <span class="at">size =</span> .<span class="dv">1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="P7_causality_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Looks good, we’ve successfully created a running variable. Now lets create a regression discontinuity plot. This graphically displays the distribution of property prices around the discontinuity.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>listings, <span class="fu">aes</span>(<span class="at">x=</span>running_variable, <span class="at">y=</span>log_price)) <span class="sc">+</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype=</span><span class="st">"dotted"</span>, </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Price (ln)"</span>,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Distance to LSA boundary (m)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="P7_causality_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Do we see the possibility of higher prices within the SLA wards? It looks like prices might be a little higher closer to the line.</p>
+<p>We can start exploring this by fitting regression lines either side of the threshold to graphically show any discontinuity in prices along the running variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(listings, <span class="fu">aes</span>(<span class="at">x =</span> running_variable, <span class="at">y =</span> log_price, <span class="at">color =</span> treatment_status)) <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">group=</span>treatment_status), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> F) <span class="sc">+</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"red"</span>,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Price (ln)"</span>,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Distance to LSA boundary (m)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="P7_causality_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>It looks like we might have a discontinuity in prices at the cutoff. We can also use a polynomial to fit a curved line through these points. Sometimes RDDs are estimate using these kinds of regressions, but we’ll stick with the linear case in this example.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(listings, <span class="fu">aes</span>(<span class="at">x =</span> running_variable, <span class="at">y =</span> log_price, <span class="at">color =</span> treatment_status)) <span class="sc">+</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">group=</span>treatment_status), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="dv">4</span>), </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> F) <span class="sc">+</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"red"</span>,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Price (ln)"</span>,</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Distance to LSA boundary (m)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="P7_causality_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>So, we’ve seen what looks like a discontinuity in property prices at the threshold which could suggest that the SLA policy has a causal effect on house prices. Do we see a difference in the raw comparison of means?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>treated_prices <span class="ot">=</span> listings <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(treatment_status <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>control_prices <span class="ot">=</span> listings <span class="sc">%&gt;%</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(treatment_status <span class="sc">==</span> <span class="dv">0</span>) </span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(treated_prices<span class="sc">$</span>price) <span class="sc">-</span> <span class="fu">mean</span>(control_prices<span class="sc">$</span>price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 30.87929</code></pre>
+</div>
+</div>
+<p>Seems so. We can see that being treated, in an SLA ward appears to be associated with a ~$31 boost in price.</p>
+<p>However, remember that we’re not comparing equivalent properties either side of the cutoff (i.e., potential outcomes for properties in the treatment and control groups are unlikely to be the same in expectation). We’re currently looking at properties along the full range of the running variable, not those directly to either side of the cutoff which we expect to have very similar potential outcomes. Some of you will have observed that the LSA wards form the city center of Bristol and include some of the city’s most desirable and busy neighborhoods. It is plausible that properties in the SLA wards are likely to be the most desirable to those renting short-term accommodation. This would mean that the price boost we’ve captured would not by caused by the policy but another variable, unobserved variable.</p>
+<p>So let’s look locally (i.e., either side of the SLA boundary) to do this we’ll need to start playing with bandwidths. Given that the whole raison d’etre of design- as opposed to model-based inference is to reduce researcher degrees of freedom, the selection of bandwidths is not a straight forward choice. Indeed, it requires researchers to make informed but often arbitrary decisions about how the bandwidth will be defined. Let’s explore this.</p>
+</section>
+<section id="assign-a-bandwidth" class="level2">
+<h2 class="anchored" data-anchor-id="assign-a-bandwidth">Assign a bandwidth</h2>
+<p>Remember, in RDD we’re assuming that units that are just to either side of the cutoff, like really close, are similar enough for us to consider their assignment into treatment as being random. In other words, we’re saying that things close to the cutoff are more similar than things far away and the farther away we get, the less similar things will be. The bandwidth is how much area around the cutoff we consider things to be comparable. This is the same for regular RDD, but our cutoff is a geographical boundary.</p>
+<p>We could assign an arbitrary bandwidth at, say 500m, from the the cutoff. Let’s see what this looks like.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>listings, <span class="fu">aes</span>(<span class="at">x=</span>running_variable, <span class="at">y=</span>log_price)) <span class="sc">+</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#add points we're looking at for the RDD in orange</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> listings <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="fu">between</span>(running_variable, <span class="sc">-</span><span class="dv">500</span>, <span class="dv">500</span>)), </span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x=</span>running_variable, <span class="at">y=</span>log_price, <span class="at">colour =</span> <span class="st">"orange"</span>)) <span class="sc">+</span> </span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype=</span><span class="st">"dotted"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span> </span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="dv">500</span>, <span class="sc">-</span><span class="dv">500</span>), <span class="at">linetype=</span><span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Price (ln)"</span>,</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Distance to LSA boundary (m)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="P7_causality_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>banded_listings <span class="ot">=</span> listings <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="fu">between</span>(running_variable, <span class="sc">-</span><span class="dv">500</span>, <span class="dv">500</span>))</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(banded_listings<span class="sc">$</span>treatment_status)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  0   1 
+214 440 </code></pre>
+</div>
+</div>
+<p>In terms of our regression discontinuity, this is what we are now looking at.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(listings <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="fu">between</span>(running_variable, <span class="sc">-</span><span class="dv">500</span>, <span class="dv">500</span>)), </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">aes</span>(<span class="at">x =</span> running_variable, <span class="at">y =</span> log_price, </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">color =</span> treatment_status)) <span class="sc">+</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">group=</span>treatment_status), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> F) <span class="sc">+</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype=</span><span class="st">"dotted"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span> </span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="dv">500</span>, <span class="sc">-</span><span class="dv">500</span>), <span class="at">linetype=</span><span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Price (ln)"</span>,</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Distance to LSA boundary (m)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="P7_causality_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This starts to cast doubt around the presence of a discontinuity since, when we look within the bandwidth, the regression slop to the left of the cutoff is now positive. In other words, the properties that are not very close to the boundary were doing a lot of the heavy lifting in our previous graphs.</p>
+<p>We could go further here and it’s common to test multiple bandwidths and kernal functions that assign greater weight to observations closest to the cutoff. This is because we expect differences in potential outcomes to be smallest at the cutoff (i.e.&nbsp;two properties &lt; 1m from the cutoff should have identical potential outcomes in expectation). However, this can get pretty complicated pretty quickly and we’re more interested in the intuition of GeoRDD here, so we’re going to set this issue aside for now.</p>
+<p>Excellent, we’ve gotten to the point where we can estimate a proper GeoRDD. Earlier we saw how the causal effect in an RDD could be estimated from the difference in coefficients between two regression representing the left and right hand side of the cutoff. We can also do this within a single equation:</p>
+<p><span class="math display">\[
+Y = \beta_0 + \beta_1(Running - Cutoff) + \beta_2 Treated + \beta_3(Running - Cutoff) \times Treated + \epsilon
+\]</span></p>
+<p>Note that we’ve centered the running variable around the cutoff by using <span class="math inline">\((Running - Cutoff)\)</span> which takes a negative value to the left of the cutoff and a positive value to the right.</p>
+<p>Now let’s estimate this in r. We don’t need to worry about centering our running variable around the cutoff as this has been done by design, so the actual estimation is fairly straightforward.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#simply expressed in r </span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(log_price <span class="sc">~</span> treatment_status <span class="sc">+</span> running_variable <span class="sc">+</span> treatment_status<span class="sc">:</span>running_variable,</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">data =</span> listings <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="fu">between</span>(running_variable, <span class="sc">-</span><span class="dv">500</span>, <span class="dv">500</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = log_price ~ treatment_status + running_variable + 
+    treatment_status:running_variable, data = listings %&gt;% dplyr::filter(between(running_variable, 
+    -500, 500)))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.42819 -0.52665 -0.01144  0.46860  2.42930 
+
+Coefficients:
+                                     Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                         4.355e+00  8.108e-02  53.716   &lt;2e-16 ***
+treatment_status1                   5.777e-02  1.082e-01   0.534    0.594    
+running_variable                    3.099e-04  2.982e-04   1.039    0.299    
+treatment_status1:running_variable -9.677e-05  3.783e-04  -0.256    0.798    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.6476 on 650 degrees of freedom
+Multiple R-squared:  0.02108,   Adjusted R-squared:  0.01656 
+F-statistic: 4.666 on 3 and 650 DF,  p-value: 0.003102</code></pre>
+</div>
+</div>
+<p>What can we infer from this regression about the causal effect of the SLA policy on AirBnB prices?</p>
+<p>One issue that might be confounding inference is the fact that properties inside SLA wards, being located towards the center of the city, tend to be smaller than those more suburban properties outside of the SLA. Let’s account for this by controlling for the number of rooms in a property.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#simply expressed in r </span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(log_price <span class="sc">~</span> treatment_status <span class="sc">+</span> running_variable <span class="sc">+</span> treatment_status<span class="sc">:</span>running_variable <span class="sc">+</span> bedrooms,</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">data =</span> listings <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="fu">between</span>(running_variable, <span class="sc">-</span><span class="dv">500</span>, <span class="dv">500</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = log_price ~ treatment_status + running_variable + 
+    treatment_status:running_variable + bedrooms, data = listings %&gt;% 
+    dplyr::filter(between(running_variable, -500, 500)))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.85944 -0.34037  0.02546  0.32130  1.32871 
+
+Coefficients:
+                                     Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                         3.738e+00  6.511e-02  57.410   &lt;2e-16 ***
+treatment_status1                  -4.426e-02  7.965e-02  -0.556   0.5786    
+running_variable                    4.208e-04  2.192e-04   1.920   0.0553 .  
+bedrooms                            4.118e-01  1.749e-02  23.545   &lt;2e-16 ***
+treatment_status1:running_variable -5.017e-05  2.780e-04  -0.180   0.8569    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.476 on 649 degrees of freedom
+Multiple R-squared:  0.472, Adjusted R-squared:  0.4688 
+F-statistic: 145.1 on 4 and 649 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<div class="cell" type="alert alert-warning">
+<div class="alert alert-warning">
+<p>
+<strong>Question</strong>: Is this a valid GeoRDD? As we’ve discussed in the lecture, our causal claims are only as good as the assumptions we make. If these assumptions are violated, then our inferences are going to be biased somehow. Thinking about the assumptions we’re making, let’s consider a few issues that might challenge the validity of this application.
+</p>
+<p>
+<strong>Possible issues</strong>: <em>non-compliance in treatment group - illegal landlords without a licence within SLA wards.</em> compliance in control group - landlords outside of the SLA wards are free to opt in to the policy. *Both of these cases would violate our assumption that units cannot sort themselves over the threshold.
+</p>
+</div>
+</div>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>This example has been adapted from Gerber and Green (2012) “Field Experiments: Design, Analysis, and Interpretation”.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>While it is true that random assignment guarantees balance of <span class="math inline">\(y_i^1\)</span> and <span class="math inline">\(y_i^0\)</span> along all unobserved confounders in expectation, this doesn’t necessarily hold in practice. Chance imbalances can be introduced from time to time.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>I did not mention heterogeneous treatment effect bias in the lecture because it was not instrumental to our initial understanding of the potential outcomes framework. This means that, without randomization, our estimated causal effect (i.e., the difference in outcomes/means) is not just a function of the ATE and selection bias, as presented in the lecture, but also heterogeneous treatment effect bias.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>A property is an HMO if at least 3 tenants forming more than 1 household live there and there are shared facilities such as toilet, bathroom or kitchen facilities.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>We could also control for other differences across wards by blocking (using fixed effects) at this level.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
