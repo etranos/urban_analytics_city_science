@@ -292,13 +292,12 @@ You can, of course, use directly the `odmatrix_to_od()` function.
 ```{r}
 help <- dist$durations 
 
-
 rownames(help) <- as.vector(london.centres$LAD21CD)
 colnames(help) <- as.vector(london.centres$LAD21CD)
 
 dim(dist$durations)
 
-dist.df <- as.data.frame(as.table(help)) %>% 
+dist.df <- as.data.frame(as.table(help), stringsAsFactors = F) %>% 
   rename(from_id = Var1,
          to_id = Var2,
          travel_time = Freq)
@@ -307,20 +306,23 @@ dist.df <- as.data.frame(as.table(help)) %>%
 As before, we calculate the cumulative opportunities for London's Local Authorities
 (the centroids to be more accurate) within a cut-off of 20 minutes.
 
-```{r}
+```{r eval=FALSE}
 mtc <- cumulative_cutoff(
   dist.df,
-  df,
+  df %>% mutate(number_of_jobs = as.integer(number_of_jobs)),
   opportunity = "number_of_jobs",
   travel_cost = "travel_time",
   cutoff = 20
 )
+
 head(mtc)
+
+h <- df[,c(1,4)] %>% left_join(dist.df, by = c("id" = "from_id"))
 ```
 
 And finally, we plot our accessibility map.
 
-```{r}
+```{r eval=FALSE}
 
 london <- merge(london, mtc, by.x = "LAD21CD", by.y = "id" )
   
