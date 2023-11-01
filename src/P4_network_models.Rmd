@@ -76,3 +76,25 @@ make_lattice(dim =1, length = 100, nei = 5) %>%
   plot(vertex.label=NA)
 
 ```
+
+
+
+
+```{block, type='alert alert-warning'}
+
+**Challenge 1**: Think about the commuting datasets you used in the past tutorials. Is the commuters network Small World? Is it Scale-Free network?
+
+**Challenge 2**: Can you demonstrate where would this graph sit on the scale between ranom and regular network using your knowledge centrality measures in I graph?
+
+**Challenge 3**: Taking the commuters network or network of your choice, can you demonstrate the Bettencourt-West/Marshall’s law?
+
+**Challange 4** Taking the data and model from the challange 3, can you find the value of $/beta$ (the exponent)? What does that value mean for your variables and the phenomena tehy represent?
+
+```
+
+Extra resources: 
+- [Network Analysis in R from Dai Shizuka](https://dshizuka.github.io/networkanalysis/tutorials.html)
+- [Statistical Analysis of Network Data with R](https://link.springer.com/book/10.1007/978-1-4939-0983-4)
+- [Awesom Network Analysis: list of useful R packages (and much more)](https://github.com/briatte/awesome-network-analysis#r)
+- [R Graph Gallery](https://r-graph-gallery.com/network.html)
+_ [Static and dynamic network visualization with R from Katya Ognyanova](https://kateto.net/network-visualization)
