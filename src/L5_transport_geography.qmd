@@ -12,15 +12,70 @@ editor: source
 bibliography: references.bib
 ---
 
+## Today
+
+- 15 minute window into statistical methods 
+
+- Transport geography
+
+1) Spatial network from the graph theory perspective
+
+3) Spatial Interaction and Gravity Model
+
+3) Accessibility
+
+## 15 minute window into statistical methods 
+
+* Regression/Linear Regression
+
+## 15 minute window into statistical methods 
+
+> Regression/Linear Regression - describes the strength and character of an association between two or more variables
+
+## 15 minute window into statistical methods 
+
+
+::: columns
+::: {.column width="40%"}
+
+> Regression/Linear Regression
+:::
+
+::: {.column width="60%"}
+
+
+$Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i$
+:::
+:::
+
+## Regression assumptions
+
+1) **Linearity** - The relationship between X and the mean of Y is linear.
+
+2) **Homoscedasticity** - The variance of residual is the same for any value of X.
+
+3) **Independence** - Observations are independent of each other
+
+## Demonstration
+
+
+
 ## Transport geography: quantitative dimension
 
--   Empirical data
+ - Why transport in this module?
+ 
+  1. Fundamental for social and economic activities
+  
+  2. All about networks & interactions
+  
+
+<!-- -   Empirical data
 
 -   Data analytics
 
 -   Applied science: improve the efficiency of movements / spatial constraints
 
--   Why in this unit?
+-   Why in this unit? -->
 
 ## Transport geography: key elements
 
@@ -38,37 +93,48 @@ bibliography: references.bib
 
 <small> Source: @rodrigue2020geography </small>
 
+<!--
 ------------------------------------------------------------------------
 
 ![](images/transport_geog_methods.png)
 
-<small> Source: @rodrigue2020geography </small>
+<small> Source: @rodrigue2020geography </small> 
 
-## Graph theory, aka network analysis
+
+## Graph theory, aka network analysis -->
+
+## Spatial network from the graph theory perspective
+
+
+![](images/Examples-of-multilayer.png) <small> Source: @wu_general_2019 </small>
+
+
+## Spatial network from the graph theory perspective
 
 ::: columns
 ::: {.column width="40%"}
 <small>
 
--   Abstraction
+Terminology
 
--   Represent the structure not the appearance
+- terminal = node = vertex
 
--   Terminal = node
+- link = edge
 
--   Node (vertex)
+- Sub-graph - Loop (buckle)
 
--   Link (edge)
+More types of graphs
 
--   Sub-graph - Loop (buckle)
-
--   Planar graph
-
--   Non-planar graph
+-   Planar graph vs Non-planar graph
 
 -   Cycle, circuit
 
--   Tree $(e = v-1)$
+<!--
+
+-   Abstraction
+
+-   Represent the structure not the appearance
+-->
 
 </small>
 :::
@@ -78,19 +144,26 @@ bibliography: references.bib
 :::
 :::
 
-## Graph theory, aka network analysis
+<!--
+## Graph theory, aka network analysis-->
 
--   $\beta = e / v$, where $e$ is the number of links & $v$ the number of nodes
+## Plannar graph analysis
 
--   $Gamma$ AKA network density (number of liks / maximum number of links)
+-   Proportion between nodes and edges: $\beta = e / v$, where $e$ is the number of links & $v$ the number of nodes
+
+-   Network density:  $Gamma$ AKA (number of liks / maximum number of links)
 
     -   planar: $\gamma = \frac{e}{3(v-2)}$
 
     -   non-planar: $\gamma = \frac{2e}{v(v-1)}$
+    
+- Structure vs Topology 
 
-## Graph theory, aka network analysis
+<!--## Graph theory, aka network analysis -->
 
--   Degree centrality
+## Plannar graph analysis
+
+-   Degree centrality, Betweenness, Eigenvector centrality,...
 
 -   Eccentricity: the distance from a given node to the farthest node from it in the network
 
@@ -100,7 +173,9 @@ bibliography: references.bib
 
     -   This is a purely topological accessibility metric, remember this for later.
 
-## Closeness centrality (from Lecture 3)
+## Graph analysis
+
+Closeness centrality (from Lecture 3)
 
 -   Which node has the shortest distance to other nodes
 
@@ -114,11 +189,13 @@ bibliography: references.bib
 
 -   `igraph` calculates closeness
 
-## The Gini coefficient
+## Graph analysis
+
+**The Gini coefficient**
 
 ::: columns
 ::: {.column width="60%"}
--   Inequality measure
+-   Measure of dispersion often used as Inequality measure
 
     -   0: perfect equality
     -   1 :perfect inequality
@@ -145,7 +222,12 @@ bibliography: references.bib
 
 ![](images/gini_map.png) <small> Source: @rodrigue2020geography </small>
 
-## The Location Quotient Coefficient
+Example: measuring traffic concentration
+
+Temporal variations of the Gini coefficient reflect changes in the comparative advantages of a location within the transport system
+
+
+<!--## The Location Quotient Coefficient
 
 -   Degree of concentration of a certain activities
 
@@ -159,7 +241,7 @@ bibliography: references.bib
 
 -   $M$ is the total of all types of merchandises for all terminals
 
-## The Location Quotient Coefficient
+ ## The Location Quotient Coefficient
 
 ::: columns
 ::: {.column width="40%"}
@@ -190,28 +272,24 @@ Employment in manufacturing sector
 <small> Source: [ONS](https://webarchive.nationalarchives.gov.uk/ukgwa/20160105185113/http://www.ons.gov.uk/ons/rel/regional-trends/regional-economic-analysis/the-spatial-distribution-of-industries/sty-employment-by-industry.html)</small>
 :::
 :::
+-->
 
 ## Spatial interactions and the gravity model
 
--   A spatial interaction is a realised movement of people, freight or information between an origin and a destination
+-   A spatial interaction is a realised movement of people, goods or information between an origin and a destination
 
 -   It is a transport demand/supply relationship expressed over geographical space.
 
 ## Spatial interactions and the gravity model
 
-Conditions for spatial interaction to be materialised
-
--   Complementarity
-
--   Intervening opportunity
-
--   Transferability
-
-## 
-
+ Conditions for spatial interaction to be materialised
+ 
 ![](images/si.png) <small> Source: @rodrigue2020geography </small>
 
 ## Spatial interactions and the gravity model
+
+
+<!-- ## Spatial interactions and the gravity model
 
 -   Origin/destination matrices
 
@@ -221,17 +299,31 @@ Conditions for spatial interaction to be materialised
 
 -   Estimation of flows
 
-![](images/si2.png)
+![](images/si2.png) -->
 
+## Spatial interactions and the gravity model
+::: columns
+::: {.column width="50%"}
+> Gravity model
+
+
+> Analogy of Gravity model
+
+:::
+
+::: {.column width="50%"}
+
+$Force_{ij} = G \frac{Mass_i  Mass_j}{Dist_ij}$
+
+$Flow_{ij} = \frac{Attribute_i Attribute_j}{Separation_{ij}}$
+
+:::
+:::
 ## Spatial interactions and the gravity model
 
 $T_{ij} = f(V_i, W_j, S_{ij})$
 
 -   Flows are a function of the attributes of the locations of origin, the attributes of the locations of destination and the friction of distance between the concerned origins and the destinations
-
-## Spatial interactions and the gravity model
-
-$T_{ij} = f(V_i, W_j, S_{ij})$
 
 -   $T_{ij}$: Interaction between location $i$ (origin) and location $j$ (destination)
 
@@ -392,5 +484,28 @@ Different typologies [@HOLL2007286]
 -   The potential for interaction
 
 -   Opportunities
+
+
+## Not the only way to define accessibility on networks!
+
+Discussion: What is accessibility to you?
+
+
+## Accessibility of locations from routing perspective
+
+<center>![](images/accessibility_route.png){width="75%"}</center>
+
+## Accessibility of locations from routing perspective
+
+
+<center>![](images/czech_acc_indi.PNG){width="90%"}</center>
+
+@vrabkova_determination_2021
+
+##
+
+<center>![](images/czech_acc_pub.PNG){width="90%"}</center>
+
+@vrabkova_determination_2021
 
 ## References
