@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Emmanouil Tranos">
-<meta name="dcterms.date" content="2023-10-27">
+<meta name="dcterms.date" content="2023-11-16">
 
 <title>Urban analytics and city science - Spatial interaction modelling</title>
 <style>
@@ -215,7 +215,7 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../src/L4_network_science.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lecture 4: Network science, urban laws and scaling</span></a>
+ <span class="menu-text">Network science, urban laws and scaling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -227,7 +227,7 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../src/L6_diversity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">L6: Diversity in cities</span></a>
+ <span class="menu-text">Diversity in cities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -348,7 +348,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 27, 2023</p>
+      <p class="date">November 16, 2023</p>
     </div>
   </div>
   
@@ -389,7 +389,7 @@ div.csl-indent {
 </section>
 <section id="commuting-data-and-networks" class="level2">
 <h2 class="anchored" data-anchor-id="commuting-data-and-networks">Commuting data and networks</h2>
-<p>This the same data and the same data preparation we did for the <a href="https://etranos.info/urban_analytics_city_science/src/network_analysis.html">network analysis practical</a>. Please follow the below workflow, which you should already be familiar with. Once the data preperation is done, we will model these commuting flows.</p>
+<p>This the same data and the same data preparation we did for the <a href="https://etranos.info/urban_analytics_city_science/src/P2_network_analysis.html">network analysis practical</a>. Please follow the below workflow, which you should already be familiar with. Once the data preperation is done, we will model these commuting flows.</p>
 <p>For this tutorial we will use travel to work data from the 2011 UK Census. The data is available <a href="http://wicid.ukdataservice.ac.uk/cider/wicid/downloads.php?wicid_Session=742d61be88b0614c3982455e542bc776">online</a>, but it requires an academic login. After you log in, download the <strong>WU03UK</strong> element, save the .csv on your working directory under a <code>/data</code> directory and unzip it. We will use the:</p>
 <blockquote class="blockquote">
 <p>Location of usual residence and place of work by method of travel to work</p>
@@ -465,7 +465,7 @@ $ `On foot`                                  &lt;dbl&gt; 3789, 60, 16, 60, 15, 0
 $ `Other method of travel to work`           &lt;dbl&gt; 54, 4, 2, 7, 0, 0, 0, 0, 0,…</code></pre>
 </div>
 </div>
-<p>We can also see we many rows we dropped with <code>glimpse()</code>.</p>
+<p>We can also see how many rows we dropped with <code>glimpse()</code>.</p>
 <p>It is very important to distinguish between intra- and inter-local authority flows. In network analysis terms, these are the values we find on the diagonal of an adjacency matrix and refer to the commuting flows within a specific local authority or between different ones. For this exercise we are dropping the intra-local authority flows. Although not used here, we also create a new object with the intra-local authority flows.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>commuting.intra <span class="ot">&lt;-</span> commuting <span class="sc">%&gt;%</span></span>
@@ -553,15 +553,15 @@ $ `Other method of travel to work`           &lt;dbl&gt; 4, 2, 7, 0, 0, 0, 0, 0,
 <section id="spatial-interaction-modelling" class="level2">
 <h2 class="anchored" data-anchor-id="spatial-interaction-modelling">Spatial interaction modelling</h2>
 <p>Let’s now move to model these flows. If you remember the basic Gravity model is defined as following:</p>
-<p><span class="math display">\[T_{ij} = k \displaystyle \frac{V_i^\lambda M_j^\alpha}{D_{ij}^\beta}\]</span></p>
+<p><span class="math display">\[T_{ij} = k \displaystyle \frac{V_i^\lambda W_j^\alpha}{D_{ij}^\beta}\]</span></p>
 <p>And if we take the logarithms of both sides of the equation we can transform the Gravity model to something which looks like a linear model:</p>
-<p><span class="math display">\[lnT_{ij} = lnk + \lambda lnV_i + \alpha lnM_j - \beta lnD_{ij}\]</span></p>
+<p><span class="math display">\[lnT_{ij} = lnk + \lambda lnV_i + \alpha lnW_j - \beta lnD_{ij}\]</span></p>
 <p>The above transformed equation can be estimated as a linear model if we assume that <span class="math inline">\(y = lnT_{ij}\)</span>, <span class="math inline">\(c = lnk\)</span>, <span class="math inline">\(x_1 = lnV_i\)</span>, <span class="math inline">\(a_1 = \lambda\)</span> etc. Hence, we can use OLS to estimate the following:</p>
-<p><span class="math display">\[lnT_{ij} = lnk + \lambda lnV_i + \alpha lnM_j - \beta lnD_{ij} + e_{ij}\]</span></p>
+<p><span class="math display">\[lnT_{ij} = lnk + \lambda lnV_i + \alpha lnW_j - \beta lnD_{ij} + e_{ij}\]</span></p>
 <p>This is what is known as the log-linear or log-normal transformation.</p>
 <p>There are a number of issues with such an approach though. Most importantly, our dependent variable is not continuous, but instead a discrete, positive variable (there are no flows of -324.56 people!). Therefore we need to employ an appropriate estimator and this is what the Poisson regression does. Briefly, if we exponentiate both sides, the above equation can be written as:</p>
-<p><span class="math display">\[T_{ij} = e^{lnk + \lambda lnV_i + \alpha lnM_j - \beta lnD_{ij}}\]</span> The above is in the form of the Poisson regression. So, we are interested in modelling <em>not</em> the mean <span class="math inline">\(T_{ij}\)</span> drawn from a normally distributed <span class="math inline">\(T\)</span>, but, instead, the mean <span class="math inline">\(T_{ij}\)</span>, which is the average of the all the flows (i.e.&nbsp;counts) between any <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>. For more details about the Poisson regression have a look at <a href="https://bookdown.org/roback/bookdown-bysh/ch-poissonreg.html#initial-models"><span class="citation" data-cites="roback2021beyond">Roback and Legler (<span>2021</span>)</span></a>. For this practical we will estimate the commuting flows using both OLS and Poisson regressions.</p>
-<p>But before we get into the estimation we need to build a data frame, which includes all the necessary variables. These are the origin-destination flows <span class="math inline">\(T\)</span> between <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>, the distance <span class="math inline">\(dist\)</span> between <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> and the characteristics <span class="math inline">\(V\)</span> and <span class="math inline">\(M\)</span> of origin <span class="math inline">\(i\)</span> and destinations <span class="math inline">\(j\)</span> that we believe <em>push</em> and <em>pull</em> individuals to commute.</p>
+<p><span class="math display">\[T_{ij} = e^{lnk + \lambda lnV_i + \alpha lnW_j - \beta lnD_{ij}}\]</span> The above is in the form of the Poisson regression. So, we are interested in modelling <em>not</em> the mean <span class="math inline">\(T_{ij}\)</span> drawn from a normally distributed <span class="math inline">\(T\)</span>, but, instead, the mean <span class="math inline">\(T_{ij}\)</span>, which is the average of the all the flows (i.e.&nbsp;counts) between any <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>. For more details about the Poisson regression have a look at <a href="https://bookdown.org/roback/bookdown-bysh/ch-poissonreg.html#initial-models"><span class="citation" data-cites="roback2021beyond">Roback and Legler (<span>2021</span>)</span></a>. For this practical we will estimate the commuting flows using both OLS and Poisson regressions.</p>
+<p>But before we get into the estimation we need to build a data frame, which includes all the necessary variables. These are the origin-destination flows <span class="math inline">\(T\)</span> between <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>, the distance <span class="math inline">\(dist\)</span> between <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> and the characteristics <span class="math inline">\(V\)</span> and <span class="math inline">\(W\)</span> of origin <span class="math inline">\(i\)</span> and destinations <span class="math inline">\(j\)</span> that we believe <em>push</em> and <em>pull</em> individuals to commute.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we use the `SpatialPosition` package and the `CreateDistMatrix()` function to</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate a distance matrix for all local authorities,</span></span>

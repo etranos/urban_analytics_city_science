@@ -354,14 +354,69 @@
 </div>
 
 </section>
+<section id="today" class="slide level2">
+<h2>Today</h2>
+<ul>
+<li><p>15 minute window into statistical methods</p></li>
+<li><p>Transport geography</p></li>
+</ul>
+<ol type="1">
+<li><p>Spatial network from the graph theory perspective</p></li>
+<li><p>Spatial Interaction and Gravity Model</p></li>
+<li><p>Accessibility</p></li>
+</ol>
+</section>
+<section id="minute-window-into-statistical-methods" class="slide level2">
+<h2>15 minute window into statistical methods</h2>
+<ul>
+<li>Regression/Linear Regression</li>
+</ul>
+</section>
+<section id="minute-window-into-statistical-methods-1" class="slide level2">
+<h2>15 minute window into statistical methods</h2>
+<blockquote>
+<p>Regression/Linear Regression - describes the strength and character of an association between two or more variables</p>
+</blockquote>
+</section>
+<section id="minute-window-into-statistical-methods-2" class="slide level2">
+<h2>15 minute window into statistical methods</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<blockquote>
+<p>Regression/Linear Regression</p>
+</blockquote>
+</div><div class="column" style="width:60%;">
+<p><span class="math inline">\(Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i\)</span></p>
+</div>
+</div>
+</section>
+<section id="regression-assumptions" class="slide level2">
+<h2>Regression assumptions</h2>
+<ol type="1">
+<li><p><strong>Linearity</strong> - The relationship between X and the mean of Y is linear.</p></li>
+<li><p><strong>Homoscedasticity</strong> - The variance of residual is the same for any value of X.</p></li>
+<li><p><strong>Independence</strong> - Observations are independent of each other</p></li>
+</ol>
+</section>
+<section id="demonstration" class="slide level2">
+<h2>Demonstration</h2>
+</section>
 <section id="transport-geography-quantitative-dimension" class="slide level2">
 <h2>Transport geography: quantitative dimension</h2>
 <ul>
-<li><p>Empirical data</p></li>
-<li><p>Data analytics</p></li>
-<li><p>Applied science: improve the efficiency of movements / spatial constraints</p></li>
-<li><p>Why in this unit?</p></li>
+<li>Why transport in this module?</li>
 </ul>
+<ol type="1">
+<li><p>Fundamental for social and economic activities</p></li>
+<li><p>All about networks &amp; interactions</p></li>
+</ol>
+<!-- -   Empirical data
+
+-   Data analytics
+
+-   Applied science: improve the efficiency of movements / spatial constraints
+
+-   Why in this unit? -->
 </section>
 <section id="transport-geography-key-elements" class="slide level2">
 <h2>Transport geography: key elements</h2>
@@ -376,50 +431,67 @@
 
 
 <img data-src="images/keyelements.png" class="r-stretch"><p><small> Source: <span class="citation" data-cites="rodrigue2020geography">Rodrigue (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span> </small></p>
-</section>
-<section class="slide level2">
+<!--
+------------------------------------------------------------------------
+
+![](images/transport_geog_methods.png)
+
+<small> Source: @rodrigue2020geography </small> 
 
 
-<img data-src="images/transport_geog_methods.png" class="r-stretch"><p><small> Source: <span class="citation" data-cites="rodrigue2020geography">Rodrigue (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span> </small></p>
+## Graph theory, aka network analysis -->
 </section>
-<section id="graph-theory-aka-network-analysis" class="slide level2">
-<h2>Graph theory, aka network analysis</h2>
+<section id="spatial-network-from-the-graph-theory-perspective" class="slide level2">
+<h2>Spatial network from the graph theory perspective</h2>
+<p><img data-src="images/Examples-of-multilayer.png"> <small> Source: <span class="citation" data-cites="wu_general_2019">Wu et al. (<a href="#/references" role="doc-biblioref" onclick="">2019</a>)</span> </small></p>
+</section>
+<section id="spatial-network-from-the-graph-theory-perspective-1" class="slide level2">
+<h2>Spatial network from the graph theory perspective</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
 <p><small></small></p><small>
+<p>Terminology</p>
 <ul>
-<li><p>Abstraction</p></li>
-<li><p>Represent the structure not the appearance</p></li>
-<li><p>Terminal = node</p></li>
-<li><p>Node (vertex)</p></li>
-<li><p>Link (edge)</p></li>
+<li><p>terminal = node = vertex</p></li>
+<li><p>link = edge</p></li>
 <li><p>Sub-graph - Loop (buckle)</p></li>
-<li><p>Planar graph</p></li>
-<li><p>Non-planar graph</p></li>
-<li><p>Cycle, circuit</p></li>
-<li><p>Tree <span class="math inline">\((e = v-1)\)</span></p></li>
 </ul>
+<p>More types of graphs</p>
+<ul>
+<li><p>Planar graph vs Non-planar graph</p></li>
+<li><p>Cycle, circuit</p></li>
+</ul>
+<!--
+
+-   Abstraction
+
+-   Represent the structure not the appearance
+-->
 </small><p><small></small></p>
 </div><div class="column" style="width:60%;">
 <p><img data-src="images/transport_networks.png"> <small> Source: <span class="citation" data-cites="rodrigue2020geography">Rodrigue (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span> </small></p>
 </div>
 </div>
+<!--
+## Graph theory, aka network analysis-->
 </section>
-<section id="graph-theory-aka-network-analysis-1" class="slide level2">
-<h2>Graph theory, aka network analysis</h2>
+<section id="plannar-graph-analysis" class="slide level2">
+<h2>Plannar graph analysis</h2>
 <ul>
-<li><p><span class="math inline">\(\beta = e / v\)</span>, where <span class="math inline">\(e\)</span> is the number of links &amp; <span class="math inline">\(v\)</span> the number of nodes</p></li>
-<li><p><span class="math inline">\(Gamma\)</span> AKA network density (number of liks / maximum number of links)</p>
+<li><p>Proportion between nodes and edges: <span class="math inline">\(\beta = e / v\)</span>, where <span class="math inline">\(e\)</span> is the number of links &amp; <span class="math inline">\(v\)</span> the number of nodes</p></li>
+<li><p>Network density: <span class="math inline">\(Gamma\)</span> AKA (number of liks / maximum number of links)</p>
 <ul>
 <li><p>planar: <span class="math inline">\(\gamma = \frac{e}{3(v-2)}\)</span></p></li>
 <li><p>non-planar: <span class="math inline">\(\gamma = \frac{2e}{v(v-1)}\)</span></p></li>
 </ul></li>
+<li><p>Structure vs Topology</p></li>
 </ul>
+<!--## Graph theory, aka network analysis -->
 </section>
-<section id="graph-theory-aka-network-analysis-2" class="slide level2">
-<h2>Graph theory, aka network analysis</h2>
+<section id="plannar-graph-analysis-1" class="slide level2">
+<h2>Plannar graph analysis</h2>
 <ul>
-<li><p>Degree centrality</p></li>
+<li><p>Degree centrality, Betweenness, Eigenvector centrality,…</p></li>
 <li><p>Eccentricity: the distance from a given node to the farthest node from it in the network</p></li>
 <li><p>Shimbel index, or nodal accessibility, or Fareness (see <a href="https://etranos.info/urban_analytics_city_science/src/intro_networks.html#/title-slide" target="_blank">Lecture 3</a></p>
 <ul>
@@ -428,8 +500,9 @@
 </ul></li>
 </ul>
 </section>
-<section id="closeness-centrality-from-lecture-3" class="slide level2">
-<h2>Closeness centrality (from Lecture 3)</h2>
+<section id="graph-analysis" class="slide level2">
+<h2>Graph analysis</h2>
+<p>Closeness centrality (from Lecture 3)</p>
 <ul>
 <li><p>Which node has the shortest distance to other nodes</p></li>
 <li><p>Instead of focusing on the number of links, the focus turns to the network distances</p></li>
@@ -439,12 +512,13 @@
 <li><p><code>igraph</code> calculates closeness</p></li>
 </ul>
 </section>
-<section id="the-gini-coefficient" class="slide level2">
-<h2>The Gini coefficient</h2>
+<section id="graph-analysis-1" class="slide level2">
+<h2>Graph analysis</h2>
+<p><strong>The Gini coefficient</strong></p>
 <div class="columns">
 <div class="column" style="width:60%;">
 <ul>
-<li><p>Inequality measure</p>
+<li><p>Measure of dispersion often used as Inequality measure</p>
 <ul>
 <li>0: perfect equality</li>
 <li>1 :perfect inequality</li>
@@ -466,85 +540,102 @@
 <section id="section-1" class="slide level2">
 <h2></h2>
 <p><img data-src="images/gini_map.png"> <small> Source: <span class="citation" data-cites="rodrigue2020geography">Rodrigue (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span> </small></p>
-</section>
-<section id="the-location-quotient-coefficient" class="slide level2">
-<h2>The Location Quotient Coefficient</h2>
-<ul>
-<li><p>Degree of concentration of a certain activities</p></li>
-<li><p>Very common for regional analysis too</p></li>
-<li><p><span class="math inline">\(M_{ti}\)</span> is the traffic of a merchandise <span class="math inline">\(t\)</span> at a terminal <span class="math inline">\(i\)</span></p></li>
-<li><p><span class="math inline">\(Mi\)</span> is the traffic of all merchandise at a terminal <span class="math inline">\(i\)</span></p></li>
-<li><p><span class="math inline">\(M_{t}\)</span> is the total of all merchandises of type <span class="math inline">\(t\)</span> for all terminals, and</p></li>
-<li><p><span class="math inline">\(M\)</span> is the total of all types of merchandises for all terminals</p></li>
-</ul>
-</section>
-<section id="the-location-quotient-coefficient-1" class="slide level2">
-<h2>The Location Quotient Coefficient</h2>
-<div class="columns">
-<div class="column" style="width:40%;">
-<p><br> <br> <br></p>
-<p><span class="math inline">\(LQ = \frac{\frac{M_{it}}{M_i}}{\frac{M_t}{M}}\)</span></p>
-</div><div class="column" style="width:60%;">
-<ul>
-<li><p><span class="math inline">\(LQ &lt;1\)</span>: traffic of merchandise <span class="math inline">\(t\)</span> in terminal <span class="math inline">\(i\)</span> is under-represented compared to the same merchandise in all terminals</p></li>
-<li><p><span class="math inline">\(LQ = 1\)</span> traffic of merchandise <span class="math inline">\(t\)</span> in terminal <span class="math inline">\(i\)</span> is proportional to its participation to total traffic</p></li>
-<li><p><span class="math inline">\(LQ &gt; 1\)</span> traffic of merchandise <span class="math inline">\(t\)</span> in a terminal <span class="math inline">\(i\)</span> is preponderant in total traffic.</p></li>
-</ul>
-</div>
-</div>
-</section>
-<section id="section-2" class="slide level2">
-<h2></h2>
-<div class="columns">
-<div class="column" style="width:70%;">
-<p><img data-src="images/lq_map.png" style="width:60.0%"></p>
-</div><div class="column" style="width:30%;">
-<p>Employment in manufacturing sector</p>
-<p><small> Source: <a href="https://webarchive.nationalarchives.gov.uk/ukgwa/20160105185113/http://www.ons.gov.uk/ons/rel/regional-trends/regional-economic-analysis/the-spatial-distribution-of-industries/sty-employment-by-industry.html">ONS</a></small></p>
-</div>
-</div>
+<p>Example: measuring traffic concentration</p>
+<p>Temporal variations of the Gini coefficient reflect changes in the comparative advantages of a location within the transport system</p>
+<!--## The Location Quotient Coefficient
+
+-   Degree of concentration of a certain activities
+
+-   Very common for regional analysis too
+
+-   $M_{ti}$ is the traffic of a merchandise $t$ at a terminal $i$
+
+-   $Mi$ is the traffic of all merchandise at a terminal $i$
+
+-   $M_{t}$ is the total of all merchandises of type $t$ for all terminals, and
+
+-   $M$ is the total of all types of merchandises for all terminals
+
+ ## The Location Quotient Coefficient
+
+::: columns
+::: {.column width="40%"}
+<br> <br> <br>
+
+$LQ = \frac{\frac{M_{it}}{M_i}}{\frac{M_t}{M}}$
+:::
+
+::: {.column width="60%"}
+-   $LQ <1$: traffic of merchandise $t$ in terminal $i$ is under-represented compared to the same merchandise in all terminals
+
+-   $LQ = 1$ traffic of merchandise $t$ in terminal $i$ is proportional to its participation to total traffic
+
+-   $LQ > 1$ traffic of merchandise $t$ in a terminal $i$ is preponderant in total traffic.
+:::
+:::
+
+## 
+
+::: columns
+::: {.column width="70%"}
+![](images/lq_map.png){width="60%"}
+:::
+
+::: {.column width="30%"}
+Employment in manufacturing sector
+
+<small> Source: [ONS](https://webarchive.nationalarchives.gov.uk/ukgwa/20160105185113/http://www.ons.gov.uk/ons/rel/regional-trends/regional-economic-analysis/the-spatial-distribution-of-industries/sty-employment-by-industry.html)</small>
+:::
+:::
+-->
 </section>
 <section id="spatial-interactions-and-the-gravity-model" class="slide level2">
 <h2>Spatial interactions and the gravity model</h2>
 <ul>
-<li><p>A spatial interaction is a realised movement of people, freight or information between an origin and a destination</p></li>
+<li><p>A spatial interaction is a realised movement of people, goods or information between an origin and a destination</p></li>
 <li><p>It is a transport demand/supply relationship expressed over geographical space.</p></li>
 </ul>
 </section>
 <section id="spatial-interactions-and-the-gravity-model-1" class="slide level2">
 <h2>Spatial interactions and the gravity model</h2>
 <p>Conditions for spatial interaction to be materialised</p>
-<ul>
-<li><p>Complementarity</p></li>
-<li><p>Intervening opportunity</p></li>
-<li><p>Transferability</p></li>
-</ul>
-</section>
-<section id="section-3" class="slide level2">
-<h2></h2>
 <p><img data-src="images/si.png"> <small> Source: <span class="citation" data-cites="rodrigue2020geography">Rodrigue (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span> </small></p>
 </section>
 <section id="spatial-interactions-and-the-gravity-model-2" class="slide level2">
 <h2>Spatial interactions and the gravity model</h2>
-<ul>
-<li><p>Origin/destination matrices</p></li>
-<li><p>Very large matrices</p></li>
-<li><p>Missing data/0s</p></li>
-<li><p>Estimation of flows</p></li>
-</ul>
+<!-- ## Spatial interactions and the gravity model
 
-<img data-src="images/si2.png" class="r-stretch"></section>
+-   Origin/destination matrices
+
+-   Very large matrices
+
+-   Missing data/0s
+
+-   Estimation of flows
+
+![](images/si2.png) -->
+</section>
 <section id="spatial-interactions-and-the-gravity-model-3" class="slide level2">
 <h2>Spatial interactions and the gravity model</h2>
-<p><span class="math inline">\(T_{ij} = f(V_i, W_j, S_{ij})\)</span></p>
-<ul>
-<li>Flows are a function of the attributes of the locations of origin, the attributes of the locations of destination and the friction of distance between the concerned origins and the destinations</li>
-</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<blockquote>
+<p>Gravity model</p>
+</blockquote>
+<blockquote>
+<p>Analogy of Gravity model</p>
+</blockquote>
+</div><div class="column" style="width:50%;">
+<p><span class="math inline">\(Force_{ij} = G \frac{Mass_i Mass_j}{Dist_ij}\)</span></p>
+<p><span class="math inline">\(Flow_{ij} = \frac{Attribute_i Attribute_j}{Separation_{ij}}\)</span></p>
+</div>
+</div>
 </section>
 <section id="spatial-interactions-and-the-gravity-model-4" class="slide level2">
 <h2>Spatial interactions and the gravity model</h2>
 <p><span class="math inline">\(T_{ij} = f(V_i, W_j, S_{ij})\)</span></p>
 <ul>
+<li><p>Flows are a function of the attributes of the locations of origin, the attributes of the locations of destination and the friction of distance between the concerned origins and the destinations</p></li>
 <li><p><span class="math inline">\(T_{ij}\)</span>: Interaction between location <span class="math inline">\(i\)</span> (origin) and location <span class="math inline">\(j\)</span> (destination)</p></li>
 <li><p><span class="math inline">\(V_i\)</span>: Attributes of the location of origin <span class="math inline">\(i\)</span> (e.g.&nbsp;population, number of jobs available, industrial output, GDP); push factors; the potential of origins</p></li>
 </ul>
@@ -717,6 +808,30 @@
 <li><p>Opportunities</p></li>
 </ul>
 </section>
+<section id="not-the-only-way-to-define-accessibility-on-networks" class="slide level2">
+<h2>Not the only way to define accessibility on networks!</h2>
+<p>Discussion: What is accessibility to you?</p>
+</section>
+<section id="accessibility-of-locations-from-routing-perspective" class="slide level2">
+<h2>Accessibility of locations from routing perspective</h2>
+<center>
+<img data-src="images/accessibility_route.png" style="width:75.0%">
+</center>
+</section>
+<section id="accessibility-of-locations-from-routing-perspective-1" class="slide level2">
+<h2>Accessibility of locations from routing perspective</h2>
+<center>
+<img data-src="images/czech_acc_indi.PNG" style="width:90.0%">
+</center>
+<p><span class="citation" data-cites="vrabkova_determination_2021">Vrabková, Ertingerová, and Kukuliač (<a href="#/references" role="doc-biblioref" onclick="">2021</a>)</span></p>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<center>
+<img data-src="images/czech_acc_pub.PNG" style="width:90.0%">
+</center>
+<p><span class="citation" data-cites="vrabkova_determination_2021">Vrabková, Ertingerová, and Kukuliač (<a href="#/references" role="doc-biblioref" onclick="">2021</a>)</span></p>
+</section>
 <section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>
 
@@ -735,6 +850,12 @@ Rodrigue, Jean-Paul. 2020. <em>The Geography of Transport Systems</em>. Routledg
 </div>
 <div id="ref-tranos2015international" class="csl-entry" role="listitem">
 Tranos, Emmanouil, Masood Gheasi, and Peter Nijkamp. 2015. <span>“International Migration: A Global Complex Network.”</span> <em>Environment and Planning B: Planning and Design</em> 42 (1): 4–22.
+</div>
+<div id="ref-vrabkova_determination_2021" class="csl-entry" role="listitem">
+Vrabková, Iveta, Izabela Ertingerová, and Pavel Kukuliač. 2021. <span>“Determination of Gaps in the Spatial Accessibility of Nursing Services for Persons over the Age of 65 with Lowered Self-Sufficiency: <span>Evidence</span> from the <span>Czech</span> <span>Republic</span>.”</span> Edited by Dragan Pamucar. <em>PLOS ONE</em> 16 (1): e0244991. <a href="https://doi.org/10.1371/journal.pone.0244991">https://doi.org/10.1371/journal.pone.0244991</a>.
+</div>
+<div id="ref-wu_general_2019" class="csl-entry" role="listitem">
+Wu, Mincheng, Shibo He, Yongtao Zhang, Jiming Chen, Youxian Sun, Yang-Yu Liu, Junshan Zhang, and H. Vincent Poor. 2019. <span>“A <span>General</span> <span>Framework</span> of <span>Studying</span> <span>Eigenvector</span> <span>Multicentrality</span> in <span>Multilayer</span> <span>Networks</span>.”</span> <em>Proceedings of the National Academy of Sciences</em> 116 (31): 15407–13. <a href="https://doi.org/10.1073/pnas.1801378116">https://doi.org/10.1073/pnas.1801378116</a>.
 </div>
 </div>
 </section></section>
