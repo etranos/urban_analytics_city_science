@@ -47,7 +47,7 @@ web data [@tranos2022using].
 
 ## Commuting data and networks
 
-This the same data and the same data preparation we did for the [network analysis practical](https://etranos.info/urban_analytics_city_science/src/network_analysis.html). Please follow the below workflow, which you should already be familiar with. Once the data preperation is done, we will model these commuting flows.
+This the same data and the same data preparation we did for the [network analysis practical](https://etranos.info/urban_analytics_city_science/src/P2_network_analysis.html). Please follow the below workflow, which you should already be familiar with. Once the data preperation is done, we will model these commuting flows.
 
 For this tutorial we will use travel to work data from the 2011 UK Census. The data is available [online](http://wicid.ukdataservice.ac.uk/cider/wicid/downloads.php?wicid_Session=742d61be88b0614c3982455e542bc776), but it requires an academic login. After you log in, download the **WU03UK** element, save the .csv on your working directory under a `/data` directory and unzip it. We will use the:
 
@@ -98,7 +98,7 @@ commuting <- commuting %>% filter(startsWith(`Area of usual residence`, "E") |
   glimpse()
 ```
 
-We can also see we many rows we dropped with `glimpse()`.
+We can also see how many rows we dropped with `glimpse()`.
 
 It is very important to distinguish between intra- and inter-local authority flows. In network analysis terms, these are the values we find on the diagonal of an adjacency matrix and refer to the commuting flows within a specific local authority or between different ones. For this exercise we are dropping the intra-local authority flows. Although not used here, we also create a new object with the intra-local authority flows.
 
@@ -180,23 +180,23 @@ la.names <- as.data.frame(la) %>%
 
 Let's now move to model these flows. If you remember the basic Gravity model is defined as following:
 
-$$T_{ij} = k \displaystyle \frac{V_i^\lambda M_j^\alpha}{D_{ij}^\beta}$$
+$$T_{ij} = k \displaystyle \frac{V_i^\lambda W_j^\alpha}{D_{ij}^\beta}$$
 
 And if we take the logarithms of both sides of the equation we can transform the Gravity model to something which looks like a linear model:
 
-$$lnT_{ij} = lnk + \lambda lnV_i + \alpha lnM_j - \beta lnD_{ij}$$
+$$lnT_{ij} = lnk + \lambda lnV_i + \alpha lnW_j - \beta lnD_{ij}$$
 
 The above transformed equation can be estimated as a linear model if we assume that $y = lnT_{ij}$, $c = lnk$, $x_1 = lnV_i$, $a_1 = \lambda$ etc. Hence, we can use OLS to estimate the following:
 
-$$lnT_{ij} = lnk + \lambda lnV_i + \alpha lnM_j - \beta lnD_{ij} + e_{ij}$$
+$$lnT_{ij} = lnk + \lambda lnV_i + \alpha lnW_j - \beta lnD_{ij} + e_{ij}$$
 
 This is what is known as the log-linear or log-normal transformation.
 
 There are a number of issues with such an approach though. Most importantly, our dependent variable is not continuous, but instead a discrete, positive variable (there are no flows of -324.56 people!). Therefore we need to employ an appropriate estimator and this is what the Poisson regression does. Briefly, if we exponentiate both sides, the above equation can be written as:
 
-$$T_{ij} = e^{lnk + \lambda lnV_i + \alpha lnM_j - \beta lnD_{ij}}$$ The above is in the form of the Poisson regression. So, we are interested in modelling *not* the mean $T_{ij}$ drawn from a normally distributed $T$, but, instead, the mean $T_{ij}$, which is the average of the all the flows (i.e. counts) between any $i$ and $j$. For more details about the Poisson regression have a look at  [@roback2021beyond](https://bookdown.org/roback/bookdown-bysh/ch-poissonreg.html#initial-models). For this practical we will estimate the commuting flows using both OLS and Poisson regressions.
+$$T_{ij} = e^{lnk + \lambda lnV_i + \alpha lnW_j - \beta lnD_{ij}}$$ The above is in the form of the Poisson regression. So, we are interested in modelling *not* the mean $T_{ij}$ drawn from a normally distributed $T$, but, instead, the mean $T_{ij}$, which is the average of the all the flows (i.e. counts) between any $i$ and $j$. For more details about the Poisson regression have a look at  [@roback2021beyond](https://bookdown.org/roback/bookdown-bysh/ch-poissonreg.html#initial-models). For this practical we will estimate the commuting flows using both OLS and Poisson regressions.
 
-But before we get into the estimation we need to build a data frame, which includes all the necessary variables. These are the origin-destination flows $T$ between $i$ and $j$, the distance $dist$ between $i$ and $j$ and the characteristics $V$ and $M$ of origin $i$ and destinations $j$ that we believe *push* and *pull* individuals to commute.
+But before we get into the estimation we need to build a data frame, which includes all the necessary variables. These are the origin-destination flows $T$ between $i$ and $j$, the distance $dist$ between $i$ and $j$ and the characteristics $V$ and $W$ of origin $i$ and destinations $j$ that we believe *push* and *pull* individuals to commute.
 
 ```{r si data, include=TRUE, results= 'markup', message=FALSE, warning = FALSE}
 
