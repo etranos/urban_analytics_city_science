@@ -1999,7 +1999,7 @@
     "href": "src/L5_transport_geography.html#graph-analysis-1",
     "title": "Methods in transport geography",
     "section": "Graph analysis",
-    "text": "Graph analysis\nThe Gini coefficient\n\n\n\nMeasure of dispersion often used as Inequality measure\n\n0: perfect equality\n1 :perfect inequality\n\nOrdered X and Y, cumulative percentage\nMostly used for income inequalities, but can be more widely used\n\\(Gini = A / (A + B)\\)\n\n\n\n Source: Rodrigue (2020)"
+    "text": "Graph analysis\nThe Gini coefficient\n\n\n\n\nMeasure of dispersion often used as Inequality measure\n\n0: perfect equality\n1 :perfect inequality\n\nOrdered X and Y, cumulative percentage\nMostly used for income inequalities, but can be more widely used\n\\(Gini = A / (A + B)\\)\n\n\n\n\n Source: Rodrigue (2020)"
   },
   {
     "objectID": "src/L5_transport_geography.html#not-the-only-way-to-define-accessibility-on-networks",

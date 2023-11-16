@@ -195,6 +195,8 @@ Closeness centrality (from Lecture 3)
 
 ::: columns
 ::: {.column width="60%"}
+::: {style="font-size: 90%;"}
+
 -   Measure of dispersion often used as Inequality measure
 
     -   0: perfect equality
@@ -205,6 +207,7 @@ Closeness centrality (from Lecture 3)
 -   Mostly used for income inequalities, but can be more widely used
 
 -   $Gini = A / (A + B)$
+:::
 :::
 
 ::: {.column width="40%"}
