@@ -206,8 +206,8 @@
     "objectID": "src/L6_diversity.html#economic-diversity",
     "href": "src/L6_diversity.html#economic-diversity",
     "title": "Diversity in cities",
-    "section": "Economic diversity",
-    "text": "Economic diversity\n\nProduction, i.e. firms\nConsumption, i.e. product variety\nLabour pool, i.e. skills in labour market\n\nIn general is a good thing for:\n\nurban economies\nproductivity\nurban and industrial agglomeration"
+    "section": "Economic Diversity",
+    "text": "Economic Diversity\n\nHigh concentration, high diversity promotes collaboration and allows for economies of scale and economic growth"
   },
   {
     "objectID": "src/L6_diversity.html#opposing-forces",
@@ -311,22 +311,22 @@
     "objectID": "src/L6_diversity.html#mapping-diversity",
     "href": "src/L6_diversity.html#mapping-diversity",
     "title": "Diversity in cities",
-    "section": "Mapping diversity",
-    "text": "Mapping diversity\npath.shape &lt;- paste0(path, \"/data/Local_Authority_Districts_(May_2021)_UK_BFE.geojson\")\n\nlondon &lt;- st_read(path.shape, quiet = T) %&gt;%\n  dplyr::filter(LAD21CD %in% (london.firms$oslaua))\n\nlondon &lt;- merge(london, london.firms.sum, by.x = \"LAD21CD\", by.y = \"oslaua\" )\n  \nggplot() +\n  geom_sf(data = london, aes(fill = entropy), color = NA) +\n  labs(\n    title = \"Business diversity in London' Local Autorities\",\n    fill = \"Entropy\") +\n  scale_fill_viridis_c() +\n  theme_void() +\n  theme(plot.title = element_text(hjust = 0.5)) # centres the title"
+    "section": "Mapping Diversity",
+    "text": "Mapping Diversity\n\nPlotting the diversity metrics (shannon entropy, rates,…)\nClustering"
   },
   {
     "objectID": "src/L6_diversity.html#clustering",
     "href": "src/L6_diversity.html#clustering",
     "title": "Diversity in cities",
     "section": "Clustering",
-    "text": "Clustering\n\nReducing the dimensions of the observation space\nClassification of observations into (exclusive) groups\nDistance or (dis)similarity between each pair of observations to create a distance or dissimilarity or matrix\nObservations within the same group are as similar as possible\nBased on Boehmke and Greenwell (2019) available here\nPlenty of other resources online and in textbooks"
+    "text": "Clustering"
   },
   {
     "objectID": "src/L6_diversity.html#clustering-1",
     "href": "src/L6_diversity.html#clustering-1",
     "title": "Diversity in cities",
     "section": "Clustering",
-    "text": "Clustering\n\nk-means\nHierarchical clustering"
+    "text": "Clustering\n\nReducing the dimensions of the observation space\nClassification of observations into (exclusive) groups\nDistance or (dis)similarity between each pair of observations to create a distance or dissimilarity or matrix\nObservations within the same group are as similar as possible\nBased on Boehmke and Greenwell (2019) available here\nPlenty of other resources online and in textbooks"
   },
   {
     "objectID": "src/L6_diversity.html#k-means",
@@ -445,7 +445,7 @@
     "href": "src/L6_diversity.html#references",
     "title": "Diversity in cities",
     "section": "References",
-    "text": "References\n\n\n\n\n\n\nBalland, Pierre-Alexandre, Tom Broekel, Dario Diodato, Elisa Giuliani, Ricardo Hausmann, Neave O’Clery, and David Rigby. 2022. “The New Paradigm of Economic Complexity.” Research Policy 51 (3): 104450.\n\n\nBettencourt, Luı́s MA. 2021. “Introduction to Urban Science: Evidence and Theory of Cities as Complex Systems.”\n\n\nBoehmke, Brad, and Brandon Greenwell. 2019. Hands-on Machine Learning with r. Chapman; Hall/CRC.\n\n\nBoschma, Ron, Koen Frenken, H Bathelt, M Feldman, D Kogler, et al. 2012. “Technological Relatedness and Regional Branching.” Beyond Territory. Dynamic Geographies of Knowledge Creation, Diffusion and Innovation 29: 64–68.\n\n\nCaragliu, Andrea, Laura de Dominicis, and Henri LF de Groot. 2016. “Both Marshall and Jacobs Were Right!” Economic Geography 92 (1): 87–111.\n\n\nCohen, Wesley M, and Daniel A Levinthal. 1990. “Absorptive Capacity: A New Perspective on Learning and Innovation.” Administrative Science Quarterly, 128–52.\n\n\nFrenken, Koen, Frank Van Oort, and Thijs Verburg. 2007. “Related Variety, Unrelated Variety and Regional Economic Growth.” Regional Studies 41 (5): 685–97.\n\n\nFujita, Masahisa et al. 1989. “Urban Economic Theory.” Cambridge Books.\n\n\nHidalgo, César A. 2021. “Economic Complexity Theory and Applications.” Nature Reviews Physics 3 (2): 92–113.\n\n\nSaviotti, Pier Paolo, and Koen Frenken. 2008. “Export Variety and the Economic Performance of Countries.” Journal of Evolutionary Economics 18 (2): 201–18.\n\n\nYuo, Tony Shun-Te, and Tzuhui Angie Tseng. 2021. “The Environmental Product Variety and Retail Rents on Central Urban Shopping Areas: A Multi-Stage Spatial Data Mining Method.” Environment and Planning B: Urban Analytics and City Science 48 (8): 2167–87."
+    "text": "References\n\n\n\n\n\n\nBoehmke, Brad, and Brandon Greenwell. 2019. Hands-on Machine Learning with r. Chapman; Hall/CRC.\n\n\nTibshirani, Robert, Guenther Walther, and Trevor Hastie. 2001. “Estimating the Number of Clusters in a Data Set Via the Gap Statistic.” Journal of the Royal Statistical Society Series B: Statistical Methodology 63 (2): 411–23. https://doi.org/10.1111/1467-9868.00293.\n\n\nVertovec, Steven. 2015. “Route-Ines.” In Diversities Old and New: Migration and Socio-Spatial Patterns in New York, Singapore and Johannesburg, edited by Steven Vertovec, 171–92. Global Diversities. London: Palgrave Macmillan UK. https://doi.org/10.1057/9781137495488_11."
   },
   {
     "objectID": "src/L4_network_science.html#network-science-urban-laws-and-scaling",
@@ -2021,5 +2021,194 @@
     "title": "Methods in transport geography",
     "section": "Accessibility of locations from routing perspective",
     "text": "Accessibility of locations from routing perspective\n\n\n\nVrabková, Ertingerová, and Kukuliač (2021)"
+  },
+  {
+    "objectID": "src/L6_diversity.html#what-is-diversity-in-cities",
+    "href": "src/L6_diversity.html#what-is-diversity-in-cities",
+    "title": "Diversity in cities",
+    "section": "What is Diversity in Cities?",
+    "text": "What is Diversity in Cities?"
+  },
+  {
+    "objectID": "src/L6_diversity.html#what-is-diversity-in-cities-1",
+    "href": "src/L6_diversity.html#what-is-diversity-in-cities-1",
+    "title": "Diversity in cities",
+    "section": "What is Diversity in Cities?",
+    "text": "What is Diversity in Cities?\n\nPeople &gt; Population Diversity\nFirms, businesses & institutions &gt; Economic Diversity\nUrban landscape &gt; Morphological Diversity\nAnimals & Plants &gt; Species diversity"
+  },
+  {
+    "objectID": "src/L6_diversity.html#what-is-diversity-in-cities-2",
+    "href": "src/L6_diversity.html#what-is-diversity-in-cities-2",
+    "title": "Diversity in cities",
+    "section": "What is Diversity in Cities?",
+    "text": "What is Diversity in Cities?\n\nIn general: ’The state of being diverse‘\nWith Spatial context: ’The state of being diverse at one location OR throughout a geographical area\nIn context of cities: ‘The state of being divrse within within and between urban places’"
+  },
+  {
+    "objectID": "src/L6_diversity.html#why-is-diversity-important",
+    "href": "src/L6_diversity.html#why-is-diversity-important",
+    "title": "Diversity in cities",
+    "section": "Why is diversity important?",
+    "text": "Why is diversity important?\n\nconcentration of diverse entities (people, firms, and other) at location promotes creativity and innovation"
+  },
+  {
+    "objectID": "src/L6_diversity.html#in-practice",
+    "href": "src/L6_diversity.html#in-practice",
+    "title": "Diversity in cities",
+    "section": "In practice",
+    "text": "In practice\n\nConcentration/number & lack thereof\nSpread - homogeneity and heterogeneity\nSpillover - Geographical relation to concetration results in"
+  },
+  {
+    "objectID": "src/L6_diversity.html#general-diversity-measures",
+    "href": "src/L6_diversity.html#general-diversity-measures",
+    "title": "Diversity in cities",
+    "section": "General diversity measures",
+    "text": "General diversity measures\nFor example Spieces richness…\n\n… aka variety\n\\(D = \\sum_{i}^n p_{i}^0\\)\n\\(p_i\\) is the proportion of data points in the \\(i\\)th category\n\\(n\\) is the number of total categories\nA count of different species / categories / …\n\nInterpretation:\n\nPlurality\nAvailability of options"
+  },
+  {
+    "objectID": "src/L6_diversity.html#general-diversity-measures-1",
+    "href": "src/L6_diversity.html#general-diversity-measures-1",
+    "title": "Diversity in cities",
+    "section": "General diversity measures",
+    "text": "General diversity measures\nOR Shannon entropy\n\n\\(H = -\\sum_{i}^n p_{i} \\ln{p_{i}}\\)\n\\(n\\) is the number of total categories\n\\(p_i\\) is the proportion of data points in the \\(i\\)th category\nProbably the most common diversity index.\nInterpretation:\n\nIf one category dominates ➔ less surprise ➔ low entropy\nNo category dominates ➔ more surprise ➔ high entropy"
+  },
+  {
+    "objectID": "src/L6_diversity.html#economic-diversity-1",
+    "href": "src/L6_diversity.html#economic-diversity-1",
+    "title": "Diversity in cities",
+    "section": "Economic Diversity",
+    "text": "Economic Diversity\n\nMarshalllian externalities - benefits gained from geographical agglomeration\nFor example: Knowledge spillover, production spillover, …\nJacobian externalities - benefits gained from the diversity of economic activities within geography\nFor example: Knowledge concentration correlated with production concentration"
+  },
+  {
+    "objectID": "src/L6_diversity.html#knowledge-spillovers",
+    "href": "src/L6_diversity.html#knowledge-spillovers",
+    "title": "Diversity in cities",
+    "section": "Knowledge spillovers",
+    "text": "Knowledge spillovers\nExample of method: Spatial weights"
+  },
+  {
+    "objectID": "src/L6_diversity.html#population-diversity",
+    "href": "src/L6_diversity.html#population-diversity",
+    "title": "Diversity in cities",
+    "section": "Population Diversity",
+    "text": "Population Diversity\nCities are generators of cosmopolitanism\n\n‘cosmos’ + ‘polis’\n‘world’ + ‘city’\ncity of the world\ncosmopolite = citizen of the word\ncosmoplitan = being part of the world, free from local attachments and prejudices"
+  },
+  {
+    "objectID": "src/L6_diversity.html#population-diversity-1",
+    "href": "src/L6_diversity.html#population-diversity-1",
+    "title": "Diversity in cities",
+    "section": "Population Diversity",
+    "text": "Population Diversity\nChicago School - mosaic - spatial ecology\nmassive number of segregation studies &gt; ‘The ethnic city’\nhttps://interactive.wttw.com/firsthand/segregation/mapping-chicago-racial-segregation"
+  },
+  {
+    "objectID": "src/L6_diversity.html#population-diversity-2",
+    "href": "src/L6_diversity.html#population-diversity-2",
+    "title": "Diversity in cities",
+    "section": "Population Diversity",
+    "text": "Population Diversity\nLater on shift &gt;\n\nexchancge\nconvivality\nmulticulture\nspaces of difference\nengaging strangers"
+  },
+  {
+    "objectID": "src/L6_diversity.html#population-diversity-3",
+    "href": "src/L6_diversity.html#population-diversity-3",
+    "title": "Diversity in cities",
+    "section": "Population Diversity",
+    "text": "Population Diversity\nSteven Vertovec - Diversity and Contact\n\nwatch Stevens’ lecture on Diversity - https://www.youtube.com/watch?v=n7hKmjXcsJg&t=361s&ab_channel=DesignServer\n\nDiversity is not just about the ‘cosmo’\nIt can have negative effects such as ‘halo effect’ = xenofobic populism is highest in areas close to highly diverse or changing areas"
+  },
+  {
+    "objectID": "src/L6_diversity.html#clustering-2",
+    "href": "src/L6_diversity.html#clustering-2",
+    "title": "Diversity in cities",
+    "section": "Clustering",
+    "text": "Clustering\n\nHierarchical\nk means\ndbscan"
+  },
+  {
+    "objectID": "src/L6_diversity.html#clustering-3",
+    "href": "src/L6_diversity.html#clustering-3",
+    "title": "Diversity in cities",
+    "section": "Clustering",
+    "text": "Clustering\nHierarchical clustering\n\n\n\n Source: @boehmke2019hands \n\n\nAgglomerative clustering (AGNES – AGglomerative NESting)\nDivisive hierarchical clustering (DIANA – DIvise ANAlysis)\n\nDissimilarity (distance) of observations"
+  },
+  {
+    "objectID": "src/L6_diversity.html#clustering-4",
+    "href": "src/L6_diversity.html#clustering-4",
+    "title": "Diversity in cities",
+    "section": "Clustering",
+    "text": "Clustering\nK-Means\n\n\nk is the number of clusters and is pre-defined\nThe algorithm selects k random observations (starting centres)\nThe remaining observations are assigned to the nearest centre\nRecalculates the new centres\nRe-check cluster assignment\nIterative process to minimise within-cluster variation until convergence\n\n\n\\(SS_{within} = \\sum_{k=1}^k W(C_{k}) = \\sum_{k=1}^k \\sum_{x_i\\in C_K}(x_i-\\mu_k)^2\\)"
+  },
+  {
+    "objectID": "src/L6_diversity.html#clustering-5",
+    "href": "src/L6_diversity.html#clustering-5",
+    "title": "Diversity in cities",
+    "section": "Clustering",
+    "text": "Clustering\nK-Means in practice\nstats::kmeans(x, centers = k, iter.max = 10, nstart = 1, algorithm = c(“Hartigan-Wong”, “Lloyd”, “Forgy”,“MacQueen”))"
+  },
+  {
+    "objectID": "src/L6_diversity.html#how-to-choose-k",
+    "href": "src/L6_diversity.html#how-to-choose-k",
+    "title": "Diversity in cities",
+    "section": "How to choose k ?",
+    "text": "How to choose k ?\n\nThe elbow method\nSilhouette score/coefficient\nGap statistics"
+  },
+  {
+    "objectID": "src/L6_diversity.html#how-to-choose-k-1",
+    "href": "src/L6_diversity.html#how-to-choose-k-1",
+    "title": "Diversity in cities",
+    "section": "How to choose k ?",
+    "text": "How to choose k ?\n\nThe elbow method\n\nCompute k-means clustering for different values of k\nCalculate \\(SS_{within}\\) - the sum of square distances between the centroids and each points."
+  },
+  {
+    "objectID": "src/L6_diversity.html#how-to-choose-k-2",
+    "href": "src/L6_diversity.html#how-to-choose-k-2",
+    "title": "Diversity in cities",
+    "section": "How to choose k ?",
+    "text": "How to choose k ?\n\nSilhouette score\n\n\nis a measure of how similar an object is to its own cluster (cohesion) compared to other clusters (separation)\nranges from −1 to +1"
+  },
+  {
+    "objectID": "src/L6_diversity.html#how-to-choose-k-3",
+    "href": "src/L6_diversity.html#how-to-choose-k-3",
+    "title": "Diversity in cities",
+    "section": "How to choose k ?",
+    "text": "How to choose k ?\n\nGap statistics\n\n\nmetric that describes how compact the clusters are &gt; minimization problem\ncomputes all the pairwise distances between points within a cluster and average these distances\nread the original paper Tibshirani, Walther, and Hastie (2001)"
+  },
+  {
+    "objectID": "src/L6_diversity.html#how-to-choose-k-4",
+    "href": "src/L6_diversity.html#how-to-choose-k-4",
+    "title": "Diversity in cities",
+    "section": "How to choose k ?",
+    "text": "How to choose k ?"
+  },
+  {
+    "objectID": "src/L6_diversity.html#clustering-6",
+    "href": "src/L6_diversity.html#clustering-6",
+    "title": "Diversity in cities",
+    "section": "Clustering",
+    "text": "Clustering\ndbscan or hdbscan\n\nidentifies cluster by the density of the points\n\n\nfor each point constructs buffer with radius r\nCounts all the other points within each buffer = N &gt; Core points\nKeep constructing buffers to points within the first buffer &gt; iterates\nStops when it cannot expand any more"
+  },
+  {
+    "objectID": "src/L6_diversity.html#clustering-7",
+    "href": "src/L6_diversity.html#clustering-7",
+    "title": "Diversity in cities",
+    "section": "Clustering",
+    "text": "Clustering\ndbscan or hdbscan\nResources: SciKit-learn docs, dbscan package, [Youtube video]{https://www.youtube.com/watch?v=RDZUdRSDOok&ab_channel=StatQuestwithJoshStarmer}, [example K-means vs DBscan]{https://rpubs.com/datalowe/dbscan-simple-example}"
+  },
+  {
+    "objectID": "src/L6_diversity.html#population-diversity-4",
+    "href": "src/L6_diversity.html#population-diversity-4",
+    "title": "Diversity in cities",
+    "section": "Population Diversity",
+    "text": "Population Diversity\nToday the field is more concerned about the process of diversification.\n\nHow are diverse environment created?\n\n\n‘Route-ines’ are patterns of encounter that arise from fleeting interactions\nThrough ‘rout-ines’ people observe changes in their neighbourhoods and became more familiar with the people around them\n\nBased on Vertovec (2015)"
+  },
+  {
+    "objectID": "src/L6_diversity.html#population-diversity-5",
+    "href": "src/L6_diversity.html#population-diversity-5",
+    "title": "Diversity in cities",
+    "section": "Population Diversity",
+    "text": "Population Diversity\n\nRooms without walls - urban spaces where interaction create social spaces and communities &gt; patterns of social interactions\nCorridors of dissociation - urban places which are not where people are banned to interact in either by someone, institution or by themselves &gt; patterns of social exclusion\n\nBased on Vertovec (2015)"
+  },
+  {
+    "objectID": "src/L6_diversity.html#try-out-clustering-yourself",
+    "href": "src/L6_diversity.html#try-out-clustering-yourself",
+    "title": "Diversity in cities",
+    "section": "Try out clustering yourself",
+    "text": "Try out clustering yourself\n\nOptional practical on [github]{https://github.com/etranos/urban_analytics_city_science/tree/local/src/P8_clustering.Rmd}\n[K-means vs DBscan]{https://rpubs.com/datalowe/dbscan-simple-example}\n[Hierarchical & K-means clustering in R]{https://rpubs.com/pjmurphy/599072}"
   }
 ]
