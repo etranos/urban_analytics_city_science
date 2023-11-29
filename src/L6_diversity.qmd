@@ -334,6 +334,19 @@ Based on @vertovec_route-ines_2015
 
 Based on @vertovec_route-ines_2015
 
+
+
+## Try out clustering yourself
+
+* Optional practical on [github]{https://github.com/etranos/urban_analytics_city_science/tree/local/src/P8_clustering.Rmd}
+
+* [K-means vs DBscan]{https://rpubs.com/datalowe/dbscan-simple-example}
+
+* [Hierarchical & K-means clustering in R]{https://rpubs.com/pjmurphy/599072}
+
+
+
+
 <!--
 ```{}
 #| label: setup
