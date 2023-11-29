@@ -14,7 +14,341 @@ editor: source
 bibliography: references.bib
 ---
 
-```{r}
+
+## What is Diversity in Cities?
+
+
+## What is Diversity in Cities?
+
+- People > Population Diversity
+
+- Firms, businesses & institutions > Economic Diversity
+
+- Urban landscape > Morphological Diversity
+
+- Animals & Plants > Species diversity
+
+## What is Diversity in Cities?
+
+- In general: ‘The state of being diverse‘
+
+- With Spatial context: ‘The state of being diverse at one location OR throughout a geographical area
+
+- In context of cities: ‘The state of being divrse within within and between urban places’ 
+
+
+
+## Why is diversity important?
+
+- concentration of diverse entities (people, firms, and other) at location promotes *creativity* and *innovation*
+
+
+## In practice
+
+1. Concentration/number & lack thereof
+
+2. Spread - homogeneity and heterogeneity
+
+3. Spillover - Geographical relation to concetration results in 
+
+## General diversity measures
+
+For example Spieces richness...
+
+-   ... aka variety
+
+-   $D = \sum_{i}^n p_{i}^0$
+
+-   $p_i$ is the proportion of data points in the $i$th category
+
+-   $n$ is the number of total categories
+
+-   A count of different species / categories / ...
+
+**Interpretation:**
+
+-   Plurality
+
+-   Availability of options
+
+
+## General diversity measures
+
+OR Shannon entropy
+
+-   $H = -\sum_{i}^n p_{i} \ln{p_{i}}$
+
+-   $n$ is the number of total categories
+
+-   $p_i$ is the proportion of data points in the $i$th category
+
+-   Probably the most common diversity index.
+
+-   **Interpretation:**
+
+    -   If one category dominates ➔ less surprise ➔ low entropy
+
+    -   No category dominates ➔ more surprise ➔ high entropy
+
+## Economic Diversity
+
+ - High concentration, high diversity promotes collaboration and allows for economies of scale and economic growth
+
+![](images/scale_economies.png){width=80%}
+
+## Economic Diversity
+
+- Marshalllian externalities - benefits gained from geographical agglomeration
+  
+  For example: Knowledge spillover, production spillover, ...
+
+- Jacobian externalities - benefits gained from the diversity of economic activities within geography
+
+  For example: Knowledge concentration correlated with production concentration
+  
+  
+## Knowledge spillovers
+
+Example of method: Spatial weights
+
+![](images/sp_weight1.png){width=40%}
+
+![](images/sp_weights2.png)
+
+
+## Population Diversity
+
+Cities are generators of cosmopolitanism
+
+- ‘cosmos’ + ‘polis’ 
+
+- ‘world’ + ‘city’ 
+
+- city of the world
+
+- cosmopolite = citizen of the word
+
+- cosmoplitan = being part of the world, free from local attachments and prejudices
+
+## Population Diversity
+
+Chicago School - mosaic - spatial ecology
+
+massive number of segregation studies > 'The ethnic city'
+
+https://interactive.wttw.com/firsthand/segregation/mapping-chicago-racial-segregation
+
+
+## Population Diversity
+
+Later on shift >
+
+- exchancge
+- convivality
+- multiculture
+- spaces of difference
+- engaging strangers
+
+## Population Diversity
+
+Steven Vertovec - Diversity and Contact 
+
+> watch Stevens' lecture on Diversity -  https://www.youtube.com/watch?v=n7hKmjXcsJg&t=361s&ab_channel=DesignServer
+
+Diversity is not just about the 'cosmo'
+
+It can have negative effects such as 'halo effect' = xenofobic populism is highest in areas close to highly diverse or changing areas
+
+
+## Mapping Diversity
+
+1. Plotting the diversity metrics (shannon entropy, rates,...)
+
+2. Clustering
+
+## Clustering
+
+![](images/ML_dis.png)
+
+## Clustering
+
+-   Reducing the dimensions of the observation space
+
+-   Classification of observations into (exclusive) groups
+
+-   Distance or (dis)similarity between each pair of observations to create a distance or dissimilarity or matrix
+
+-   Observations within the same group are as similar as possible
+
+-   Based on @boehmke2019hands available [here](https://bradleyboehmke.github.io/HOML/){target="_blank"}
+
+-   Plenty of other resources online and in textbooks
+
+
+## Clustering
+
+1. Hierarchical
+
+2. *k* means 
+
+3. dbscan
+
+
+
+## Clustering
+
+**Hierarchical clustering**
+
+::: columns
+::: {.column width="60%"}
+![](images/dendrogram.png)
+
+<small> Source: [\@boehmke2019hands](https://bradleyboehmke.github.io/HOML){target="_blank"} </small>
+:::
+
+::: {.column width="40%"}
+1.  Agglomerative clustering (AGNES -- AGglomerative NESting)
+
+2.  Divisive hierarchical clustering (DIANA -- DIvise ANAlysis)
+
+Dissimilarity (distance) of observations
+:::
+:::
+
+
+
+## Clustering
+
+**K-Means**
+
+::: r-fit-text
+1.  *k* is the number of clusters and is pre-defined
+
+2.  The algorithm selects *k* random observations (starting centres)
+
+3.  The remaining observations are assigned to the nearest centre
+
+4.  Recalculates the new centres
+
+5.  Re-check cluster assignment
+
+6.  Iterative process to minimise *within-cluster variation* until convergence
+:::
+
+$SS_{within} = \sum_{k=1}^k W(C_{k}) = \sum_{k=1}^k \sum_{x_i\in C_K}(x_i-\mu_k)^2$
+
+
+
+
+## Clustering 
+
+**K-Means** in practice
+
+
+stats::kmeans(x, centers = k, iter.max = 10, nstart = 1,
+                algorithm = c("Hartigan-Wong", "Lloyd", "Forgy","MacQueen"))
+ 
+
+## How to choose *k* ?
+
+1. The *elbow* method
+
+2. Silhouette score/coefficient
+
+3. Gap statistics
+
+
+## How to choose *k* ?
+
+1.  The *elbow* method
+
+    -   Compute *k*-means clustering for different values of *k*
+
+    -   Calculate $SS_{within}$ - the sum of square distances between the centroids and each points.
+
+
+## How to choose *k* ?
+
+2. Silhouette score
+  
+  - is a measure of how similar an object is to its own cluster (cohesion) compared to other clusters (separation)
+  
+  - ranges from −1 to +1
+
+
+## How to choose *k* ?
+
+3. Gap statistics 
+
+  - metric that describes how compact the clusters are > minimization problem
+
+  - computes all the pairwise distances between points within a cluster and average these distances
+  
+  - read the original paper @tibshirani_estimating_2001
+  
+  
+## How to choose *k* ?
+    
+![](images/cluster_choice.png)
+
+
+## Clustering 
+
+**dbscan** or **hdbscan**
+
+- identifies cluster by the density of the points
+
+1. for each point constructs buffer with radius *r*
+
+2. Counts all the other points within each buffer = *N* > Core points
+
+3. Keep constructing buffers to points within the first buffer > iterates
+
+4. Stops when it cannot expand any more
+
+
+## Clustering 
+
+**dbscan** or **hdbscan**
+
+Resources: [SciKit-learn docs](https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html){target="_blank"}, [dbscan package](https://cran.r-project.org/web/packages/dbscan/vignettes/hdbscan.html){target="_blank"}, [Youtube video]{https://www.youtube.com/watch?v=RDZUdRSDOok&ab_channel=StatQuestwithJoshStarmer}, [example K-means vs DBscan]{https://rpubs.com/datalowe/dbscan-simple-example}
+
+
+## Population Diversity
+
+Today the field is more concerned about the process of diversification.
+
+> How are diverse environment created?
+
+- ‘Route-ines’ are patterns of encounter that arise from fleeting interactions
+
+ - Through 'rout-ines' people observe changes in their neighbourhoods and became more familiar with the people around them
+
+Based on @vertovec_route-ines_2015
+
+## Population Diversity
+
+ 1. Rooms without walls - urban spaces where interaction create social spaces and communities > patterns of social interactions
+ 
+ 2. Corridors of dissociation - urban places which are not where people are banned to interact in either by someone, institution or by themselves > patterns of social exclusion
+
+Based on @vertovec_route-ines_2015
+
+
+
+## Try out clustering yourself
+
+* Optional practical on [github]{https://github.com/etranos/urban_analytics_city_science/tree/local/src/P8_clustering.Rmd}
+
+* [K-means vs DBscan]{https://rpubs.com/datalowe/dbscan-simple-example}
+
+* [Hierarchical & K-means clustering in R]{https://rpubs.com/pjmurphy/599072}
+
+
+
+
+<!--
+```{}
 #| label: setup
 #| echo: true
 #| results: false
@@ -122,7 +456,7 @@ or 'evenness' [@yuo2021environmental]
 
     -   Two scenarios:
 
-```{r, echo=TRUE}
+```{, echo=TRUE}
 HHI_1 = .8^2 + .05^2 + .05^2 + .1^2
 HHI_1
 
@@ -195,7 +529,7 @@ For a review, check @hidalgo2021economic and @balland2022new.
 
 ## Measuring diversity {.scrollable}
 
-```{r, echo=TRUE}
+```{, echo=TRUE}
 
 library(tidyverse)  # for data wrangling
 library(rprojroot)  # for relative paths
@@ -244,7 +578,7 @@ Can you think of a way to understand how different these indices are among Londo
 
 ## Mapping diversity {.scrollable}
 
-```{r, }
+```{, }
 #| label: maps
 #| echo: true
 #| include: true
@@ -316,7 +650,7 @@ $SS_{within} = \sum_{k=1}^k W(C_{k}) = \sum_{k=1}^k \sum_{x_i\in C_K}(x_i-\mu_k)
 
 First, create an appropriate data frame
 
-```{r, echo = TRUE}
+```{, echo = TRUE}
 
 la.sic <- london.firms %>% 
   filter(SICCode.SicText_1!="None Supplied") %>% # Drop firms which haven't declared SIC code
@@ -337,7 +671,7 @@ la.sic %>%
 
 ## *k*-means {.scrollable}
 
-```{r, echo=TRUE}
+```{, echo=TRUE}
 kclust = kmeans(la.sic[,-1], centers = 10, nstart = 10) # be aware of the [,-1]
 str(kclust)
 ```
@@ -358,7 +692,7 @@ str(kclust)
 
 ## Choosing *k*
 
-```{r, echo=TRUE}
+```{, echo=TRUE}
 
 fviz_nbclust(
   la.sic[,-1], 
@@ -389,7 +723,7 @@ Dissimilarity (distance) of observations
 
 ## Hierarchical clustering
 
-```{r, echo=TRUE}
+```{, echo=TRUE}
 
 # distances between observations
 d <- dist(la.sic)
@@ -405,7 +739,7 @@ plot(hclust, hang=-1, labels=l$oslaua, main='Default from hclust')
 
 ## Optimal number of clusters
 
-```{r}
+```{}
 p1 <- fviz_nbclust(la.sic, FUN = hcut, 
                    method = "wss", 
                    k.max = 10) +
@@ -431,7 +765,7 @@ gridExtra::grid.arrange(p1, p2, p3, nrow = 1)
 Explore what the 2 cluster solution tells us about London?
 :::
 
-```{r, eval=FALSE}
+```{, eval=FALSE}
 hc5 <- hclust(d, method = "ward.D2" )
 dend_plot <- fviz_dend(hclust)
 dend_data <- attr(dend_plot, "dendrogram")
@@ -457,7 +791,7 @@ fviz_dend(
 
 -   Create a SIC frequency table
 
-```{r, echo=TRUE}
+```{, echo=TRUE}
 
 # This will build an SIC frequency table
 london.firms %>% 
@@ -471,7 +805,7 @@ london.firms %>%
 
 -   Focus on, let's say "70221 - Financial management"
 
-```{r, echo=TRUE}
+```{, echo=TRUE}
 london.firms.sample <- london.firms %>% 
   filter(SICCode.SicText_1=="70221 - Financial management") %>% 
   select(oseast1m, osnrth1m) %>% 
@@ -480,13 +814,13 @@ london.firms.sample <- london.firms %>%
 
 ## Financial management in London
 
-```{r, echo=TRUE}
+```{, echo=TRUE}
 plot(london.firms.sample)
 ```
 
 ## Clusters in space, *k*-means
 
-```{r, echo=TRUE}
+```{, echo=TRUE}
 fviz_nbclust(
   london.firms.sample, 
   kmeans, 
@@ -497,7 +831,7 @@ fviz_nbclust(
 
 ## Clusters in space, *k*-means
 
-```{r, echo=TRUE}
+```{, echo=TRUE}
 sp.cluster = kmeans(london.firms.sample, 6) 
 
 plot(london.firms.sample, col = sp.cluster$cluster)
@@ -519,11 +853,13 @@ Resources: [SciKit-learn docs](https://hdbscan.readthedocs.io/en/latest/how_hdbs
 
 ## Clusters in space, hdbscan
 
-```{r, echo=TRUE}
+```{, echo=TRUE}
 cl <- hdbscan(london.firms.sample, 
               minPts = 10)         #minimum size of clusters
 
 plot(london.firms.sample, col=cl$cluster+1, pch=20)
 ```
+
+-->
 
 ## References
