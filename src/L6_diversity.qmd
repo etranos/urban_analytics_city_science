@@ -115,6 +115,7 @@ Example of method: Spatial weights
 
 ![](images/sp_weights2.png)
 
+From @rowe_spatial_2021 and @li_new_2019
 
 ## Population Diversity
 
@@ -290,7 +291,7 @@ stats::kmeans(x, centers = k, iter.max = 10, nstart = 1,
 ## How to choose *k* ?
     
 ![](images/cluster_choice.png)
-
+From the optional practical on clustering
 
 ## Clustering 
 
