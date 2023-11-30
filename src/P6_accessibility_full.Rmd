@@ -307,6 +307,8 @@ As before, we calculate the cumulative opportunities for London's Local Authorit
 (the centroids to be more accurate) within a cut-off of 20 minutes.
 
 ```{r eval=FALSE}
+df <- data.table::as.data.table(df)
+
 mtc <- cumulative_cutoff(
   dist.df,
   df %>% mutate(number_of_jobs = as.integer(number_of_jobs)),
