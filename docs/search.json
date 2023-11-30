@@ -445,7 +445,7 @@
     "href": "src/L6_diversity.html#references",
     "title": "Diversity in cities",
     "section": "References",
-    "text": "References\n\n\n\n\n\n\nBoehmke, Brad, and Brandon Greenwell. 2019. Hands-on Machine Learning with r. Chapman; Hall/CRC.\n\n\nTibshirani, Robert, Guenther Walther, and Trevor Hastie. 2001. “Estimating the Number of Clusters in a Data Set Via the Gap Statistic.” Journal of the Royal Statistical Society Series B: Statistical Methodology 63 (2): 411–23. https://doi.org/10.1111/1467-9868.00293.\n\n\nVertovec, Steven. 2015. “Route-Ines.” In Diversities Old and New: Migration and Socio-Spatial Patterns in New York, Singapore and Johannesburg, edited by Steven Vertovec, 171–92. Global Diversities. London: Palgrave Macmillan UK. https://doi.org/10.1057/9781137495488_11."
+    "text": "References\n\n\n\n\n\n\nBoehmke, Brad, and Brandon Greenwell. 2019. Hands-on Machine Learning with r. Chapman; Hall/CRC.\n\n\nLi, Ma, and Liu. 2019. “A New Trend in the Space–Time Distribution of Cultivated Land Occupation for Construction in China and the Impact of Population Urbanization.” Sustainability 11 (18): 5089. https://doi.org/10.3390/su11185089.\n\n\nRowe, Francisco. 2021. “Spatial Weights.” Geographic Data Science for Public Policy. https://fcorowe.github.io/udd_gds_course/02-spatial_weights.html.\n\n\nTibshirani, Robert, Guenther Walther, and Trevor Hastie. 2001. “Estimating the Number of Clusters in a Data Set Via the Gap Statistic.” Journal of the Royal Statistical Society Series B: Statistical Methodology 63 (2): 411–23. https://doi.org/10.1111/1467-9868.00293.\n\n\nVertovec, Steven. 2015. “Route-Ines.” In Diversities Old and New: Migration and Socio-Spatial Patterns in New York, Singapore and Johannesburg, edited by Steven Vertovec, 171–92. Global Diversities. London: Palgrave Macmillan UK. https://doi.org/10.1057/9781137495488_11."
   },
   {
     "objectID": "src/L4_network_science.html#network-science-urban-laws-and-scaling",
@@ -2083,7 +2083,7 @@
     "href": "src/L6_diversity.html#knowledge-spillovers",
     "title": "Diversity in cities",
     "section": "Knowledge spillovers",
-    "text": "Knowledge spillovers\nExample of method: Spatial weights"
+    "text": "Knowledge spillovers\nExample of method: Spatial weights\n\n\nFrom Rowe (2021) and Li, Ma, and Liu (2019)"
   },
   {
     "objectID": "src/L6_diversity.html#population-diversity",
@@ -2097,7 +2097,7 @@
     "href": "src/L6_diversity.html#population-diversity-1",
     "title": "Diversity in cities",
     "section": "Population Diversity",
-    "text": "Population Diversity\nChicago School - mosaic - spatial ecology\nmassive number of segregation studies &gt; ‘The ethnic city’\nhttps://interactive.wttw.com/firsthand/segregation/mapping-chicago-racial-segregation"
+    "text": "Population Diversity\nChicago School - mosaic - spatial ecology\nmassive number of segregation studies &gt; ‘The ethnic city’\nlink to interactive map"
   },
   {
     "objectID": "src/L6_diversity.html#population-diversity-2",
@@ -2111,7 +2111,7 @@
     "href": "src/L6_diversity.html#population-diversity-3",
     "title": "Diversity in cities",
     "section": "Population Diversity",
-    "text": "Population Diversity\nSteven Vertovec - Diversity and Contact\n\nwatch Stevens’ lecture on Diversity - https://www.youtube.com/watch?v=n7hKmjXcsJg&t=361s&ab_channel=DesignServer\n\nDiversity is not just about the ‘cosmo’\nIt can have negative effects such as ‘halo effect’ = xenofobic populism is highest in areas close to highly diverse or changing areas"
+    "text": "Population Diversity\nSteven Vertovec - Diversity and Contact\n\nwatch Stevens’ lecture on Diversity\n\nDiversity is not just about the ‘cosmo’\nIt can have negative effects such as ‘halo effect’ = xenofobic populism is highest in areas close to highly diverse or changing areas"
   },
   {
     "objectID": "src/L6_diversity.html#clustering-2",
@@ -2174,7 +2174,7 @@
     "href": "src/L6_diversity.html#how-to-choose-k-4",
     "title": "Diversity in cities",
     "section": "How to choose k ?",
-    "text": "How to choose k ?"
+    "text": "How to choose k ?\n From the optional practical on clustering"
   },
   {
     "objectID": "src/L6_diversity.html#clustering-6",
@@ -2188,7 +2188,7 @@
     "href": "src/L6_diversity.html#clustering-7",
     "title": "Diversity in cities",
     "section": "Clustering",
-    "text": "Clustering\ndbscan or hdbscan\nResources: SciKit-learn docs, dbscan package, [Youtube video]{https://www.youtube.com/watch?v=RDZUdRSDOok&ab_channel=StatQuestwithJoshStarmer}, [example K-means vs DBscan]{https://rpubs.com/datalowe/dbscan-simple-example}"
+    "text": "Clustering\ndbscan or hdbscan\nResources: SciKit-learn docs, dbscan package, Youtube video, example K-means vs DBscan"
   },
   {
     "objectID": "src/L6_diversity.html#population-diversity-4",
@@ -2209,6 +2209,6 @@
     "href": "src/L6_diversity.html#try-out-clustering-yourself",
     "title": "Diversity in cities",
     "section": "Try out clustering yourself",
-    "text": "Try out clustering yourself\n\nOptional practical on [github]{https://github.com/etranos/urban_analytics_city_science/tree/local/src/P8_clustering.Rmd}\n[K-means vs DBscan]{https://rpubs.com/datalowe/dbscan-simple-example}\n[Hierarchical & K-means clustering in R]{https://rpubs.com/pjmurphy/599072}"
+    "text": "Try out clustering yourself\n\nOptional practical on github\nK-means vs DBscan\nHierarchical & K-means clustering in R"
   }
 ]
