@@ -115,6 +115,7 @@ Example of method: Spatial weights
 
 ![](images/sp_weights2.png)
 
+From @rowe_spatial_2021 and @li_new_2019
 
 ## Population Diversity
 
@@ -136,7 +137,7 @@ Chicago School - mosaic - spatial ecology
 
 massive number of segregation studies > 'The ethnic city'
 
-https://interactive.wttw.com/firsthand/segregation/mapping-chicago-racial-segregation
+[link to interactive map](https://interactive.wttw.com/firsthand/segregation/mapping-chicago-racial-segregation){target="_blank"}
 
 
 ## Population Diversity
@@ -153,7 +154,7 @@ Later on shift >
 
 Steven Vertovec - Diversity and Contact 
 
-> watch Stevens' lecture on Diversity -  https://www.youtube.com/watch?v=n7hKmjXcsJg&t=361s&ab_channel=DesignServer
+> [watch Stevens' lecture on Diversity](https://www.youtube.com/watch?v=n7hKmjXcsJg&t=361s&ab_channel=DesignServer){target="_blank"}
 
 Diversity is not just about the 'cosmo'
 
@@ -290,7 +291,7 @@ stats::kmeans(x, centers = k, iter.max = 10, nstart = 1,
 ## How to choose *k* ?
     
 ![](images/cluster_choice.png)
-
+From the optional practical on clustering
 
 ## Clustering 
 
@@ -311,7 +312,7 @@ stats::kmeans(x, centers = k, iter.max = 10, nstart = 1,
 
 **dbscan** or **hdbscan**
 
-Resources: [SciKit-learn docs](https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html){target="_blank"}, [dbscan package](https://cran.r-project.org/web/packages/dbscan/vignettes/hdbscan.html){target="_blank"}, [Youtube video]{https://www.youtube.com/watch?v=RDZUdRSDOok&ab_channel=StatQuestwithJoshStarmer}, [example K-means vs DBscan]{https://rpubs.com/datalowe/dbscan-simple-example}
+Resources: [SciKit-learn docs](https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html){target="_blank"}, [dbscan package](https://cran.r-project.org/web/packages/dbscan/vignettes/hdbscan.html){target="_blank"}, [Youtube video](https://www.youtube.com/watch?v=RDZUdRSDOok&ab_channel=StatQuestwithJoshStarmer), [example K-means vs DBscan](https://rpubs.com/datalowe/dbscan-simple-example){target="_blank"}
 
 
 ## Population Diversity
@@ -338,11 +339,11 @@ Based on @vertovec_route-ines_2015
 
 ## Try out clustering yourself
 
-* Optional practical on [github]{https://github.com/etranos/urban_analytics_city_science/tree/local/src/P8_clustering.Rmd}
+* Optional practical on [github](https://github.com/etranos/urban_analytics_city_science/tree/local/src/P8_clustering.Rmd){target="_blank"}
 
-* [K-means vs DBscan]{https://rpubs.com/datalowe/dbscan-simple-example}
+* [K-means vs DBscan](https://rpubs.com/datalowe/dbscan-simple-example){target="_blank"}
 
-* [Hierarchical & K-means clustering in R]{https://rpubs.com/pjmurphy/599072}
+* [Hierarchical & K-means clustering in R](https://rpubs.com/pjmurphy/599072){target="_blank"}
 
 
 
