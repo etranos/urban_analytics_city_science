@@ -176,9 +176,9 @@ For a review, check @hidalgo2021economic and @balland2022new.
 
 ## Measuring diversity
 
-<iframe src="https://www.gov.uk/government/organisations/companies-house" width="800" height="600" frameBorder="0" scrolling="yes">
+<iframe src="https://find-and-update.company-information.service.gov.uk/" width="800" height="400" data-external="1" frameBorder="0" scrolling="yes"></iframe>
 
-</iframe>
+<small> Source: [Companies House](https://www.gov.uk/government/organisations/companies-house){target="_blank"} </small>
 
 ## Measuring diversity
 

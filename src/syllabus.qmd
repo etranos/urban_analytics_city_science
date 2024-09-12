@@ -12,10 +12,6 @@ editor: source
 
     -   Practical: [APIs and urban data](apis.Rmd){target="_blank"}
 
-    <!-- 2. digital traces **P**: ??? think of traces -->
-
-    <!-- 3. Social Media **P**: Twitter -->
-
     How do digital technologies change cities? How does their usage actually enables citizens to act as sensors? And, how do these changes affect urban research? We will first approach these issues from a theoretical perspective and then utilise such free and open urban data using APIs.
 
 3.  [Networks: an introduction](intro_networks.qmd){target="_blank"}
@@ -32,14 +28,14 @@ editor: source
 
 <!-- -   Degree distribution (see help_degree_sistribution.Rmd) -->
 
-6.  [Network science, urban laws and scaling](network_science.qmd){target="_blank"}
+6.  Reading week 
+
+7.  [Network science, urban laws and scaling](network_science.qmd){target="_blank"}
 
     -   Practical: [Build and compare models](network_models.Rmd){target="_blank"}
 
     Moving from network analysis to network science with clear urban applications.
     
-7.  Reading week 
-
 8.  [Methods in transport geography](transport_geography.qmd){target="_blank"}
 
     Same methods, different facets of urban research. This part of the unit will allow you to apply your network skills to answer transport related questions. It will also make the transition from networks to flows.
@@ -74,6 +70,6 @@ editor: source
 
       Why is diversity important in cities and how do we measure it?
 
-12. [Urban policies and causality](Urban_policy___causal_design.pdf){target="_blank"}
+<!-- 12. [Urban policies and causality](Urban_policy___causal_design.pdf){target="_blank"} -->
 
-    From urban analysis to urban policies. And how to assess such policies. An introduction to causality.
+<!--     From urban analysis to urban policies. And how to assess such policies. An introduction to causality. -->

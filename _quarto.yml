@@ -19,7 +19,7 @@ project:
   - src/transport_geography.qmd
   - src/accessibility_full.Rmd
   - src/sim.Rmd
-  - src/causality.Rmd
+  # - src/causality.Rmd
 
 website:
   title: "Urban analytics and city science"
@@ -46,8 +46,8 @@ website:
           - src/network_science.qmd
           - src/transport_geography.qmd
           - src/diversity.qmd
-          - text: "Urban policies and causality"
-            file: src/Urban_policy___causal_design.pdf
+          # - text: "Urban policies and causality"
+          #   file: src/Urban_policy___causal_design.pdf
       - section: "Practicals"
         contents:
           - src/apis.Rmd

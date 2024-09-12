@@ -55,9 +55,9 @@ Source of:
 
 ::: {.column width="70%"}
 
-<!-- <iframe src="https://data.worldbank.org/share/widget?indicators=SP.URB.TOTL.IN.ZS&amp;view=map" width="675" height="450" frameBorder="0" scrolling="no"></iframe> -->
+<iframe src="https://data.worldbank.org/share/widget?indicators=SP.URB.TOTL.IN.ZS&amp;view=map" width="675" height="450" data-external="1" frameBorder="0" scrolling="no"></iframe>
 
-<iframe src="https://data.worldbank.org/share/widget?end=2022&indicators=SP.URB.TOTL.IN.ZS&start=2022&type=shaded&view=map" width='675' height='450' frameBorder='0' scrolling="no" ></iframe>
+<!-- <iframe src="https://data.worldbank.org/share/widget?end=2022&indicators=SP.URB.TOTL.IN.ZS&start=2022&type=shaded&view=map" width='675' height='450' frameBorder='0' scrolling="no" ></iframe> -->
 
 :::
 
@@ -69,6 +69,7 @@ Source of:
 :::
 
 ::::
+
 
 ## Urban analytics and city science
 
