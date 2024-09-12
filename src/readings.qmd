@@ -39,8 +39,4 @@ Some of these include:
 
 **Please don't limit your reading in the following list.**
 
-For those who want to explore the networks further 
-
-- @barabasi_network_2016
-
 ## Key readings

@@ -1,0 +1,84 @@
+---
+title: "Syllabus"
+bibliography: references.bib
+editor: source
+---
+
+1. [Cities, a very very brief introduction](L1_why_cities.qmd){target="_blank"}
+
+    Why do cities exist? One cannot study, analyse and model cities and systems of cities unless they know their fundamental attributes, and the reasons why cities have been developed at the first instance.
+
+2.  [Smart cities, urban big data, digital twins and other buzz terms](L2_smart_cities.qmd){target="_blank"}
+
+    -   [APIs and urban data](P1_apis.Rmd){target="_blank"}
+
+    <!-- 2. digital traces **P**: ??? think of traces -->
+
+    <!-- 3. Social Media **P**: Twitter -->
+
+    How do digital technologies change cities? How does their usage actually enables citizens to act as sensors? And, how do these changes affect urban research? We will first approach these issues from a theoretical perspective and then utilise such free and open urban data using APIs.
+
+3.  [Networks: an introduction](L3_intro_networks.qmd){target="_blank"}
+
+    Networks are everywhere! After this lecture you will hopefully start seeing them.
+
+    - [Network analysis practical: networks of cities](P2_network_analysis.Rmd){target="_blank"}
+
+4.  [Street network analysis practical: networks within cities](P3_street_networks.Rmd){target="_blank"}
+
+    These two practical sessions will put into practise your newly acquired network understanding of cities.
+
+<!-- -   Csárdi, G., Nepusz, T., & Airoldi, E. M. (2016). Statistical network analysis with igraph. Springer. Available online at https://www.uni-due.de/hummell/sna/igraph/docs/.BookDraft-CsardiNepuszAiroldi2016.pdf. \[*methods*\] -->
+
+<!-- -   Degree distribution (see help_degree_sistribution.Rmd) -->
+
+5. [Network science, urban laws and scaling](L4_network_science.qmd){target="_blank"}
+
+    -   Continue work on Practical
+
+6.  [Build and compare models](P4_network_models.Rmd){target="_blank"}
+
+    Moving from network analysis to network science with clear urban applications.
+    
+7.  Reading week. You will be asked to submit short mini report (deadline 12th November) in which you will explore data set suitable for final assignment. This is not marked, contributes 0% to your final mark, but completing this will enable you to get a feedback and consultation on your choice of data set and your final project topic.
+
+8.  [Methods in transport geography](L5_transport_geography.qmd){target="_blank"}
+
+    Same methods, different facets of urban research. This part of the unit will allow you to apply your network skills to answer transport related questions. It will also make the transition from networks to flows.
+
+    - [Spatial interaction modelling](P5_sim.Rmd){target="_blank"} : You ve'learned how to analyse networks, now you can learn how to analyse and 
+    model flows. Do you see the parallel?
+
+<!-- For spatial interactions: - Bettencourt 2021 8.1.3 for Maximum entropym radiation and a variant of urban scaling - https://www.nature.com/articles/nature10856 -->
+
+<!-- For network analysis: - Barthelemy 2018 Ch. 7. It has examples for road and subway studies + some policy elements. No code. -->
+
+<!-- 8.  Networks small scale / Spatial networks -->
+
+<!--     -   https://cran.r-project.org/web/packages/sfnetworks/ -->
+
+<!--     -   Boeing -->
+
+<!--     -   https://osf.io/78yub/ -->
+
+<!--     -   Lovelace's book, Geocomputation with R https://geocompr.robinlovelace.net/ -->
+
+<!-- use sfnetworks as it contains igraph. Use the vignettes. https://cran.r-project.org/web/packages/sfnetworks/index.html -->
+
+9.  Continue work on [Spatial interaction modelling](P5_sim.Rmd){target="_blank"}
+
+<!-- @kolaczyk2020statistical Ch 9 -->
+
+10.  [Diversity in cities](L6_diversity.qmd){target="_blank"}
+
+      Why is diversity important in cities and how do we measure it?
+      
+      - [Accessibility](P6_accessibility_full.Rmd){target="_blank"}
+
+11.   Continue work on [Accessibility](P6_accessibility_full.Rmd){target="_blank"}
+
+12. [Urban policies and causality](L6_Urban_policy___causal_design.pdf){target="_blank"} and [Causal design and urban policy evaluation](P7_causality.rmd){target="_blank"}
+
+    this is going to be a brief introduction to causality. The lecture practical materials are availiable online but are optional and for you to go through if you wish to.
+    
+13. Your assessment is due on 11th January 2024.
