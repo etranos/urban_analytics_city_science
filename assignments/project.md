@@ -32,8 +32,6 @@ In order to address the different interests the cohort might have, the data choi
 
 -   [Flight data](https://opensky-network.org/data/datasets)
 
-
-
 ## Word limit and marking criteria
 
 The report should be 3,500 long excluding references and code. It is worth 100\% of the unit's mark and on top of the programme marking criteria, I will also consider:
@@ -49,3 +47,11 @@ The report should be 3,500 long excluding references and code. It is worth 100\%
 -   The robustness of the analysis and modelling.
 
 -   The complexity of the data that you will use.
+
+## Deadline
+
+**Project submission: 3rd December 2024**
+
+Opportunity for non-marked feedback: What data do you want to use for your project? Send an email to Emmanouil describing and justifying the data you want to use by by **31st October**. 
+
+  
