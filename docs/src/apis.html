@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Emmanouil Tranos">
-<meta name="dcterms.date" content="2024-09-13">
+<meta name="dcterms.date" content="2024-09-23">
 
 <title>Urban analytics and city science - APIs and urban data</title>
 <style>
@@ -378,7 +378,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 13, 2024</p>
+      <p class="date">September 23, 2024</p>
     </div>
   </div>
   
@@ -427,7 +427,7 @@ window.Quarto = {
 </section>
 <section id="practical-example-with-api" class="level2">
 <h2 class="anchored" data-anchor-id="practical-example-with-api">Practical example with API</h2>
-<p><a href="https://opendata.bristol.gov.uk/pages/homepage/">opendata.bristol.gov.uk</a> offers a lot of data about Bristol. For this example, let’s try to work with <a href="https://opendata.bristol.gov.uk/datasets/bcc::jobs-by-ward-by-industry-in-bristol-2020/explore?location=51.470876%2C-2.616185%2C12.13">Jobs by Ward (by industry) in Bristol 2020</a>. As you can see, this is a small data set with <span class="math inline">\(34\)</span> observations representing Bristol’s <span class="math inline">\(34\)</span> Wards. You can visualise these data with the <code>Table</code> tab on the right hand-side and even download a <code>.csv</code> with these data. To begin with, do both of these things.</p>
+<p><a href="https://opendata.bristol.gov.uk/search">opendata.bristol.gov.uk</a> offers a lot of data about Bristol. For this example, let’s try to work with <a href="https://opendata.bristol.gov.uk/datasets/ca24dc2e210940e0aa9ad3a4785a591b_17/explore">Jobs by Ward (by industry) in Bristol 2020</a>. You can also access these data by searching for ‘Jobs by industry in Bristol by Ward’. Use the filter icon to filter for 2020 data. As you can see, this is a small data set with <span class="math inline">\(34\)</span> observations representing Bristol’s <span class="math inline">\(34\)</span> Wards. You can visualise these data with the <code>Table</code> tab on the right hand-side and even download a <code>.csv</code> with these data. To begin with, do both of these things.</p>
 <p>Then, go to the <code>More Info</code> icon, scroll down on the left hand side and click on <code>I want to use this</code>. You can find the relevant link under <code>View API Resources</code>. We are interested in the <code>GeoJSON</code>. You can view the data in this format and also copy the links to access these data <em>programmatically</em>. The <em>weird</em> output on your screen is the data you requested in <code>JSON</code> format. If you carefully read the URL from right to left you can see some logic on how this URL is built.</p>
 <div class="cell" type="alert alert-warning">
 <div class="alert alert-warning">
@@ -445,6 +445,7 @@ window.Quarto = {
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">fromJSON</span>(<span class="st">"https://services2.arcgis.com/a4vR8lmmksFixzmB/ArcGIS/rest/services/Jobs_by_Ward_(by_industry)_in_Bristol_2020/FeatureServer/0/query?outFields=*&amp;where=1%3D1&amp;f=geojson"</span>, <span class="at">flatten =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><strong>Please note</strong> that the above API link is different than the one you can obtain today from <a href="https://opendata.bristol.gov.uk/datasets/ca24dc2e210940e0aa9ad3a4785a591b_17/explore">opendata.bristol.gov.uk</a>. If you use the most recent, you will need to tweak the code bollow. For the purpose of the practical, please use the link provided in the above chunk of code. This is an example of how ephemeral data structures can be!</p>
 <p>We now have an <code>R</code> object called <code>dat</code>. Let’s try to see how it looks like</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(dat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
