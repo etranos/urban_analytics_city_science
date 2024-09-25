@@ -10,8 +10,8 @@
 /data/*
 /assignments/marking/*
 .quarto/
-/src_help/*
-/src_/*
+/src_help/
+/src_/
 
 2022-09-07_11-33-03.mp4
 todo.md
