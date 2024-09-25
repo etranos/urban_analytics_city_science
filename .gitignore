@@ -4,13 +4,14 @@
 .Ruserdata
 .quarto
 
-materials/*
-lectures/*
-practicals/*
-data/*
-assignments/marking/*
+/materials/*
+/lectures/*
+/practicals/*
+/data/*
+/assignments/marking/*
 .quarto/
-src_help/*
+/src_help/*
+/src_
 
 2022-09-07_11-33-03.mp4
 todo.md

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Emmanouil Tranos">
-<meta name="dcterms.date" content="2024-09-23">
+<meta name="dcterms.date" content="2024-09-25">
 
 <title>Urban analytics and city science - Street network analysis practical: networks within cities</title>
 <style>
@@ -348,7 +348,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 23, 2024</p>
+      <p class="date">September 25, 2024</p>
     </div>
   </div>
   
@@ -853,9 +853,9 @@ of ggplot2 3.3.4.</code></pre>
 # A tibble: 12,081 × 5
    from    to weight                                                     x group
   &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;                                      &lt;LINESTRING [°]&gt; &lt;int&gt;
-1     6     7 219.   (-2.51898 51.51272, -2.518938 51.51293, -2.518937 51…     7
-2    17    18   5.23              (-2.528247 51.50576, -2.528179 51.50578)     7
-3    24    25 428.   (-2.550685 51.50946, -2.550843 51.50949, -2.551013 5…    39
+1     6     7 219.   (-2.51898 51.51272, -2.518938 51.51293, -2.518937 51…    20
+2    17    18   5.23              (-2.528247 51.50576, -2.528179 51.50578)    20
+3    24    25 428.   (-2.550685 51.50946, -2.550843 51.50949, -2.551013 5…     4
 # ℹ 12,078 more rows</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There are quite a few communities overall</span></span>
@@ -865,7 +865,7 @@ of ggplot2 3.3.4.</code></pre>
 <span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">length</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 6748</code></pre>
+<pre><code>[1] 6746</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>grouped_net <span class="sc">%&gt;%</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"edges"</span>) <span class="sc">%&gt;%</span></span>

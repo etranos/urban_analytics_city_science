@@ -98,7 +98,7 @@ Well, it's complicated. Looking on the above output of `list()` the object that 
 
 ```{block, type='alert alert-warning'}
 
-**Question**: Based on the output of `list()`, why do you think is `dat$features` 
+**Question**: Based on the output of `str()`, why do you think is `dat$features` 
 the most useful part of `dat` for us?
 
 ```
