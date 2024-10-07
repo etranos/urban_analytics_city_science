@@ -8,9 +8,9 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.555">
+  <meta name="generator" content="quarto-1.5.57">
 
-  <title>Urban analytics and city science - Methods in transport geography</title>
+  <title>Urban analytics and city science – Methods in transport geography</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -404,8 +404,7 @@
 </small><p><small></small></p>
 </div><div class="column" style="width:60%;">
 <p><img data-src="images/transport_networks.png"> <small> Source: <span class="citation" data-cites="rodrigue2020geography">Rodrigue (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span> </small></p>
-</div>
-</div>
+</div></div>
 </section>
 <section id="graph-theory-aka-network-analysis-1" class="slide level2">
 <h2>Graph theory, aka network analysis</h2>
@@ -458,8 +457,7 @@
 </div><div class="column" style="width:40%;">
 <p><img data-src="images/gini.png"></p>
 <p><small> Source: <span class="citation" data-cites="rodrigue2020geography">Rodrigue (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span> </small></p>
-</div>
-</div>
+</div></div>
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
@@ -492,8 +490,7 @@
 <li><p><span class="math inline">\(LQ = 1\)</span> traffic of merchandise <span class="math inline">\(t\)</span> in terminal <span class="math inline">\(i\)</span> is proportional to its participation to total traffic</p></li>
 <li><p><span class="math inline">\(LQ &gt; 1\)</span> traffic of merchandise <span class="math inline">\(t\)</span> in a terminal <span class="math inline">\(i\)</span> is preponderant in total traffic.</p></li>
 </ul>
-</div>
-</div>
+</div></div>
 </section>
 <section id="section-2" class="slide level2">
 <h2></h2>
@@ -503,8 +500,7 @@
 </div><div class="column" style="width:30%;">
 <p>Employment in manufacturing sector</p>
 <p><small> Source: <a href="https://webarchive.nationalarchives.gov.uk/ukgwa/20160105185113/http://www.ons.gov.uk/ons/rel/regional-trends/regional-economic-analysis/the-spatial-distribution-of-industries/sty-employment-by-industry.html">ONS</a></small></p>
-</div>
-</div>
+</div></div>
 </section>
 <section id="spatial-interactions-and-the-gravity-model" class="slide level2">
 <h2>Spatial interactions and the gravity model</h2>
@@ -683,6 +679,9 @@
 <ul>
 <li><span class="math inline">\(Acc_{i} = \sum_j \frac{W_j}{d_{ij}^2}\)</span></li>
 </ul>
+<div>
+
+</div>
 <div class="quarto-layout-panel" data-layout="[[1], [1]]">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
@@ -984,18 +983,7 @@ Tranos, Emmanouil, Masood Gheasi, and Peter Nijkamp. 2015. <span>“Internationa
         }
         return false;
       }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-        }
-      });
-      clipboard.on('success', function(e) {
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -1027,7 +1015,29 @@ Tranos, Emmanouil, Masood Gheasi, and Peter Nijkamp. 2015. <span>“Internationa
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
           var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1035,7 +1045,7 @@ Tranos, Emmanouil, Masood Gheasi, and Peter Nijkamp. 2015. <span>“Internationa
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
         // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
         for (var i=0; i<links.length; i++) {
           const link = links[i];
           if (!isInternal(link.href)) {

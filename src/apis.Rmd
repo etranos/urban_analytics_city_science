@@ -72,15 +72,20 @@ So, let's try to access these data programmatically. First, we need to load the 
 ```{r setup, message=FALSE, results='hide', error=FALSE, warning=FALSE}
 library(tidyverse)
 library(jsonlite)
+library(sf)
 ```
 
 To access the data, we are going to use the function `fromJSON()` from the `jsonlite` package. Please check the syntax of this function as well as the other function of this package.
 
 ```{r get data}
 dat <- jsonlite::fromJSON("https://services2.arcgis.com/a4vR8lmmksFixzmB/ArcGIS/rest/services/Jobs_by_Ward_(by_industry)_in_Bristol_2020/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson", flatten = TRUE)
+
+#dat <- jsonlite::fromJSON("https://maps2.bristol.gov.uk/server2/rest/services/ext/ward_profiles/MapServer/9/query?where=1%3D1&outFields=*&outSR=4326&f=json", flatten = TRUE)
+
+oa.ew <- st_read("https://maps2.bristol.gov.uk/server2/rest/services/ext/ward_profiles/MapServer/9/query?where=1%3D1&outFields=*&outSR=4326&f=json")
 ```
 
-**Please note** that the above API link is different than the one you can obtain today from [opendata.bristol.gov.uk](https://opendata.bristol.gov.uk/datasets/ca24dc2e210940e0aa9ad3a4785a591b_17/explore). If you use the most recent, you will need to tweak the code bollow. For the purpose of the practical, please use the link provided in the above chunk of code. This is an example of how ephemeral data structures can be!
+**Please note** that the above API link is different than the one you can obtain today from [opendata.bristol.gov.uk](https://opendata.bristol.gov.uk/datasets/ca24dc2e210940e0aa9ad3a4785a591b_17/explore). If you use the most recent, you will need to tweak the code bellow. For the purpose of the practical, please use the link provided in the above chunk of code. This is an example of how ephemeral data structures can be!
 
 We now have an `R` object called `dat`. Let's try to see how it looks like
 

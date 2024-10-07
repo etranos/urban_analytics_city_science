@@ -8,9 +8,9 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.555">
+  <meta name="generator" content="quarto-1.5.57">
 
-  <title>Urban analytics and city science - Network science, urban laws and scaling</title>
+  <title>Urban analytics and city science – Network science, urban laws and scaling</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -374,8 +374,8 @@
 <h2>Regular graphs</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-865e3c30ae01ffca6a51" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-865e3c30ae01ffca6a51">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = circo,\n      rankdir = RL]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange];\nnodesep=4\nA; B; C; D; E; F; G; H;\n\n# an edge statement\nedge [color = grey]\n\nA -- B\nB -- C\nC -- D\nD -- E\nE -- F\nF -- G\nG -- H\nH -- A\nA -- D\nH -- E\nB -- G\nC -- F\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-b6b9613eee8152b0a4c1" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-b6b9613eee8152b0a4c1">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = circo,\n      rankdir = RL]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange];\nnodesep=4\nA; B; C; D; E; F; G; H;\n\n# an edge statement\nedge [color = grey]\n\nA -- B\nB -- C\nC -- D\nD -- E\nE -- F\nF -- G\nG -- H\nH -- A\nA -- D\nH -- E\nB -- G\nC -- F\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -647,8 +647,7 @@
 <p><span class="math inline">\(pop_i = pop_d r_i^{-a}\)</span></p>
 <p>if <span class="math inline">\(a=1\)</span>: Zipf law</p>
 <p><span class="math inline">\(pop_i = pop_d / r_i\)</span></p>
-</div>
-</div>
+</div></div>
 </section>
 <section id="zipf-law-4" class="slide level2">
 <h2>Zipf law</h2>
@@ -660,8 +659,7 @@
 <p><span class="math inline">\(pop_i = pop_d r_i^{-a}\)</span></p>
 <p>if <span class="math inline">\(a=1\)</span>: Zipf law</p>
 <p><span class="math inline">\(pop_i = pop_d / r_i\)</span></p>
-</div>
-</div>
+</div></div>
 </section>
 <section id="zipf-law-5" class="slide level2">
 <h2>Zipf law</h2>
@@ -697,8 +695,7 @@
 <li><p>Not surprisingly another straight line</p></li>
 <li><p>Another power law</p></li>
 </ul>
-</div>
-</div>
+</div></div>
 </section>
 <section id="bettencourt-west-or-marshalls-law-2" class="slide level2">
 <h2>Bettencourt-West or Marshall’s law</h2>
@@ -713,8 +710,7 @@
 </div><div class="column" style="width:20%;">
 <p><small> An average urban dweller in the capital, Lisbon, has approximately twice as many reciprocated mobile phone contacts, <em>k</em>, as an average individual in the rural town of Lixa.</small></p><small>
 </small><p><small><small>Source: <span class="citation" data-cites="bettencourt2021introduction">Bettencourt (<a href="#/references" role="doc-biblioref" onclick="">2021</a>)</span> </small> </small></p>
-</div>
-</div>
+</div></div>
 </section>
 <section id="bettencourt-west-or-marshalls-law-4" class="slide level2">
 <h2>Bettencourt-West or Marshall’s law</h2>
@@ -734,8 +730,7 @@
 <li><p>SF networks, economies of scale?</p></li>
 </ul>
 </small><p><small></small></p>
-</div>
-</div>
+</div></div>
 <!-- ------------------------------------------------------------------------ -->
 <!-- ```{=html} -->
 <!-- <style> -->
@@ -1092,18 +1087,7 @@ Watts, Duncan J, and Steven H Strogatz. 1998. <span>“Collective Dynamics of �
         }
         return false;
       }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-        }
-      });
-      clipboard.on('success', function(e) {
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -1135,7 +1119,29 @@ Watts, Duncan J, and Steven H Strogatz. 1998. <span>“Collective Dynamics of �
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
           var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1143,7 +1149,7 @@ Watts, Duncan J, and Steven H Strogatz. 1998. <span>“Collective Dynamics of �
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
         // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
         for (var i=0; i<links.length; i++) {
           const link = links[i];
           if (!isInternal(link.href)) {

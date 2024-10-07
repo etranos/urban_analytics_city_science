@@ -56,8 +56,8 @@ website:
           - src/network_models.Rmd
           - src/sim.Rmd
           - src/accessibility_full.Rmd
-          - text: "Causal design and urban policy evaluation"
-            file: src/causality.Rmd
+          #- text: "Causal design and urban policy evaluation"
+          #  file: src/causality.Rmd
       - section: "Unit leader"
         contents: 
           - text: "Professor Emmanouil Tranos"

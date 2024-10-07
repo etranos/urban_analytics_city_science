@@ -121,15 +121,15 @@ commuting <- commuting %>%
   filter(!`Area of workplace` %in% non.la)
 ```
 
-check the `%in%` [operator](https://stat.ethz.ch/R-manual/R-devel/library/base/html/match.html).
+Check the `%in%` [operator](https://stat.ethz.ch/R-manual/R-devel/library/base/html/match.html). Also `!` represents negation.
 
-Now let's do some clean-up of the `commuting` data frame. Let's remind ourselves how the data look like
+Now let's do some clean-up of the `commuting` data frame. Let's remind ourselves how the data look like.
 
 ```{r la.cleanup, include=TRUE, results= 'markup', message=FALSE}
 glimpse(commuting)
 ```
 
-We are keeping the English and Wales local authorities by keeping the observations with a local authority code starting from E (for England) and W (for Wales).
+We are only keeping the English and Wales local authorities by keeping the observations with a local authority code starting from E (for England) and W (for Wales).
 
 ```{r la.cleanup2, include=TRUE, results= 'markup', message=FALSE}
 commuting <- commuting %>% filter(startsWith(`Area of usual residence`, "E") |
@@ -168,7 +168,7 @@ commuting.all <- commuting %>%
                 `Area of workplace`,
                 `All categories: Method of travel to work`) %>%
   rename(o = `Area of usual residence`,     # Area of usual residence is annoyingly
-         d = `Area of workplace`,           # long, so I am renaiming theses columns
+         d = `Area of workplace`,           # long, so I am renaiming theses columns.
          weight = `All categories: Method of travel to work`)
 
 # just FYI this is how you could have achieved the same output using base R
@@ -203,7 +203,7 @@ commuting.bicycle <- commuting %>%
   filter(Bicycle!=0)
 ```
 
-Unless you know the local authority codes by hard, it might be useful to also add the corresponding local authority names. These can be easily obtained from the [ONS](https://geoportal.statistics.gov.uk/datasets/ons::cmlad-dec-2011-super-generalised-clipped-boundaries-gb/explore?showTable=true). The below code directly downloads a `GeoJSON` file with the local authorities in England and Wales. If you don't know what a `GeoJSON` file is, have a look [here](https://en.wikipedia.org/wiki/GeoJSON). Boundary data can also be obtained by [UK Data Service](https://borders.ukdataservice.ac.uk/easy_download.html).
+Unless you know the local authority codes by hard, it might be useful to also add the corresponding local authority names. These can be easily obtained from the [ONS's Open Geography portal](https://geoportal.statistics.gov.uk/datasets/1b4fb79cc4974048919daf6e1fde5073_0/explore). The below code directly downloads a `GeoJSON` file with the local authorities in England and Wales. If you don't know what a `GeoJSON` file is, have a look [here](https://en.wikipedia.org/wiki/GeoJSON). Boundary data can also be obtained by [UK Data Service](https://borders.ukdataservice.ac.uk/easy_download.html).
 
 For the time being we are only interested in the local authority names and codes. We will use the spatial object later.
 
@@ -305,46 +305,47 @@ Why do we observe these differences?
 Now we are moving from network-level measures to some node-level ones. Specifically, we will calculate different centrality measures.
 
 ```{r centralities, include=TRUE, results= 'markup', message=FALSE}
-# Binary in-degree centrality
+# Binary in-degree centrality.
 in.degree <- degree(net.all, mode = "in")
 head(in.degree)
 
-# Binary out-degree centrality
+# Binary out-degree centrality.
 out.degree <- degree(net.all, mode = "out")
 head(out.degree)
 
-# Binary degree centrality
+# Binary degree centrality.
 degree <- degree(net.all, mode = "all")
 head(degree)
 
-# The function graph.strength() calculates the weighted degree centrality
+# The function graph.strength() calculates the weighted degree centrality.
 
-# Weighed in-degree centrality
+# Weighed in-degree centrality.
 w.in.degree <- graph.strength(net.all, mode = "in")
 head(w.in.degree)
 
-# Weighed out-degree centrality
+# Weighed out-degree centrality.
 w.out.degree <- graph.strength(net.all, mode = "out")
 head(w.out.degree)
 
-# Weighed degree centrality
+# Weighed degree centrality.
 w.degree <- graph.strength(net.all, mode = "all")
 head(w.degree)
 
-# The function betweenness() calculates betweenness centrality. As before
+# The function betweenness() calculates betweenness centrality. As before.
 btwnss <- betweenness(net.all, weights = NA)
 head(btwnss)
 
-# Eigenvector centrality
+# Eigenvector centrality.
 eigen <- eigen_centrality(net.all)
 
-# Be careful, eigen has a more complicated structure. Use ?eigen_central to read more
+# Be careful, eigen has a more complicated structure. Use ?eigen_central to read more. 
+# Before goin. forward, let's see the structure of eigen.
 str(eigen)
 
-# We are interested in eigen$vector
+# We are interested in eigen$vector.
 head(eigen$vector)
 
-# page rank centrality
+# page rank centrality.
 prank <- page_rank(net.all, directed = T)
 str(prank) # as before
 head(prank$vector)
@@ -376,7 +377,8 @@ Or, if you want a nicer table, you can use `kable()`. **Tip** check out the `kab
 
 ```{r}
 centralities %>% kable(caption = "Centralities") %>% 
-  scroll_box(width = "100%", height = "300px")       #this `kableExtra` function introduces a scroll box
+  # The following `kableExtra` function introduces a scroll box
+  scroll_box(width = "100%", height = "300px")       
 ```
 
 ```{block, type='alert alert-warning'}
@@ -390,11 +392,11 @@ To begin with, let's do a test.
 ```{r centralities_ranks, include=TRUE, results= 'markup', message=FALSE}
 
 test <- centralities %>%
-  mutate(rank.test = dense_rank(desc(in.degree))) %>% # we are interested in dense ranking:
-                                                      # i.e. two lines with the same value have
-                                                      # will the same ranking,
-                                                      # desc stands for descending order
-  arrange(rank.test) %>%                              # arranges the data frame based on rank.test
+  mutate(rank.test = dense_rank(desc(in.degree))) %>% # We are interested in dense ranking:
+                                                      # i.e. two lines with the same value will
+                                                      # have the same ranking.
+                                                      # desc stands for descending order.
+  arrange(rank.test) %>%                              # Arranges the data frame based on rank.test.
   glimpse()
 ```
 
@@ -591,7 +593,7 @@ For the next time:
 (the data can be found [here](http://mr.schochastics.net/#projects) under the
 'Network Visualization in R' section
 
-  - [edge-bundling](http://blog.schochastics.net/post/non-hierarchical-edge-bundling-in-r/)
+  - [edge-bundling](https://blog.schochastics.net/posts/2021-01-15_non-hierarchical-edge-bundling-in-r/index.html)
 
 in order to produce more meaningful network visualisations of the UK commuting
 network.

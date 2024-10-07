@@ -8,9 +8,9 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.555">
+  <meta name="generator" content="quarto-1.5.57">
 
-  <title>Urban analytics and city science - Diversity in cities</title>
+  <title>Urban analytics and city science – Diversity in cities</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -41,7 +41,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -69,7 +69,7 @@
     code span.at { color: #657422; } /* Attribute */
     code span.bn { color: #ad0000; } /* BaseN */
     code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
     code span.ch { color: #20794d; } /* Char */
     code span.cn { color: #8f5902; } /* Constant */
     code span.co { color: #5e5e5e; } /* Comment */
@@ -83,7 +83,7 @@
     code span.fu { color: #4758ab; } /* Function */
     code span.im { color: #00769e; } /* Import */
     code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
     code span.op { color: #5e5e5e; } /* Operator */
     code span.ot { color: #003b4f; } /* Other */
     code span.pp { color: #ad0000; } /* Preprocessor */
@@ -1704,17 +1704,17 @@
 <span id="cb8-2"><a></a><span class="fu">str</span>(kclust)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 9
- $ cluster     : int [1:33] 10 7 8 3 7 2 6 1 7 1 ...
- $ centers     : num [1:10, 1:1036] 0.036 0.0444 0.0434 0.0443 0.0424 ...
+ $ cluster     : int [1:33] 6 4 7 10 4 9 5 1 4 1 ...
+ $ centers     : num [1:10, 1:1036] 0.036 0.0424 0.0443 0.0361 0.0521 ...
   ..- attr(*, "dimnames")=List of 2
   .. ..$ : chr [1:10] "1" "2" "3" "4" ...
   .. ..$ : chr [1:1036] "82990 - Other business support service activities n.e.c." "64209 - Activities of other holding companies n.e.c." "70229 - Management consultancy activities other than financial management" "64999 - Financial intermediation not elsewhere classified" ...
  $ totss       : num 0.0945
- $ withinss    : num [1:10] 0.00182 0.0042 0.00373 0 0 ...
+ $ withinss    : num [1:10] 0.00182 0 0 0.00609 0.0019 ...
  $ tot.withinss: num 0.0235
  $ betweenss   : num 0.071
- $ size        : int [1:10] 2 6 5 1 1 3 8 3 2 2
- $ iter        : int 3
+ $ size        : int [1:10] 2 1 1 8 3 2 3 2 6 5
+ $ iter        : int 5
  $ ifault      : int 0
  - attr(*, "class")= chr "kmeans"</code></pre>
 </div>
@@ -1757,8 +1757,7 @@
 <li><p>Divisive hierarchical clustering (DIANA – DIvise ANAlysis)</p></li>
 </ol>
 <p>Dissimilarity (distance) of observations</p>
-</div>
-</div>
+</div></div>
 </section>
 <section id="hierarchical-clustering-1" class="slide level2">
 <h2>Hierarchical clustering</h2>
@@ -2201,18 +2200,7 @@ Yuo, Tony Shun-Te, and Tzuhui Angie Tseng. 2021. <span>“The Environmental Prod
         }
         return false;
       }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-        }
-      });
-      clipboard.on('success', function(e) {
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -2244,7 +2232,29 @@ Yuo, Tony Shun-Te, and Tzuhui Angie Tseng. 2021. <span>“The Environmental Prod
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
           var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -2252,7 +2262,7 @@ Yuo, Tony Shun-Te, and Tzuhui Angie Tseng. 2021. <span>“The Environmental Prod
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
         // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
         for (var i=0; i<links.length; i++) {
           const link = links[i];
           if (!isInternal(link.href)) {
