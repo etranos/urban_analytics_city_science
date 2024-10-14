@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Emmanouil Tranos">
-<meta name="dcterms.date" content="2024-10-07">
+<meta name="dcterms.date" content="2024-10-14">
 
 <title>Street network analysis practical: networks within cities – Urban analytics and city science</title>
 <style>
@@ -342,7 +342,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 7, 2024</p>
+      <p class="date">October 14, 2024</p>
     </div>
   </div>
   
@@ -690,7 +690,7 @@ Geodetic CRS:  WGS 84
 <pre><code>Issuing query to Overpass API ...</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Announced endpoint: none</code></pre>
+<pre><code>Announced endpoint: gall.openstreetmap.de/</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Query complete!</code></pre>
@@ -717,7 +717,7 @@ Geodetic CRS:  WGS 84
 </div>
 <p>Network data wrangling. We need to:</p>
 <ol type="1">
-<li>Remove multiple edges and loops. AKA simplifying the networks.</li>
+<li>Remove multiple edges and loops. AKA simplifying the network.</li>
 </ol>
 <!-- 2.  Create nodes where two lines intersect. -->
 <ol start="2" type="1">
@@ -728,11 +728,11 @@ Geodetic CRS:  WGS 84
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># size of original network</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gsize</span>(bristol_sfn)  <span class="co"># number of edges</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 15607</code></pre>
+<pre><code>[1] 15605</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gorder</span>(bristol_sfn) <span class="co"># number of nodes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 21416</code></pre>
+<pre><code>[1] 21412</code></pre>
 </div>
 </div>
 <p>Now we can simplify the network.</p>
@@ -745,11 +745,11 @@ Geodetic CRS:  WGS 84
 <span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="co"># size of simplified network</span></span>
 <span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="fu">gsize</span>(bristol_wrangled)  <span class="co"># number of edges</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 15434</code></pre>
+<pre><code>[1] 15432</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gorder</span>(bristol_wrangled) <span class="co"># number of nodes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 21416</code></pre>
+<pre><code>[1] 21412</code></pre>
 </div>
 </div>
 <!-- Create nodes where two lines intersect. -->
@@ -760,11 +760,11 @@ Geodetic CRS:  WGS 84
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># size of simplified network</span></span>
 <span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gsize</span>(bristol_wrangled)  <span class="co"># number of edges</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 12066</code></pre>
+<pre><code>[1] 12063</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gorder</span>(bristol_wrangled) <span class="co"># number of nodes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 18048</code></pre>
+<pre><code>[1] 18043</code></pre>
 </div>
 </div>
 <p>… and plot the network again.</p>
@@ -815,7 +815,7 @@ of ggplot2 3.3.4.</code></pre>
 </p>
 </div>
 </div>
-<p>Remember the community detections algorithms? We can detect such communities within the street network. These are neighbourhoods of <strong>streets</strong> which are better connected internally than externally with the whole network. There is a contradiction here, no? Community detection is about nodes, not edges? However, here we are interested in clustering edges. So, we wiil do a trick. We first ‘inverse’ our spatial network, which means that the nodes become edges and vice versa. We do this with <code>morph(to_linegraph)</code>. Read the Wikipedia entry of <a href="https://en.wikipedia.org/wiki/Line_graph">line graps</a> and see teh below image for an example. The <code>unmorgh()</code> brings the changes – that is the new <code>group</code> column back to the original network, that we now call <code>grouped_net</code>. For more details, have a look <a href="https://cran.r-project.org/web/packages/sfnetworks/vignettes/sfn05_morphers.html">here</a>.</p>
+<p>Remember the community detections algorithms? We can detect such communities within the street network. These are neighbourhoods of <strong>streets</strong> which are better connected internally than externally with the whole network. There is a contradiction here, no? Community detection is about nodes, not edges? However, here we are interested in clustering edges. So, we will do a little trick. We will first ‘inverse’ our spatial network, which means that the nodes become edges and vice versa. We will do this with <code>morph(to_linegraph)</code>. Read the Wikipedia entry of <a href="https://en.wikipedia.org/wiki/Line_graph">line graps</a> and see the below image for an example. The <code>unmorgh()</code> brings the changes – that is the new <code>group</code> column back to the original network, that we now call <code>grouped_net</code>. For more details, have a look <a href="https://cran.r-project.org/web/packages/sfnetworks/vignettes/sfn05_morphers.html">here</a>.</p>
 <p><img src="images/linegraph.png" class="img-fluid"></p>
 <p><small>Source: <a href="https://mathworld.wolfram.com/LineGraph.html">mathworld.wolfram.com</a></small></p>
 <div class="cell">
@@ -827,13 +827,13 @@ of ggplot2 3.3.4.</code></pre>
 <span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="co"># A new group column has been added with the community membership</span></span>
 <span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>grouped_net</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A sfnetwork with 18048 nodes and 12066 edges
+<pre><code># A sfnetwork with 18043 nodes and 12063 edges
 #
 # CRS:  EPSG:4326 
 #
-# An undirected multigraph with 6705 components with spatially explicit edges
+# An undirected multigraph with 6703 components with spatially explicit edges
 #
-# A tibble: 18,048 × 2
+# A tibble: 18,043 × 2
                      x     bc
            &lt;POINT [°]&gt;  &lt;dbl&gt;
 1  (-2.460661 51.5015)     0 
@@ -842,15 +842,15 @@ of ggplot2 3.3.4.</code></pre>
 4 (-2.552245 51.40075)  7013 
 5 (-2.516866 51.51245)  5907.
 6  (-2.51898 51.51272) 35002.
-# ℹ 18,042 more rows
+# ℹ 18,037 more rows
 #
-# A tibble: 12,066 × 5
+# A tibble: 12,063 × 5
    from    to weight                                                     x group
   &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;                                      &lt;LINESTRING [°]&gt; &lt;int&gt;
-1     6     7 219.   (-2.51898 51.51272, -2.518938 51.51293, -2.518937 51…    29
-2    17    18   5.23              (-2.528247 51.50576, -2.528179 51.50578)    29
-3    24    25 428.   (-2.550685 51.50946, -2.550843 51.50949, -2.551013 5…    10
-# ℹ 12,063 more rows</code></pre>
+1     6     7 219.   (-2.51898 51.51272, -2.518938 51.51293, -2.518937 51…    22
+2    17    18   5.23              (-2.528247 51.50576, -2.528179 51.50578)    22
+3    24    25 428.   (-2.550685 51.50946, -2.550843 51.50949, -2.551013 5…     2
+# ℹ 12,060 more rows</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There are quite a few communities overall</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>grouped_net <span class="sc">%&gt;%</span></span>
@@ -859,7 +859,7 @@ of ggplot2 3.3.4.</code></pre>
 <span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">length</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 6751</code></pre>
+<pre><code>[1] 6749</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>grouped_net <span class="sc">%&gt;%</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"edges"</span>) <span class="sc">%&gt;%</span></span>
@@ -870,8 +870,8 @@ of ggplot2 3.3.4.</code></pre>
 <span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">col =</span> group), <span class="at">lwd =</span> <span class="dv">4</span>) <span class="sc">+</span>               <span class="co"># This plots the communities ...</span></span>
 <span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(bristol_wrangled, <span class="st">"edges"</span>),<span class="co"># ... and this all the network.</span></span>
 <span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">col =</span> <span class="st">"grey"</span>, <span class="at">lwd =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Bristol's street communities"</span>)            <span class="co"># No legend please.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="sc">+</span>                    <span class="co"># No legend please.</span></span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Bristol's street communities"</span>)            </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">

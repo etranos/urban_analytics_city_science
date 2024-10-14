@@ -246,7 +246,7 @@ ggplot() +
 
 Network data wrangling. We need to:
 
-1.  Remove multiple edges and loops. AKA simplifying the networks.
+1.  Remove multiple edges and loops. AKA simplifying the network.
 
 <!-- 2.  Create nodes where two lines intersect. -->
 
@@ -360,7 +360,7 @@ ggplot() +
 **Question**: How can we interpret this map?
 ```
 
-Remember the community detections algorithms? We can detect such communities within the street network. These are neighbourhoods of **streets** which are better connected internally than externally with the whole network. There is a contradiction here, no? Community detection is about nodes, not edges? However, here we are interested in clustering edges. So, we wiil do a trick. We first 'inverse' our spatial network, which means that the nodes become edges and vice versa. We do this with `morph(to_linegraph)`. Read the Wikipedia entry of [line graps](https://en.wikipedia.org/wiki/Line_graph) and see teh below image for an example. The `unmorgh()` brings the changes -- that is the new `group` column back to the original network, that we now call `grouped_net`. For more details, have a look [here](https://cran.r-project.org/web/packages/sfnetworks/vignettes/sfn05_morphers.html).
+Remember the community detections algorithms? We can detect such communities within the street network. These are neighbourhoods of **streets** which are better connected internally than externally with the whole network. There is a contradiction here, no? Community detection is about nodes, not edges? However, here we are interested in clustering edges. So, we will do a little trick. We will first 'inverse' our spatial network, which means that the nodes become edges and vice versa. We will do this with `morph(to_linegraph)`. Read the Wikipedia entry of [line graps](https://en.wikipedia.org/wiki/Line_graph) and see the below image for an example. The `unmorgh()` brings the changes -- that is the new `group` column back to the original network, that we now call `grouped_net`. For more details, have a look [here](https://cran.r-project.org/web/packages/sfnetworks/vignettes/sfn05_morphers.html).
 
 ![](images/linegraph.png)
 
@@ -391,8 +391,8 @@ grouped_net %>%
   geom_sf(aes(col = group), lwd = 4) +               # This plots the communities ...
   geom_sf(data = st_as_sf(bristol_wrangled, "edges"),# ... and this all the network.
           col = "grey", lwd = 0.5, alpha = 0.4) +
-  theme(legend.position="none") +
-  ggtitle("Bristol's street communities")            # No legend please.
+  theme(legend.position="none") +                    # No legend please.
+  ggtitle("Bristol's street communities")            
 ```
 
 ```{block, type='alert alert-warning'}
