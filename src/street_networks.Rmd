@@ -367,6 +367,12 @@ Remember the community detections algorithms? We can detect such communities wit
 <small>Source: [mathworld.wolfram.com](https://mathworld.wolfram.com/LineGraph.html)</small>
 
 ```{r}
+set.seed(123)                                       # The Louvain method is a randomised algorithm, 
+                                                    # which aims to always maximise modularity. If the communities 
+                                                    # are week, every time we run the algorithm the results might
+                                                    # might be different. To avoid such inconsistency, we can add
+                                                    # the set.seed() function. See what is does here:
+                                                    # https://www.rdocumentation.org/packages/simEd/versions/2.0.1/topics/set.seed
 grouped_net = bristol_wrangled %>%
   morph(to_linegraph) %>%
   mutate(group = group_louvain()) %>%
