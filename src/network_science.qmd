@@ -241,15 +241,19 @@ And finally the power law...
 
 **1. Complexity Science**
 
+<small>
+
 -   Most studies in the network science domain have a starting point in statistical physics
 
 -   Stochastic approaches
 
 -   Underlying probability model which usually follows a power law
 
--   *Main objective:* identification of the underlying mechanisms using generative modeling and simulation
+-   *Main objective:* identification of the underlying mechanisms using generative modelling and simulation
 
 -   *Potential risk:* the probability model might not follow a power law mechanism, which is a common assumption
+
+</small>
 
 ## Network science: An epistemological discussion
 
@@ -267,11 +271,11 @@ And finally the power law...
 
 -   Softer' approaches
 
--   Ex-post empirical modeling for identifying characteristics of theoretical network models in real world networks
+-   Ex-post empirical modelling for identifying characteristics of theoretical network models in real world networks
 
 -   Global and local network statistics
 
--   Use of network measures in mainstream statistical modeling
+-   Use of network measures in mainstream statistical modelling
 
 -   Empirical verification of the functions that better explain the node degree distribution (power vs. exponential functions)
 

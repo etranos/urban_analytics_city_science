@@ -265,7 +265,7 @@ $T_{ij} = k\frac{V_i^\lambda W_j^\alpha}{d_{ij}^\beta}$
 
 -   Define: $\lambda=1$, $\alpha=1$, $\beta=2$, and $k=0.00001$
 
--   These are some standard results from past empirical studies
+-   These are some standard values based on past empirical studies
 
 -   Big unknown: $T$
 
@@ -317,13 +317,13 @@ $T_{ij} = k\frac{V_i^\lambda W_j^\alpha}{d_{ij}^\beta}$
 
 ## 2. Estimate $\lambda$, $\alpha$, $\beta$ and $k$
 
--   $c = lnk = 13.84$
+-   $c = lnk: -13.84$
 
--   $\lambda = lnV_i = 0.727$
+-   $\lambda = lnV_i: 0.727$
 
--   $\alpha = lnW_j = 0.464$
+-   $\alpha = lnW_j: 0.464$
 
--   $\beta = lnd_{ij} = -0.624$
+-   $\beta = lnd_{ij}: -0.624$
 
 -   What did we learn?
 
