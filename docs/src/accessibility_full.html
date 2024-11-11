@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Emmanouil Tranos">
-<meta name="dcterms.date" content="2024-11-04">
+<meta name="dcterms.date" content="2024-11-11">
 
 <title>Accessibility in practice – Urban analytics and city science</title>
 <style>
@@ -371,7 +371,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 4, 2024</p>
+      <p class="date">November 11, 2024</p>
     </div>
   </div>
   
@@ -1104,7 +1104,7 @@ $ Population_per_square_kilometre &lt;dbl&gt; 2770.7, 6047.6, 4693.4, 4208.8, 79
 
 </div>
 </div>
-<p>Next, we are bringing the spatial data – that is the polygons – for London’s Local Authorities. We start by downloading all the polygons for all Local Authorities in the country. Please go to this <a href="https://geoportal.statistics.gov.uk/datasets/1119a90ec5f343678f044374392e6bda_0/explore">webpage</a>, download the <code>geojson</code> file and save it to the appropriate <code>data</code> folder within your project directory.</p>
+<p>Next, we are bringing the spatial data – that is the polygons – for London’s Local Authorities. We start by downloading all the polygons for all Local Authorities in the country. Please go to this <a href="https://geoportal.statistics.gov.uk/datasets/505b177be82946b284c947cab91eeb31_0/explore?location=54.961226%2C-3.262782%2C6.09">webpage</a>, download the <code>geojson</code> file and save it to the appropriate <code>data</code> folder within your project directory.</p>
 <p>However, we don’t need all the Local Authorities, but instead we only need to ones within London. Therefore we use the <code>filter</code> option to select only the Local Authorities which are included within – this is the <code>%in%</code> operator – the <code>df$id</code> column. Finally, we create a new object which only includes the centroids of these polygons. Why are we doing this? Because we need to calculate distances and accessibility metrics for specific points and we will use these points as representative for each Local Authority.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">

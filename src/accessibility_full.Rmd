@@ -229,7 +229,7 @@ df %>% kbl() %>%
 
 Next, we are bringing the spatial data -- that is the polygons -- for London's Local
 Authorities. We start by downloading all the polygons for all Local Authorities 
-in the country. Please go to this [webpage](https://geoportal.statistics.gov.uk/datasets/1119a90ec5f343678f044374392e6bda_0/explore), download the `geojson` file and save it to the appropriate `data` folder 
+in the country. Please go to this [webpage](https://geoportal.statistics.gov.uk/datasets/505b177be82946b284c947cab91eeb31_0/explore?location=54.961226%2C-3.262782%2C6.09), download the `geojson` file and save it to the appropriate `data` folder 
 within your project directory.
 
 However, we don't need all the Local Authorities, but instead we only need to ones
@@ -270,6 +270,7 @@ dist <- osrmTable(loc = london.centres,
                   measure = "duration",
                   osrm.profile = "car")
 ```
+
 The output of the above is a list with an $n*n$ distance matrix, and a dataframe
 with the longitude and latitude of the origins and destinations. We are mostly
 interested in the former, so we start the data wrangling by creating a `help` 

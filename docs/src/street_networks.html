@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Emmanouil Tranos">
-<meta name="dcterms.date" content="2024-11-04">
+<meta name="dcterms.date" content="2024-11-11">
 
 <title>Street network analysis practical: networks within cities – Urban analytics and city science</title>
 <style>
@@ -342,7 +342,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 4, 2024</p>
+      <p class="date">November 11, 2024</p>
     </div>
   </div>
   
@@ -728,7 +728,7 @@ Geodetic CRS:  WGS 84
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># size of original network</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gsize</span>(bristol_sfn)  <span class="co"># number of edges</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 15615</code></pre>
+<pre><code>[1] 15618</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gorder</span>(bristol_sfn) <span class="co"># number of nodes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -745,7 +745,7 @@ Geodetic CRS:  WGS 84
 <span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="co"># size of simplified network</span></span>
 <span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="fu">gsize</span>(bristol_wrangled)  <span class="co"># number of edges</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 15442</code></pre>
+<pre><code>[1] 15444</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gorder</span>(bristol_wrangled) <span class="co"># number of nodes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -764,7 +764,7 @@ Geodetic CRS:  WGS 84
 </div>
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gorder</span>(bristol_wrangled) <span class="co"># number of nodes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 18054</code></pre>
+<pre><code>[1] 18052</code></pre>
 </div>
 </div>
 <p>… and plot the network again.</p>
@@ -833,29 +833,29 @@ of ggplot2 3.3.4.</code></pre>
 <span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a><span class="co"># A new group column has been added with the community membership</span></span>
 <span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>grouped_net</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A sfnetwork with 18054 nodes and 12082 edges
+<pre><code># A sfnetwork with 18052 nodes and 12082 edges
 #
 # CRS:  EPSG:4326 
 #
-# An undirected multigraph with 6702 components with spatially explicit edges
+# An undirected multigraph with 6701 components with spatially explicit edges
 #
-# A tibble: 18,054 × 2
+# A tibble: 18,052 × 2
                      x     bc
            &lt;POINT [°]&gt;  &lt;dbl&gt;
 1  (-2.460661 51.5015)     0 
-2 (-2.520817 51.51683)  4254.
+2 (-2.520817 51.51683)  4258.
 3 (-2.546005 51.54411)  7039 
 4 (-2.552245 51.40075)  7039 
-5 (-2.516866 51.51245)  9354.
-6  (-2.51898 51.51272) 27591.
-# ℹ 18,048 more rows
+5 (-2.516866 51.51245)  9353.
+6  (-2.51898 51.51272) 27603.
+# ℹ 18,046 more rows
 #
 # A tibble: 12,082 × 5
    from    to  weight                                                    x group
   &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;                                     &lt;LINESTRING [°]&gt; &lt;int&gt;
-1     6     7  219.   (-2.51898 51.51272, -2.518938 51.51293, -2.518937 5…    28
+1     6     7  219.   (-2.51898 51.51272, -2.518938 51.51293, -2.518937 5…    14
 2    15    16 2713.   (-2.573424 51.54525, -2.575283 51.54459, -2.582798 …    21
-3    18    19    5.23             (-2.528247 51.50576, -2.528179 51.50578)    28
+3    18    19    5.23             (-2.528247 51.50576, -2.528179 51.50578)    14
 # ℹ 12,079 more rows</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There are quite a few communities overall</span></span>
@@ -865,7 +865,7 @@ of ggplot2 3.3.4.</code></pre>
 <span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">length</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 6746</code></pre>
+<pre><code>[1] 6747</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>grouped_net <span class="sc">%&gt;%</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"edges"</span>) <span class="sc">%&gt;%</span></span>
