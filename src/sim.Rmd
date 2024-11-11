@@ -40,9 +40,9 @@ path <- find_rstudio_root_file()
 
 ## Current research
 
-As an introduction, see [here](https://etranos.info/post/sad2021/SAD2021.html#/){target="_blank"} 
-some a recent research project we did, which used 
-spatial interaction type of modelling to predict interregional trade flow, which
+As an introduction, see [here](https://www.tandfonline.com/doi/full/10.1080/24694452.2022.2109577){target="_blank"} 
+a recent research project we did, which used a form of
+spatial interaction modelling to predict interregional trade flow, using
 web data [@tranos2022using].
 
 ## Commuting data and networks
@@ -328,7 +328,7 @@ summary(ols.model)
 
 So, the OLS regression estimated the four parameters:
 
--   $lnk = 7.971$
+-   $lnk = 7.968$
 -   $\beta = -1.840$
 -   $\lambda = 0.514$
 -   $\alpha = -0.852$
@@ -345,9 +345,9 @@ summary(glm.model)
 
 The following parameter1 have been estimated
 
--   $lnk = 11.635$
+-   $lnk = 11.664$
 -   $\beta = -1.816$
--   $\lambda = 0.319$
+-   $\lambda = 0.318$
 -   $\alpha = 0.820$
 
 As you can see the differences are rather small.
