@@ -233,7 +233,7 @@ london.firms.sum %>% kbl() %>%
 ## Measuring diversity
 
 ::: callout-tip
-You don't know what local authorities these codes refer to. You should download the codes and names and join them with your data from [here](https://geoportal.statistics.gov.uk/documents/c4f647d8a4a648d7b4a1ebf057f8aaa3/about){target="_blank"}.
+You don't know what local authorities these codes refer to. You should download the codes and names and join them with your data from [here](https://geoportal.statistics.gov.uk/){target="_blank"}.
 :::
 
 ::: callout-tip
@@ -256,7 +256,7 @@ Can you think of a way to understand how different these indices are among Londo
 path.shape <- paste0(path, "/data/Local_Authority_Districts_(May_2021)_UK_BFE.geojson")
 
 london <- st_read(path.shape, quiet = T) %>%
-  dplyr::filter(LAD21CD %in% (london.firms$oslaua))
+  dplyr::filter(LAD21CD %in% (london.firms$oslaua))  # Pay attention on the %in% operator. It means 'within'.  
 
 london <- merge(london, london.firms.sum, by.x = "LAD21CD", by.y = "oslaua" )
   

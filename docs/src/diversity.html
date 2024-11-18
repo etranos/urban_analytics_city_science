@@ -844,7 +844,7 @@
 <p><strong>Tip</strong></p>
 </div>
 <div class="callout-content">
-<p>You don’t know what local authorities these codes refer to. You should download the codes and names and join them with your data from <a href="https://geoportal.statistics.gov.uk/documents/c4f647d8a4a648d7b4a1ebf057f8aaa3/about" target="_blank">here</a>.</p>
+<p>You don’t know what local authorities these codes refer to. You should download the codes and names and join them with your data from <a href="https://geoportal.statistics.gov.uk/" target="_blank">here</a>.</p>
 </div>
 </div>
 </div>
@@ -868,7 +868,7 @@
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>path.shape <span class="ot">&lt;-</span> <span class="fu">paste0</span>(path, <span class="st">"/data/Local_Authority_Districts_(May_2021)_UK_BFE.geojson"</span>)</span>
 <span id="cb6-2"><a></a></span>
 <span id="cb6-3"><a></a>london <span class="ot">&lt;-</span> <span class="fu">st_read</span>(path.shape, <span class="at">quiet =</span> T) <span class="sc">%&gt;%</span></span>
-<span id="cb6-4"><a></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(LAD21CD <span class="sc">%in%</span> (london.firms<span class="sc">$</span>oslaua))</span>
+<span id="cb6-4"><a></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(LAD21CD <span class="sc">%in%</span> (london.firms<span class="sc">$</span>oslaua))  <span class="co"># Pay attention on the %in% operator. It means 'within'.  </span></span>
 <span id="cb6-5"><a></a></span>
 <span id="cb6-6"><a></a>london <span class="ot">&lt;-</span> <span class="fu">merge</span>(london, london.firms.sum, <span class="at">by.x =</span> <span class="st">"LAD21CD"</span>, <span class="at">by.y =</span> <span class="st">"oslaua"</span> )</span>
 <span id="cb6-7"><a></a>  </span>
@@ -1704,16 +1704,16 @@
 <span id="cb8-2"><a></a><span class="fu">str</span>(kclust)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 9
- $ cluster     : int [1:33] 8 10 9 1 10 3 2 7 10 7 ...
- $ centers     : num [1:10, 1:1036] 0.0434 0.0521 0.0444 0.0443 0.0424 ...
+ $ cluster     : int [1:33] 3 5 10 4 5 7 8 1 5 1 ...
+ $ centers     : num [1:10, 1:1036] 0.036 0.0424 0.099 0.0434 0.0361 ...
   ..- attr(*, "dimnames")=List of 2
   .. ..$ : chr [1:10] "1" "2" "3" "4" ...
   .. ..$ : chr [1:1036] "82990 - Other business support service activities n.e.c." "64209 - Activities of other holding companies n.e.c." "70229 - Management consultancy activities other than financial management" "64999 - Financial intermediation not elsewhere classified" ...
  $ totss       : num 0.0945
- $ withinss    : num [1:10] 0.00373 0.0019 0.0042 0 0 ...
+ $ withinss    : num [1:10] 0.00182 0 0.00271 0.00373 0.00609 ...
  $ tot.withinss: num 0.0235
  $ betweenss   : num 0.071
- $ size        : int [1:10] 5 3 6 1 1 2 2 2 3 8
+ $ size        : int [1:10] 2 1 2 5 8 2 6 3 1 3
  $ iter        : int 3
  $ ifault      : int 0
  - attr(*, "class")= chr "kmeans"</code></pre>
