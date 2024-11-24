@@ -1,0 +1,30 @@
+---
+title: "Untitled"
+---
+
+```{r}
+library(tidyverse)
+library(jsonlite)
+library(sf)
+```
+
+```{r}
+path.cables <- "/Users/nw19521/Library/CloudStorage/OneDrive-UniversityofBristol/Bristol/teaching/urban_analytics_city_science/data/cables.geojson"
+
+path.points <- "/Users/nw19521/Library/CloudStorage/OneDrive-UniversityofBristol/Bristol/teaching/urban_analytics_city_science/data/landing_point.geojson"
+
+path.all <- "/Users/nw19521/Library/CloudStorage/OneDrive-UniversityofBristol/Bristol/teaching/urban_analytics_city_science/data/all.json"
+
+
+cables <- st_read(path.cable)
+points <- st_read(path.points)
+all <- jsonlite::fromJSON(path.all, flatten = TRUE)
+
+  
+
+
+plot(points)
+
+ggplot(data = cables) + geom_sf() + geom_sf(data = points)
+```
+

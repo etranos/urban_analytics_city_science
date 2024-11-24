@@ -226,8 +226,8 @@ london.firms.sum <- london.firms %>%
   arrange(-herf)                                      # sort based on HHI (descending)
 
 london.firms.sum %>% kbl() %>%
-  kable_styling(full_width = F) %>%                   # A nice(r) table
-  scroll_box(width = "800px", height = "300px")
+  kable_styling(full_width = F, font_size = 12) %>%                   # A nice(r) table
+  scroll_box(width = "1200px", height = "300px")
 ```
 
 ## Measuring diversity
@@ -314,7 +314,7 @@ $SS_{within} = \sum_{k=1}^k W(C_{k}) = \sum_{k=1}^k \sum_{x_i\in C_K}(x_i-\mu_k)
 
 ## *k*-means {.scrollable}
 
-First, create an appropriate data frame
+First, create an appropriate data frame:
 
 ```{r, echo = TRUE}
 
@@ -332,17 +332,58 @@ la.sic <- london.firms %>%
 la.sic %>%  
   select(1:20) %>%  # Select the first 20 columns as there 1037 in total
   kbl() %>%
-  kable_styling()   # Nice(r) table
+  kable_styling(full_width = F, font_size = 11) %>%    # Nice(r) table
+    scroll_box(width = "1200px", height = "800px")
 ```
 
 ## *k*-means {.scrollable}
+
+`kclust` is the object with the output of the $k=10$ *k*-means function. After looking 
+at its structure with `str(kclust)`, there are two useful thing to do:
+
 
 ```{r, echo=TRUE}
 kclust = kmeans(la.sic[,-1], centers = 10, nstart = 10) # be aware of the [,-1]
 str(kclust)
 ```
 
-`centers` is 10 x 1036: 1036 is the number of SIC codes.
+## *k*-means {.scrollable}
+
+First, the list `cluster` contains the $k = 10$ cluster solution. This is an array 
+with a length of 33. The first entry is the cluster membership for the first
+LA, the second entry for the second LA etc.
+
+::: columns
+::: {.column width="50%"}
+```{r, echo=TRUE}
+kclust$cluster
+```
+:::
+
+::: {.column width="50%"}
+```{r, echo=TRUE}
+la.sic[,1]
+```
+:::
+:::
+
+
+## *k*-means {.scrollable}
+
+Secondly, the list `centers` contains the centres of the new clusters. In other
+words, the average frequency of each SIC code (i.e. sector) for the 10 new clusters.
+`centers` is a $10*1036$ table, with 1036 being the number of SIC codes. We can use
+these centres to create *labels* (aka *pen portraits*) for each cluster. These are,
+in essence, brief descriptions of the clusters.
+
+```{r, echo=TRUE}
+kclust$centers %>% as.tibble() %>%                    # convert to tibble
+  mutate(cluster = (1:10)) %>%                        # create a Cluster ID column ...
+  relocate(cluster) %>%                               # ... and bring it in the first position
+  kbl() %>%                                           # Create a nice(r) table
+  kable_styling(full_width = F, font_size = 11) %>%                   
+  scroll_box(width = "1200px", height = "800px")
+```
 
 ## Choosing *k*
 
@@ -352,21 +393,19 @@ str(kclust)
 
     -   Compute *k*-means clustering for different values of *k*
 
-    -   Calculate $SS_{within}$
+    -   Calculate within cluster variation $SS_{within}$
 
     -   Plot and spot the loction of a bend
 
 ## Choosing *k*
 
 ```{r, echo=TRUE}
-
 fviz_nbclust(
   la.sic[,-1], 
   kmeans, 
   k.max = 20,
   method = "wss"
 )
-
 ```
 
 ## Hierarchical clustering
@@ -390,17 +429,18 @@ Dissimilarity (distance) of observations
 ## Hierarchical clustering
 
 ```{r, echo=TRUE}
-
-# distances between observations
-d <- dist(la.sic)
+# pairwise distances between all observations
+d <- dist(la.sic) # print(d) to see how it looks like 
 
 # creates labels for the dendrogam
 l <- london.firms %>% distinct(oslaua) %>% arrange(oslaua)
 
-hclust = hclust(d)
+hclust = hclust(d) # Perform hierarchical clustering using d
 
 plot(hclust, hang=-1, labels=l$oslaua, main='Default from hclust') 
-#hang: the fraction of the plot height by which labels should hang below the rest of the plot. A negative value will cause the labels to hang down from 0.
+# hang: the fraction of the plot height by which labels should hang 
+# below the rest of the plot. A negative value will cause the labels 
+# to hang down from 0.
 ```
 
 ## Optimal number of clusters
@@ -453,23 +493,33 @@ fviz_dend(
 )
 ```
 
+## What did we achieve with clustering?
+
+- Reduce the data dimensions: from $33 (LA) * 1,037 (SIC)$ matrix to an array of $33$: 
+LA membership to the *k* clusters
+
+- Create *k* clusters of LA with **similar** business structure
+
 ## Clusters in space {.scrollable}
 
--   Create a SIC frequency table
+-   Let's first see the frequency of SIC codes in London
 
 ```{r, echo=TRUE}
-
-# This will build an SIC frequency table
 london.firms %>% 
   group_by(SICCode.SicText_1) %>% 
   summarise(n=n()) %>% 
   arrange(-n) %>% 
-  glimpse()
+  kbl() %>%                                           
+  kable_styling(full_width = F, font_size = 11) %>%                   
+  scroll_box(width = "1200px", height = "400px")
 ```
 
 ## Clusters in space {.scrollable}
 
--   Focus on, let's say "70221 - Financial management"
+-   Focus on, let's say, "70221 - Financial management"
+
+The below code creates a list of points (easting and northing) of all the Financial 
+management firms in London:
 
 ```{r, echo=TRUE}
 london.firms.sample <- london.firms %>% 
@@ -479,6 +529,8 @@ london.firms.sample <- london.firms %>%
 ```
 
 ## Financial management in London
+
+Because these are points and we know their geometries, we can plot them in space.
 
 ```{r, echo=TRUE}
 plot(london.firms.sample)
@@ -503,7 +555,16 @@ sp.cluster = kmeans(london.firms.sample, 6)
 plot(london.firms.sample, col = sp.cluster$cluster)
 ```
 
+## Clusters in space, *k*-means
+
+::: callout-tip
+How are the above 'clusters in space' different to the previous *k*-means
+clustering which ignored space?
+:::
+
 ## Clusters in space, hdbscan
+
+**Hierarchical Density-Based Spatial Clustering of Applications with Noise**
 
 1.  Transform the space according to the density/sparsity
 
@@ -515,7 +576,9 @@ plot(london.firms.sample, col = sp.cluster$cluster)
 
 5.  Extract the stable clusters from the condensed tree.
 
+<small>
 Resources: [SciKit-learn docs](https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html){target="_blank"} and [dbscan package](https://cran.r-project.org/web/packages/dbscan/vignettes/hdbscan.html){target="_blank"}
+</small>
 
 ## Clusters in space, hdbscan
 
