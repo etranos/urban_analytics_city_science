@@ -7,6 +7,7 @@ https://quarto.org/docs/publishing/github-pages.html
 3.  On the repo attributes: pages `local` and `/docs`
 
 4.  library(quarto) quarto.cmd preview on terminal keeps the development server on and automatically re-renders what is changed. quarto_render() or quarto.cmd renders
+BETTER: use the knit button as it only updates based on the changed files.
 
 5.  For Git: git add --all 
              git commit -m "..."

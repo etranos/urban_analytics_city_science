@@ -32,6 +32,8 @@ In order to address the different interests the cohort might have, the data choi
 
 -   [Flight data](https://opensky-network.org/data/)
 
+-   London bikes
+
 ## Word limit and marking criteria
 
 The report should be 3,500 long excluding references and code. It is worth 100% of the unit's mark and on top of the programme marking criteria, I will also consider:
