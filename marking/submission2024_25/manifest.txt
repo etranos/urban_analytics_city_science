@@ -1,0 +1,26 @@
+The requested files for download id 4b88d8a4-9be2-4bb6-98a3-274f2e8d6ceb are now available 
+ 
+Number of files requested: 19 
+Success file count: 19 
+Failed file count: 0 
+ 
+Files
+244222894 - Anonymous, Anonymous - GEOGM0055_Urban_Analytics_and_City_Science_2024_Spatial_Network_Analysis.html - SUCCESS 
+244353875 - Anonymous, Anonymous - FlightDataExperimentation.html - SUCCESS 
+244447514 - Anonymous, Anonymous - assessment.html - SUCCESS 
+244451010 - Anonymous, Anonymous - 2664343.zip - SUCCESS 
+244463873 - Anonymous, Anonymous - assessment.html - SUCCESS 
+244480714 - Anonymous, Anonymous - Investigating_Spatial_Variation_in_Access_to_Healthcare_Infrastructure_Within_Bristol.html - SUCCESS 
+244470124 - Anonymous, Anonymous - Seoul-Bike-Data-Analysis-main.html - SUCCESS 
+244490396 - Anonymous, Anonymous - GUICN_FINAL_1.html - SUCCESS 
+244491690 - Anonymous, Anonymous - assessment-uacs.html - SUCCESS 
+244489782 - Anonymous, Anonymous - Population_Outflow_Analysis_in_Tanzania.Rmd - SUCCESS 
+244492097 - Anonymous, Anonymous - Urban-Analytics.html - SUCCESS 
+244494498 - Anonymous, Anonymous - 2547627Analyzing_Africa.docx - SUCCESS 
+244162446 - Anonymous, Anonymous - Analysis-of-diseases-transmission-in-the-London-underground-system.html - SUCCESS 
+244162658 - Anonymous, Anonymous - assignment_forHTML.html - SUCCESS 
+244401144 - Anonymous, Anonymous - Submarine-cables-network.html - SUCCESS 
+244348028 - Anonymous, Anonymous - Urban_Analytics_and_City_Science_-_FINAL_PROJECT_-_NYC_TAXI_ANALYSIS_2542239.html - SUCCESS 
+244250836 - Anonymous, Anonymous - Urban_Coursework_2640942.html - SUCCESS 
+244215844 - Anonymous, Anonymous - 2640019.html - SUCCESS 
+244215385 - Anonymous, Anonymous - Relationship-Between-Migration_-Distance_-Education_-Medicine_-and-GDP.html - SUCCESS 

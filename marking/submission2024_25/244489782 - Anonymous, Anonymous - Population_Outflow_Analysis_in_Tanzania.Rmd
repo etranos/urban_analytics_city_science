@@ -1,0 +1,1045 @@
+---
+title: "Population Outflow Analysis in Tanzania"
+author: "Ryo Ouchi"
+date: "2024-11-25"
+output:
+  html_document:
+    df_print: paged
+    toc: true
+    toc_float: true
+    number_section: true
+    self_contained: true
+---
+
+
+## Introduction 
+
+Currently, United Republic of Tanzania has been gaining momentum by its significant economic growth. Its economic liberation just started from the very end of the last century(20c), which was led by Ali Hassan Mwinyi, the second president. What characterize Tanzania development style is its intense focus on agriculture promotion. In fact, Tanzania has kept its self-food sufficiency around 100% since at least 1994 acoording to  Msuya, E. & Isinika, A.'s report (2010).
+
+Rweyemamu, R. et al.(2024) summarize Tanzania's significant policy efforts for protecting agriculture like below.
+
+*"Several key programs contribute to the realization of the regions agricultural policy objectives such as the Agricultural Sector Development Program (ASDP) II which focuses on modernizing agriculture, improving infrastructure, and enhancing market access. The Southern Agricultural Growth Corridor of Tanzania (SAGCOT) seeks to attract investments and boost agricultural productivity in the southern regions and the "Kilimo Kwanza" initiative, meaning "Agriculture First," emphasizes the prioritization of agriculture in national development. It encourages private sector involvement, technology adoption, and increased agricultural productivity."*
+
+Those great efforts show how well farmers and their lives in rural crop fields. 
+This Tanzania's posture towards prioritizing agriculture and its related labour and land protection while promoting economic success is quite unique.
+This unique way can have an effect on population flow pattern of capitalism society, intense population concentration into the biggest city.
+This realization led to main two hypotheses. First is "Dispersed population outflow hypothesis", which means population outflows into several major cities instead of concentrating to the polar biggest city. Second is "Agricultural equipment hypothesis", which means the richer those equipment are, the more stable the rural life becomes and less people outflows from the region. As sub-theories, this paper examined additional hypotheses, firstly "Regions near urban areas with stable agriculture are less likely to out-migrate due to economic stability", secondly "Rural areas near urban areas may have higher outflows because of urbanization effects". This report's structure is as follows. 1 Introduction, 2 Data and Methods,  3 Hypothesis Test, 4 Spatial Analysis, 5 Discussion, 6 Conclusion.
+
+
+
+```{r setup, include=FALSE, message=FALSE, warning=FALSE}
+installed <- installed.packages()[,1]
+pkgs <- c("tidyverse", "rprojroot", "igraph", "knitr", "sf", "corrplot", "stplanr", "leaflet", "kableExtra", "ggplot2", "viridis", "ggraph", "tidygraph", "rmarkdown", "xfun", "corrplot", "scales", "Hmisc", "ggrepel", "broom", "units", "spdep", "spgwr")
+install <- pkgs[!(pkgs %in% installed)]
+if(length(install)) install.packages(install, dependencies = TRUE)
+invisible(lapply(pkgs, library, character.only = TRUE))
+
+knitr::opts_chunk$set(echo = FALSE)
+
+path <- find_rstudio_root_file()
+
+##DATA LOADING PART
+
+#Flow data was installed from https://hub.worldpop.org/geodata/summary?id=1281
+path.data <- paste0(path, "/data/TZA_5yrs_InternalMigFlows_2010.csv")
+MigFlows_original <- read_csv(path.data)
+#glimpse(MigFlows_original)
+
+shapefile_path <- "data/TZA_AdminUnit_Centroids.shp"
+Centroids <- st_read(shapefile_path)
+#print(Centroids)
+
+# Polygon data was downloaded from here https://gadm.org/download_country.html
+Polygons_original <- st_read("data/gadm41_TZA_1.shp")
+
+##DATA CLEANING PART
+
+Polygons_original <- Polygons_original %>%
+  select(NAME_1, CC_1, geometry) %>%
+  rename(IPUMSID = CC_1) %>%
+  mutate(
+    IPUMSID = gsub("^0", "", IPUMSID),  # delete heae "0"
+    IPUMSID = ifelse(IPUMSID == "NA", "26", IPUMSID)  # replace NA with "26"
+  )
+# Polygon + Point geometry
+Polygons <- st_join(Polygons_original, Centroids, join = st_contains)
+
+print(Polygons)
+
+# IPUMSID & REGION NAME dataframe
+ID_REGION <- data.frame(
+  IPUMSID = as.character(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 51, 52, 53, 54, 55)),
+  name = c("Dodoma", "Arusha", "Kilimanjaro", "Tanga", "Morogoro", "Pwani", "Dar es Salaam", "Lindi", "Mtwara",
+             "Ruvuma", "Iringa", "Mbeya", "Singida", "Tabora", "Kigoma", "Shinyanga", "Kagera", "Mwanza", 
+             "Mara", "Manyara", "Katavi", "Kaskazini Unguja", "Kusini Unguja", "Mjini Magharibi", 
+             "Kaskazini Pemba", "Kusini Pemba"))
+
+```
+
+```{r Tanzania Map, message=FALSE, warning=FALSE, include=TRUE, results='hide'}
+
+
+# create map
+ggplot(Polygons) +
+  geom_sf(fill = "grey90", color = "black", size = 0.3) + # draw boundaries
+  geom_sf_label(aes(label = NAME_1), 
+                size = 3, # chr size
+                color = "black", # label colour
+                fill = "white", # label back clour
+                label.size = 0.2, # label boundary size
+                label.padding = unit(0.15, "lines")) + # avoid label overlap
+  ggtitle("Tanzania Administrative Map") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5), # title format
+    axis.title = element_blank(), # delete axis label
+    axis.text = element_blank(), # delete axis label
+    axis.ticks = element_blank(), # delete axis ticks
+    panel.grid.major = element_blank(), # delete grid
+    panel.background = element_rect(fill = "white") # choose panel back colour
+  )
+
+
+
+```
+
+
+
+## Data
+
+### Data Description
+
+### Sources
+1) Agriculture Equipments counts data by region was acquired by Field Survey Oct 25 & DALDOs Report, which was introduced from here.(https://openjicareport.jica.go.jp/pdf/12079166_02.pdf)
+
+Types of machines(power tillers, etc.) and non-machines(oxen, plough)
+
+2) Population Data by region (2002) came from National Bureau of Statistics (Tanzania), 2002.
+
+Due to scarcity of data accessibility, population data is based on 2002 and data-framed by hand reviewing City Population (https://www.citypopulation.de/en/tanzania/admin/)
+
+3) Migration Flow data was acquired from WorldPop hub (https://www.ole.bris.ac.uk/ultra/courses/_260825_1/cl/outline)
+Network Structure(Nodes = admin1_regions, edges = migration flow, weight = Migration Flow values)
+
+
+### Data Sets(Others)
+#### Centrality Table
+
+```{r network_setup, include=TRUE, message=FALSE, warning=FALSE}
+
+MigFlows <- MigFlows_original |> 
+  select("NODEJ", "NODEI","PrdMIG") |> 
+  rename(o = "NODEJ",
+         d = "NODEI",
+         weight = "PrdMIG") |> 
+  filter(weight != 0)
+
+#glimpse(MigFlows)
+
+Network <- graph_from_data_frame(MigFlows, directed = TRUE)
+
+#summary(Network)
+
+```
+
+```{r centrality_setup, include=TRUE, message=FALSE, warning=FALSE}
+
+# centralities calcuration
+centralities <- data.frame(
+  name = V(Network)$name,
+  in_degree = degree(Network, mode = "in"),
+  out_degree = degree(Network, mode = "out"),
+  total_degree = degree(Network, mode = "all"),
+  w.in_degree = strength(Network, mode = "in"),
+  w.out_degree = strength(Network, mode = "out"),
+  w.total_degree = strength(Network, mode = "all"),
+  eigen_centrality = eigen_centrality(Network, weights = E(Network)$weight)$vector,
+  prank = page_rank(Network, directed = TRUE, weights = E(Network)$weight)$vector
+)
+
+centralities <- merge(centralities, ID_REGION, by.x = "name", by.y = "IPUMSID")
+
+#glimpse(centralities)
+
+# order the table
+centralities <- centralities[order(match(centralities$name, V(Network)$name)), ]
+
+# reorder the row
+centralities <- centralities %>%
+  select(name, name.y, everything()) 
+
+# scoll-boxnize
+centralities |> 
+  kable(caption = "Centralities") |> 
+  kable_styling(full_width = FALSE, position = "center") |> 
+  scroll_box(width = "100%", height = "300px")
+
+```
+
+Due to its completeness of this network, basic metrics for network analysis ("Diameter", "Mean Distance", "Edge Density", "Transitivity", "Reciprocity", "Assotativity Degree") are not calculated this time.
+
+#### Centrality Correlation Table
+
+```{r centrality_correlation, include=TRUE, message=FALSE, warning=FALSE}
+
+test <- centralities |> 
+  mutate(rank.test = dense_rank(desc(in_degree))) %>% 
+  arrange(rank.test) 
+  #glimpse()
+
+ranks <- centralities |> 
+  mutate_at(vars(in_degree:prank), 
+            funs(dense_rank(desc(.))))
+
+colnames(ranks) <- paste("r", colnames(ranks), sep = "_")
+
+#head(ranks)
+
+#delete chr
+centralities_clean <- centralities |> 
+  select(-name, -name.y) |> 
+  na.omit()  
+
+# delete constant rows
+centralities_clean_filtered <- centralities_clean |> 
+  select(where(~ var(.) > 0))
+
+cor.mat <- cor(centralities_clean_filtered)
+corrplot(cor.mat, type="upper")
+
+```
+
+This matrix shows that relationships among the centrality measures used in this study. Most of the measures have strong correlations (>0.9) between each other. On the contrary, "prank" (pagerank) exhibits a relatively lower correlation with the eigen_centrality. It might be possible that "prank" provides unique insights into my network analysis. Also, choosing one centrality measure among high correlation ones can reduce the redundancy in their influence analysis.
+
+#### Migration Flow Histogram
+
+```{r histogram, include=TRUE, message=FALSE, warning=FALSE}
+
+# ヒストグラムの作成
+ggplot(MigFlows, aes(x = weight)) +
+  geom_histogram(binwidth = 100, fill = "lightblue", color = "black", alpha = 0.7) +  # ヒストグラム
+  geom_vline(aes(xintercept = mean(weight, na.rm = TRUE)),  # average line
+             color = "blue", linetype = "dashed", size = 1) +
+  labs(
+    title = "Distribution of Migration Flows",
+    x = "Flow Weight",
+    y = "Count"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),  
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 12)
+  )
+
+
+```
+
+
+#### Network MAP
+
+```{r MigFlow Map, message=FALSE, warning=FALSE, include=TRUE}
+
+
+Polygons <- Polygons |> 
+select(IPUMSID.x, everything()) #|>   # put IPUMSID in the front
+  
+travel_network <- od2line(flow = MigFlows, 
+                          zones = Polygons)
+
+
+Flow_pal <- colorQuantile("YlOrBr", domain = travel_network$weight, n = 5)
+
+# interactive map
+leaflet() %>%
+  addTiles() %>%  
+  addPolylines(
+    data = travel_network,  
+    weight = ~weight / max(travel_network$weight) * 5,  
+    color = ~Flow_pal(weight),  
+    opacity = 0.6  # 線の透明度
+  ) %>%
+  addLegend(
+    "topright",
+    pal = Flow_pal,
+    values = travel_network$weight,  
+    title = "Migration flows", 
+    opacity = 1  
+  ) %>%
+  addProviderTiles("CartoDB.Positron")  
+
+
+
+```
+
+
+#### Community Map
+
+```{r community_detection, include=TRUE, message=FALSE, warning=FALSE, results='hide'}
+
+# make Net undirected
+Network_und <- as.undirected(Network, mode = "mutual", edge.attr.comb = igraph_opt("edge.attr.comb"))
+Communities <- cluster_fast_greedy(Network_und)
+
+# Create community info
+Communities_membership <- membership(Communities) |> 
+  unclass() |> 
+  as.data.frame() |>  
+  setNames("community") |>  
+  rownames_to_column(var = "IPUMSID")
+
+la <- merge(Communities_membership, Centroids, by = "IPUMSID", all.x = TRUE)
+
+la <- st_as_sf(la)
+
+# merge polygons and points data 
+Polygons <- st_join(Polygons, la, join = st_contains)
+
+# plot map
+ggplot(Polygons) +
+  geom_sf(aes(fill = as.factor(community)), color = "black", size = 0.1) +
+  scale_fill_viridis_d(name = "Community") +
+  ggtitle("Communities using the 'fast and greedy' algorithm") +
+  theme_minimal()
+
+```
+
+#### Agricultural Machine Prevalence Rates (per 1,000 population)
+
+```{r Agricultural Machine Prevalence Rates (per 1,000 population), message=FALSE, echo=FALSE, warning=FALSE, include=TRUE}
+
+
+# Population by region dataframe
+population <- data.frame(
+  Region = c(
+    "Arusha", "Dar es Salaam", "Dodoma", "Geita", "Iringa", "Kagera", "Kaskazini Pemba", "Kaskazini Unguja", "Katavi", 
+    "Kigoma", "Kilimanjaro", "Kusini Pemba", "Kusini Unguja", "Lindi", "Manyara", 
+    "Mara", "Mbeya", "Mjini Magharibi", "Morogoro", "Mtwara", "Mwanza", "Njombe", 
+    "Pwani", "Rukwa", "Ruvuma", "Shinyanga", "Simiyu", "Singida", "Songwe", 
+    "Tabora", "Tanga"
+  ),
+  Population_2002 = c(
+    1288088, 2487288, 1692025, 133718, 840404, 1791451, 185326, 136639, 
+    408609, 1674047, 1376702, 175471, 94244, 787624, 1037605, 1363397, 1339848, 
+    390074, 1753362, 1124481, 2058866, 648464, 885017, 729060, 1113715, 1249226, 1317879, 1086748, 723480, 1710465, 1636280
+  ),
+  IPUMSID = c(
+    "2", "7", "1", NA, "11", "17", "54", "51", "21", 
+    "15", "3", "55", "52", "8", "20", 
+    "19", "12", "53", "5", "9", "18", NA, 
+    "6", NA, "10", "16", NA, "13", NA, 
+    "14", "4"
+  )
+)
+
+# Agrimachine dataframe
+Agri_machine <- data.frame(
+  IPUMSID = as.character(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 51, 52, 53, 54, 55)),
+  Name_1 = c("Dodoma", "Arusha", "Kilimanjaro", "Tanga", "Morogoro", "Pwani", "Dar es Salaam", "Lindi", "Mtwara",
+             "Ruvuma", "Iringa", "Mbeya", "Singida", "Tabora", "Kigoma", "Shinyanga", "Kagera", "Mwanza", 
+             "Mara", "Manyara", "Katavi", "Kaskazini Unguja", "Kusini Unguja", "Mjini Magharibi", 
+             "Kaskazini Pemba", "Kusini Pemba"),
+  Oxen = c(28892, 16085, 1314, 746, 3361, 571, 7, 46, 48, 35448, 48731, 72342, 97034, 114778, 6662, 421725, 144336, 108044, 207006, 350, NA, NA, NA, NA, NA, NA),
+  Plough = c(3111, 164, 152, 345, 170, 4, 21, 9, 33, 3722, 7398, 1848, 40501, 4997, 60, 14935, 4007, 238, 0, 138, NA, NA, NA, NA, NA, NA),
+  Power_Tiller = c(26, 6, 11, 12, 24, 6, 1, 6, 6, 5, 7, 90, 2, 13, 10, 3, 17, 16, 6, 7, NA, NA, NA, NA, NA, NA),
+  Four_Wheel_Tractor = c(625, 961, 861, 272, 1156, 31, 59, 49, 32, 71, 469, 288, 808, 175, 97, 577, 96, 256, 104, 161, NA, NA, NA, NA, NA, NA),
+  Combine_Harvester = c(0, 38, 25, 0, 0, 0, 0, 0, 0, 1, 0, 55, 0, 0, 0, 0, 0, 0, 0, 25, NA, NA, NA, NA, NA, NA)
+)
+
+# Merge both datasets
+merged_data <- Agri_machine %>%
+  left_join(population, by = "IPUMSID")
+
+
+# Calculate prevalence rates
+merged_data_with_rates <- merged_data %>%
+  mutate(
+    Oxen_Rate = (Oxen / Population_2002) * 1000,
+    Plough_Rate = (Plough / Population_2002) * 1000,
+    Power_Tiller_Rate = (Power_Tiller / Population_2002) * 1000,
+    Four_Wheel_Tractor_Rate = (Four_Wheel_Tractor / Population_2002) * 1000,
+    Combine_Harvester_Rate = (Combine_Harvester / Population_2002) * 1000
+  )
+
+# Display the updated table
+merged_data_with_rates %>%
+  kable("html", caption = "Agricultural Machine Prevalence Rates (per 1,000 population)") %>%
+  kable_styling(full_width = FALSE, position = "center") %>%
+  scroll_box(width = "100%", height = "400px")
+
+
+```
+
+Agriculture Equipments counts and prevalence rates data. The latter was calculated by "Equipment counts by region(2006)" / population by region(2002). Ideally, equipment counts should have been split by agriculture labour population by region(2006), but there were no such a data as far as I researche. 
+
+
+#### Correlation analysis
+
+```{r Correlation analysis, message=FALSE, echo=FALSE, warning=FALSE, include=TRUE}
+
+# dataframe for pop outflow
+population_outflow <- data.frame(
+  IPUMSID = V(Network)$name,
+  Population_Outflow = graph.strength(Network, mode = "out", weights = E(Network)$weight) 
+)
+
+# merge pop outflow data into agrimachine
+merged_data_with_rates <- merged_data_with_rates %>%
+  mutate(IPUMSID = as.character(IPUMSID)) %>%  # unite data type
+  left_join(population_outflow, by = "IPUMSID")
+
+# Check united data
+#glimpse(merged_data_with_rates) 
+
+# correlation matrix
+correlation_matrix <- merged_data_with_rates %>%
+  select(Oxen_Rate, Plough_Rate, Power_Tiller_Rate, Four_Wheel_Tractor_Rate, Combine_Harvester_Rate, Population_Outflow) %>%
+  cor(use = "complete.obs")
+
+# visualize the matrix
+corrplot(correlation_matrix, type = "upper", method = "color", addCoef.col = "black", tl.col = "black", tl.srt = 45)
+
+
+```
+
+This result demonstrates the correlation between Oxen_Rate and Plough_Rate(Animal Group) and among machines(Machine Group). This suggests that each valuable's complementarity among its group. As the dataset is too small to statistically analyse, grouping might be a good decision.
+On top of that, it did not have significant correlation with Population Outflow.
+
+## Methods
+
+### Main Datasets
+
+Population Flow Data: "MigFlows". It measures inter-migration flows in Tanzania.
+Geographic Data: "Polygons".  It has regional geometry data.
+Agricultural Equipment Data: "Agri_machine" It offered the value for agricultural equipment  prevalence like oxen rate and tractors rate.
+
+### Centrality Analysis
+
+Utilizing network data, all of the centralities were calculated and used for analysis. Especially, weigted indegree centrality was most often used to define the area as "Urban" or "Rural".
+
+### Statistical Analysis
+
+In order to test the significance of some variables to population outflow, statistical analysis often was often used in this paper.
+
+### Spatial Analysis
+
+- Moran's I was used to assess spatial autocorrelation with outdegreee(population outflow) rates/
+
+- Geographically Weighted Regression (GWR) was corded in this report, but there is no result because the author's PC was less powerful to process amounts of data.
+
+## Hypothesis Test
+
+### Theory1: Disperced Outflow Population 
+
+In this theory, whether the population flows were concentrated into the biggest city or decentralized to several major cities were tested.  
+
+```{r top cities, message=FALSE, echo=FALSE, warning=FALSE, include=TRUE}
+
+
+# top 5 cal
+city_rank <- centralities %>%
+  group_by(name.y) %>%
+  summarise(w.in_degree = sum(w.in_degree, na.rm = TRUE)) %>%
+  arrange(desc(w.in_degree))
+
+# identify top 5
+top_city <- city_rank$name.y[1]
+major_cities <- city_rank$name.y[2:5]
+
+# top city table
+top_cities_table <- city_rank %>%
+  slice(1:5) %>%
+  rename(City = name.y, `Weighted In-Degree` = w.in_degree)
+
+top_cities_table %>%
+  kable("html", caption = "Top 5 Cities by Weighted In-Degree") %>%
+  kable_styling(full_width = FALSE, position = "center", bootstrap_options = c("striped", "hover", "condensed"))
+
+```
+Top and other major cities were ranked based on w.in_degreee centrality so that inflow distribution patterns can be analysed. 
+
+```{r top cities bar char, message=FALSE, echo=FALSE, warning=FALSE, include=TRUE}
+# filter top 5 in flow
+top_cities_inflows <- centralities %>%
+  filter(name.y %in% c(top_city, major_cities)) %>%
+  group_by(name.y) %>%
+  summarise(total_inflow = sum(w.in_degree, na.rm = TRUE)) %>%
+  arrange(desc(total_inflow))
+
+# bar
+ggplot(top_cities_inflows, aes(x = reorder(name.y, -total_inflow), y = total_inflow, fill = name.y)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  scale_fill_brewer(palette = "Set2") + 
+  ggtitle("Population Inflows into Top City and Major Cities") +
+  xlab("City") +
+  ylab("Total Inflow") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5),  
+    axis.title.x = element_text(size = 12),
+    axis.title.y = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    panel.grid.minor = element_blank(),  
+    panel.grid.major.x = element_blank()  
+  ) +
+  geom_text(aes(label = round(total_inflow, 2)), vjust = -0.3, size = 3.5, color = "black")  
+
+```
+This bar chart shows that there is no intense concentration into the biggest city, Kagera, althouhg I could not check the statistical significance due to its small data size. (Just in case, the statistical test was done although it has less significant meaning.)
+
+```{r Correlation Analysis, message=FALSE, echo=FALSE, warning=FALSE, include=TRUE}
+
+# extract centroids
+centroids <- Polygons %>%
+  mutate(geometry = st_centroid(geometry)) %>%
+  st_coordinates() %>%
+  as.data.frame() %>%
+  cbind(region = Polygons$NAME_1)
+
+# distance cal
+distance_df_clean <- centroids %>%
+  inner_join(
+    centroids,
+    by = character(), # all combination
+    suffix = c(".x", ".y")
+  ) %>%
+  filter(region.x != region.y) %>% # delet self to self
+  mutate(
+    distance = sqrt((X.x - X.y)^2 + (Y.x - Y.y)^2)
+  ) %>%
+  select(region.x, region.y, distance) %>%
+  left_join(centralities %>% select(region = name.y, w_in_degree = w.in_degree), 
+            by = c("region.x" = "region")) %>%
+  rename(w_in_degree_region1 = w_in_degree) %>%
+  left_join(centralities %>% select(region = name.y, w_in_degree = w.in_degree), 
+            by = c("region.y" = "region")) %>%
+  rename(w_in_degree_region2 = w_in_degree) %>%
+  na.omit()
+
+
+# corre analysis
+correlation <- capture.output(
+  cor.test(
+    distance_df_clean$distance, 
+    distance_df_clean$w_in_degree_region1, 
+    use = "complete.obs"
+  )
+)
+
+correlation_values <- cor.test(
+  distance_df_clean$distance, 
+  distance_df_clean$w_in_degree_region1, 
+  use = "complete.obs"
+)
+
+correlation_result <- data.frame(
+  Statistic = c("Correlation Coefficient", "p-value", "Confidence Interval (Lower)", "Confidence Interval (Upper)"),
+  Value = c(
+    round(correlation_values$estimate, 5), # correlation
+    round(correlation_values$p.value, 5),  # p
+    round(correlation_values$conf.int[1], 5), # confidence
+    round(correlation_values$conf.int[2], 5)  # confidence line
+  )
+)
+
+correlation_result %>%
+  knitr::kable("html", caption = "Correlation Analysis Results: Distance vs Population Inflow") %>%
+  kableExtra::kable_styling(
+    full_width = FALSE, 
+    position = "center", 
+    font_size = 12, 
+    bootstrap_options = c("striped", "hover")
+  )
+
+
+```
+
+
+```{r , message=FALSE, warning=FALSE, include=TRUE}
+
+Polygons_with_centralities <- Polygons %>%
+  left_join(centralities %>% select(region = name.y, w_in_degree = w.in_degree), 
+            by = c("NAME_1" = "region"))
+
+ggplot(Polygons_with_centralities) +
+  geom_sf(aes(fill = w_in_degree), color = "white", size = 0.2) + 
+  scale_fill_viridis_c(name = "Population Inflow", option = "C") + 
+  ggtitle("Geographic Pattern of Population Inflows in Tanzania") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5), 
+    axis.title = element_blank(), 
+    axis.text = element_blank(), 
+    axis.ticks = element_blank() 
+  )
+
+```
+This map visually indicates that population inflow(w.in_degree centrality) is dispersed into wide fields of Tanzania.
+
+### Theory2: 
+#### "Agricultural equipment hypothesis"
+This theory is based on this idea that the richer agricultural equipments are, the more stable the rural life becomes and less people outflows from the region.
+
+```{r analysis table, message=FALSE, warning=FALSE, include=TRUE}
+
+# standerlize Population_Outflow
+analysis_data <- merged_data_with_rates %>%
+  mutate(
+    Population_Outflow_Rate = Population_Outflow / Population_2002 * 1000  # per 1000
+  ) %>%
+  select(Region, Oxen_Rate, Population_Outflow_Rate) %>%
+  na.omit()  
+
+# check
+#glimpse(analysis_data)
+
+analysis_data %>%
+  arrange(desc(Oxen_Rate)) %>%
+  kable("html", caption = "Oxen Rate and Standardized Population Outflow Rate") %>%
+  kable_styling(full_width = FALSE, position = "center")
+
+
+```
+```{r correlation analysis, message=FALSE, warning=FALSE, include=TRUE}
+
+# correlation analysis
+correlation_result <- cor.test(
+  analysis_data$Oxen_Rate,
+  analysis_data$Population_Outflow_Rate,
+  use = "complete.obs"
+)
+
+correlation_table <- data.frame(
+  Statistic = c("Correlation Coefficient", "p-value"),
+  Value = c(correlation_result$estimate, correlation_result$p.value)
+)
+
+correlation_table %>%
+  knitr::kable("html", caption = "Correlation Analysis Results: Distance vs Population Inflow") %>%
+  kableExtra::kable_styling(
+    full_width = FALSE, 
+    position = "center", 
+    font_size = 12, 
+    bootstrap_options = c("striped", "hover")
+  )
+
+```
+This test did not support my theory that the stability in agriculture(high Oxen Rate) has direct correlation with population outflow. (p > 0.05)
+
+```{r regression analysis, message=FALSE, warning=FALSE, include=TRUE}
+
+
+merged_data_with_rates <- merged_data_with_rates %>%
+  mutate(
+    Population_Outflow_Rate = Population_Outflow / Population_2002 * 1000  
+    ) %>%
+  na.omit()  
+
+# data cleaning
+analysis_data2 <- merged_data_with_rates %>%
+  select(Population_Outflow_Rate, Oxen_Rate, Plough_Rate, Power_Tiller_Rate, 
+         Four_Wheel_Tractor_Rate, Combine_Harvester_Rate) %>%
+  na.omit()
+
+# multi reg
+regression_model <- lm(Population_Outflow_Rate ~ Oxen_Rate + Plough_Rate + Power_Tiller_Rate +
+                         Four_Wheel_Tractor_Rate + Combine_Harvester_Rate, data = analysis_data2)
+
+#summary(regression_model)
+
+# plot reg
+regression_results <- tidy(regression_model)
+regression_results %>%
+  kable("html", caption = "Regression Results: Factors Influencing Population Outflow Rate") %>%
+  kable_styling(full_width = FALSE, position = "center")
+
+
+```
+This regression model does not work due to high p.value. (p>0.05)
+
+### Sub-Theory1
+
+"Rural areas near urban areas may have higher outflows because of urbanization effects".
+Layering Tanzania by three region types based on its w.in_degree centrality.
+
+```{r layer analysis, message=FALSE, warning=FALSE, include=TRUE}
+
+# merge centralities and merged_data_with_rates 
+merged_data_with_rates <- merged_data_with_rates %>%
+  left_join(
+    centralities %>% select(region = name.y, w.in_degree),
+    by = c("Name_1" = "region")
+  )
+
+# decide threhold
+quantiles <- quantile(merged_data_with_rates$w.in_degree, probs = c(0.25, 0.75), na.rm = TRUE)
+low_threshold <- quantiles[1]  # 25
+high_threshold <- quantiles[2]  # 75
+
+# clasification
+merged_data_with_rates <- merged_data_with_rates %>%
+  mutate(
+    region_type = case_when(
+      w.in_degree >= high_threshold ~ "Urban",
+      w.in_degree <= low_threshold ~ "Rural",
+      TRUE ~ "Intermediate"  
+    )
+  )
+
+# check
+#table(merged_data_with_rates$region_type)
+
+# average outflow by region type
+outflow_summary <- merged_data_with_rates %>%
+  group_by(region_type) %>%
+  summarise(
+    mean_outflow_rate = mean(Population_Outflow_Rate, na.rm = TRUE),
+    sd_outflow_rate = sd(Population_Outflow_Rate, na.rm = TRUE)
+  )
+
+# bar chart
+ggplot(outflow_summary, aes(x = region_type, y = mean_outflow_rate, fill = region_type)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  geom_errorbar(aes(ymin = mean_outflow_rate - sd_outflow_rate, ymax = mean_outflow_rate + sd_outflow_rate), width = 0.2) +
+  ggtitle("Population Outflow Rate by Region Type") +
+  xlab("Region Type") +
+  ylab("Mean Population Outflow Rate (per 1,000)") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+
+```
+
+
+```{r ANOVA analysis, message=FALSE, warning=FALSE, include=TRUE}
+
+# ANOVA
+anova_result <- aov(Population_Outflow_Rate ~ region_type, data = merged_data_with_rates)
+summary(anova_result)
+
+```
+```{r tukey test, message=FALSE, warning=FALSE, include=TRUE, results='hide'}
+
+# Tukey:HSD test
+tukey_result <- TukeyHSD(anova_result)
+#print(tukey_result)
+
+plot(tukey_result, las = 1, col = "blue")
+
+```
+These results revealed that population outflow tend to be high in city areas and low in rural areas.This result was supported by statistical metrics. (p < 0.01)
+
+```{r geographical pattern map, message=FALSE, warning=FALSE, include=TRUE}
+
+# Ignite with Polygons
+merged_data_with_geometry <- merged_data_with_rates %>%
+  left_join(
+    Polygons %>% select(IPUMSID, geometry),
+    by = "IPUMSID" 
+  ) %>%
+  st_as_sf()  
+
+# 1. Plot Oxen Rate
+ggplot(data = merged_data_with_geometry) +
+  geom_sf(aes(geometry = geometry, fill = Oxen_Rate), color = "black", lwd = 0.2) +
+  scale_fill_viridis_c(option = "C", name = "Oxen Rate") +
+  geom_sf_text(aes(geometry = geometry, label = round(Population_Outflow_Rate, 1)), size = 3, color = "white") +
+  labs(
+    title = "Geographical Distribution of Oxen Rate",
+    subtitle = "Population Outflow Rate as Label",
+    caption = "Source: Project Data"
+  ) +
+  theme_minimal()
+
+# 2. Plot Population Outflow Rate 
+ggplot(data = merged_data_with_geometry) +
+  geom_sf(aes(geometry = geometry, fill = Population_Outflow_Rate), color = "black", lwd = 0.2) +
+  scale_fill_viridis_c(option = "D", name = "Population Outflow Rate") +
+  geom_sf_text(aes(geometry = geometry, label = round(Oxen_Rate, 1)), size = 3, color = "white") +
+  labs(
+    title = "Geographical Distribution of Population Outflow Rate",
+    subtitle = "Oxen Rate as Label",
+    caption = "Source: Project Data"
+  ) +
+  theme_minimal()
+
+
+
+```
+
+
+### Sub-Theory2: 
+####Area with a high oxen Rate has less outflow of population if it is located near high w.in_degree cities.This theory suggests stable demand and supply of agriculture near city.
+
+```{r subtheory test, message=FALSE, warning=FALSE, include=TRUE}
+
+# unite cordinates
+merged_data_with_geometry <- merged_data_with_geometry %>%
+  st_transform(crs = 4326)
+
+# filter urban
+high_w_in_degree_regions <- merged_data_with_geometry %>%
+  filter(w.in_degree >= quantile(w.in_degree, 0.5, na.rm = TRUE)) %>%
+  select(Name_1, geometry)
+
+# filter high oxen rate region
+high_oxen_regions <- merged_data_with_geometry %>%
+  filter(Oxen_Rate >= quantile(Oxen_Rate, 0.5, na.rm = TRUE)) %>%
+  select(Name_1, geometry, Population_Outflow_Rate)
+
+# distance cal
+distances <- high_oxen_regions %>%
+  rowwise() %>%
+  mutate(
+    min_distance = min(as.numeric(st_distance(
+      geometry,
+      high_w_in_degree_regions %>% st_geometry()
+    )[as.numeric(st_distance(
+      geometry,
+      high_w_in_degree_regions %>% st_geometry()
+    )) > 0]))  # delete self to self
+  ) %>%
+  ungroup()
+
+summary(distances$min_distance)
+
+correlation_result2 <- cor.test(
+  distances$min_distance,
+  distances$Population_Outflow_Rate,
+  use = "complete.obs"
+)
+print(correlation_result)
+
+
+```
+This result did not show any correlation between areas with high oxen rate and with located near cities, and population outflow rate.
+
+
+#### SubTheory3
+
+"Rural areas and intermidiate regions are foster to outflow into cities if they are located in near cities." 
+
+```{r subtheory3, message=FALSE, warning=FALSE, include=TRUE}
+
+
+# 1. filter urban, intermidiate, rural
+urban_regions <- merged_data_with_geometry %>%
+  filter(region_type == "Urban") %>%
+  select(Name_1, geometry)
+
+rural_and_intermediate_regions <- merged_data_with_geometry %>%
+  filter(region_type %in% c("Rural", "Intermediate")) %>%
+  select(Name_1, geometry, Population_Outflow_Rate)
+
+# 2. distance cal
+distances <- rural_and_intermediate_regions %>%
+  rowwise() %>%
+  mutate(
+    min_distance_to_urban = {
+      distances_to_all_urban <- st_distance(geometry, urban_regions %>% st_geometry())
+      min(distances_to_all_urban[distances_to_all_urban > set_units(0, "m")])  # delete self to self distance
+    }
+  ) %>%
+  ungroup() %>%
+  mutate(min_distance_to_urban = as.numeric(min_distance_to_urban))  
+
+# 1. `region_type` row into `distances` 
+distances <- distances %>%
+  left_join(
+    merged_data_with_geometry %>%
+      st_drop_geometry() %>% 
+      select(Name_1, region_type),
+    by = "Name_1"
+  )
+
+# 2. separete rural and intermidiate
+rural_distances <- distances %>% filter(region_type == "Rural")
+intermediate_distances <- distances %>% filter(region_type == "Intermediate")
+
+# 3. correlation analysis: rural
+rural_correlation <- cor.test(
+  rural_distances$min_distance_to_urban,
+  rural_distances$Population_Outflow_Rate,
+  use = "complete.obs"
+)
+
+# 4. correlation analysis: intermidiate
+intermediate_correlation <- cor.test(
+  intermediate_distances$min_distance_to_urban,
+  intermediate_distances$Population_Outflow_Rate,
+  use = "complete.obs"
+)
+
+# 5. result
+print("Rural Correlation Result:")
+print(rural_correlation)
+
+print("Intermediate Correlation Result:")
+print(intermediate_correlation)
+
+# 6. plot rural and intermidiate
+ggplot(distances, aes(x = min_distance_to_urban, y = Population_Outflow_Rate, color = region_type)) +
+  geom_point(size = 3) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    title = "Distance to Urban Areas vs. Population Outflow Rate by Region Type",
+    x = "Minimum Distance to Urban Areas (m)",
+    y = "Population Outflow Rate (per 1,000 people)"
+  ) +
+  theme_minimal() +
+  scale_color_manual(values = c("Rural" = "blue", "Intermediate" = "green")) +
+  theme(legend.position = "bottom")
+
+
+```
+Weak negative correlation was found, but it is not statistically significant. 
+
+### Statistical Analysis
+
+#### Spacial Autocramation using Moran's I
+
+I created spacial cruster map of population outflow.
+
+```{r subtheory4, message=FALSE, warning=FALSE, include=TRUE}
+
+# neighbor list
+neighbors <- poly2nb(merged_data_with_geometry)
+weights <- nb2listw(neighbors, style = "W")
+
+# Moran's I 
+moran_result <- moran.test(merged_data_with_geometry$Population_Outflow_Rate, weights)
+
+# result
+print(moran_result)
+
+# LISA (Local Indicators of Spatial Association)
+lisa_result <- localmoran(merged_data_with_geometry$Population_Outflow_Rate, weights)
+
+merged_data_with_geometry$lisa <- lisa_result[,1]
+
+# visualize LISA
+ggplot(merged_data_with_geometry) +
+  geom_sf(aes(fill = lisa), color = "black") +
+  scale_fill_viridis_c(name = "LISA") +
+  ggtitle("LISA Analysis of Population Outflow Rate") +
+  theme_minimal()
+
+
+```
+What is noticible here is that the low population outflow areas are clustered in the northern part of Tanzania. (Moran’s I = 0.217, p < 0.05)
+
+```{r GWR, message=FALSE, warning=FALSE, include=TRUE}
+
+# 1. `distances_subset`の準備
+# 必要な列を選択して通常のデータフレームとして作成
+#distances_subset <- distances %>%
+  #as.data.frame() %>%  # データフレームに変換
+  #select(Name_1, min_distance_to_urban)
+
+# 2. `distances_subset`を`merged_data_with_geometry`に結合
+# 注意: 空間オブジェクト`sf`に通常のデータフレームを結合
+#merged_data_with_geometry <- merged_data_with_geometry %>%
+  #left_join(distances_subset, by = "Name_1")
+
+# 3. 必要な列を選択し、欠損値を削除して空間データフレームを作成
+# 結合後に`min_distance_to_urban`列を確認
+#if ("min_distance_to_urban" %in% colnames(merged_data_with_geometry)) {
+  #gwr_data <- merged_data_with_geometry %>%
+    #select(Population_Outflow_Rate, Oxen_Rate, min_distance_to_urban, geometry) %>%
+    #na.omit()  # 欠損値を削除
+#} else {
+  #stop("Column `min_distance_to_urban` was not found after the join. Please check the join process.")
+#}
+
+# 4. 結果の確認
+#print(gwr_data)
+
+# GWRデータが準備できているか確認
+#if (nrow(gwr_data) > 0) {
+  #print("GWR data is ready for analysis!")
+#} else {
+  #stop("No valid data for GWR analysis. Please check your preprocessing steps.")
+#}
+
+
+# 1. 帯域幅の選択
+#bandwidth <- gwr.sel(
+  #Population_Outflow_Rate ~ Oxen_Rate + min_distance_to_urban,
+  #data = gwr_data,
+  #coords = cbind(st_coordinates(st_centroid(gwr_data))[,1], 
+                 #st_coordinates(st_centroid(gwr_data))[,2])
+#)
+
+# 2. GWRモデルの実行
+#gwr_model <- gwr(
+  #Population_Outflow_Rate ~ Oxen_Rate + min_distance_to_urban,
+  #data = gwr_data,
+  #coords = cbind(st_coordinates(st_centroid(gwr_data))[,1], 
+                # st_coordinates(st_centroid(gwr_data))[,2]),
+  #bandwidth = bandwidth,
+  #hatmatrix = TRUE
+#)
+
+# 3. 結果の要約
+#print(gwr_model)
+
+# 4. 結果を地図で可視化
+#gwr_data$Oxen_Rate_coef <- gwr_model$SDF$Oxen_Rate
+#gwr_data$Distance_coef <- gwr_model$SDF$min_distance_to_urban
+
+# Oxen_Rateの係数分布
+#ggplot(gwr_data) +
+  #geom_sf(aes(fill = Oxen_Rate_coef), color = "white") +
+  #scale_fill_viridis_c(name = "Oxen Rate Coef") +
+  #labs(title = "Spatial Variation in Oxen Rate Coefficients") +
+  #theme_minimal()
+
+# min_distance_to_urbanの係数分布
+#ggplot(gwr_data) +
+  #geom_sf(aes(fill = Distance_coef), color = "white") +
+  #scale_fill_viridis_c(name = "Distance Coef") +
+  #labs(title = "Spatial Variation in Distance Coefficients") +
+  #theme_minimal()
+
+
+```
+
+As I told before, I wrote the code for GWR model, but it could not be processed due to my computer's poor capacity.
+
+
+
+## Discussion and Conclusion 
+
+key findings are shown as below.
+1)Population outflows in Tanzania are distributed across major cities, not aggregating into the biggest city like in Japan. This decentralized outflow pattern is quite unique as a capitalism society with certain growth.
+
+2)Agricultural equipment (oxen prevalence rate) does not significantly have an influence on population outflows.
+
+3)Proximity to urban centers reduced rural and agricultural regions’ outflow rate. However, this relationship between distance and outflow is not supported by statistics. 
+
+
+4)Population outflow rate is lower in rural areas compared to city areas. 
+
+5)Moron's I and LISA map revealed the hot spot and cold spot for population outflow. Especially, the north part of Tanzania is worth examining.
+
+
+Policy implications
+1)Government in Tanzania should focus on understanding regional outflow drivers in order to understand the frozen flows of population and decide where they should construct infrustructure.
+
+Weakness of this report
+- data size and variety is not much.
+- The alternative indicator such as oxen rate as agriculture stability might not be decent.  
+
+Future direction
+Additional research and data are require to explore the cause of low outflow of rural regions.
+
+## References
+- Msuya, E. & Isinika, A., 2010. Addressing food self-sufficiency in Tanzania: a balancing act of policy coordination. African Smallholders: Food Crops, Markets and Policy.
+- Rweyemamu, M. R.; Mruma, T.; Nkanyani, S. 2024. Tanzania agricultural policy profile. Colombo, Sri Lanka: International Water Management Institute (IWMI). CGIAR Initiative on Diversification in East and Southern Africa. 21p.
+- JICA, 2018. 東南部アフリカ（タンザニア、ウガンダ）現地調査報告：第1章 アフリカにおける農業機械化の現状. Available at: https://openjicareport.jica.go.jp/pdf/12079166_02.pdf [Accessed 25 NOV. 2024].
+- Tanzania: Administrative Division https://www.citypopulation.de/en/tanzania/admin/ (population data 2006)
+- City Population, n.d. Tanzania: Administrative Division. [online] Available at: https://www.citypopulation.de/en/tanzania/admin/ [Accessed 25 Nov. 2024].
+- National Bureau of Statistics (Tanzania), 2002. Microdata: United Republic of Tanzania, August 2002. [online] Available at: [Accessed 25 Nov. 2024].
+- WorldPop hub https://www.ole.bris.ac.uk/ultra/courses/_260825_1/cl/outline
+- Estimated internal human migration flows between subnational administrative units for malaria endemic countries (WHO, 2015; http://www.who.int/malaria/publications/country-profiles/en/)
+- GADM, 2021. GADM Data: Version 4.1 - Subnational Administrative Boundaries. [online] Available at: https://gadm.org/download_country.html [Accessed 25 Nov. 2024].

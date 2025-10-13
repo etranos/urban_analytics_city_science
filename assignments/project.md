@@ -8,13 +8,13 @@ output: pdf_document
 
 You need to identify and analyse a spatial network you are interested in. This involves:
 
--   Selecting a spatial network, which is of interest for you; finding, using and analysing relevant network data -- more on this below.
+-   Selecting a spatial network, which is of interest for you, finding, using and analysing relevant network data -- more on this below.
 
--   Setting up research questions. You will need to set up clear research questions that your analysis will answer. Although I don't expect a full literature review section in your report, you need to link these research questions to some previous literature.
+-   Setting up research questions. You will need to set up clear research questions that your analysis will answer. Although I don't expect a full literature review section in your report, you need to link these research questions to previous literature.
 
 -   Analysing your network. You will need to employ *relevant* methods and tools that we discussed during the course (from data acquisition to network analysis and from diversity measures to spatial interaction models) to answer your research questions. The methods you will use should be appropriate for the research questions you need to answer. I will encourage you (and give extra points) if you utilise relevant methods beyond those discussed during the classes. Your methodological choices should be justified in the text.
 
--   Writing up the report, which needs to be adequately structured (i.e. introduce the problem, link it to some previous literature, describe the methods and the data, present and discuss the results, indicate some key outcomes). The report should be written as an RMarkdown document and knitted as an .html document that allows the reader to see both the text, the code you will develop and the output of this code. Your report should include tables and figures where appropriate -- these form an important element of the assessment. Be critical to what outputs will be included in the report. The report needs to be appropriately referenced.
+-   Writing up the report, which needs to be adequately structured (i.e. introduce the problem, link it to previous literature, describe the methods and the data, present and discuss the results, indicate some key outcomes). The report should be written as an `RMarkdown` document and knitted as an `.html` document that allows the reader to see both the text, the code you will develop and the output of this code. Your report should include tables and figures where appropriate -- these form an important element of the assessment. Be critical to what outputs will be included in the report. The report needs to be appropriately referenced.
 
 ## Data sets
 
@@ -30,11 +30,11 @@ In order to address the different interests the cohort might have, the data choi
 
 -   [NYC Taxi trips](https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
 
--   [Flight data](https://opensky-network.org/data/datasets)
+-   [Flight data](https://opensky-network.org/data/)
 
 ## Word limit and marking criteria
 
-The report should be 3,500 long excluding references and code. It is worth 100\% of the unit's mark and on top of the programme marking criteria, I will also consider:
+The report should be 3,500 long excluding references and code. It is worth 100% of the unit's mark and on top of the programme marking criteria, I will also consider:
 
 -   The reproducibility of the analysis.
 
@@ -50,8 +50,6 @@ The report should be 3,500 long excluding references and code. It is worth 100\%
 
 ## Deadline
 
-**Project submission: 3rd December 2024**
+**Project submission: 11th December 2025**
 
-Opportunity for non-marked feedback: What data do you want to use for your project? Send an email to Emmanouil describing and justifying the data you want to use by by **31st October**. 
-
-  
+Opportunity for non-marked feedback: What data do you want to use for your project? Send an email to Emmanouil describing and justifying the data you want to use by by **31st October**.
