@@ -20,19 +20,19 @@ You need to identify and analyse a spatial network you are interested in. This i
 
 In order to address the different interests the cohort might have, the data choice is up to you. I offer below a few ideas, but if you want to analyse other data, please get in touch with me directly to discuss. You will need to do this early on during the term, so please start thinking about the report early.
 
--   US internal migration flows. You can use data from the American Community Survey ([ACS](https://www.census.gov/programs-surveys/acs)). There are quite a few R packages, which enable you to directly access these data through an API.
+-   US internal migration flows. You can use data from the American Community Survey ([ACS](https://www.census.gov/programs-surveys/acs){target="_blank"}). There are quite a few R packages, which enable you to directly access these data through an API.
 
--   Africa migration flows from [WorldPop](https://hub.worldpop.org/geodata/summary?id=1281).
+-   Africa migration flows from [WorldPop](https://hub.worldpop.org/geodata/summary?id=1281){target="_blank"}.
 
 -   [Data for Good by Facebook](https://dataforgood.facebook.com/dfg/tools). There are quite a few interesting datasets there. Some of them are ready to download, some require an application. If you are interested in the latter, apply sooner than later.
 
--   [Internet submarine cables](https://github.com/telegeography/www.submarinecablemap.com)
+-   [Internet submarine cables](https://github.com/telegeography/www.submarinecablemap.com){target="_blank"}.
 
--   [NYC Taxi trips](https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
+-   [NYC Taxi trips](https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page){target="_blank"}.
 
--   [Flight data](https://opensky-network.org/data/)
+-   [Flight data](https://opensky-network.org/data/){target="_blank"}.
 
--   London bikes
+-   [London bikes](https://cycling.data.tfl.gov.uk/){target="_blank"}.
 
 ## Word limit and marking criteria
 
