@@ -56,7 +56,7 @@ Try to think what the below topological measures might mean for a street network
 
 -   Closeness centrality
 
-Key development: [*OpenStreetMap*](https://www.openstreetmap.org/#map=6/54.910/-3.432). Known as the Wikipedia for maps, OSM is a collaborative, citizen science project, which allows individuals to contribute in building openly distributed geographic data [@haklay2021contours; @haklay2008openstreetmap]. Through OSM urban analysts have access to street network data from around the world, something which wasn't the case, let's say, 20 years ago.
+Key development: [*OpenStreetMap*](https://www.openstreetmap.org/#map=6/54.910/-3.432). Known as the Wikipedia for maps, OSM is a collaborative, citizen science project, which allows individuals to contribute in building openly distributed geographic data [@haklay2021contours; @haklay2008openstreetmap]. Through OSM, urban analysts have access to street network data from around the world, something which wasn't the case, let's say, 20 years ago.
 
 The below are based on the very helpful vignettes of the [`sfnetworks`](https://cran.r-project.org/package=sfnetworks) and [`osmdata`](https://cran.r-project.org/web/packages/osmdata/) packages. Please make sure to revisit these materials on your own time.
 
@@ -195,7 +195,7 @@ ggplot() +
   ggtitle("Betweenness centrality")
 ```
 
-To better understand the structure of the above `ggplot()` look up `geom_sf()` and `st_as_sf`. If you only run `net` and `st_as_sf(net, "edges")` you can see what was the type of `net` originally and what it was transformed to with the `st_as_sf`.
+To better understand the structure of the above `ggplot()`, look up `geom_sf()` and `st_as_sf()`. If you only run `net` and `st_as_sf(net, "edges")` you can see what was the type of `net` originally and what it was transformed to with the `st_as_sf`.
 
 ```{block, type='alert alert-warning'}
 **Question**: Can you  interpret betweenness centrality in this context?
