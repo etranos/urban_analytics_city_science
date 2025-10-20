@@ -10,7 +10,7 @@ bibliography: references.bib
 editor: source
 ---
 
-## Street netorks
+## Street networks
 
 Until this point the focus has been on networks *between* cities. Now we are turning the focus on networks *within* cities and more specifically on street networks. These are spatial networks whose edges and not only their nodes contain spatial information. To summarise, in spatial or, in other words, geospatial networks:
 
