@@ -432,8 +432,8 @@
     "objectID": "src/network_science.html#network-science-the-evolution-of-a-new-science",
     "href": "src/network_science.html#network-science-the-evolution-of-a-new-science",
     "title": "Network science, urban laws and scaling",
-    "section": "",
-    "text": "Not really new\nGraph Theory in the 18th century\nLeonhard Euler’s work on small graphs\nHigh degree of regularity: similar degree centrality among different nodes",
+    "section": "Network Science: The Evolution of a ‘New’ Science",
+    "text": "Network Science: The Evolution of a ‘New’ Science\n\nNot really new\nGraph Theory in the 18th century\nLeonhard Euler’s work on small graphs\nHigh degree of regularity: similar degree centrality among different nodes",
     "crumbs": [
       "Lectures",
       "Network science, urban laws and scaling"
@@ -444,7 +444,7 @@
     "href": "src/network_science.html#regular-graphs",
     "title": "Network science, urban laws and scaling",
     "section": "Regular graphs",
-    "text": "Regular graphs\n\ngrViz(\"\ngraph {\n\n# a graph statement\ngraph [layout = circo,\n      rankdir = RL]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange];\nnodesep=4\nA; B; C; D; E; F; G; H;\n\n# an edge statement\nedge [color = grey]\n\nA -- B\nB -- C\nC -- D\nD -- E\nE -- F\nF -- G\nG -- H\nH -- A\nA -- D\nH -- E\nB -- G\nC -- F\n}\")",
+    "text": "Regular graphs",
     "crumbs": [
       "Lectures",
       "Network science, urban laws and scaling"
@@ -1616,8 +1616,8 @@
     "objectID": "src/transport_geography.html#transport-geography-quantitative-dimension",
     "href": "src/transport_geography.html#transport-geography-quantitative-dimension",
     "title": "Methods in transport geography",
-    "section": "",
-    "text": "Empirical data\nData analytics\nApplied science: improve the efficiency of movements / spatial constraints\nWhy in this unit?",
+    "section": "Transport geography: quantitative dimension",
+    "text": "Transport geography: quantitative dimension\n\nEmpirical data\nData analytics\nApplied science: improve the efficiency of movements / spatial constraints\nWhy in this unit?",
     "crumbs": [
       "Lectures",
       "Methods in transport geography"
@@ -1628,7 +1628,7 @@
     "href": "src/transport_geography.html#transport-geography-key-elements",
     "title": "Methods in transport geography",
     "section": "Transport geography: key elements",
-    "text": "Transport geography: key elements\n\nDistance\nAccessibility: the capacity of a location to be reached by, or to reach different locations\nSpatial interaction: movement of people, freight or information between an origin and destination\nTransportation and land use models\n\n\n\n Source: Rodrigue (2020) \n\n\n Source: Rodrigue (2020)",
+    "text": "Transport geography: key elements\n\nDistance\nAccessibility: the capacity of a location to be reached by, or to reach different locations\nSpatial interaction: movement of people, freight or information between an origin and destination\nTransportation and land use models",
     "crumbs": [
       "Lectures",
       "Methods in transport geography"
@@ -1925,7 +1925,7 @@
     "href": "src/transport_geography.html#estimate-accessibility-indicators-1",
     "title": "Methods in transport geography",
     "section": "3. Estimate accessibility indicators",
-    "text": "3. Estimate accessibility indicators\nDifferent typologies (Holl 2007)\n\nNetwork access\n\ndistance to access the network\ntravel opportunities\n\nTravel cost measures\n\nnetwork access + distance/time travelled on the network\n\nMarket potential accessibility\n\ndestinations at greater distance provide diminishing opportunities\n\n\n\n\n\n\n\n\n\n\n\n Source: Bruinsma and Rietveld (1998)",
+    "text": "3. Estimate accessibility indicators\nDifferent typologies (Holl 2007)\n\nNetwork access\n\ndistance to access the network\ntravel opportunities\n\nTravel cost measures\n\nnetwork access + distance/time travelled on the network\n\nMarket potential accessibility\n\ndestinations at greater distance provide diminishing opportunities",
     "crumbs": [
       "Lectures",
       "Methods in transport geography"
