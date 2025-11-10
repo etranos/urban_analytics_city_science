@@ -269,7 +269,7 @@ And finally the power law...
 
 **3. Geography and Urban Analytics**
 
--   Softer' approaches
+-   Softer approaches
 
 -   Ex-post empirical modelling for identifying characteristics of theoretical network models in real world networks
 

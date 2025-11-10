@@ -296,7 +296,7 @@ $T_{ij} = k\frac{V_i^\lambda W_j^\alpha}{d_{ij}^\beta}$
 ::: incremental
 -   $T_{ij} = k\frac{V_i^\lambda W_j^\alpha}{d_{ij}^\beta}$
 
--   Look up properties of logarithms, e.g. [here](http://dl.uncw.edu/digilib/Mathematics/Algebra/mat111hb/EandL/logprop/logprop.html)
+-   Look up properties of logarithms, e.g. [here](https://en.wikipedia.org/wiki/List_of_logarithmic_identities){target="_blank"}
 
 -   $T_{ij} = kV_i^\lambda W_j^\alpha d_{ij}^{-\beta}$
 
@@ -319,11 +319,11 @@ $T_{ij} = k\frac{V_i^\lambda W_j^\alpha}{d_{ij}^\beta}$
 
 -   $c = lnk: -13.84$
 
--   $\lambda = lnV_i: 0.727$
+-   $\lambda = 0.727$, coefficient for $(lnV_i)$
 
--   $\alpha = lnW_j: 0.464$
+-   $\alpha = 0.464$, coefficient for $lnW_j$
 
--   $\beta = lnd_{ij}: -0.624$
+-   $\beta = -0.624$, coefficient for $lnd_{ij}$
 
 -   What did we learn?
 
