@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Emmanouil Tranos">
-<meta name="dcterms.date" content="2024-11-24">
+<meta name="dcterms.date" content="2025-11-15">
 
 <title>Spatial interaction modelling – Urban analytics and city science</title>
 <style>
@@ -371,7 +371,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 24, 2024</p>
+      <p class="date">November 15, 2025</p>
     </div>
   </div>
   
@@ -761,16 +761,39 @@ All categories: Method of travel to work
 </div>
 <p>Now let’s bring data for some <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> characteristics that we believe that affect commuting. I have prepared such a small data set from the census, which includes resident population and working populations as <em>push</em> and <em>pull</em> variables. These data have been obtained by <a href="https://www.nomisweb.co.uk/published/census/odexplorer.asp">nomis</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>data.workplace <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://www.dropbox.com/s/0ym88p8quwaiyau/data_workplace.csv?dl=1"</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Dropbox trick: to use in an .Rmd the link that Dropbox provides to share a file</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># replace dl=0 with dl=1 at the end of the link</span></span>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To avoid issues with read_csv() reading directly from Dropbox, we use a </span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># tempfile trick. First, an empty temp file is created with tempfile(). Then, we </span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># use download.file() to download the Dropbox file to this temp file. Finally, </span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># we read the temp file using read_csv().</span></span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>data.resident <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://www.dropbox.com/s/09d7v5cm6ov3ioz/data_resident.csv?dl=1"</span>)</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>commuting.si <span class="ot">&lt;-</span> commuting.si <span class="sc">%&gt;%</span> </span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(data.resident, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">'i'</span> <span class="ot">=</span> <span class="st">'Merging.Local.Authority.Code'</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(data.workplace, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">'j'</span> <span class="ot">=</span> <span class="st">'Merging.Local.Authority.Code'</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">".csv"</span>)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://www.dropbox.com/s/0ym88p8quwaiyau/data_workplace.csv?dl=1"</span>,</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">destfile =</span> temp,</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">mode =</span> <span class="st">"wb"</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>data.workplace <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(temp)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternatively, you could read directly from Dropbox using read_csv() </span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="co">#data.workplace &lt;- read_csv("https://www.dropbox.com/s/0ym88p8quwaiyau/data_workplace.csv?dl=1")</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Important Dropbox trick: to use the link that Dropbox provides to share a </span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="co"># file in an .Rmd replace dl=0 with dl=1 at the end of the link.</span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">".csv"</span>)</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://www.dropbox.com/s/09d7v5cm6ov3ioz/data_resident.csv?dl=1"</span>,</span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">destfile =</span> temp,</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">mode =</span> <span class="st">"wb"</span></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>data.resident <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(temp)</span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternatively, you could read directly from Dropbox using read_csv() </span></span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a><span class="co">#data.resident &lt;- read_csv("https://www.dropbox.com/s/09d7v5cm6ov3ioz/data_resident.csv?dl=1")</span></span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>commuting.si <span class="ot">&lt;-</span> commuting.si <span class="sc">%&gt;%</span> </span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(data.resident, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">'i'</span> <span class="ot">=</span> <span class="st">'Merging.Local.Authority.Code'</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(data.workplace, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">'j'</span> <span class="ot">=</span> <span class="st">'Merging.Local.Authority.Code'</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" type="alert alert-warning">
 <div class="alert alert-warning">

@@ -274,17 +274,39 @@ commuting.si <- commuting.si %>%
 Now let's bring data for some $i$ and $j$ characteristics that we believe that affect commuting. I have prepared such a small data set from the census, which includes resident population and working populations as *push* and *pull* variables. These data have been obtained by [nomis](https://www.nomisweb.co.uk/published/census/odexplorer.asp).
 
 ```{r si ij data, include=TRUE, results= 'markup', message=FALSE, warning = FALSE}
-data.workplace <- read_csv("https://www.dropbox.com/s/0ym88p8quwaiyau/data_workplace.csv?dl=1")
+# To avoid issues with read_csv() reading directly from Dropbox, we use a 
+# tempfile trick. First, an empty temp file is created with tempfile(). Then, we 
+# use download.file() to download the Dropbox file to this temp file. Finally, 
+# we read the temp file using read_csv().
 
-# Dropbox trick: to use in an .Rmd the link that Dropbox provides to share a file
-# replace dl=0 with dl=1 at the end of the link
+temp <- tempfile(fileext = ".csv")
+download.file(
+  "https://www.dropbox.com/s/0ym88p8quwaiyau/data_workplace.csv?dl=1",
+  destfile = temp,
+  mode = "wb"
+)
+data.workplace <- readr::read_csv(temp)
 
-data.resident <- read_csv("https://www.dropbox.com/s/09d7v5cm6ov3ioz/data_resident.csv?dl=1")
+# Alternatively, you could read directly from Dropbox using read_csv() 
+#data.workplace <- read_csv("https://www.dropbox.com/s/0ym88p8quwaiyau/data_workplace.csv?dl=1")
+
+# Important Dropbox trick: to use the link that Dropbox provides to share a 
+# file in an .Rmd replace dl=0 with dl=1 at the end of the link.
+
+temp <- tempfile(fileext = ".csv")
+download.file(
+  "https://www.dropbox.com/s/09d7v5cm6ov3ioz/data_resident.csv?dl=1",
+  destfile = temp,
+  mode = "wb"
+)
+data.resident <- readr::read_csv(temp)
+
+# Alternatively, you could read directly from Dropbox using read_csv() 
+#data.resident <- read_csv("https://www.dropbox.com/s/09d7v5cm6ov3ioz/data_resident.csv?dl=1")
 
 commuting.si <- commuting.si %>% 
   left_join(data.resident, by = c('i' = 'Merging.Local.Authority.Code')) %>% 
   left_join(data.workplace, by = c('j' = 'Merging.Local.Authority.Code')) 
-  
 ```
 
 ```{block, type='alert alert-warning'}
