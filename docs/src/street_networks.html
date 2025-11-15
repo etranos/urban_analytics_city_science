@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Emmanouil Tranos">
-<meta name="dcterms.date" content="2025-11-10">
+<meta name="dcterms.date" content="2025-11-15">
 
 <title>Street network analysis practical: networks within cities – Urban analytics and city science</title>
 <style>
@@ -342,7 +342,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 10, 2025</p>
+      <p class="date">November 15, 2025</p>
     </div>
   </div>
   
@@ -690,7 +690,7 @@ Geodetic CRS:  WGS 84
 <pre><code>Issuing query to Overpass API ...</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Announced endpoint: none</code></pre>
+<pre><code>Announced endpoint: gall.openstreetmap.de/</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Query complete!</code></pre>
@@ -728,11 +728,11 @@ Geodetic CRS:  WGS 84
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># size of original network</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gsize</span>(bristol_sfn)  <span class="co"># number of edges</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 16098</code></pre>
+<pre><code>[1] 16138</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gorder</span>(bristol_sfn) <span class="co"># number of nodes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 21751</code></pre>
+<pre><code>[1] 21798</code></pre>
 </div>
 </div>
 <p>Now we can simplify the network.</p>
@@ -745,11 +745,11 @@ Geodetic CRS:  WGS 84
 <span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="co"># size of simplified network</span></span>
 <span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="fu">gsize</span>(bristol_wrangled)  <span class="co"># number of edges</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 15957</code></pre>
+<pre><code>[1] 15996</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gorder</span>(bristol_wrangled) <span class="co"># number of nodes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 21751</code></pre>
+<pre><code>[1] 21798</code></pre>
 </div>
 </div>
 <!-- Create nodes where two lines intersect. -->
@@ -760,11 +760,11 @@ Geodetic CRS:  WGS 84
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># size of simplified network</span></span>
 <span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gsize</span>(bristol_wrangled)  <span class="co"># number of edges</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 12380</code></pre>
+<pre><code>[1] 12402</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gorder</span>(bristol_wrangled) <span class="co"># number of nodes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 18174</code></pre>
+<pre><code>[1] 18204</code></pre>
 </div>
 </div>
 <p>… and plot the network again.</p>
@@ -833,30 +833,30 @@ of ggplot2 3.3.4.</code></pre>
 <span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a><span class="co"># A new group column has been added with the community membership</span></span>
 <span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>grouped_net</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A sfnetwork with 18174 nodes and 12380 edges
+<pre><code># A sfnetwork with 18204 nodes and 12402 edges
 #
 # CRS:  EPSG:4326 
 #
-# An undirected multigraph with 6671 components with spatially explicit edges
+# An undirected multigraph with 6680 components with spatially explicit edges
 #
-# Node data: 18,174 × 2 (active)
+# Node data: 18,204 × 2 (active)
                      x     bc
            &lt;POINT [°]&gt;  &lt;dbl&gt;
 1  (-2.460661 51.5015)     0 
-2 (-2.520817 51.51683)  4255.
-3 (-2.546005 51.54411)  7521 
-4 (-2.552232 51.40076)  7521 
-5 (-2.516866 51.51245)  9754.
-6  (-2.51898 51.51272) 30249.
-# ℹ 18,168 more rows
+2 (-2.520817 51.51683)  4288.
+3 (-2.546005 51.54411)  7551 
+4 (-2.552232 51.40076)  7551 
+5 (-2.516866 51.51245)  9843.
+6  (-2.51898 51.51272) 30310.
+# ℹ 18,198 more rows
 #
-# Edge data: 12,380 × 5
+# Edge data: 12,402 × 5
    from    to  weight                                                    x group
   &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;                                     &lt;LINESTRING [°]&gt; &lt;int&gt;
-1     6     7  219.   (-2.51898 51.51272, -2.518938 51.51293, -2.518937 5…    20
-2    15    16 2713.   (-2.573424 51.54525, -2.575283 51.54459, -2.582798 …     6
-3    18    19    5.23             (-2.528247 51.50576, -2.528179 51.50578)    20
-# ℹ 12,377 more rows</code></pre>
+1     6     7  219.   (-2.51898 51.51272, -2.518938 51.51293, -2.518937 5…    29
+2    15    16 2713.   (-2.573424 51.54525, -2.575283 51.54459, -2.582798 …    27
+3    18    19    5.23             (-2.528247 51.50576, -2.528179 51.50578)    29
+# ℹ 12,399 more rows</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There are quite a few communities overall</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>grouped_net <span class="sc">%&gt;%</span></span>
@@ -865,7 +865,7 @@ of ggplot2 3.3.4.</code></pre>
 <span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">length</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 6719</code></pre>
+<pre><code>[1] 6723</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>grouped_net <span class="sc">%&gt;%</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"edges"</span>) <span class="sc">%&gt;%</span></span>
