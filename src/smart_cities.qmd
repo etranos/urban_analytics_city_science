@@ -29,7 +29,7 @@ images.path <- paste0(path, "/images/")
 
 -   Big data vs. just data
 
--   Smart city
+-   Smart cities
 
 -   Urban dashboards
 
@@ -143,13 +143,17 @@ Rio de Janeiro, Brazil: The first *smart city*
 
 Rio, ten years on: a critical postscript
 
+::: r-fit-text
+
 -   Built by IBM/Cisco in 2010 and marketed globally as *the* smart-city control room
 
 -   Since criticised as **"surveillance theatre"** and a flawed model of smart-city emergence [@gaffney2016smarter]
 
--   Centralised, real-time monitoring did not straightforwardly translate into better everyday urban outcomes for residents; political priority and investment have since receded
+-   Centralised, real-time monitoring did not translate into better everyday urban outcomes for residents; political priority and investment have since receded
 
 -   Take-away: a control room tells us about **power and visibility**, not automatically about better governance -- keep this in mind for AI-powered versions of the same idea, later in this lecture
+
+:::
 
 ## Smart cities and data
 
@@ -239,13 +243,21 @@ Based on @batty2018digital
 
 **Bristol Harbour digital twin** (Mott MacDonald, for Bristol City Council)
 
+::: r-fit-text
+
 -   UAV, uncrewed surface vessel and LiDAR surveys of 300+ assets across 21km of waterway
 
 -   Over 1 terabyte of point-cloud, mesh and photographic data, accessed through a web platform for remote condition assessment and deterioration tracking
 
 -   Genuinely useful: replaces some in-person inspections; supports year-on-year change detection
 
+::: 
+
+<small><small> Source: <https://www.bentley.com/en/blog/yii-project-profile-bristol-city-council-digitally-future-proofs-harbor-infrastructure/> </small></small>
+
 ## Digital twins: a concrete (and partial) example
+
+::: r-fit-text
 
 But go back to Batty's definition: *"matching exactly the operation of the physical process which takes place in real time"* [@batty2018digital]
 
@@ -256,6 +268,8 @@ But go back to Batty's definition: *"matching exactly the operation of the physi
 -   Discussion: how many self-styled digital twins you encounter in practice will actually meet Batty's definition, rather than borrowing its name?
 
 -   This gap between claim and practice is not unique to Bristol: a systematic review of urban digital twins finds most implementations fall well short of the "live, bidirectional" ideal [@weil2023urban]
+
+:::
 
 ## Artificial intelligence in cities
 

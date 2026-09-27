@@ -880,7 +880,7 @@
     "href": "src/smart_cities.html#outline",
     "title": "Smart cities, urban big data, digital twins and other buzz terms",
     "section": "Outline",
-    "text": "Outline\n\nBig data vs. just data\nSmart city\nUrban dashboards\nDigital twins\nArtificial intelligence in cities",
+    "text": "Outline\n\nBig data vs. just data\nSmart cities\nUrban dashboards\nDigital twins\nArtificial intelligence in cities",
     "crumbs": [
       "Lectures",
       "Smart cities, urban big data, digital twins and other buzz terms"
@@ -2915,7 +2915,7 @@
     "href": "src/smart_cities.html#smart-cities-different-approaches-4",
     "title": "Smart cities, urban big data, digital twins and other buzz terms",
     "section": "Smart cities, different approaches",
-    "text": "Smart cities, different approaches\nRio, ten years on: a critical postscript\n\nBuilt by IBM/Cisco in 2010 and marketed globally as the smart-city control room\nSince criticised as “surveillance theatre” and a flawed model of smart-city emergence (Gaffney and Robertson 2018)\nCentralised, real-time monitoring did not straightforwardly translate into better everyday urban outcomes for residents; political priority and investment have since receded\nTake-away: a control room tells us about power and visibility, not automatically about better governance – keep this in mind for AI-powered versions of the same idea, later in this lecture",
+    "text": "Smart cities, different approaches\nRio, ten years on: a critical postscript\n\n\nBuilt by IBM/Cisco in 2010 and marketed globally as the smart-city control room\nSince criticised as “surveillance theatre” and a flawed model of smart-city emergence (Gaffney and Robertson 2018)\nCentralised, real-time monitoring did not translate into better everyday urban outcomes for residents; political priority and investment have since receded\nTake-away: a control room tells us about power and visibility, not automatically about better governance – keep this in mind for AI-powered versions of the same idea, later in this lecture",
     "crumbs": [
       "Lectures",
       "Smart cities, urban big data, digital twins and other buzz terms"
@@ -2926,7 +2926,7 @@
     "href": "src/smart_cities.html#digital-twins-a-concrete-and-partial-example",
     "title": "Smart cities, urban big data, digital twins and other buzz terms",
     "section": "Digital twins: a concrete (and partial) example",
-    "text": "Digital twins: a concrete (and partial) example\nBristol Harbour digital twin (Mott MacDonald, for Bristol City Council)\n\nUAV, uncrewed surface vessel and LiDAR surveys of 300+ assets across 21km of waterway\nOver 1 terabyte of point-cloud, mesh and photographic data, accessed through a web platform for remote condition assessment and deterioration tracking\nGenuinely useful: replaces some in-person inspections; supports year-on-year change detection",
+    "text": "Digital twins: a concrete (and partial) example\nBristol Harbour digital twin (Mott MacDonald, for Bristol City Council)\n\n\nUAV, uncrewed surface vessel and LiDAR surveys of 300+ assets across 21km of waterway\nOver 1 terabyte of point-cloud, mesh and photographic data, accessed through a web platform for remote condition assessment and deterioration tracking\nGenuinely useful: replaces some in-person inspections; supports year-on-year change detection\n\n\n Source: https://www.bentley.com/en/blog/yii-project-profile-bristol-city-council-digitally-future-proofs-harbor-infrastructure/",
     "crumbs": [
       "Lectures",
       "Smart cities, urban big data, digital twins and other buzz terms"
@@ -2937,7 +2937,7 @@
     "href": "src/smart_cities.html#digital-twins-a-concrete-and-partial-example-1",
     "title": "Smart cities, urban big data, digital twins and other buzz terms",
     "section": "Digital twins: a concrete (and partial) example",
-    "text": "Digital twins: a concrete (and partial) example\nBut go back to Batty’s definition: “matching exactly the operation of the physical process which takes place in real time” (Batty 2018)\n\nThe harbour twin is built from periodic surveys, not a continuous real-time sensor feed\nIt is closer to a very detailed, repeatedly-updated 3D model than to a live “mirror world”\nDiscussion: how many self-styled digital twins you encounter in practice will actually meet Batty’s definition, rather than borrowing its name?\nThis gap between claim and practice is not unique to Bristol: a systematic review of urban digital twins finds most implementations fall well short of the “live, bidirectional” ideal (Weil and Bibri 2023)",
+    "text": "Digital twins: a concrete (and partial) example\n\nBut go back to Batty’s definition: “matching exactly the operation of the physical process which takes place in real time” (Batty 2018)\n\nThe harbour twin is built from periodic surveys, not a continuous real-time sensor feed\nIt is closer to a very detailed, repeatedly-updated 3D model than to a live “mirror world”\nDiscussion: how many self-styled digital twins you encounter in practice will actually meet Batty’s definition, rather than borrowing its name?\nThis gap between claim and practice is not unique to Bristol: a systematic review of urban digital twins finds most implementations fall well short of the “live, bidirectional” ideal (Weil and Bibri 2023)",
     "crumbs": [
       "Lectures",
       "Smart cities, urban big data, digital twins and other buzz terms"
