@@ -16,7 +16,7 @@ bibliography: references.bib
 
 -   Understand the *messiness* of real world (urban) data
 
--   Access programmatically urban data and understand the benefits of such data access practice.
+-   Access programmatically urban data and understand the benefits of such data access practise.
 
 ## APIs
 
@@ -28,13 +28,13 @@ The client's software (this might be R for example) sends a request to the serve
 
 More commonly, the client might be a mobile phone app (e.g. train network status app) and the server is the network operator's server.
 
-APIs can be private or public types. For more information, see the description from @amazonWhatAPI [here](https://aws.amazon.com/what-is/api/#:~:text=API%20stands%20for%20Application%20Programming,other%20using%20requests%20and%20responses.)
+APIs can be private or public types. For more inthe description from @amazonWhatAPI [here](https://aws.amazon.com/what-is/api/#:~:text=API%20stands%20for%20Application%20Programming,other%20using%20requests%20and%20responses.)
 
 ## JSON file format
 
 Although some urban data can be downloaded as a tidy[^1] table in a `.csv` format, most APIs will ship data to you in a `JSON` format.
 
-[^1]: Every column is a variable; every row is an observation; every cell is a single value. See [here](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html) for more info.
+[^1]: Every column is a variable; every row is an observation; every cell is a single value. See \[here\])(https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html) for more info
 
 According to the official JSON website [@jsonJSON], JSON
 
@@ -42,30 +42,15 @@ According to the official JSON website [@jsonJSON], JSON
 
 It adopts a hierarchical structure such as `attribute:value` instead of the fixed structure of tidy data. Following @singleton2017urban, such `attribute:value` pairs might be:
 
--   `"mean income": 50000`
+-   "mean income":"50000"
 
--   `"internet speed": 35`
+-   "internet speed":"35"
 
--   `"jobs": 15000`
+-   "jobs":"15000"
 
-These attributes might be organised hierarchically. In JSON, curly brackets `{}` enclose an object (a set of `attribute:value` pairs) and square brackets `[]` enclose an array (an ordered list of values or objects):
+These attributes might be organised hierarchically:
 
-```json
-[
-  {
-    "city": "Bristol",
-    "mean income": 27000,
-    "internet speed": 55,
-    "jobs": {"2019": 15000, "2020": 14000}
-  },
-  {
-    "city": "Newcastle",
-    "mean income": 25000,
-    "internet speed": 45,
-    "jobs": {"2019": 11000, "2020": 10000}
-  }
-]
-```
+("city":"Bristol,"mean income": "27000", "internet speed": "55", "jobs":("2019":"15000", "2020":"14000")), ("city":"Newcastle,"mean income": "25000", "internet speed": "45", "jobs":("2019":"11000", "2020":"10000"))
 
 Although this format is more verbose (attribute names are repeated) it is more flexible (not all observations need to have all attributes) [@singleton2017urban]
 
@@ -73,7 +58,7 @@ Although this format is more verbose (attribute names are repeated) it is more f
 
 [opendata.bristol.gov.uk](https://opendata.bristol.gov.uk/search) offers a lot of data about Bristol. For this example, let's try to work with [Jobs by Ward (by industry) in Bristol 2020](https://opendata.bristol.gov.uk/datasets/ca24dc2e210940e0aa9ad3a4785a591b_17/explore). You can also access these data by searching for 'Jobs by industry in Bristol by Ward'. Use the filter icon to filter for 2020 data. As you can see, this is a small data set with $34$ observations representing Bristol's $34$ Wards. You can visualise these data with the `Table` tab on the right hand-side and even download a `.csv` with these data. To begin with, do both of these things.
 
-Then, go to the `More Info` icon, scroll down on the left hand side and click on `I want to use this`. You can find the relevant link under `View API Resources`. We are interested in the `Filtered GeoService`. You can view (`View`) the data in this format and also copy the link to access these data *programmatically* -- this is what we do below.  The *weird* output on your screen is the data you requested in `JSON` format. If you carefully read the URL from right to left you can see some logic on how this URL is built.
+Then, go to the `More Info` icon, scroll down on the left hand side and click on `I want to use this`. You can find the relevant link under `View API Resources`. We are interested in the `GeoJSON`. You can view the data in this format and also copy the links to access these data *programmatically*.  The *weird* output on your screen is the data you requested in `JSON` format. If you carefully read the URL from right to left you can see some logic on how this URL is built.
 
 ```{block, type='alert alert-warning'}
 
@@ -92,97 +77,65 @@ library(sf)
 
 To access the data, we are going to use the function `fromJSON()` from the `jsonlite` package. Please check the syntax of this function as well as the other function of this package.
 
-```{r get data, cache=TRUE}
-df <- jsonlite::fromJSON("https://maps2.bristol.gov.uk/server2/rest/services/ext/ward_profiles/MapServer/17/query?f=json&where=(YEAR%20IN%20('2020'))&outFields=*", flatten = TRUE)
+```{r get data}
+dat <- jsonlite::fromJSON("https://services2.arcgis.com/a4vR8lmmksFixzmB/ArcGIS/rest/services/Jobs_by_Ward_(by_industry)_in_Bristol_2020/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson", flatten = TRUE)
+
+oa.ew <- st_read("https://maps2.bristol.gov.uk/server2/rest/services/ext/ward_profiles/MapServer/9/query?where=1%3D1&outFields=*&outSR=4326&f=json")
 ```
 
-**Please note** that the above API link is different than the one used in previous years of this practical, which pointed to a different server (`services2.arcgis.com`) and returned the data with different column names. The code below has been adjusted to the current link. If the link changes again, you will need to tweak the code below. This is an example of how ephemeral data structures can be!
+**Please note** that the above API link is different than the one you can obtain today from [opendata.bristol.gov.uk](https://opendata.bristol.gov.uk/datasets/ca24dc2e210940e0aa9ad3a4785a591b_17/explore). If you use the most recent, you will need to tweak the code bellow. For the purpose of the practical, please use the link provided in the above chunk of code. This is an example of how ephemeral data structures can be!
 
-### Anatomy of an API request
-
-Let's break down the URL we used above. It has two parts, separated by `?`:
-
--   The **endpoint**, i.e. *where* the data live: `https://maps2.bristol.gov.uk/server2/rest/services/ext/ward_profiles/MapServer/17/query`. This points to a specific service (`ward_profiles`), a specific layer within it (`17`, which is the *Jobs by industry in Bristol (by Ward)* table) and the operation we want to perform (`query`).
-
--   The **query parameters**, i.e. *what* we want from these data. These are `name=value` pairs separated by `&`:
-
-    -   `f=json`: the format of the response. Here we ask for `JSON`.
-
-    -   `where=(YEAR%20IN%20('2020'))`: which rows to return. `%20` is the URL-encoded version of a space, so this reads `where=(YEAR IN ('2020'))`. This layer contains data for several years (2015 onwards), so this parameter asks only for the 2020 rows.
-
-    -   `outFields=*`: which columns (fields) to return. `*` means all of them.
-
-Characters such as `=`, `'` or spaces have special meaning in a URL, so they need to be *encoded* when used inside a parameter value: `=` becomes `%3D`, `'` becomes `%27` and a space becomes `%20`.
-
-By changing these parameters we can ask the server to do some of the work for us. For example, the below request asks only for the `WARD_NAME` and `RETAIL` columns, only for the Central ward in 2020 (`where=WARD_NAME='Central' AND YEAR='2020'`):
-
-```{r query example, cache=TRUE}
-df.central <- jsonlite::fromJSON("https://maps2.bristol.gov.uk/server2/rest/services/ext/ward_profiles/MapServer/17/query?f=json&where=WARD_NAME%3D%27Central%27%20AND%20YEAR%3D%272020%27&outFields=WARD_NAME,RETAIL", flatten = T)
-
-df.central
-```
-
-This is much smaller than downloading the whole data set and filtering it in `R`, which matters when data sets are large. The parameters each API accepts are described in its documentation. For the ArcGIS services used here, see the [ArcGIS REST API documentation](https://developers.arcgis.com/rest/services-reference/enterprise/query-feature-service-layer/).
-
-```{block, type='alert alert-warning'}
-
-**Question**: How would you change the URL to get the same data for 2024?
-
-```
-
-We now have an `R` object called `df`. Let's try to see what it looks like.
+We now have an `R` object called `dat`. Let's try to see how it looks like
 
 ```{r type}
-typeof(df)
+typeof(dat)
 ```
 
-So, this is a list. If you need a reminder for what a list is, see [here](https://adv-r.hadley.nz/vectors-chap.html#lists). Now the difficult part. Let's try to figure out the structure of this `JSON` formatted data.
+So, this is a list. If you need a reminder for what a list is, see [here](http://adv-r.had.co.nz/Data-structures.html). Now the difficult part. Let's try to figure out the structure of this `JSON` formatted data.
 
 ```{r structure}
-str(df)
+str(dat)
 ```
 
-Well, it's complicated. Looking on the above output of `list()` the object that looks most useful to us is the `df$features`.
+Well, it's complicated. Looking on the above output of `list()` the object that looks most useful to us is the `dat$features`.
 
 ```{block, type='alert alert-warning'}
 
-**Question**: Based on the output of `str()`, why do you think is `df$features`
-the most useful part of `df` for us? And what do you think `df$fields` contains?
+**Question**: Based on the output of `str()`, why do you think is `dat$features` 
+the most useful part of `dat` for us?
 
 ```
 
-And if you want to see what the dataframe `df$features` looks like, the below function will show all its columns (as rows), their type and their first few values.
+And if you want to see how the dataframe `dat$features` looks like, the below function will show the first five rows.
 
-```{r glimpse}
-glimpse(df$features)
+```{r head}
+glimpse(dat$features)
 ```
 
-Looking into the above, I can think of the following necessary data cleaning and wrangling steps:
+Looking into the above, I can think of the the following necessary data cleaning and wrangling steps:
 
-1.  remove the columns which don't include any useful data for our analysis: the first column (`attributes.OBJECTID`) is just an internal ID of the database
+1.  remove the first five columns as they don't include any useful data
 
-2.  remove the string "attributes." from the column names
+2.  remove the string "properties." from the column names
 
 3.  although not necessary, it is common practice for the first columns to contain identification data such as the ward names and codes.
-
-4.  rename the ward name and code columns to something shorter and more readable.
 
 To do all the above, we will use the below functions from the `dplyr` package, which is part of the [`tidyverse` ecosystem](https://www.tidyverse.org/).
 
 ```{r wrangling}
-df <- df$features %>%
-  select(-attributes.OBJECTID) %>%                            # remove useless columns
-  rename_with(~sub("attributes.", "", .)) %>%                 # ~ introduces a formula: function `sub` substitutes (in other words replaces) the string "attributes." with an empty string "" for all columns (symbol .)
-  relocate(WARD_NAME, WARD_CODE) %>%                          # looks better
-  rename(Ward = WARD_NAME,                                    # as above, Ward looks better than WARD_NAME ...
-         Ward_code = WARD_CODE) %>%                           # ... and Ward_code better than WARD_CODE
+dat <- dat$features %>% 
+  select(-type, -id, -geometry.type, -geometry.coordinates, -properties.OBJECTID, -properties.Shape__Area, 
+         -properties.Shape__Length) %>%                       # remove useless columns
+  rename_with(~sub("properties.", "", .)) %>%                 # ~ introduces a formula: function `sub` substitutes (in other words replaces) the string "properties." with an empty sting "" for all columns (symbol .) 
+  relocate(Ward, Ward_code_1) %>%                             # looks better
+  rename(Ward_code = Ward_code_1) %>%                         # as above, Ward_code looks better than Ward_code_1
   glimpse()                                                   # a glimpse of the output
 ```
 
 Let's try now to do some analysis based on these data and create some outputs.
 
 ```{r analysis}
-df %>% mutate(total = rowSums(across(c(4:21))),            # total jobs in a ward
+dat %>% mutate(total = rowSums(across(c(4:21))),           # total jobs in a ward
                across(c(4:21),                             # select the columns you are interested in
                       .names = "{col}_share") / total) %>% # divide these columns by total to create industry share within ward  
                                                            # and name the new columns as oldname_share
@@ -199,14 +152,13 @@ df %>% mutate(total = rowSums(across(c(4:21))),            # total jobs in a war
 # https://www.rdocumentation.org/packages/ggplot2/versions/1.0.1/topics/geom_bar
     
     scale_x_discrete(guide = guide_axis(angle = 90)) +     # This line rotates the x labels,
-    scale_y_continuous(labels = scales::percent) +         # this one shows the shares as percentages,
-    ylab("jobs %")                                         # and here we rename the y axis.
+    ylab("jobs %")                                         # and here we rename the y axis. 
 ```
 
 Now, let's do something slightly more interesting. Let's create two plots to compare the job distribution between two Bristol wards.
 
 ```{r comparison}
-df %>% mutate(total = rowSums(across(c(4:21))),           # total jobs in a ward
+dat %>% mutate(total = rowSums(across(c(4:21))),           # total jobs in a ward
                across(c(4:21),                             # select the columns you are interested in
                       .names = "{col}_share") / total) %>% # divide these columns by total to create industry share within ward  
                                                            # and name the new columns as oldname_share
@@ -221,8 +173,7 @@ df %>% mutate(total = rowSums(across(c(4:21))),           # total jobs in a ward
   ggplot(aes(x=industry, y=jobs_share)) +                  # ... and create a bar chart for it jobs distribution
     geom_bar(stat = "identity") +
     scale_x_discrete(guide = guide_axis(angle = 90)) +     # This line rotates the x labels,
-    scale_y_continuous(labels = scales::percent) +         # this one shows the shares as percentages,
-    ylab("jobs %") +                                       # and here we rename the y axis.
+    ylab("jobs %") +                                       # and here we rename the y axis. 
     facet_wrap(vars(Ward), ncol = 2)                       # facet_wrap creates two graphs based on `ward` and puts one next to each other
 ```
 
@@ -240,16 +191,16 @@ Obviously the `x` labels are rather ugly.
 access it programmatically, do the necessary data wrangling and produce some 
 graphs in a new `.Rmd` document. Make sure to knit it as `.html`.
 
-If this is too easy for you, why don't you check the new [Quarto format](https://quarto.org/docs/guide/).
+If this is to easy for you, why don't you check the new [Quarto format](https://quarto.org/docs/guide/).
 ```
 
 ## Accessing APIs using existing `R` packages
 
-Now you might be lucky and somebody else has already done all the infrastructural / back-end work in order for you to easily interrogate an API and access their data. What would this look like? Like another `R` package. Here is a list with a few examples:
+Now you might be lucky and somebody else has already done all the infrastructural / back-end work in order for you to easily interrogate an API and access their data. How would this look like? Like another `R` package. Here is a list with a few examples:
 
 -   `nomisr` is a package that allows you to access [Nomis](https://www.nomisweb.co.uk/) data with `R`. Find [here](https://cran.r-project.org/web/packages/nomisr/vignettes/introduction.html) an introduction.
 
--   `tidycensus` is designed to work with the `tidyverse` ecosystem and offers access to the US Census. This is the [link](https://walker-data.com/tidycensus/). Pay extra attention to the *spatial data* option.
+-   `tidysencus` is part of the `tidyverse` ecosystem and offers access to the US Census. This is the [link](https://walker-data.com/tidycensus/). Pay extra attention to the *spatial data* option.
 
 -   The city of Toronto offers an `R` [package](https://sharlagelfand.github.io/opendatatoronto/) to access [City of Toronto Open Data Portal](https://open.toronto.ca/).
 
