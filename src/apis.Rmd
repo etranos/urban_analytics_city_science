@@ -28,7 +28,7 @@ The client's software (this might be R for example) sends a request to the serve
 
 More commonly, the client might be a mobile phone app (e.g. train network status app) and the server is the network operator's server.
 
-APIs can be private or public types. For more information, see the description from @amazonWhatAPI [here](https://aws.amazon.com/what-is/api/#:~:text=API%20stands%20for%20Application%20Programming,other%20using%20requests%20and%20responses.){target="_blank"}
+APIs can be private or public types. For more information, see the description from @amazonWhatAPI [here](https://aws.amazon.com/what-is/api/#:~:text=API%20stands%20for%20Application%20Programming,other%20using%20requests%20and%20responses.){target="_blank"}.
 
 ## JSON file format
 
