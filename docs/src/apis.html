@@ -397,13 +397,13 @@ window.Quarto = {
 </section>
 <section id="apis" class="level2">
 <h2 class="anchored" data-anchor-id="apis">APIs</h2>
-<p>Application Programming Interface (APIs) represent a ‘gate’ or otherwise a platform that enables a client (that is you) to interact with a server (for example <a href="https://opendata.bristol.gov.uk/">opendata.bristol.gov.uk</a>). According to <span class="citation" data-cites="amazonWhatAPI">AWS (<a href="#ref-amazonWhatAPI" role="doc-biblioref">2022</a>)</span>:</p>
+<p>Application Programming Interface (APIs) represent a ‘gate’ or otherwise a platform that enables a client (that is you) to interact with a server (for example <a href="https://opendata.bristol.gov.uk/" target="_blank">opendata.bristol.gov.uk</a>). According to <span class="citation" data-cites="amazonWhatAPI">AWS (<a href="#ref-amazonWhatAPI" role="doc-biblioref">2022</a>)</span>:</p>
 <blockquote class="blockquote">
 <p>In the context of APIs, the word Application refers to any software with a distinct function. Interface can be thought of as a contract of service between two applications. This contract defines how the two communicate with each other using requests and responses. Their API documentation contains information on how developers are to structure those requests and responses.</p>
 </blockquote>
 <p>The client’s software (this might be R for example) sends a request to the server requesting specific data. The response is the data the client asked.</p>
 <p>More commonly, the client might be a mobile phone app (e.g.&nbsp;train network status app) and the server is the network operator’s server.</p>
-<p>APIs can be private or public types. For more information, see the description from <span class="citation" data-cites="amazonWhatAPI">AWS (<a href="#ref-amazonWhatAPI" role="doc-biblioref">2022</a>)</span> <a href="https://aws.amazon.com/what-is/api/#:~:text=API%20stands%20for%20Application%20Programming,other%20using%20requests%20and%20responses.">here</a></p>
+<p>APIs can be private or public types. For more information, see the description from <span class="citation" data-cites="amazonWhatAPI">AWS (<a href="#ref-amazonWhatAPI" role="doc-biblioref">2022</a>)</span> <a href="https://aws.amazon.com/what-is/api/#:~:text=API%20stands%20for%20Application%20Programming,other%20using%20requests%20and%20responses." target="_blank">here</a></p>
 </section>
 <section id="json-file-format" class="level2">
 <h2 class="anchored" data-anchor-id="json-file-format">JSON file format</h2>
@@ -437,7 +437,7 @@ window.Quarto = {
 </section>
 <section id="practical-example-with-api" class="level2">
 <h2 class="anchored" data-anchor-id="practical-example-with-api">Practical example with API</h2>
-<p><a href="https://opendata.bristol.gov.uk/search">opendata.bristol.gov.uk</a> offers a lot of data about Bristol. For this example, let’s try to work with <a href="https://opendata.bristol.gov.uk/datasets/ca24dc2e210940e0aa9ad3a4785a591b_17/explore">Jobs by Ward (by industry) in Bristol 2020</a>. You can also access these data by searching for ‘Jobs by industry in Bristol by Ward’. Use the filter icon to filter for 2020 data. As you can see, this is a small data set with <span class="math inline">\(34\)</span> observations representing Bristol’s <span class="math inline">\(34\)</span> Wards. You can visualise these data with the <code>Table</code> tab on the right hand-side and even download a <code>.csv</code> with these data. To begin with, do both of these things.</p>
+<p><a href="https://opendata.bristol.gov.uk/search" target="_blank">opendata.bristol.gov.uk</a> offers a lot of data about Bristol. For this example, let’s try to work with <a href="https://opendata.bristol.gov.uk/datasets/ca24dc2e210940e0aa9ad3a4785a591b_17/explore" target="_blank">Jobs by Ward (by industry) in Bristol 2020</a>. You can also access these data by searching for ‘Jobs by industry in Bristol by Ward’. Use the filter icon to filter for 2020 data. As you can see, this is a small data set with <span class="math inline">\(34\)</span> observations representing Bristol’s <span class="math inline">\(34\)</span> Wards. You can visualise these data with the <code>Table</code> tab on the right hand-side and even download a <code>.csv</code> with these data. To begin with, do both of these things.</p>
 <p>Then, go to the <code>More Info</code> icon, scroll down on the left hand side and click on <code>I want to use this</code>. You can find the relevant link under <code>View API Resources</code>. We are interested in the <code>Filtered GeoService</code>. You can view (<code>View</code>) the data in this format and also copy the link to access these data <em>programmatically</em> – this is what we do below. The <em>weird</em> output on your screen is the data you requested in <code>JSON</code> format. If you carefully read the URL from right to left you can see some logic on how this URL is built.</p>
 <div class="cell" type="alert alert-warning">
 <div class="alert alert-warning">
@@ -497,7 +497,7 @@ $features
 1              Central              4500</code></pre>
 </div>
 </div>
-<p>This is much smaller than downloading the whole data set and filtering it in <code>R</code>, which matters when data sets are large. The parameters each API accepts are described in its documentation. For the ArcGIS services used here, see the <a href="https://developers.arcgis.com/rest/services-reference/enterprise/query-feature-service-layer/">ArcGIS REST API documentation</a>.</p>
+<p>This is much smaller than downloading the whole data set and filtering it in <code>R</code>, which matters when data sets are large. The parameters each API accepts are described in its documentation. For the ArcGIS services used here, see the <a href="https://developers.arcgis.com/rest/services-reference/enterprise/query-feature-service-layer/" target="_blank">ArcGIS REST API documentation</a>.</p>
 <div class="cell" type="alert alert-warning">
 <div class="alert alert-warning">
 <p>
@@ -617,7 +617,7 @@ $ attributes.ARTS_ENTS_RECREATION_OTHER &lt;int&gt; 400, 250, 200, 300, 175, 125
 <li><p>although not necessary, it is common practice for the first columns to contain identification data such as the ward names and codes.</p></li>
 <li><p>rename the ward name and code columns to something shorter and more readable.</p></li>
 </ol>
-<p>To do all the above, we will use the below functions from the <code>dplyr</code> package, which is part of the <a href="https://www.tidyverse.org/"><code>tidyverse</code> ecosystem</a>.</p>
+<p>To do all the above, we will use the below functions from the <code>dplyr</code> package, which is part of the <a href="https://www.tidyverse.org/" target="_blank"><code>tidyverse</code> ecosystem</a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df<span class="sc">$</span>features <span class="sc">%&gt;%</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>attributes.OBJECTID) <span class="sc">%&gt;%</span>                            <span class="co"># remove useless columns</span></span>
@@ -734,10 +734,10 @@ If this is too easy for you, why don’t you check the new <a href="https://quar
 <h2 class="anchored" data-anchor-id="accessing-apis-using-existing-r-packages">Accessing APIs using existing <code>R</code> packages</h2>
 <p>Now you might be lucky and somebody else has already done all the infrastructural / back-end work in order for you to easily interrogate an API and access their data. What would this look like? Like another <code>R</code> package. Here is a list with a few examples:</p>
 <ul>
-<li><p><code>nomisdata</code> is a package that allows you to access <a href="https://www.nomisweb.co.uk/">Nomis</a> data with <code>R</code>. Find <a href="https://cran.r-project.org/web/packages/nomisdata/index.html">here</a> an introduction.</p></li>
-<li><p><code>tidycensus</code> is designed to work with the <code>tidyverse</code> ecosystem and offers access to the US Census. This is the <a href="https://walker-data.com/tidycensus/">link</a>. Pay extra attention to the <em>spatial data</em> option.</p></li>
-<li><p>The city of Toronto offers an <code>R</code> <a href="https://sharlagelfand.github.io/opendatatoronto/">package</a> to access <a href="https://open.toronto.ca/">City of Toronto Open Data Portal</a>.</p></li>
-<li><p>See a relevant book by <span class="citation" data-cites="apis">Bauer, Landesvatter, and Behrens (<a href="#ref-apis" role="doc-biblioref">2022</a>)</span> available <a href="https://bookdown.org/paul/apis_for_social_scientists/">here</a>.</p></li>
+<li><p><code>nomisdata</code> is a package that allows you to access <a href="https://www.nomisweb.co.uk/" target="_blank">Nomis</a> data with <code>R</code>. Find <a href="https://cran.r-project.org/web/packages/nomisdata/index.html" target="_blank">here</a> an introduction.</p></li>
+<li><p><code>tidycensus</code> is designed to work with the <code>tidyverse</code> ecosystem and offers access to the US Census. This is the <a href="https://walker-data.com/tidycensus/" target="_blank">link</a>. Pay extra attention to the <em>spatial data</em> option.</p></li>
+<li><p>The city of Toronto offers an <code>R</code> <a href="https://sharlagelfand.github.io/opendatatoronto/" target="_blank">package</a> to access <a href="https://open.toronto.ca/" target="_blank">City of Toronto Open Data Portal</a>.</p></li>
+<li><p>See a relevant book by <span class="citation" data-cites="apis">Bauer, Landesvatter, and Behrens (<a href="#ref-apis" role="doc-biblioref">2022</a>)</span> available <a href="https://bookdown.org/paul/apis_for_social_scientists/" target="_blank">here</a>.</p></li>
 </ul>
 <div class="cell" type="alert alert-warning">
 <div class="alert alert-warning">
@@ -771,7 +771,7 @@ Singleton, Alex D, Seth Spielman, and David Folch. 2017. <em>Urban Analytics</em
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>Every column is a variable; every row is an observation; every cell is a single value. See <a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html">here</a> for more info.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Every column is a variable; every row is an observation; every cell is a single value. See <a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html" target="_blank">here</a> for more info.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

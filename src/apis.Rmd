@@ -20,7 +20,7 @@ bibliography: references.bib
 
 ## APIs
 
-Application Programming Interface (APIs) represent a 'gate' or otherwise a platform that enables a client (that is you) to interact with a server (for example [opendata.bristol.gov.uk](https://opendata.bristol.gov.uk/)). According to @amazonWhatAPI:
+Application Programming Interface (APIs) represent a 'gate' or otherwise a platform that enables a client (that is you) to interact with a server (for example [opendata.bristol.gov.uk](https://opendata.bristol.gov.uk/){target="_blank"}). According to @amazonWhatAPI:
 
 > In the context of APIs, the word Application refers to any software with a distinct function. Interface can be thought of as a contract of service between two applications. This contract defines how the two communicate with each other using requests and responses. Their API documentation contains information on how developers are to structure those requests and responses.
 
@@ -28,13 +28,13 @@ The client's software (this might be R for example) sends a request to the serve
 
 More commonly, the client might be a mobile phone app (e.g. train network status app) and the server is the network operator's server.
 
-APIs can be private or public types. For more information, see the description from @amazonWhatAPI [here](https://aws.amazon.com/what-is/api/#:~:text=API%20stands%20for%20Application%20Programming,other%20using%20requests%20and%20responses.)
+APIs can be private or public types. For more information, see the description from @amazonWhatAPI [here](https://aws.amazon.com/what-is/api/#:~:text=API%20stands%20for%20Application%20Programming,other%20using%20requests%20and%20responses.){target="_blank"}
 
 ## JSON file format
 
 Although some urban data can be downloaded as a tidy[^1] table in a `.csv` format, most APIs will ship data to you in a `JSON` format.
 
-[^1]: Every column is a variable; every row is an observation; every cell is a single value. See [here](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html) for more info.
+[^1]: Every column is a variable; every row is an observation; every cell is a single value. See [here](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html){target="_blank"} for more info.
 
 According to the official JSON website [@jsonJSON], JSON
 
@@ -71,7 +71,7 @@ Although this format is more verbose (attribute names are repeated) it is more f
 
 ## Practical example with API
 
-[opendata.bristol.gov.uk](https://opendata.bristol.gov.uk/search) offers a lot of data about Bristol. For this example, let's try to work with [Jobs by Ward (by industry) in Bristol 2020](https://opendata.bristol.gov.uk/datasets/ca24dc2e210940e0aa9ad3a4785a591b_17/explore). You can also access these data by searching for 'Jobs by industry in Bristol by Ward'. Use the filter icon to filter for 2020 data. As you can see, this is a small data set with $34$ observations representing Bristol's $34$ Wards. You can visualise these data with the `Table` tab on the right hand-side and even download a `.csv` with these data. To begin with, do both of these things.
+[opendata.bristol.gov.uk](https://opendata.bristol.gov.uk/search){target="_blank"} offers a lot of data about Bristol. For this example, let's try to work with [Jobs by Ward (by industry) in Bristol 2020](https://opendata.bristol.gov.uk/datasets/ca24dc2e210940e0aa9ad3a4785a591b_17/explore){target="_blank"}. You can also access these data by searching for 'Jobs by industry in Bristol by Ward'. Use the filter icon to filter for 2020 data. As you can see, this is a small data set with $34$ observations representing Bristol's $34$ Wards. You can visualise these data with the `Table` tab on the right hand-side and even download a `.csv` with these data. To begin with, do both of these things.
 
 Then, go to the `More Info` icon, scroll down on the left hand side and click on `I want to use this`. You can find the relevant link under `View API Resources`. We are interested in the `Filtered GeoService`. You can view (`View`) the data in this format and also copy the link to access these data *programmatically* -- this is what we do below.  The *weird* output on your screen is the data you requested in `JSON` format. If you carefully read the URL from right to left you can see some logic on how this URL is built.
 
@@ -122,7 +122,7 @@ df.central <- jsonlite::fromJSON("https://maps2.bristol.gov.uk/server2/rest/serv
 df.central
 ```
 
-This is much smaller than downloading the whole data set and filtering it in `R`, which matters when data sets are large. The parameters each API accepts are described in its documentation. For the ArcGIS services used here, see the [ArcGIS REST API documentation](https://developers.arcgis.com/rest/services-reference/enterprise/query-feature-service-layer/).
+This is much smaller than downloading the whole data set and filtering it in `R`, which matters when data sets are large. The parameters each API accepts are described in its documentation. For the ArcGIS services used here, see the [ArcGIS REST API documentation](https://developers.arcgis.com/rest/services-reference/enterprise/query-feature-service-layer/){target="_blank"}.
 
 ```{block, type='alert alert-warning'}
 
@@ -167,7 +167,7 @@ Looking into the above, I can think of the following necessary data cleaning and
 
 4.  rename the ward name and code columns to something shorter and more readable.
 
-To do all the above, we will use the below functions from the `dplyr` package, which is part of the [`tidyverse` ecosystem](https://www.tidyverse.org/).
+To do all the above, we will use the below functions from the `dplyr` package, which is part of the [`tidyverse` ecosystem](https://www.tidyverse.org/){target="_blank"}.
 
 ```{r wrangling}
 df <- df$features %>%
@@ -247,13 +247,13 @@ If this is too easy for you, why don't you check the new [Quarto format](https:/
 
 Now you might be lucky and somebody else has already done all the infrastructural / back-end work in order for you to easily interrogate an API and access their data. What would this look like? Like another `R` package. Here is a list with a few examples:
 
--   `nomisdata` is a package that allows you to access [Nomis](https://www.nomisweb.co.uk/) data with `R`. Find [here](https://cran.r-project.org/web/packages/nomisdata/index.html) an introduction.
+-   `nomisdata` is a package that allows you to access [Nomis](https://www.nomisweb.co.uk/){target="_blank"} data with `R`. Find [here](https://cran.r-project.org/web/packages/nomisdata/index.html){target="_blank"} an introduction.
 
--   `tidycensus` is designed to work with the `tidyverse` ecosystem and offers access to the US Census. This is the [link](https://walker-data.com/tidycensus/). Pay extra attention to the *spatial data* option.
+-   `tidycensus` is designed to work with the `tidyverse` ecosystem and offers access to the US Census. This is the [link](https://walker-data.com/tidycensus/){target="_blank"}. Pay extra attention to the *spatial data* option.
 
--   The city of Toronto offers an `R` [package](https://sharlagelfand.github.io/opendatatoronto/) to access [City of Toronto Open Data Portal](https://open.toronto.ca/).
+-   The city of Toronto offers an `R` [package](https://sharlagelfand.github.io/opendatatoronto/){target="_blank"} to access [City of Toronto Open Data Portal](https://open.toronto.ca/){target="_blank"}.
 
--   See a relevant book by @apis available [here](https://bookdown.org/paul/apis_for_social_scientists/).
+-   See a relevant book by @apis available [here](https://bookdown.org/paul/apis_for_social_scientists/){target="_blank"}.
 
 ```{block, type='alert alert-warning'}
 **Another task:** On your own time, play with these packages and access some of the 
