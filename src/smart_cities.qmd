@@ -255,33 +255,24 @@ Based on @batty2018digital
 
 <small><small> Source: <https://www.bentley.com/en/blog/yii-project-profile-bristol-city-council-digitally-future-proofs-harbor-infrastructure/> </small></small>
 
-## Digital twins: a concrete (and partial) example
-
-::: r-fit-text
-
-But go back to Batty's definition: *"matching exactly the operation of the physical process which takes place in real time"* [@batty2018digital]
-
--   The harbour twin is built from **periodic surveys**, not a continuous real-time sensor feed
-
--   It is closer to a very detailed, repeatedly-updated 3D model than to a live "mirror world"
-
--   Discussion: how many self-styled digital twins you encounter in practice will actually meet Batty's definition, rather than borrowing its name?
-
--   This gap between claim and practice is not unique to Bristol: a systematic review of urban digital twins finds most implementations fall well short of the "live, bidirectional" ideal [@weil2023urban]
-
-:::
 
 ## Artificial intelligence in cities
+
+::: r-fit-text
 
 -   So far: *data* as the raw material of smart cities
 
 -   Now: **AI**, and especially **generative AI**, as the tool increasingly used to make sense of, and act on, that data
 
--   Narrow AI / machine learning is not new to this unit -- you have already used it (k-means, Poisson regression)
+-   Narrow AI / machine learning is not new 
 
--   What *is* new since c. 2022 is **generative AI**: large language models (LLMs) such as ChatGPT, Claude, Gemini and Copilot, which can read, write, summarise, code and (increasingly) reason over text, and, with the right tools attached, over spatial and tabular data too
+-   What *is* new since c. 2022 is **generative AI**: Large Language Models (LLMs) such as ChatGPT, Claude, Gemini and Copilot, which can read, write, summarise, code and reason over text, spatial and tabular data too
+
+- Agentic AI
 
 -   These LLMs are one instance of a broader shift towards **foundation models**: models pretrained on very large, broad data and then adapted to many downstream tasks [@bommasani2021opportunities]
+
+:::
 
 ::: footer
 See also @batty2026after, reflecting on AI from within this unit's own home journal
@@ -289,19 +280,23 @@ See also @batty2026after, reflecting on AI from within this unit's own home jour
 
 ## AI applications for cities: some examples
 
+::: r-fit-text
+
 -   **Planning practice**: drafting and summarising planning applications, synthesising public consultation responses, generating scenario narratives for local plans [@zheng2025urban; @liu2025large]
 
 -   **Citizen-facing services**: e-government chatbots, 311/multilingual service requests, accessibility of council information [@cortescediel2023trends]
 
--   **Urban monitoring**: computer vision on street-level and satellite imagery (e.g. detecting pavement damage, green space, informal settlements) -- building on the kind of street-level imagery reviewed in @biljecki2021street
+-   **Urban monitoring**: computer vision on street-level and satellite imagery (e.g. detecting pavement damage, green space, informal settlements) -- see @biljecki2021street for a street-level imagery review
 
--   **Mobility and infrastructure**: demand forecasting, predictive maintenance, incident detection layered on top of the dashboards you have just seen
+-   **Mobility and infrastructure**: demand forecasting, predictive maintenance, incident detection layered on top of the dashboards
 
 -   **Digital twins**: generative models increasingly used to simulate "what if" urban scenarios inside twins, rather than just visualising current conditions, like the harbour twin above [@weil2023urban]
 
--   **Research and analysis** (relevant to *your* assessment): AI-assisted coding, literature scanning, exploratory data analysis
+:::
 
 ## AI's own urban footprint
+
+::: r-fit-text
 
 AI is not just applied *to* cities -- it also physically *lives* in them
 
@@ -315,17 +310,11 @@ AI is not just applied *to* cities -- it also physically *lives* in them
 
 -   So: the "cloud" has a location, a landlord, and a local planning application
 
-## LLMs in urban planning: what the evidence says so far
-
--   A rapidly growing literature since 2025: @zheng2025urban (*Nature Computational Science*) and @liu2025large (*Journal of Urban Technology*) both map current capabilities and limits
-
--   Capabilities: accelerating routine drafting and synthesis tasks; lowering the barrier to engaging with technical/GIS outputs; supporting scenario generation
-
--   Limits: shallow grounding in local context, plan-making regulation and community history; risk of confidently wrong ("hallucinated") outputs; still largely unproven in real, contested planning decisions
-
--   Recurring theme: AI as **augmentation** of planners' judgement, not (yet, or perhaps ever) a substitute for it
+::: 
 
 ## A critical perspective: whose city does the algorithm see?
+
+::: r-fit-text
 
 -   Recall Kitchin's three approaches to smart cities from earlier in this lecture: **digital technologies**, **outputs**, **justice** [@kitchin2019timescape]
 
@@ -333,7 +322,9 @@ AI is not just applied *to* cities -- it also physically *lives* in them
 
 -   @tedeschi2024datafication: datafication (now increasingly AI-mediated) can produce new forms of urban **(in)justice** -- whose data trains the model, whose behaviour it optimises for, who is legible to it and who is not
 
--   Practical risks: bias and unequal error rates across neighbourhoods/groups; opacity and unaccountability of automated decisions; labour and environmental costs of large models (see the data centre point above); over-trust in fluent-sounding but wrong outputs
+-   Practical risks: bias and unequal error rates across neighbourhoods/groups; opacity and unaccountability of automated decisions; labour and environmental costs of large models (see the data centre point above); over-trust in fluent-sounding but wrong outputs (@kercher2026)
+
+::: 
 
 ## Big data (and now AI) cannot speak for themselves
 
