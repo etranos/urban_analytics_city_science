@@ -247,7 +247,7 @@ If this is too easy for you, why don't you check the new [Quarto format](https:/
 
 Now you might be lucky and somebody else has already done all the infrastructural / back-end work in order for you to easily interrogate an API and access their data. What would this look like? Like another `R` package. Here is a list with a few examples:
 
--   `nomisr` is a package that allows you to access [Nomis](https://www.nomisweb.co.uk/) data with `R`. Find [here](https://cran.r-project.org/web/packages/nomisr/vignettes/introduction.html) an introduction.
+-   `nomisdata` is a package that allows you to access [Nomis](https://www.nomisweb.co.uk/) data with `R`. Find [here](https://cran.r-project.org/web/packages/nomisdata/index.html) an introduction.
 
 -   `tidycensus` is designed to work with the `tidyverse` ecosystem and offers access to the US Census. This is the [link](https://walker-data.com/tidycensus/). Pay extra attention to the *spatial data* option.
 
