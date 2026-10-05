@@ -26,15 +26,30 @@ In order to address the different interests the cohort might have, the data choi
 
 - Africa migration flows from [WorldPop](https://hub.worldpop.org/geodata/summary?id=1281){target="_blank"}.
 
-- [Data for Good by Facebook](https://dataforgood.facebook.com/dfg/tools). There are quite a few interesting datasets there. Some of them are ready to download, some require an application. If you are interested in the latter, apply sooner than later.
+- [Data for Good by Facebook](https://dataforgood.facebook.com/dfg/tools){target="_blank"}. There are quite a few interesting datasets there. Some of them are ready to download, some require an application. If you are interested in the latter, apply sooner than later.
 
-- [A Global Feature-Rich Network Dataset of Cities and Dashboard for Comprehensive Urban Analyses](https://www.nature.com/articles/s41597-023-02578-1) 
+<!-- - [International migration data -- quite old!](https://www.un.org/development/desa/pd/data/international-migration-flows){target="_blank"}. -->
+
+- [A Global Feature-Rich Network Dataset of Cities and Dashboard for Comprehensive Urban Analyses](https://www.nature.com/articles/s41597-023-02578-1){target="_blank"}. 
 
 - [NYC Taxi trips](https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page){target="_blank"}.
 
 - [Flight data](https://opensky-network.org/data/){target="_blank"}.
 
 - [London bikes](https://cycling.data.tfl.gov.uk/){target="_blank"}.
+
+- [Transport for London](https://tfl.gov.uk/info-for/open-data-users/our-open-data){target="_blank"} open data.
+
+- [China’s Roads Network and Material Stocks Database in 2021 (CRANMS)](https://www.nature.com/articles/s41597-026-08083-5){target="_blank"}. This paper describing this dataset is published by the [*Scientific Data*](https://www.nature.com/sdata/){target="_blank"} journal. This is a good source for new datasets.
+
+- [Fused Geospatial Dataset Linking Climate Hazards and Road Infrastructure for Victoria, Australia](https://www.nature.com/articles/s41597-026-08203-1){target="_blank"}.
+
+- [Longitudinal spatial dataset on travel times and distances by different travel modes in Helsinki Region](https://www.nature.com/articles/s41597-020-0413-y){target="_blank"}.
+
+- Some popular data depositories: [Zenodo](https://zenodo.org/){target="_blank"}, 
+[Figshare](https://figshare.com/){target="_blank"},
+[Harvard Dataverse](https://dataverse.harvard.edu/){target="_blank"}, and
+[Open Science Framework (OSF)](https://osf.io/){target="_blank"}.
 
 ### Word limit and marking criteria
 
