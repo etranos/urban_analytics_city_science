@@ -73,7 +73,7 @@ The report should be 3,500 long excluding references and code. It is worth 100% 
 
 ### Generative AI Usage
 
-The level of AI use allowed in this course is classified as Category 3: Selective according to [University of Bristol AI guidelines](https://www.bristol.ac.uk/students/support/academic-advice/using-artificial-intelligence/). 
+The level of AI use allowed in this course is classified as [Category 3: Selective](https://www.bristol.ac.uk/students/support/academic-advice/using-artificial-intelligence/){target="_blank"} according to University of Bristol AI guidelines. 
 
 You may use AI tools to aid your coding and methodological design: 
 
@@ -83,7 +83,7 @@ Debugging: You may use AI to comment on and debug your own code, to help you ide
 
 Generating code: You may use AI to directly generate code for your use. Be careful, as AI can generate code that will fail to run, generate incorrect results, or contain superflous or confusing content. You always remain responsible for the final output of any code you generate, and should be able to understand the code and apply it to other use cases. 
 
-You should not use AI tools to substantively help write any assessed prose (i.e. written text, as opposed to code). For writing prose, AI use aligns with [Category 2](https://www.bristol.ac.uk/students/support/academic-advice/using-artificial-intelligence/): "You can use AI tools for spelling and grammar check. You can use it for rewording occasional phrases, but not sentences, large parts of text or paragraphs. It should not change the meaning or the context of your work".
+You should not use AI tools to substantively help write any assessed prose (i.e. written text, as opposed to code). For writing prose, AI use aligns with [Category 2](https://www.bristol.ac.uk/students/support/academic-advice/using-artificial-intelligence/){target="_blank"}: "You can use AI tools for spelling and grammar check. You can use it for rewording occasional phrases, but not sentences, large parts of text or paragraphs. It should not change the meaning or the context of your work".
 
 Uses of tools outside of the stated limitations may incur academic misconduct penalties. You are not obligated to use AI tools in your work, and no additional credit is awarded for their use. 
 
