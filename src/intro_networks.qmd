@@ -48,7 +48,7 @@ images.path <- paste0(path, "/images/")
 
     -   relationships
     
-    -   nteractions, or
+    -   interactions, or
     
     -   flows between nodes (actors, places, ...)
 
@@ -394,7 +394,7 @@ D -> A [ penwidth = 5]
 
 -   Nodes, aka vertices (singular: vertex)
 
--   Links or ties, edges or arcs
+-   Links, ties, edges
 
 -   Conventional data: actors and attributes
 

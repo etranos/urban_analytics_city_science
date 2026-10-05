@@ -2002,7 +2002,7 @@
     "href": "src/intro_networks.html#why-networks",
     "title": "Networks",
     "section": "Why Networks",
-    "text": "Why Networks\n\n\nNetworks are everywhere!\nThe focus is not on individual attributes, but…\n… on who is connected to whom.\nNetworks are about:\n\nrelationships\nnteractions, or\nflows between nodes (actors, places, …)\n\nSocial Network Analysis, Graph Theory, Network Science and Complexity Theory",
+    "text": "Why Networks\n\n\nNetworks are everywhere!\nThe focus is not on individual attributes, but…\n… on who is connected to whom.\nNetworks are about:\n\nrelationships\ninteractions, or\nflows between nodes (actors, places, …)\n\nSocial Network Analysis, Graph Theory, Network Science and Complexity Theory",
     "crumbs": [
       "Lectures",
       "Networks: an introduction"
@@ -2178,7 +2178,7 @@
     "href": "src/intro_networks.html#network-data-summary",
     "title": "Networks",
     "section": "Network data: summary",
-    "text": "Network data: summary\n\n\n4 possible combinations of network data\n\nDirectional and non-weighted (or binary)\nDirectional and weighted\nUndirected and non-weighted (or binary)\nUndirected and weighted\n\nNodes, aka vertices (singular: vertex)\nLinks or ties, edges or arcs\nConventional data: actors and attributes\nNetwork data: actors and their relations",
+    "text": "Network data: summary\n\n\n4 possible combinations of network data\n\nDirectional and non-weighted (or binary)\nDirectional and weighted\nUndirected and non-weighted (or binary)\nUndirected and weighted\n\nNodes, aka vertices (singular: vertex)\nLinks, ties, edges\nConventional data: actors and attributes\nNetwork data: actors and their relations",
     "crumbs": [
       "Lectures",
       "Networks: an introduction"
