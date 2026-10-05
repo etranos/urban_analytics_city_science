@@ -339,11 +339,11 @@
       margin-right: 0; 
     }
   </style>
-  <link href="../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+  <link href="../site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
   <script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
   <script src="../site_libs/viz-1.8.2/viz.js"></script>
   <link href="../site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
-  <script src="../site_libs/grViz-binding-1.0.11/grViz.js"></script>
+  <script src="../site_libs/grViz-binding-1.0.12/grViz.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -373,17 +373,18 @@
 <section id="why-networks" class="slide level2">
 <h2>Why Networks</h2>
 <div class="r-fit-text">
-<div>
 <ul>
-<li class="fragment"><p>Networks are everywhere!</p></li>
-<li class="fragment"><p>The focus is not on individual attributes, but…</p></li>
-<li class="fragment"><p>… on who is connected to whom.</p></li>
-<li class="fragment"><p>AKA networks are about <strong>relationships</strong></p></li>
-<li class="fragment"><p>Interactions, or</p></li>
-<li class="fragment"><p>flows between nodes (actors, places, …)</p></li>
-<li class="fragment"><p>Social Network Analysis, Graph Theory, Network Science and Complexity Theory</p></li>
+<li><p>Networks are everywhere!</p></li>
+<li><p>The focus is not on individual attributes, but…</p></li>
+<li><p>… on who is connected to whom.</p></li>
+<li><p>Networks are about:</p>
+<ul>
+<li><p>relationships</p></li>
+<li><p>nteractions, or</p></li>
+<li><p>flows between nodes (actors, places, …)</p></li>
+</ul></li>
+<li><p>Social Network Analysis, Graph Theory, Network Science and Complexity Theory</p></li>
 </ul>
-</div>
 </div>
 </section>
 <section id="scale-and-levels" class="slide level2">
@@ -425,14 +426,14 @@
 <td>B -- Meso</td>
 <td>Firms</td>
 <td>Clusters (Porter 2000)</td>
-<td>Regional economic intergration and functional polycentrism (e.g.&nbsp;Scott 2001: Boschma 2005)</td>
+<td>Regional economic integration and functional polycentrism (e.g.&nbsp;Scott 2001: Boschma 2005)</td>
 <td>Global inter-firm network (e.g.&nbsp;Cohen 1981)</td>
 </tr>
 <tr class="even">
 <td>C – Micro</td>
 <td>People</td>
-<td>A neighbourly economic suport support network (e.g.&nbsp;Wellman 1979)</td>
-<td>A local labou market (e.g.&nbsp;Granovetter 1974)</td>
+<td>A neighbourly economic support network (e.g.&nbsp;Wellman 1979)</td>
+<td>A local labour market (e.g.&nbsp;Granovetter 1974)</td>
 <td>The global economic elite (Sassen 1991)</td>
 </tr>
 </tbody>
@@ -572,8 +573,8 @@
 </small><p><small></small></p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-8694fa93f28bdbb4398a" style="width:960px;height:288px;"></div>
-<script type="application/json" data-for="htmlwidget-8694fa93f28bdbb4398a">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = neato]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B\nA -> C\nA -> D\nΒ -> C\nC -> D\nD -> C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-5f855fcc8927801fe4a0" style="width:960px;height:288px;"></div>
+<script type="application/json" data-for="htmlwidget-5f855fcc8927801fe4a0">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = neato]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B\nA -> C\nA -> D\nB -> C\nC -> D\nD -> C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -697,8 +698,8 @@
 <h2>2. Undirected, non-weighted networks</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-e135eea0a62c33957044" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-e135eea0a62c33957044">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B\nA -> C\nA -> D\nB -> A\nB -> C\nC -> A\nC -> B\nC -> D\nD -> A\nD -> C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-b2fb6aec18002bdc0149" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-b2fb6aec18002bdc0149">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B\nA -> C\nA -> D\nB -> A\nB -> C\nC -> A\nC -> B\nC -> D\nD -> A\nD -> C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -800,8 +801,8 @@
 <h2>3. Directed, weighted networks</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-2e2b8f2da6bfc7868e58" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-2e2b8f2da6bfc7868e58">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B [ penwidth = 3]\nA -> C [ penwidth = 1]\nA -> D [ penwidth = 5]\nB -> C [ penwidth = 1]\nC -> D [ penwidth = 6]\nD -> C [ penwidth = 7]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-be0ce5e5a761188ab00f" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-be0ce5e5a761188ab00f">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B [ penwidth = 3]\nA -> C [ penwidth = 1]\nA -> D [ penwidth = 5]\nB -> C [ penwidth = 1]\nC -> D [ penwidth = 6]\nD -> C [ penwidth = 7]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -923,8 +924,8 @@
 <h2>4. Undirected, weighted networks</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-43186bce6111948a95a8" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-43186bce6111948a95a8">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B [ penwidth = 3]\nA -> C [ penwidth = 1]\nA -> D [ penwidth = 5]\nB -> C [ penwidth = 1]\nB -> A [ penwidth = 3]\nC -> A [ penwidth = 1]\nC -> B [ penwidth = 1]\nC -> D [ penwidth = 6]\nD -> C [ penwidth = 6]\nD -> A [ penwidth = 5]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-4337135464741cde2097" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-4337135464741cde2097">{"x":{"diagram":"\ndigraph example1 {\n\n# a graph statement\ngraph [layout = circo]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D;      \n      \n# an edge statement\nedge [color = grey]\nA -> B [ penwidth = 3]\nA -> C [ penwidth = 1]\nA -> D [ penwidth = 5]\nB -> C [ penwidth = 1]\nB -> A [ penwidth = 3]\nC -> A [ penwidth = 1]\nC -> B [ penwidth = 1]\nC -> D [ penwidth = 6]\nD -> C [ penwidth = 6]\nD -> A [ penwidth = 5]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -963,8 +964,8 @@
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-65cd6aefcc43665323d8" style="width:960px;height:288px;"></div>
-<script type="application/json" data-for="htmlwidget-65cd6aefcc43665323d8">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-994acbfec4722e45d49a" style="width:960px;height:288px;"></div>
+<script type="application/json" data-for="htmlwidget-994acbfec4722e45d49a">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -979,8 +980,8 @@
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-4bf329f0078c6c5b28e7" style="width:960px;height:288px;"></div>
-<script type="application/json" data-for="htmlwidget-4bf329f0078c6c5b28e7">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-af86a5520b1628b1a4aa" style="width:960px;height:288px;"></div>
+<script type="application/json" data-for="htmlwidget-af86a5520b1628b1a4aa">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -997,8 +998,8 @@
 </small><p><small></small></p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-12e57a1c6d296137edb2" style="width:960px;height:268.8px;"></div>
-<script type="application/json" data-for="htmlwidget-12e57a1c6d296137edb2">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-3eb52758461a380db384" style="width:960px;height:268.8px;"></div>
+<script type="application/json" data-for="htmlwidget-3eb52758461a380db384">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n      \n# an edge statement\nedge [color = grey]\nA -- B\nB -- C\nB -- D\nB -- E\nC -- D\nE -- D\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1014,8 +1015,8 @@
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-0837d3e283258113171b" style="width:960px;height:192px;"></div>
-<script type="application/json" data-for="htmlwidget-0837d3e283258113171b">{"x":{"diagram":"\ndigraph  {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C;   \n      \n# an edge statement\nedge [color = grey]\nA -> B\nB -> A\nB -> C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-12ca48304ec7f8aadf95" style="width:960px;height:192px;"></div>
+<script type="application/json" data-for="htmlwidget-12ca48304ec7f8aadf95">{"x":{"diagram":"\ndigraph  {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C;   \n      \n# an edge statement\nedge [color = grey]\nA -> B\nB -> A\nB -> C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1039,8 +1040,8 @@
 </small><p><small></small></p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-bea4978ee1d8341cb050" style="width:960px;height:240px;"></div>
-<script type="application/json" data-for="htmlwidget-bea4978ee1d8341cb050">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\nnode [fillcolor = red]\nEGO\n\n# an edge statement\nedge [color = grey]\n\nEGO -- {A B C D E}\nB -- {C D E}\nC -- {E}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-82077c90dbac781854ab" style="width:960px;height:240px;"></div>
+<script type="application/json" data-for="htmlwidget-82077c90dbac781854ab">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\nnode [fillcolor = red]\nEGO\n\n# an edge statement\nedge [color = grey]\n\nEGO -- {A B C D E}\nB -- {C D E}\nC -- {E}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1085,7 +1086,14 @@
 </ul>
 </div>
 
-<img data-src="images/ratti.png" class="r-stretch"></section></section>
+<img data-src="images/ratti.png" class="r-stretch"></section>
+<section id="community-detection-3" class="slide level2">
+<h2>Community detection</h2>
+<ul>
+<li><p>Criticism: communities may be disconnected</p></li>
+<li><p>Improvement: From Louvain to Leiden <span class="citation" data-cites="traag2019louvain">(<a href="#/references" role="doc-biblioref" onclick="">Traag, Waltman, and Van Eck 2019</a>)</span></p></li>
+</ul>
+</section></section>
 <section>
 <section id="centrality-measures" class="title-slide slide level1 center">
 <h1>Centrality measures</h1>
@@ -1126,37 +1134,40 @@
 <section id="degree-centrality-for-weighted-networks" class="slide level2">
 <h2>Degree centrality for weighted networks</h2>
 <p><span class="math display">\[D_{i} = \sum_{j}^{N} w_{ij} = \sum_{j}^{N} w_{ji}\]</span></p>
-<p><span class="math inline">\(w\)</span> denotes the weight of the links</p>
+<ul>
+<li><p><span class="math inline">\(w\)</span> denotes the weight of the links</p></li>
+<li><p>More often known as <em>strength</em></p></li>
+</ul>
 </section>
-<section id="degree-cenralities" class="slide level2">
-<h2>Degree cenralities</h2>
+<section id="degree-centralities" class="slide level2">
+<h2>Degree centralities</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-d76e8102d924a6059288" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-d76e8102d924a6059288">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\nnode [fillcolor = red]\nEGO\n\n# an edge statement\nedge [color = grey]\n\nEGO -- {A B C D E}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-77bfb3cfa9e429750495" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-77bfb3cfa9e429750495">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\nnode [fillcolor = red]\nEGO\n\n# an edge statement\nedge [color = grey]\n\nEGO -- {A B C D E}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
-<section id="degree-cenralities-1" class="slide level2">
-<h2>Degree cenralities</h2>
+<section id="degree-centralities-1" class="slide level2">
+<h2>Degree centralities</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-b64b80f6c18974a3bb1d" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-b64b80f6c18974a3bb1d">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\n# an edge statement\nedge [color = grey]\n\nA -- B\nB -- C\nC -- D\nD -- E\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-8158227fa6f68e74656b" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-8158227fa6f68e74656b">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = dot,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\n# an edge statement\nedge [color = grey]\n\nA -- B\nB -- C\nC -- D\nD -- E\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
-<section id="degree-cenralities-2" class="slide level2">
-<h2>Degree cenralities</h2>
+<section id="degree-centralities-2" class="slide level2">
+<h2>Degree centralities</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-9c264c8375fba9295e51" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-9c264c8375fba9295e51">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = circo,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\n# an edge statement\nedge [color = grey]\n\nA -- B\nB -- C\nC -- D\nD -- E\nE -- A\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-1e607128f498539a4332" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-1e607128f498539a4332">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = circo,\n      rankdir = LR]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E\n\n# an edge statement\nedge [color = grey]\n\nA -- B\nB -- C\nC -- D\nD -- E\nE -- A\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
-<section id="degree-cenralities-3" class="slide level2">
-<h2>Degree cenralities</h2>
+<section id="degree-centralities-3" class="slide level2">
+<h2>Degree centralities</h2>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -1227,25 +1238,27 @@
 <h2>Betweenness centrality</h2>
 <ul>
 <li><p>Which nodes control information flows</p></li>
-<li><p>How many geodesic links between actors <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> contain actor <span class="math inline">\(k\)</span>?</p></li>
+<li><p>How many geodesic paths between actors <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> contain actor <span class="math inline">\(k\)</span>?</p></li>
 </ul>
 <p><span class="math inline">\(B_{k} = \sum_{i \not=j \not=k} \frac{g_{ij}(k)}{g_{ij}}\)</span></p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-e0739178b6ef7b67e9da" style="width:960px;height:192px;"></div>
-<script type="application/json" data-for="htmlwidget-e0739178b6ef7b67e9da">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = BT]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E; G; H; I; J; K\n\nnode [fillcolor = red]\nF\n\n# an edge statement\nedge [color = grey]\n\nA -- {B C D E}\nB -- {C D E}\nC -- {E}\n\nF -- {A H I J K}\nG -- { I J K }\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-5d580765b770960d6d7b" style="width:960px;height:192px;"></div>
+<script type="application/json" data-for="htmlwidget-5d580765b770960d6d7b">{"x":{"diagram":"\ngraph {\n\n# a graph statement\ngraph [layout = neato,\n      rankdir = BT]\n\n# a node statement\nnode [shape = circle,\n      style = filled,\n      color = grey,\n      fillcolor = orange]\nA; B; C; D; E; G; H; I; J; K\n\nnode [fillcolor = red]\nF\n\n# an edge statement\nedge [color = grey]\n\nA -- {B C D E}\nB -- {C D E}\nC -- {E}\n\nF -- {A H I J K}\nG -- { I J K }\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
 <section id="eigenvector-centrality" class="slide level2">
 <h2>Eigenvector centrality</h2>
+<div class="r-fit-text">
 <ul>
 <li><p>Not all connections are equal</p></li>
 <li><p>Connections to more central vertices are more important than connections to less central ones</p></li>
 <li><p>It is still important to have a large number of connections, but a node with fewer and more important connections will end up being more central than a node with more and less important links</p></li>
 <li><p>Global structure of the network: both direct links and shortest paths</p></li>
-<li><p>Eigenvector of the adjacency matrix associated with the larger eigenvalue</p></li>
+<li><p>Eigenvector of the adjacency matrix associated with the largest eigenvalue</p></li>
 </ul>
+</div>
 </section>
 <section id="pagerank-centrality" class="slide level2">
 <h2>PageRank centrality</h2>
@@ -1305,6 +1318,9 @@ Neal, Zachary P, and Céline Rozenblat. 2021. <em>Handbook of Cities and Network
 </div>
 <div id="ref-ratti2010redrawing" class="csl-entry" role="listitem">
 Ratti, Carlo, Stanislav Sobolevsky, Francesco Calabrese, Clio Andris, Jonathan Reades, Mauro Martino, Rob Claxton, and Steven H Strogatz. 2010. <span>“Redrawing the Map of Great Britain from a Network of Human Interactions.”</span> <em>PloS One</em> 5 (12): e14248.
+</div>
+<div id="ref-traag2019louvain" class="csl-entry" role="listitem">
+Traag, Vincent A, Ludo Waltman, and Nees Jan Van Eck. 2019. <span>“From Louvain to Leiden: Guaranteeing Well-Connected Communities.”</span> <em>Scientific Reports</em> 9 (1): 5233.
 </div>
 <div id="ref-tranos2015international" class="csl-entry" role="listitem">
 Tranos, Emmanouil, Masood Gheasi, and Peter Nijkamp. 2015. <span>“International Migration: A Global Complex Network.”</span> <em>Environment and Planning B: Planning and Design</em> 42 (1): 4–22.

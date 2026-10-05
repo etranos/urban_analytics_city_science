@@ -37,21 +37,23 @@ images.path <- paste0(path, "/images/")
 ## Why Networks
 
 ::: r-fit-text
-::: incremental
+
 -   Networks are everywhere!
 
 -   The focus is not on individual attributes, but...
 
 -   ... on who is connected to whom.
 
--   AKA networks are about **relationships**
+-   Networks are about:
 
--   Interactions, or
-
--   flows between nodes (actors, places, ...)
+    -   relationships
+    
+    -   nteractions, or
+    
+    -   flows between nodes (actors, places, ...)
 
 -   Social Network Analysis, Graph Theory, Network Science and Complexity Theory
-:::
+
 :::
 
 ## Scale and levels
@@ -62,8 +64,8 @@ images.path <- paste0(path, "/images/")
 |---------------|---------------|---------------|---------------|---------------|
 |                                           |        | 1 -- Local                                                        | 2 -- Regional                                                                              | 3 -- Global                                 |
 | A \-- Macro                               | Cities | City as a whole entity                                            | Central place system [@christaller1966central]                                             |                                             |
-| B \-- Meso                                | Firms  | Clusters (Porter 2000)                                            | Regional economic intergration and functional polycentrism (e.g. Scott 2001: Boschma 2005) | Global inter-firm network (e.g. Cohen 1981) |
-| C -- Micro                                | People | A neighbourly economic suport support network (e.g. Wellman 1979) | A local labou market (e.g. Granovetter 1974)                                               | The global economic elite (Sassen 1991)     |
+| B \-- Meso                                | Firms  | Clusters (Porter 2000)                                            | Regional economic integration and functional polycentrism (e.g. Scott 2001: Boschma 2005) | Global inter-firm network (e.g. Cohen 1981) |
+| C -- Micro                                | People | A neighbourly economic support network (e.g. Wellman 1979) | A local labour market (e.g. Granovetter 1974)                                               | The global economic elite (Sassen 1991)     |
 
 </small></small>
 
@@ -163,7 +165,7 @@ edge [color = grey]
 A -> B
 A -> C
 A -> D
-Β -> C
+B -> C
 C -> D
 D -> C
 }")
@@ -641,6 +643,13 @@ Redrawing the Map of Great Britain from a Network of Human Interactions [@ratti2
 
 ![](images/ratti.png)
 
+## Community detection
+
+- Criticism: communities may be disconnected
+
+- Improvement: From Louvain to Leiden [@traag2019louvain]
+
+
 # Centrality measures
 
 ------------------------------------------------------------------------
@@ -683,9 +692,11 @@ Redrawing the Map of Great Britain from a Network of Human Interactions [@ratti2
 
 $$D_{i} = \sum_{j}^{N} w_{ij} = \sum_{j}^{N} w_{ji}$$
 
-$w$ denotes the weight of the links
+- $w$ denotes the weight of the links
 
-## Degree cenralities
+- More often known as *strength*
+
+## Degree centralities
 
 ```{r, fig.height=5, fig.align='center'}
 grViz("
@@ -712,7 +723,7 @@ EGO -- {A B C D E}
 }")
 ```
 
-## Degree cenralities
+## Degree centralities
 
 ```{r, fig.height=5, fig.align='center'}
 grViz("
@@ -739,7 +750,7 @@ D -- E
 }")
 ```
 
-## Degree cenralities
+## Degree centralities
 
 ```{r, fig.height=5, fig.align='center'}
 grViz("
@@ -767,7 +778,7 @@ E -- A
 }")
 ```
 
-## Degree cenralities
+## Degree centralities
 
 |           | A   | B   | C   | D   | out-degree |
 |-----------|-----|-----|-----|-----|------------|
@@ -795,7 +806,7 @@ E -- A
 
 -   Which nodes control information flows
 
--   How many geodesic links between actors $i$ and $j$ contain actor $k$?
+-   How many geodesic paths between actors $i$ and $j$ contain actor $k$?
 
 $B_{k} = \sum_{i \not=j \not=k} \frac{g_{ij}(k)}{g_{ij}}$
 
@@ -832,6 +843,8 @@ G -- { I J K }
 
 ## Eigenvector centrality
 
+::: r-fit-text
+
 -   Not all connections are equal
 
 -   Connections to more central vertices are more important than connections to less central ones
@@ -840,7 +853,9 @@ G -- { I J K }
 
 -   Global structure of the network: both direct links and shortest paths
 
--   Eigenvector of the adjacency matrix associated with the larger eigenvalue
+-   Eigenvector of the adjacency matrix associated with the largest eigenvalue
+
+:::
 
 ## PageRank centrality
 
