@@ -47,7 +47,6 @@ library(igraph)
 library(knitr)
 library(corrplot)
 library(tidyverse)
-library(geojsonio)
 library(stplanr)
 library(leaflet)
 library(rprojroot)
@@ -155,14 +154,14 @@ Also, take a note of the `commuting` object, which includes multiple types of co
 
 3.  one only for bicycle flows.
 
-```{r seperate commuting objects, include=TRUE, results= 'markup', message=FALSE}
+```{r separate commuting objects, include=TRUE, results= 'markup', message=FALSE}
 
 commuting.all <- commuting %>%
   select(`Area of usual residence`,
                 `Area of workplace`,
                 `All categories: Method of travel to work`) %>%
   rename(o = `Area of usual residence`,     # Area of usual residence is annoyingly
-         d = `Area of workplace`,           # long, so I am renaiming theses columns.
+         d = `Area of workplace`,           # long, so I am remaining theses columns.
          weight = `All categories: Method of travel to work`)
 
 # just FYI this is how you could have achieved the same output using base R
@@ -179,10 +178,10 @@ commuting.train <- commuting %>%
          `Train`) %>%
   rename(o = `Area of usual residence`,
          d = `Area of workplace`,
-         weight = `All categories: Method of travel to work`) %>%
+         weight = `Train`) %>%
   # The below code drops all the lines with 0 train flows in order to exclude
   # these edges from the network.
-  filter(Train!=0)
+  filter(weight!=0)
 
 commuting.bicycle <- commuting %>%
   select(`Area of usual residence`,
@@ -191,10 +190,10 @@ commuting.bicycle <- commuting %>%
                 `Bicycle`) %>%
   rename(o = `Area of usual residence`,
          d = `Area of workplace`,
-         weight = `All categories: Method of travel to work`) %>%
+         weight = `Bicycle`) %>%
   # The below code drops all the lines with 0 bicycle flows in order to exclude
   # these edges from the network.
-  filter(Bicycle!=0)
+  filter(weight!=0)
 ```
 
 Unless you know the local authority codes by hard, it might be useful to also add the corresponding local authority names. These can be easily obtained from the [ONS's Open Geography portal](https://geoportal.statistics.gov.uk/datasets/1b4fb79cc4974048919daf6e1fde5073_0/explore){target="_blank"}. The below code directly downloads a `GeoJSON` file with the local authorities in England and Wales. If you don't know what a `GeoJSON` file is, have a look [here](https://en.wikipedia.org/wiki/GeoJSON){target="_blank"}. Boundary data can also be obtained by [UK Data Service](https://borders.ukdataservice.ac.uk/easy_download.html){target="_blank"}.
@@ -269,8 +268,8 @@ d.all <- diameter(net.all, directed = TRUE, weights = NA)
 d.all
 
 # Average path length
-mean_ditst.all <- mean_distance(net.all)
-mean_ditst.all
+mean_dist.all <- mean_distance(net.all, weights = NA)
+mean_dist.all
 
 # Network density
 dens.all <- edge_density(net.all)
@@ -311,18 +310,18 @@ head(out.degree)
 degree <- degree(net.all, mode = "all")
 head(degree)
 
-# The function graph.strength() calculates the weighted degree centrality.
+# The function strength() calculates the weighted degree centrality.
 
-# Weighed in-degree centrality.
-w.in.degree <- graph.strength(net.all, mode = "in")
+# Weighted in-degree centrality.
+w.in.degree <- strength(net.all, mode = "in")
 head(w.in.degree)
 
-# Weighed out-degree centrality.
-w.out.degree <- graph.strength(net.all, mode = "out")
+# Weighted out-degree centrality.
+w.out.degree <- strength(net.all, mode = "out")
 head(w.out.degree)
 
-# Weighed degree centrality.
-w.degree <- graph.strength(net.all, mode = "all")
+# Weighted degree centrality.
+w.degree <- strength(net.all, mode = "all")
 head(w.degree)
 
 # The function betweenness() calculates betweenness centrality. As before.
@@ -333,7 +332,7 @@ head(btwnss)
 eigen <- eigen_centrality(net.all)
 
 # Be careful, eigen has a more complicated structure. Use ?eigen_central to read more. 
-# Before goin. forward, let's see the structure of eigen.
+# Before going forward, let's see the structure of eigen.
 str(eigen)
 
 # We are interested in eigen$vector.
@@ -357,10 +356,10 @@ centralities <- tibble(
   # would have brought a list.
   in.degree = degree(net.all, mode = "in"),
   out.degree = degree(net.all, mode = "out"),
-  degree = degree(net.all, mode = "in"),
-  w.in.degree = graph.strength(net.all, mode = "in"),
-  w.out.degree = graph.strength(net.all, mode = "out"),
-  w.degree = graph.strength(net.all, mode = "all"),
+  degree = degree(net.all, mode = "all"),
+  w.in.degree = strength(net.all, mode = "in"),
+  w.out.degree = strength(net.all, mode = "out"),
+  w.degree = strength(net.all, mode = "all"),
   btwnss = betweenness(net.all, weights = NA),
   eigen = eigen_centrality(net.all)$vector,  # note the $vector
   prank = page_rank(net.all, directed = T)$vector) %>% 
@@ -407,7 +406,7 @@ colnames(ranks) <- paste("r", colnames(ranks), sep = "_")
 ```
 
 ```{block, type='alert alert-warning'}
-**Question**: Can you quickly compare the `ranks` with the `cetrnalities` object
+**Question**: Can you quickly compare the `ranks` with the `centralities` object
 based on the rankings?
 ```
 
@@ -437,7 +436,7 @@ centralities %>% kable(caption = "Centralities") %>%
 
 ## Compare centralities
 
-The below code provides a corregram of the different centrality measures.
+The below code provides a correlograms of the different centrality measures.
 
 ```{r corrgram, include=TRUE, results= 'markup', message=FALSE}
 cor.mat <- cor(centralities[,c(2:10)])
@@ -554,7 +553,7 @@ q <- quantile(strength(net.all), .9)
 low_nodes <- V(net.all)[strength(net.all) < q] # 108659 is the 90% percentile. Feel free to play with different numbers
 
 # And this is the network with the 10% of the most central nodes
-net.all.central <- delete.vertices(net.all, low_nodes)
+net.all.central <- delete_vertices(net.all, low_nodes)
 
 # The below uses the node degree centrality to plot the node size.
 # Pay attention to the 0.0001 factor.
@@ -579,7 +578,7 @@ For the next time:
 
 1. spend some time browsing the `igraph`'s manual,
 
-2. search for code online to `plot large netwoks in R using igraph`, and
+2. search for code online to `plot large networks in R using igraph`, and
 
 3. use the following tutorials
 
@@ -607,7 +606,7 @@ decide to plot a subset of the network based on some network characteristics.
 
 ## Mapping
 
-Until now we focused mostly on the topology of the network and we ignored its spatial dimension. However, this is an important attribute of the commuting network and we should necessarily consider it and incorporate it in our analysis. To begin with we will map these commuting flows. Bare in mind that this is not a trivial process as, in essence, we need to attach the geographical coordinates to the network nodes and plot the network based on these coordinates. Given the size of our network this might be computationally expensive. It is also challenging to create a meaningful map given the size of the network.
+Until now we focused mostly on the topology of the network and we ignored its spatial dimension. However, this is an important attribute of the commuting network and we should necessarily consider it and incorporate it in our analysis. To begin with we will map these commuting flows. Bear in mind that this is not a trivial process as, in essence, we need to attach the geographical coordinates to the network nodes and plot the network based on these coordinates. Given the size of our network this might be computationally expensive. It is also challenging to create a meaningful map given the size of the network.
 
 The local authorities spatial object is necessary in order to use the `od2line()` function from the `stplanr` package. This is a very useful function transforms origin to destination (OD) tables to linear spatial objects. In order for this function to work we need the above spatial object with the zones of the origin and destination flows. Importantly it needs to only include the zone codes (i.e. the local authority codes), which should match with the origin and destination codes.This is the `la` spatial object of the local authorities in England and Wales, which has already been loaded in R.
 
@@ -630,7 +629,7 @@ ggplot(commuting.all,
        aes(x=weight)) +
   geom_histogram() +
   geom_vline(aes(xintercept=mean(weight)), # This line of code adds a vertical line to represent the mean
-             color="blue", linetype="dashed", size=1)
+             color="blue", linetype="dashed", linewidth = 1)
 ```
 
 As you can see the flow data is very skewed. So, let's truncate the data and plot a histogram for flows between origin and destinations will less than 1000 people.
@@ -680,7 +679,7 @@ class(travel_network)
 plot(travel_network)
 ```
 
-This is a naive plot of the spatial network. We can guess the shape of England and Wales, but this is like a *hairball* network and far from being useful. In order to produce a more useful visualisation we will employ the `leaflet` [package](https://rstudio.github.io/leaflet/){target="_blank"}, which produces interactive maps using `JaveScript` Libraries.
+This is a naive plot of the spatial network. We can guess the shape of England and Wales, but this is like a *hairball* network and far from being useful. In order to produce a more useful visualisation we will employ the `leaflet` [package](https://rstudio.github.io/leaflet/){target="_blank"}, which produces interactive maps using `JavaScript` Libraries.
 
 ```{r leaflet, include=TRUE, results= 'markup', message=FALSE}
 # this is the colour pallet we are going to use based on 5 quantiles

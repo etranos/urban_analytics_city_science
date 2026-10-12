@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Emmanouil Tranos">
+<meta name="dcterms.date" content="2026-10-12">
+
+<title>APIs and urban data – Urban analytics and city science</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../src/apis.html">Practicals</a></li><li class="breadcrumb-item"><a href="../src/apis.html">APIs and urban data</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Urban analytics and city science</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/etranos/urban_analytics_city_science" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Content</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/description.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit description and aims</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/readings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Key readings</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assessment</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lectures</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/why_cities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cities, a very very brief introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/smart_cities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Smart cities, urban big data, digital twins and other buzz terms</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/intro_networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Networks: an introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/network_science.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Network science, urban laws and scaling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/transport_geography.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Methods in transport geography</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/diversity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Diversity in cities</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Practicals</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/apis.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">APIs and urban data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/network_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Network analysis practical: networks of cities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/street_networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Street network analysis practical: networks within cities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/network_models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Network models in practice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/sim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial interaction modelling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../src/accessibility_full.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Accessibility in practice</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unit leader</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://etranos.info/" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Professor Emmanouil Tranos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#aims-of-the-practical" id="toc-aims-of-the-practical" class="nav-link active" data-scroll-target="#aims-of-the-practical">Aims of the practical</a></li>
+  <li><a href="#apis" id="toc-apis" class="nav-link" data-scroll-target="#apis">APIs</a></li>
+  <li><a href="#json-file-format" id="toc-json-file-format" class="nav-link" data-scroll-target="#json-file-format">JSON file format</a></li>
+  <li><a href="#practical-example-with-api" id="toc-practical-example-with-api" class="nav-link" data-scroll-target="#practical-example-with-api">Practical example with API</a>
+  <ul class="collapse">
+  <li><a href="#anatomy-of-an-api-request" id="toc-anatomy-of-an-api-request" class="nav-link" data-scroll-target="#anatomy-of-an-api-request">Anatomy of an API request</a></li>
+  </ul></li>
+  <li><a href="#accessing-apis-using-existing-r-packages" id="toc-accessing-apis-using-existing-r-packages" class="nav-link" data-scroll-target="#accessing-apis-using-existing-r-packages">Accessing APIs using existing <code>R</code> packages</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../src/apis.html">Practicals</a></li><li class="breadcrumb-item"><a href="../src/apis.html">APIs and urban data</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">APIs and urban data</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Emmanouil Tranos </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 12, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="aims-of-the-practical" class="level2">
+<h2 class="anchored" data-anchor-id="aims-of-the-practical">Aims of the practical</h2>
+<ul>
+<li><p>Understand the technicalities and the breadth of the urban data landscape</p></li>
+<li><p>Understand the <em>messiness</em> of real world (urban) data</p></li>
+<li><p>Access programmatically urban data and understand the benefits of such data access practice.</p></li>
+</ul>
+</section>
+<section id="apis" class="level2">
+<h2 class="anchored" data-anchor-id="apis">APIs</h2>
+<p>Application Programming Interface (APIs) represent a ‘gate’ or otherwise a platform that enables a client (that is you) to interact with a server (for example <a href="https://opendata.bristol.gov.uk/" target="_blank">opendata.bristol.gov.uk</a>). According to <span class="citation" data-cites="amazonWhatAPI">AWS (<a href="#ref-amazonWhatAPI" role="doc-biblioref">2022</a>)</span>:</p>
+<blockquote class="blockquote">
+<p>In the context of APIs, the word Application refers to any software with a distinct function. Interface can be thought of as a contract of service between two applications. This contract defines how the two communicate with each other using requests and responses. Their API documentation contains information on how developers are to structure those requests and responses.</p>
+</blockquote>
+<p>The client’s software (this might be R for example) sends a request to the server requesting specific data. The response is the data the client asked.</p>
+<p>More commonly, the client might be a mobile phone app (e.g.&nbsp;train network status app) and the server is the network operator’s server.</p>
+<p>APIs can be private or public types. For more information, see the description from <span class="citation" data-cites="amazonWhatAPI">AWS (<a href="#ref-amazonWhatAPI" role="doc-biblioref">2022</a>)</span> <a href="https://aws.amazon.com/what-is/api/#:~:text=API%20stands%20for%20Application%20Programming,other%20using%20requests%20and%20responses." target="_blank">here</a>.</p>
+</section>
+<section id="json-file-format" class="level2">
+<h2 class="anchored" data-anchor-id="json-file-format">JSON file format</h2>
+<p>Although some urban data can be downloaded as a tidy<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> table in a <code>.csv</code> format, most APIs will ship data to you in a <code>JSON</code> format.</p>
+<p>According to the official JSON website <span class="citation" data-cites="jsonJSON">(<a href="#ref-jsonJSON" role="doc-biblioref">JSON</a>)</span>, JSON</p>
+<blockquote class="blockquote">
+<p>is a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate. It is based on a subset of the JavaScript Programming Language Standard ECMA-262 3rd Edition - December 1999. JSON is a text format that is completely language independent but uses conventions that are familiar to programmers of the C-family of languages, including C, C++, C#, Java, JavaScript, Perl, Python, and many others. These properties make JSON an ideal data-interchange language.</p>
+</blockquote>
+<p>It adopts a hierarchical structure such as <code>attribute:value</code> instead of the fixed structure of tidy data. Following <span class="citation" data-cites="singleton2017urban">Singleton, Spielman, and Folch (<a href="#ref-singleton2017urban" role="doc-biblioref">2017</a>)</span>, such <code>attribute:value</code> pairs might be:</p>
+<ul>
+<li><p><code>"mean income": 50000</code></p></li>
+<li><p><code>"internet speed": 35</code></p></li>
+<li><p><code>"jobs": 15000</code></p></li>
+</ul>
+<p>These attributes might be organised hierarchically. In JSON, curly brackets <code>{}</code> enclose an object (a set of <code>attribute:value</code> pairs) and square brackets <code>[]</code> enclose an array (an ordered list of values or objects):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"city"</span><span class="fu">:</span> <span class="st">"Bristol"</span><span class="fu">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"mean income"</span><span class="fu">:</span> <span class="dv">27000</span><span class="fu">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"internet speed"</span><span class="fu">:</span> <span class="dv">55</span><span class="fu">,</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"jobs"</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">"2019"</span><span class="fu">:</span> <span class="dv">15000</span><span class="fu">,</span> <span class="dt">"2020"</span><span class="fu">:</span> <span class="dv">14000</span><span class="fu">}</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"city"</span><span class="fu">:</span> <span class="st">"Newcastle"</span><span class="fu">,</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"mean income"</span><span class="fu">:</span> <span class="dv">25000</span><span class="fu">,</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"internet speed"</span><span class="fu">:</span> <span class="dv">45</span><span class="fu">,</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"jobs"</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">"2019"</span><span class="fu">:</span> <span class="dv">11000</span><span class="fu">,</span> <span class="dt">"2020"</span><span class="fu">:</span> <span class="dv">10000</span><span class="fu">}</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Although this format is more verbose (attribute names are repeated) it is more flexible (not all observations need to have all attributes) <span class="citation" data-cites="singleton2017urban">(<a href="#ref-singleton2017urban" role="doc-biblioref">Singleton, Spielman, and Folch 2017</a>)</span></p>
+</section>
+<section id="practical-example-with-api" class="level2">
+<h2 class="anchored" data-anchor-id="practical-example-with-api">Practical example with API</h2>
+<p><a href="https://opendata.bristol.gov.uk/search" target="_blank">opendata.bristol.gov.uk</a> offers a lot of data about Bristol. For this example, let’s try to work with <a href="https://opendata.bristol.gov.uk/datasets/ca24dc2e210940e0aa9ad3a4785a591b_17/explore" target="_blank">Jobs by Ward (by industry) in Bristol 2020</a>. You can also access these data by searching for ‘Jobs by industry in Bristol by Ward’. Use the filter icon to filter for 2020 data. As you can see, this is a small data set with <span class="math inline">\(34\)</span> observations representing Bristol’s <span class="math inline">\(34\)</span> Wards. You can visualise these data with the <code>Table</code> tab on the right hand-side and even download a <code>.csv</code> with these data. To begin with, do both of these things.</p>
+<p>Then, go to the <code>More Info</code> icon, scroll down on the left hand side and click on <code>I want to use this</code>. You can find the relevant link under <code>View API Resources</code>. We are interested in the <code>Filtered GeoService</code>. You can view (<code>View</code>) the data in this format and also copy the link to access these data <em>programmatically</em> – this is what we do below. The <em>weird</em> output on your screen is the data you requested in <code>JSON</code> format. If you carefully read the URL from right to left you can see some logic on how this URL is built.</p>
+<div class="cell" type="alert alert-warning">
+<div class="alert alert-warning">
+<p>
+<strong>Question</strong>: Why should you go through all these efforts to build an API request and download the data in <code>JSON</code> file format instead of just downloading a <code>.csv</code> file?
+</p>
+</div>
+</div>
+<p>So, let’s try to access these data programmatically. First, we need to load the relevant <code>R</code> packages</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To access the data, we are going to use the function <code>fromJSON()</code> from the <code>jsonlite</code> package. Please check the syntax of this function as well as the other function of this package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">fromJSON</span>(<span class="st">"https://maps2.bristol.gov.uk/server2/rest/services/ext/ward_profiles/MapServer/17/query?f=json&amp;where=(YEAR%20IN%20('2020'))&amp;outFields=*"</span>, <span class="at">flatten =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Please note</strong> that the above API link is different than the one used in previous years of this practical, which pointed to a different server (<code>services2.arcgis.com</code>) and returned the data with different column names. The code below has been adjusted to the current link. If the link changes again, you will need to tweak the code below. This is an example of how ephemeral data structures can be!</p>
+<section id="anatomy-of-an-api-request" class="level3">
+<h3 class="anchored" data-anchor-id="anatomy-of-an-api-request">Anatomy of an API request</h3>
+<p>Let’s break down the URL we used above. It has two parts, separated by <code>?</code>:</p>
+<ul>
+<li><p>The <strong>endpoint</strong>, i.e.&nbsp;<em>where</em> the data live: <code>https://maps2.bristol.gov.uk/server2/rest/services/ext/ward_profiles/MapServer/17/query</code>. This points to a specific service (<code>ward_profiles</code>), a specific layer within it (<code>17</code>, which is the <em>Jobs by industry in Bristol (by Ward)</em> table) and the operation we want to perform (<code>query</code>).</p></li>
+<li><p>The <strong>query parameters</strong>, i.e.&nbsp;<em>what</em> we want from these data. These are <code>name=value</code> pairs separated by <code>&amp;</code>:</p>
+<ul>
+<li><p><code>f=json</code>: the format of the response. Here we ask for <code>JSON</code>.</p></li>
+<li><p><code>where=(YEAR%20IN%20('2020'))</code>: which rows to return. <code>%20</code> is the URL-encoded version of a space, so this reads <code>where=(YEAR IN ('2020'))</code>. This layer contains data for several years (2015 onwards), so this parameter asks only for the 2020 rows.</p></li>
+<li><p><code>outFields=*</code>: which columns (fields) to return. <code>*</code> means all of them.</p></li>
+</ul></li>
+</ul>
+<p>Characters such as <code>=</code>, <code>'</code> or spaces have special meaning in a URL, so they need to be <em>encoded</em> when used inside a parameter value: <code>=</code> becomes <code>%3D</code>, <code>'</code> becomes <code>%27</code> and a space becomes <code>%20</code>.</p>
+<p>By changing these parameters we can ask the server to do some of the work for us. For example, the below request asks only for the <code>WARD_NAME</code> and <code>RETAIL</code> columns, only for the Central ward in 2020 (<code>where=WARD_NAME='Central' AND YEAR='2020'</code>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.central <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">fromJSON</span>(<span class="st">"https://maps2.bristol.gov.uk/server2/rest/services/ext/ward_profiles/MapServer/17/query?f=json&amp;where=WARD_NAME%3D%27Central%27%20AND%20YEAR%3D%272020%27&amp;outFields=WARD_NAME,RETAIL"</span>, <span class="at">flatten =</span> T)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df.central</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$displayFieldName
+[1] "WARD_NAME"
+
+$fieldAliases
+$fieldAliases$WARD_NAME
+[1] "Ward Name"
+
+$fieldAliases$RETAIL
+[1] "Retail"
+
+
+$fields
+       name                 type     alias length
+1 WARD_NAME  esriFieldTypeString Ward Name     30
+2    RETAIL esriFieldTypeInteger    Retail     NA
+
+$features
+  attributes.WARD_NAME attributes.RETAIL
+1              Central              4500</code></pre>
+</div>
+</div>
+<p>This is much smaller than downloading the whole data set and filtering it in <code>R</code>, which matters when data sets are large. The parameters each API accepts are described in its documentation. For the ArcGIS services used here, see the <a href="https://developers.arcgis.com/rest/services-reference/enterprise/query-feature-service-layer/" target="_blank">ArcGIS REST API documentation</a>.</p>
+<div class="cell" type="alert alert-warning">
+<div class="alert alert-warning">
+<p>
+<strong>Question</strong>: How would you change the URL to get the same data for 2024?
+</p>
+</div>
+</div>
+<p>We now have an <code>R</code> object called <code>df</code>. Let’s try to see what it looks like.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "list"</code></pre>
+</div>
+</div>
+<p>So, this is a list. If you need a reminder for what a list is, see <a href="https://adv-r.hadley.nz/vectors-chap.html#lists">here</a>. Now the difficult part. Let’s try to figure out the structure of this <code>JSON</code> formatted data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 4
+ $ displayFieldName: chr "WARD_NAME"
+ $ fieldAliases    :List of 22
+  ..$ OBJECTID                  : chr "OBJECTID"
+  ..$ WARD_CODE                 : chr "Ward Code"
+  ..$ WARD_NAME                 : chr "Ward Name"
+  ..$ YEAR                      : chr "Year"
+  ..$ AG_FORESTRY_FISHING       : chr "Agriculture, forestry &amp; fishing"
+  ..$ MINING_UTILITIES          : chr "Mining, quarrying &amp; utilities"
+  ..$ MANUFACTURING             : chr "Manufacturing"
+  ..$ CONSTRUCTION              : chr "Construction"
+  ..$ MOTOR_TRADES              : chr "Motor trades"
+  ..$ WHOLESALE                 : chr "Wholesale"
+  ..$ RETAIL                    : chr "Retail"
+  ..$ TRANSPORT_STORAGE         : chr "Transport &amp; storage (inc postal)"
+  ..$ ACCOMMODATION_FOOD        : chr "Accommodation &amp; food services"
+  ..$ INFORMATION_COMMUNICATION : chr "Information &amp; communication"
+  ..$ FINANCIAL_INSURANCE       : chr "Financial &amp; insurance"
+  ..$ PROPERTY                  : chr "Property"
+  ..$ PROFESSIONAL_SCI_TECH     : chr "Professional, scientific &amp; technical"
+  ..$ BUSINESS_ADMIN_SUPPORT    : chr "Business administration &amp; support services"
+  ..$ PUBLIC_ADMIN_DEFENCE      : chr "Public administration &amp; defence"
+  ..$ EDUCATION                 : chr "Education"
+  ..$ HEALTH                    : chr "Health"
+  ..$ ARTS_ENTS_RECREATION_OTHER: chr "Arts, entertainment, recreation &amp; other services"
+ $ fields          :'data.frame':   22 obs. of  4 variables:
+  ..$ name  : chr [1:22] "OBJECTID" "WARD_CODE" "WARD_NAME" "YEAR" ...
+  ..$ type  : chr [1:22] "esriFieldTypeOID" "esriFieldTypeString" "esriFieldTypeString" "esriFieldTypeString" ...
+  ..$ alias : chr [1:22] "OBJECTID" "Ward Code" "Ward Name" "Year" ...
+  ..$ length: int [1:22] NA 10 30 4 NA NA NA NA NA NA ...
+ $ features        :'data.frame':   34 obs. of  22 variables:
+  ..$ attributes.OBJECTID                  : int [1:34] 171 172 173 174 175 176 177 178 179 180 ...
+  ..$ attributes.WARD_CODE                 : chr [1:34] "E05010885" "E05010886" "E05010887" "E05010888" ...
+  ..$ attributes.WARD_NAME                 : chr [1:34] "Ashley" "Avonmouth and Lawrence Weston" "Bedminster" "Bishopston and Ashley Down" ...
+  ..$ attributes.YEAR                      : chr [1:34] "2020" "2020" "2020" "2020" ...
+  ..$ attributes.AG_FORESTRY_FISHING       : int [1:34] 0 10 0 0 0 0 0 0 0 0 ...
+  ..$ attributes.MINING_UTILITIES          : int [1:34] 15 700 10 0 10 0 30 2250 0 0 ...
+  ..$ attributes.MANUFACTURING             : int [1:34] 225 1500 1750 50 150 900 500 500 50 25 ...
+  ..$ attributes.CONSTRUCTION              : int [1:34] 175 1500 600 100 500 600 175 1250 600 400 ...
+  ..$ attributes.MOTOR_TRADES              : int [1:34] 50 1000 450 75 125 350 600 200 10 40 ...
+  ..$ attributes.WHOLESALE                 : int [1:34] 250 4000 1000 45 100 500 150 900 50 35 ...
+  ..$ attributes.RETAIL                    : int [1:34] 450 1000 700 200 700 200 1500 4500 450 700 ...
+  ..$ attributes.TRANSPORT_STORAGE         : int [1:34] 125 5000 175 10 20 350 600 1750 40 15 ...
+  ..$ attributes.ACCOMMODATION_FOOD        : int [1:34] 700 250 400 500 100 175 400 7000 1000 800 ...
+  ..$ attributes.INFORMATION_COMMUNICATION : int [1:34] 800 175 350 175 225 400 700 11000 500 800 ...
+  ..$ attributes.FINANCIAL_INSURANCE       : int [1:34] 300 15 5 10 1500 10 15 8000 40 600 ...
+  ..$ attributes.PROPERTY                  : int [1:34] 250 125 75 20 15 20 35 2000 600 450 ...
+  ..$ attributes.PROFESSIONAL_SCI_TECH     : int [1:34] 3500 500 500 250 75 200 600 23000 1000 1250 ...
+  ..$ attributes.BUSINESS_ADMIN_SUPPORT    : int [1:34] 1500 1750 900 175 125 1250 450 11000 900 1500 ...
+  ..$ attributes.PUBLIC_ADMIN_DEFENCE      : int [1:34] 40 250 30 300 0 0 400 9000 0 10 ...
+  ..$ attributes.EDUCATION                 : int [1:34] 700 700 800 400 350 400 500 9000 2000 200 ...
+  ..$ attributes.HEALTH                    : int [1:34] 1000 450 500 250 150 125 900 12000 300 450 ...
+  ..$ attributes.ARTS_ENTS_RECREATION_OTHER: int [1:34] 400 250 200 300 175 125 150 2000 500 400 ...</code></pre>
+</div>
+</div>
+<p>Well, it’s complicated. Looking on the above output of <code>list()</code> the object that looks most useful to us is the <code>df$features</code>.</p>
+<div class="cell" type="alert alert-warning">
+<div class="alert alert-warning">
+<p>
+<strong>Question</strong>: Based on the output of <code>str()</code>, why do you think is <code>df<span class="math inline">\(features&lt;/code&gt; the most useful part of
+&lt;code&gt;df&lt;/code&gt; for us? And what do you think &lt;code&gt;df\)</span>fields</code> contains?
+</p>
+</div>
+</div>
+<p>And if you want to see what the dataframe <code>df$features</code> looks like, the below function will show all its columns (as rows), their type and their first few values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df<span class="sc">$</span>features)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 34
+Columns: 22
+$ attributes.OBJECTID                   &lt;int&gt; 171, 172, 173, 174, 175, 176, 17…
+$ attributes.WARD_CODE                  &lt;chr&gt; "E05010885", "E05010886", "E0501…
+$ attributes.WARD_NAME                  &lt;chr&gt; "Ashley", "Avonmouth and Lawrenc…
+$ attributes.YEAR                       &lt;chr&gt; "2020", "2020", "2020", "2020", …
+$ attributes.AG_FORESTRY_FISHING        &lt;int&gt; 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+$ attributes.MINING_UTILITIES           &lt;int&gt; 15, 700, 10, 0, 10, 0, 30, 2250,…
+$ attributes.MANUFACTURING              &lt;int&gt; 225, 1500, 1750, 50, 150, 900, 5…
+$ attributes.CONSTRUCTION               &lt;int&gt; 175, 1500, 600, 100, 500, 600, 1…
+$ attributes.MOTOR_TRADES               &lt;int&gt; 50, 1000, 450, 75, 125, 350, 600…
+$ attributes.WHOLESALE                  &lt;int&gt; 250, 4000, 1000, 45, 100, 500, 1…
+$ attributes.RETAIL                     &lt;int&gt; 450, 1000, 700, 200, 700, 200, 1…
+$ attributes.TRANSPORT_STORAGE          &lt;int&gt; 125, 5000, 175, 10, 20, 350, 600…
+$ attributes.ACCOMMODATION_FOOD         &lt;int&gt; 700, 250, 400, 500, 100, 175, 40…
+$ attributes.INFORMATION_COMMUNICATION  &lt;int&gt; 800, 175, 350, 175, 225, 400, 70…
+$ attributes.FINANCIAL_INSURANCE        &lt;int&gt; 300, 15, 5, 10, 1500, 10, 15, 80…
+$ attributes.PROPERTY                   &lt;int&gt; 250, 125, 75, 20, 15, 20, 35, 20…
+$ attributes.PROFESSIONAL_SCI_TECH      &lt;int&gt; 3500, 500, 500, 250, 75, 200, 60…
+$ attributes.BUSINESS_ADMIN_SUPPORT     &lt;int&gt; 1500, 1750, 900, 175, 125, 1250,…
+$ attributes.PUBLIC_ADMIN_DEFENCE       &lt;int&gt; 40, 250, 30, 300, 0, 0, 400, 900…
+$ attributes.EDUCATION                  &lt;int&gt; 700, 700, 800, 400, 350, 400, 50…
+$ attributes.HEALTH                     &lt;int&gt; 1000, 450, 500, 250, 150, 125, 9…
+$ attributes.ARTS_ENTS_RECREATION_OTHER &lt;int&gt; 400, 250, 200, 300, 175, 125, 15…</code></pre>
+</div>
+</div>
+<p>Looking into the above, I can think of the following necessary data cleaning and wrangling steps:</p>
+<ol type="1">
+<li><p>remove the columns which don’t include any useful data for our analysis: the first column (<code>attributes.OBJECTID</code>) is just an internal ID of the database</p></li>
+<li><p>remove the string “attributes.” from the column names</p></li>
+<li><p>although not necessary, it is common practice for the first columns to contain identification data such as the ward names and codes.</p></li>
+<li><p>rename the ward name and code columns to something shorter and more readable.</p></li>
+</ol>
+<p>To do all the above, we will use the below functions from the <code>dplyr</code> package, which is part of the <a href="https://www.tidyverse.org/" target="_blank"><code>tidyverse</code> ecosystem</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df<span class="sc">$</span>features <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>attributes.OBJECTID) <span class="sc">%&gt;%</span>                            <span class="co"># remove useless columns</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span><span class="fu">sub</span>(<span class="st">"attributes."</span>, <span class="st">""</span>, .)) <span class="sc">%&gt;%</span>                 <span class="co"># ~ introduces a formula: function `sub` substitutes (in other words replaces) the string "attributes." with an empty string "" for all columns (symbol .)</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(WARD_NAME, WARD_CODE) <span class="sc">%&gt;%</span>                          <span class="co"># looks better</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Ward =</span> WARD_NAME,                                    <span class="co"># as above, Ward looks better than WARD_NAME ...</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">Ward_code =</span> WARD_CODE) <span class="sc">%&gt;%</span>                           <span class="co"># ... and Ward_code better than WARD_CODE</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()                                                   <span class="co"># a glimpse of the output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 34
+Columns: 21
+$ Ward                       &lt;chr&gt; "Ashley", "Avonmouth and Lawrence Weston", …
+$ Ward_code                  &lt;chr&gt; "E05010885", "E05010886", "E05010887", "E05…
+$ YEAR                       &lt;chr&gt; "2020", "2020", "2020", "2020", "2020", "20…
+$ AG_FORESTRY_FISHING        &lt;int&gt; 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0,…
+$ MINING_UTILITIES           &lt;int&gt; 15, 700, 10, 0, 10, 0, 30, 2250, 0, 0, 0, 0…
+$ MANUFACTURING              &lt;int&gt; 225, 1500, 1750, 50, 150, 900, 500, 500, 50…
+$ CONSTRUCTION               &lt;int&gt; 175, 1500, 600, 100, 500, 600, 175, 1250, 6…
+$ MOTOR_TRADES               &lt;int&gt; 50, 1000, 450, 75, 125, 350, 600, 200, 10, …
+$ WHOLESALE                  &lt;int&gt; 250, 4000, 1000, 45, 100, 500, 150, 900, 50…
+$ RETAIL                     &lt;int&gt; 450, 1000, 700, 200, 700, 200, 1500, 4500, …
+$ TRANSPORT_STORAGE          &lt;int&gt; 125, 5000, 175, 10, 20, 350, 600, 1750, 40,…
+$ ACCOMMODATION_FOOD         &lt;int&gt; 700, 250, 400, 500, 100, 175, 400, 7000, 10…
+$ INFORMATION_COMMUNICATION  &lt;int&gt; 800, 175, 350, 175, 225, 400, 700, 11000, 5…
+$ FINANCIAL_INSURANCE        &lt;int&gt; 300, 15, 5, 10, 1500, 10, 15, 8000, 40, 600…
+$ PROPERTY                   &lt;int&gt; 250, 125, 75, 20, 15, 20, 35, 2000, 600, 45…
+$ PROFESSIONAL_SCI_TECH      &lt;int&gt; 3500, 500, 500, 250, 75, 200, 600, 23000, 1…
+$ BUSINESS_ADMIN_SUPPORT     &lt;int&gt; 1500, 1750, 900, 175, 125, 1250, 450, 11000…
+$ PUBLIC_ADMIN_DEFENCE       &lt;int&gt; 40, 250, 30, 300, 0, 0, 400, 9000, 0, 10, 0…
+$ EDUCATION                  &lt;int&gt; 700, 700, 800, 400, 350, 400, 500, 9000, 20…
+$ HEALTH                     &lt;int&gt; 1000, 450, 500, 250, 150, 125, 900, 12000, …
+$ ARTS_ENTS_RECREATION_OTHER &lt;int&gt; 400, 250, 200, 300, 175, 125, 150, 2000, 50…</code></pre>
+</div>
+</div>
+<p>Let’s try now to do some analysis based on these data and create some outputs.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">total =</span> <span class="fu">rowSums</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">21</span>))),            <span class="co"># total jobs in a ward</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>               <span class="fu">across</span>(<span class="fu">c</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">21</span>),                             <span class="co"># select the columns you are interested in</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">.names =</span> <span class="st">"{col}_share"</span>) <span class="sc">/</span> total) <span class="sc">%&gt;%</span> <span class="co"># divide these columns by total to create industry share within ward  </span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                                                           <span class="co"># and name the new columns as oldname_share</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">23</span><span class="sc">:</span><span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span><span class="fu">c</span>(Ward, Ward_code),                        <span class="co"># These are the columns I am 'pivoting'</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"industry"</span>,                      <span class="co"># This is how I will name the column with all the industries ...</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"jobs_share"</span>) <span class="sc">%&gt;%</span>               <span class="co"># ... and the column with the jobs percentage</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>                                                           <span class="co"># Look https://tidyr.tidyverse.org/articles/pivot.html to </span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                                                           <span class="co"># understand the long to wide / wide to long transformations.</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Ward <span class="sc">==</span> <span class="st">"Central"</span>) <span class="sc">%&gt;%</span>                            <span class="co"># Let's focus on Central Bristol</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>industry, <span class="at">y=</span>jobs_share)) <span class="sc">+</span>                  <span class="co"># ... and create a bar chart for it jobs distribution</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># to understand the "identity part go on the Details section of the geom_bar documentation:</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co"># https://www.rdocumentation.org/packages/ggplot2/versions/1.0.1/topics/geom_bar</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_discrete</span>(<span class="at">guide =</span> <span class="fu">guide_axis</span>(<span class="at">angle =</span> <span class="dv">90</span>)) <span class="sc">+</span>     <span class="co"># This line rotates the x labels,</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span>         <span class="co"># this one shows the shares as percentages,</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">"jobs %"</span>)                                         <span class="co"># and here we rename the y axis.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apis_files/figure-html/analysis-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now, let’s do something slightly more interesting. Let’s create two plots to compare the job distribution between two Bristol wards.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">total =</span> <span class="fu">rowSums</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">21</span>))),           <span class="co"># total jobs in a ward</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>               <span class="fu">across</span>(<span class="fu">c</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">21</span>),                             <span class="co"># select the columns you are interested in</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">.names =</span> <span class="st">"{col}_share"</span>) <span class="sc">/</span> total) <span class="sc">%&gt;%</span> <span class="co"># divide these columns by total to create industry share within ward  </span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                                                           <span class="co"># and name the new columns as oldname_share</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">23</span><span class="sc">:</span><span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span><span class="fu">c</span>(Ward, Ward_code),                        <span class="co"># These are the columns I am 'pivoting'</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"industry"</span>,                      <span class="co"># This is how I will name the column with all the industries ...</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"jobs_share"</span>) <span class="sc">%&gt;%</span>               <span class="co"># ... and the column with the jobs percentage</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>                                                           <span class="co"># Look https://tidyr.tidyverse.org/articles/pivot.html to </span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>                                                           <span class="co"># understand the long to wide / wide to long transformations.</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Ward <span class="sc">==</span> <span class="st">"Central"</span> <span class="sc">|</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>         Ward <span class="sc">==</span> <span class="st">"Easton"</span>) <span class="sc">%&gt;%</span>                             <span class="co"># Let's focus on Easton and Central Bristol</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>industry, <span class="at">y=</span>jobs_share)) <span class="sc">+</span>                  <span class="co"># ... and create a bar chart for it jobs distribution</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_discrete</span>(<span class="at">guide =</span> <span class="fu">guide_axis</span>(<span class="at">angle =</span> <span class="dv">90</span>)) <span class="sc">+</span>     <span class="co"># This line rotates the x labels,</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span>         <span class="co"># this one shows the shares as percentages,</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">"jobs %"</span>) <span class="sc">+</span>                                       <span class="co"># and here we rename the y axis.</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(Ward), <span class="at">ncol =</span> <span class="dv">2</span>)                       <span class="co"># facet_wrap creates two graphs based on `ward` and puts one next to each other</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apis_files/figure-html/comparison-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Well done! You’ve just utilised Bristol’s open data and became part of the urban open data revolution 😃.</p>
+<p>Obviously the <code>x</code> labels are rather ugly.</p>
+<div class="cell" type="alert alert-warning">
+<div class="alert alert-warning">
+<p>
+<strong>Task:</strong> using and tweaking the code provided here, can you rename these labels?
+</p>
+</div>
+</div>
+<div class="cell" type="alert alert-warning">
+<div class="alert alert-warning">
+<p>
+<strong>Next task:</strong> Search for some other interesting data from <a href="https://opendata.bristol.gov.uk/">opendata.bristol.gov.uk</a>, access it programmatically, do the necessary data wrangling and produce some graphs in a new <code>.Rmd</code> document. Make sure to knit it as <code>.html</code>.
+</p>
+<p>
+If this is too easy for you, why don’t you check the new <a href="https://quarto.org/docs/guide/">Quarto format</a>.
+</p>
+</div>
+</div>
+</section>
+</section>
+<section id="accessing-apis-using-existing-r-packages" class="level2">
+<h2 class="anchored" data-anchor-id="accessing-apis-using-existing-r-packages">Accessing APIs using existing <code>R</code> packages</h2>
+<p>Now you might be lucky and somebody else has already done all the infrastructural / back-end work in order for you to easily interrogate an API and access their data. What would this look like? Like another <code>R</code> package. Here is a list with a few examples:</p>
+<ul>
+<li><p><code>nomisdata</code> is a package that allows you to access <a href="https://www.nomisweb.co.uk/" target="_blank">Nomis</a> data with <code>R</code>. Find <a href="https://cran.r-project.org/web/packages/nomisdata/index.html" target="_blank">here</a> an introduction.</p></li>
+<li><p><code>tidycensus</code> is designed to work with the <code>tidyverse</code> ecosystem and offers access to the US Census. This is the <a href="https://walker-data.com/tidycensus/" target="_blank">link</a>. Pay extra attention to the <em>spatial data</em> option.</p></li>
+<li><p>The city of Toronto offers an <code>R</code> <a href="https://sharlagelfand.github.io/opendatatoronto/" target="_blank">package</a> to access <a href="https://open.toronto.ca/" target="_blank">City of Toronto Open Data Portal</a>.</p></li>
+<li><p>See a relevant book by <span class="citation" data-cites="apis">Bauer, Landesvatter, and Behrens (<a href="#ref-apis" role="doc-biblioref">2022</a>)</span> available <a href="https://bookdown.org/paul/apis_for_social_scientists/" target="_blank">here</a>.</p></li>
+</ul>
+<div class="cell" type="alert alert-warning">
+<div class="alert alert-warning">
+<p>
+<strong>Another task:</strong> On your own time, play with these packages and access some of the (urban) data they offer.
+</p>
+</div>
+</div>
+</section>
+<section id="references" class="level2">
+
+
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-amazonWhatAPI" class="csl-entry" role="listitem">
+AWS, Amazon. 2022. <span>“<span>W</span>hat Is an <span>A</span><span>P</span><span>I</span>? - <span>A</span><span>P</span><span>I</span> <span>B</span>eginner’s <span>G</span>uide - <span>A</span><span>W</span><span>S</span> — Aws.amazon.com.”</span> <a href="https://aws.amazon.com/what-is/api/#:~:text=API%20stands%20for%20Application%20Programming,other%20using%20requests%20and%20responses." class="uri">https://aws.amazon.com/what-is/api/#:~:text=API%20stands%20for%20Application%20Programming,other%20using%20requests%20and%20responses.</a>
+</div>
+<div id="ref-apis" class="csl-entry" role="listitem">
+Bauer, P. C., Landesvatter C., and L. Behrens. 2022. <span>“APIs for Social Scientists: A Collaborative Review V1.0.”</span> https://doi.org/<a href="https://doi.org/10.5281/zenodo.6798690">https://doi.org/10.5281/zenodo.6798690</a>.
+</div>
+<div id="ref-jsonJSON" class="csl-entry" role="listitem">
+JSON. <span>“<span>J</span><span>S</span><span>O</span><span>N</span> — Json.org.”</span> <a href="https://www.json.org/json-en.html" class="uri">https://www.json.org/json-en.html</a>.
+</div>
+<div id="ref-singleton2017urban" class="csl-entry" role="listitem">
+Singleton, Alex D, Seth Spielman, and David Folch. 2017. <em>Urban Analytics</em>. Sage.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Every column is a variable; every row is an observation; every cell is a single value. See <a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html" target="_blank">here</a> for more info.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
