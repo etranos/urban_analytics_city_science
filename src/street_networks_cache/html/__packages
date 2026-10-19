@@ -1,0 +1,17 @@
+sfnetworks
+sf
+tidygraph
+tidyverse
+ggplot2
+tibble
+tidyr
+readr
+purrr
+dplyr
+stringr
+forcats
+lubridate
+igraph
+osmdata
+dbscan
+rprojroot

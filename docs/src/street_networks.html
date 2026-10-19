@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Emmanouil Tranos">
-<meta name="dcterms.date" content="2025-11-15">
+<meta name="dcterms.date" content="2026-10-19">
 
 <title>Street network analysis practical: networks within cities – Urban analytics and city science</title>
 <style>
@@ -123,6 +123,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -314,9 +343,18 @@ div.csl-indent {
   <ul>
   <li><a href="#street-networks" id="toc-street-networks" class="nav-link active" data-scroll-target="#street-networks">Street networks</a></li>
   <li><a href="#a-first-toy-example" id="toc-a-first-toy-example" class="nav-link" data-scroll-target="#a-first-toy-example">A first ‘toy’ example</a></li>
-  <li><a href="#a-more-real-street-network" id="toc-a-more-real-street-network" class="nav-link" data-scroll-target="#a-more-real-street-network">A more ‘real’ street network</a></li>
+  <li><a href="#a-more-real-street-network" id="toc-a-more-real-street-network" class="nav-link" data-scroll-target="#a-more-real-street-network">A more ‘real’ street network</a>
+  <ul class="collapse">
+  <li><a href="#measures-for-a-small-network" id="toc-measures-for-a-small-network" class="nav-link" data-scroll-target="#measures-for-a-small-network">Measures for a small network</a></li>
+  </ul></li>
   <li><a href="#a-real-world-example-from-open-street-map" id="toc-a-real-world-example-from-open-street-map" class="nav-link" data-scroll-target="#a-real-world-example-from-open-street-map">A real world example from Open Street Map</a></li>
-  <li><a href="#network-measures" id="toc-network-measures" class="nav-link" data-scroll-target="#network-measures">Network measures</a></li>
+  <li><a href="#network-measures" id="toc-network-measures" class="nav-link" data-scroll-target="#network-measures">Network measures</a>
+  <ul class="collapse">
+  <li><a href="#indicators-of-street-network-form" id="toc-indicators-of-street-network-form" class="nav-link" data-scroll-target="#indicators-of-street-network-form">Indicators of street network form</a></li>
+  <li><a href="#betweenness-centrality" id="toc-betweenness-centrality" class="nav-link" data-scroll-target="#betweenness-centrality">Betweenness centrality</a></li>
+  <li><a href="#communities" id="toc-communities" class="nav-link" data-scroll-target="#communities">Communities</a></li>
+  </ul></li>
+  <li><a href="#routing" id="toc-routing" class="nav-link" data-scroll-target="#routing">Routing</a></li>
   </ul>
 </nav>
     </div>
@@ -342,7 +380,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 15, 2025</p>
+      <p class="date">October 19, 2026</p>
     </div>
   </div>
   
@@ -362,9 +400,10 @@ div.csl-indent {
 <li><p>However, edges can:</p>
 <ul>
 <li><p>either contain geographical information (e.g.&nbsp;road networks),</p></li>
-<li><p>or not, and instead just link two nodes (e.g.&nbsp;social networks whose node’s geograpical location is known to us)</p></li>
+<li><p>or not, and instead just link two nodes (e.g.&nbsp;social networks whose node’s geographical location is known to us)</p></li>
 </ul></li>
 </ul>
+<p>The first case refers to <em>spatially explicit</em> networks, the second to <em>spatially implicit</em>.</p>
 <p>Street network analysis is not new. For instance, Leonhard Euler proved that the <a href="https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg">Seven Bridges of Königsberg problem</a> had no solution. This type of problems and analysis – routing – later on became integral part of the standard GIS toolkit.</p>
 <p>Why is it important to study street networks:</p>
 <ul>
@@ -373,12 +412,12 @@ div.csl-indent {
 </ul>
 <p>Some key characteristics of street networks:</p>
 <ul>
-<li><p>They might have multiple edges between two nodes.</p></li>
-<li><p>Street networks are approximately planar <span class="citation" data-cites="boeing2017osmnx">(<a href="#ref-boeing2017osmnx" role="doc-biblioref">Boeing 2017</a>)</span>.</p></li>
-<li><p>Edges contain geographical information.</p></li>
+<li><p>They might have multiple edges between two nodes, e.g.&nbsp;two different streets linking the same two junctions.</p></li>
+<li><p>Street networks are approximately planar <span class="citation" data-cites="boeing2017osmnx">(<a href="#ref-boeing2017osmnx" role="doc-biblioref">Boeing 2017</a>)</span>. <em>Approximately</em>, because of bridges, tunnels and underpasses. Planarity has some important consequences: a node can only have a handful of neighbours and triangles are rare. So, measures which are very informative for other types of networks, such as the clustering coefficient or the small-world property, do not tell us much about street networks.</p></li>
+<li><p>Edges contain geographical information (e.g.&nbsp;their length and their shape).</p></li>
 </ul>
 <p>Topological measures are important to understand and (maybe compare different) urban street networks.</p>
-<p>Try to think what the below topological measures might mean for a street network:</p>
+<p>Try to think what the below topological measures might mean for a street network. We will calculate most of them below.</p>
 <ul>
 <li><p>Node density</p></li>
 <li><p>Node eccentricity</p></li>
@@ -388,7 +427,7 @@ div.csl-indent {
 <li><p>Betweenness centrality and its maximum value in a network</p></li>
 <li><p>Closeness centrality</p></li>
 </ul>
-<p>Key development: <a href="https://www.openstreetmap.org/#map=6/54.910/-3.432"><em>OpenStreetMap</em></a>. Known as the Wikipedia for maps, OSM is a collaborative, citizen science project, which allows individuals to contribute in building openly distributed geographic data <span class="citation" data-cites="haklay2021contours haklay2008openstreetmap">(<a href="#ref-haklay2021contours" role="doc-biblioref">Muki Haklay et al. 2021</a>; <a href="#ref-haklay2008openstreetmap" role="doc-biblioref">Mordechai Haklay and Weber 2008</a>)</span>. Through OSM, urban analysts have access to street network data from around the world, something which wasn’t the case, let’s say, 20 years ago.</p>
+<p>Key development: <a href="https://www.openstreetmap.org/#map=6/54.910/-3.432"><em>OpenStreetMap</em></a>. Known as the Wikipedia for maps, OSM is a collaborative, citizen science project, which allows individuals to contribute in building openly distributed geographic data <span class="citation" data-cites="haklay2021contours haklay2008openstreetmap">(<a href="#ref-haklay2021contours" role="doc-biblioref">Muki Haklay et al. 2021</a>; <a href="#ref-haklay2008openstreetmap" role="doc-biblioref">Mordechai Haklay and Weber 2008</a>)</span>. Through OSM, urban analysts have access to street network data from around the world, something which wasn’t the case, let’s say, 20 years ago. Please note that OSM data are released under the <a href="https://www.openstreetmap.org/copyright" target="_blank">ODbL licence</a>. This means that if you use them in your own work (e.g.&nbsp;your project) you need to credit <em>© OpenStreetMap contributors</em>.</p>
 <p>The below are based on the very helpful vignettes of the <a href="https://cran.r-project.org/package=sfnetworks"><code>sfnetworks</code></a> and <a href="https://cran.r-project.org/web/packages/osmdata/"><code>osmdata</code></a> packages. Please make sure to revisit these materials on your own time.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sfnetworks) <span class="co">#tidy geospatial networks</span></span>
@@ -398,18 +437,17 @@ div.csl-indent {
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)     <span class="co">#as above</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmdata)    <span class="co">#access OSM data</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dbscan)     <span class="co">#this is the dbscan clustering algorithm</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rprojroot)  <span class="co">#to find the project path, as in the previous practical</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># This is the project path, as in the previous practical.</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">find_rstudio_root_file</span>()</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># And this is where we will save the OSM data (see below why).</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>path.data <span class="ot">&lt;-</span> <span class="fu">paste0</span>(path, <span class="st">"/data/"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(path.data, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)  <span class="co"># if the folder already exists, nothing happens</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>In geospatial networks:</p>
-<ul>
-<li><p>nodes always contain geographical coordinates (<code>sf</code> objects),</p></li>
-<li><p>edges can:</p>
-<ul>
-<li><p>either contain geographical information (e.g.&nbsp;road networks)</p></li>
-<li><p>or not, and instead just link two nodes (e.g.&nbsp;geospatial social networks)</p></li>
-</ul></li>
-</ul>
 </section>
 <section id="a-first-toy-example" class="level2">
 <h2 class="anchored" data-anchor-id="a-first-toy-example">A first ‘toy’ example</h2>
@@ -440,14 +478,14 @@ div.csl-indent {
 <pre><code>Spatial network structure is valid</code></pre>
 </div>
 </div>
-<p>We can check it’s class:</p>
+<p>We can check its class:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(net)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "sfnetwork" "tbl_graph" "igraph"   </code></pre>
 </div>
 </div>
-<p>And check it characteristics.</p>
+<p>And check its characteristics.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>net</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -478,7 +516,7 @@ div.csl-indent {
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>edges<span class="sc">$</span>from <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"city"</span>, <span class="st">"city"</span>, <span class="st">"farm"</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>edges<span class="sc">$</span>to <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"village"</span>, <span class="st">"farm"</span>, <span class="st">"village"</span>)</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>edges <span class="co"># check the from and to columns </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>edges <span class="co"># check the from and to columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Simple feature collection with 3 features and 2 fields
 Geometry type: LINESTRING
@@ -498,20 +536,42 @@ Geodetic CRS:  WGS 84
 <pre><code>Spatial network structure is valid</code></pre>
 </div>
 </div>
-<p><code>net</code>’s edges contain geographical information. So, let’s create an <code>other_net</code> whose edges do not contain geographical information. This could have been a geospatial social network, for example. We know where each node is located in space and then the edges illustrate the existence of a connection between two nodes. To do so, we simply set the <code>st_geometry</code> equal to <code>NULL</code>. The plots below will make these differences clear.</p>
+<p><code>net</code>‘s edges contain geographical information. So, let’s create an <code>other_net</code> whose edges do not contain geographical information. This could have been a geospatial social network, for example. We know where each node is located in space and then the edges illustrate the existence of a connection between two nodes. To do so, we simply set the <code>st_geometry</code> equal to <code>NULL</code>. Please note the <code>edges_as_lines = FALSE</code> argument below. It tells <code>sfnetworks</code> <em>not</em> to create linestring geometries for the edges, which means that the edges stay ’spatially implicit’. If we had used <code>TRUE</code>, <code>sfnetworks</code> would have drawn a straight line between each pair of nodes and stored it as the edge geometry. The result would have looked similar on a map, but the edges would have been ‘spatially explicit’ again. Print <code>other_net</code> below and look at the edge data to see the difference.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_geometry</span>(edges) <span class="ot">=</span> <span class="cn">NULL</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>other_net <span class="ot">=</span> <span class="fu">sfnetwork</span>(nodes, edges, <span class="at">edges_as_lines =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>other_net <span class="ot">=</span> <span class="fu">sfnetwork</span>(nodes, edges, <span class="at">edges_as_lines =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Checking if spatial network structure is valid...</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Spatial network structure is valid</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>other_net  <span class="co"># compare the edge data with the ones of net</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A sfnetwork with 3 nodes and 3 edges
+#
+# CRS:  EPSG:4326 
+#
+# A directed acyclic simple graph with 1 component with spatially implicit edges
+#
+# Node data: 3 × 2 (active)
+            x name   
+  &lt;POINT [°]&gt; &lt;chr&gt;  
+1      (7 51) city   
+2      (7 52) village
+3      (8 52) farm   
+#
+# Edge data: 3 × 2
+   from    to
+  &lt;int&gt; &lt;int&gt;
+1     1     2
+2     1     3
+3     3     2</code></pre>
 </div>
-<p>We can actually plot both example.</p>
+</div>
+<p>We can actually plot both examples.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(net, <span class="at">cex =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">main =</span> <span class="st">"Original geometries"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(net, <span class="at">cex =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">main =</span> <span class="st">"Original geometries"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -519,7 +579,7 @@ Geodetic CRS:  WGS 84
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(other_net, <span class="at">cex =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">main =</span> <span class="st">"Geospatial social network example"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(other_net, <span class="at">cex =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">main =</span> <span class="st">"Geospatial social network example"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -532,9 +592,9 @@ Geodetic CRS:  WGS 84
 <section id="a-more-real-street-network" class="level2">
 <h2 class="anchored" data-anchor-id="a-more-real-street-network">A more ‘real’ street network</h2>
 <p>Let’s increase the complexity now. We can use the <code>roxel</code> data from the <code>sfnetworks</code> package. Roxel is a small town just outside Munster in Germany.</p>
-<p>The <code>as_sfnetwork()</code> function converts the spatial object to a network. So, this is the spatial object and this is how it’s geometry looks like.</p>
+<p>The <code>as_sfnetwork()</code> function converts the spatial object to a network. So, this is the spatial object and this is how its geometry looks like.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>roxel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>roxel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Simple feature collection with 851 features and 2 fields
 Geometry type: LINESTRING
@@ -556,7 +616,7 @@ Geodetic CRS:  WGS 84
 10 &lt;NA&gt;                  track       (7.5424 51.94599, 7.54205 51.94629, 7.5419…
 # ℹ 841 more rows</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(roxel))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(roxel))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -565,10 +625,10 @@ Geodetic CRS:  WGS 84
 </div>
 </div>
 </div>
-<p>Now, we can convert it to a geospatial network and plot it.</p>
+<p>Now, we can convert it to a geospatial network and plot it. Please note the <code>directed = FALSE</code> argument. Streets can be both two- and one-ways. To simplify the analysis, we ignore this attribute and define the network as non-directed. If we do not specify this, the network will be treated as directed, based on the direction the lines were digitised. This would affect measures such as betweenness centrality, which depend on the direction of the paths.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>net <span class="ot">&lt;-</span> <span class="fu">as_sfnetwork</span>(roxel)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(net)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>net <span class="ot">&lt;-</span> <span class="fu">as_sfnetwork</span>(roxel, <span class="at">directed =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(net)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -579,8 +639,8 @@ Geodetic CRS:  WGS 84
 </div>
 <p>Instead of <code>plot()</code> we can also use <code>ggplot2</code> functions. <code>autoplot()</code> does what it says.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(net) <span class="sc">+</span> </span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Road network, Münster Roxel"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(net) <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Road network, Münster Roxel"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -590,46 +650,53 @@ Geodetic CRS:  WGS 84
 </div>
 </div>
 <p>We have a network, so let’s do some network analysis.</p>
-<p>First thing we need to do is to <em>activate</em> the network component we are interested in. In the below example we want to calculate the betweenness centrality of nodes and, therefore, we need to first activate the nodes.</p>
-<p>So, the <code>net</code> object now has a <code>bc</code> column in the node attributes</p>
+<p>To begin with, we need the length of each street segment. We will need it as a weight later, because, as you can imagine, not all the street segments are of the same length. We create a new edge attribute for this purpose. <code>edge_length()</code> calculates the length of the lines and <code>as.numeric()</code> removes the units (metres) so that we can use the values as weights. Note that we first need to <em>activate</em> the network component we are interested in, in this case the edges.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>net <span class="ot">=</span> net <span class="sc">%&gt;%</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"nodes"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bc =</span> <span class="fu">centrality_betweenness</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="co"># print() is equal to just run the object, in this case net.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>net <span class="ot">=</span> net <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"edges"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">length_m =</span> <span class="fu">as.numeric</span>(<span class="fu">edge_length</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, we will calculate the betweenness centrality of nodes and, therefore, we need to first activate the nodes.</p>
+<p>So, the <code>net</code> object now has two new columns in the node attributes: <code>bc</code>, the ‘topological’ betweenness centrality, and <code>bc.w</code>, the one that takes into account the length of the streets. Please pay attention to the <code>weights</code> argument. Unless we say otherwise, <code>centrality_betweenness()</code> <em>ignores</em> any weights. So, for <code>bc</code> we explicitly set <code>weights = NA</code> (all street segments are equal), while for <code>bc.w</code> we use the length of the segments, which means that the shortest paths are now the <em>shortest in terms of distance</em> and not in terms of number of street segments.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>net <span class="ot">=</span> net <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"nodes"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bc =</span> <span class="fu">centrality_betweenness</span>(<span class="at">weights =</span> <span class="cn">NA</span>),         <span class="co"># topological</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">bc.w =</span> <span class="fu">centrality_betweenness</span>(<span class="at">weights =</span> length_m)) <span class="sc">%&gt;%</span>   <span class="co"># metric</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="co"># print() is equal to just run the object, in this case net.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A sfnetwork with 701 nodes and 851 edges
 #
 # CRS:  EPSG:4326 
 #
-# A directed multigraph with 14 components with spatially explicit edges
+# An undirected multigraph with 14 components with spatially explicit edges
 #
-# Node data: 701 × 2 (active)
-             geometry     bc
-          &lt;POINT [°]&gt;  &lt;dbl&gt;
-1 (7.533722 51.95556) 12936.
-2 (7.533461 51.95576) 11824 
-3 (7.532442 51.95422) 11926.
-4  (7.53209 51.95328)  7259.
-5 (7.532709 51.95209)  5668 
-6 (7.532869 51.95257)  2374 
+# Node data: 701 × 3 (active)
+             geometry     bc  bc.w
+          &lt;POINT [°]&gt;  &lt;dbl&gt; &lt;dbl&gt;
+1 (7.533722 51.95556) 12296. 13808
+2 (7.533461 51.95576) 13255.  9777
+3 (7.532442 51.95422) 31513. 35240
+4  (7.53209 51.95328) 12234. 31745
+5 (7.532709 51.95209) 16929.  7174
+6 (7.532869 51.95257)  7625.  9081
 # ℹ 695 more rows
 #
-# Edge data: 851 × 5
-   from    to name                  type                                geometry
-  &lt;int&gt; &lt;int&gt; &lt;chr&gt;                 &lt;fct&gt;                       &lt;LINESTRING [°]&gt;
-1     1     2 Havixbecker Strasse   residential (7.533722 51.95556, 7.533461 51…
-2     3     4 Pienersallee          secondary   (7.532442 51.95422, 7.53236 51.…
-3     5     6 Schulte-Bernd-Strasse residential (7.532709 51.95209, 7.532823 51…
+# Edge data: 851 × 6
+   from    to name                  type                       geometry length_m
+  &lt;int&gt; &lt;int&gt; &lt;chr&gt;                 &lt;fct&gt;              &lt;LINESTRING [°]&gt;    &lt;dbl&gt;
+1     1     2 Havixbecker Strasse   resident… (7.533722 51.95556, 7.53…     28.8
+2     3     4 Pienersallee          secondary (7.532442 51.95422, 7.53…    108. 
+3     5     6 Schulte-Bernd-Strasse resident… (7.532709 51.95209, 7.53…     54.3
 # ℹ 848 more rows</code></pre>
 </div>
 </div>
-<p>We can now create a map of this spatial network, the size and the colour of its nodes are based on their betweenness centrality.</p>
+<p>We can now create a map of this spatial network, the colour of its nodes is based on their betweenness centrality. Here is the topological version…</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(net, <span class="st">"edges"</span>), <span class="at">col =</span> <span class="st">"grey50"</span>) <span class="sc">+</span>            </span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(net, <span class="st">"nodes"</span>), <span class="fu">aes</span>(<span class="at">col =</span> bc), <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span> </span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Betweenness centrality"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(net, <span class="st">"edges"</span>), <span class="at">col =</span> <span class="st">"grey50"</span>) <span class="sc">+</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(net, <span class="st">"nodes"</span>), <span class="fu">aes</span>(<span class="at">col =</span> bc), <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Betweenness centrality (topological)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -638,20 +705,34 @@ Geodetic CRS:  WGS 84
 </div>
 </div>
 </div>
+<p>… and here is the one based on the length of the street segments.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(net, <span class="st">"edges"</span>), <span class="at">col =</span> <span class="st">"grey50"</span>) <span class="sc">+</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(net, <span class="st">"nodes"</span>), <span class="fu">aes</span>(<span class="at">col =</span> bc.w), <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Betweenness centrality (weighted by street length)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="street_networks_files/figure-html/betweenness_roxel3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 <p>To better understand the structure of the above <code>ggplot()</code>, look up <code>geom_sf()</code> and <code>st_as_sf()</code>. If you only run <code>net</code> and <code>st_as_sf(net, "edges")</code> you can see what was the type of <code>net</code> originally and what it was transformed to with the <code>st_as_sf</code>.</p>
 <div class="cell" type="alert alert-warning">
 <div class="alert alert-warning">
 <p>
-<strong>Question</strong>: Can you interpret betweenness centrality in this context?
+<strong>Question</strong>: Can you interpret betweenness centrality in this context? What are the differences between the two maps? Why do we observe these differences?
 </p>
 </div>
 </div>
 <p>If we want to get rid of geometries, all we need to do is to remove the geometry. As per base <code>R</code>, setting something equal to <code>NULL</code> means that we remove it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>net <span class="sc">%&gt;%</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"edges"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_set_geometry</span>(<span class="cn">NULL</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">draw_lines =</span> T, <span class="at">main =</span> <span class="st">"Edges without geometries"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>net <span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"edges"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_set_geometry</span>(<span class="cn">NULL</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">draw_lines =</span> T, <span class="at">main =</span> <span class="st">"Edges without geometries"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -659,10 +740,10 @@ Geodetic CRS:  WGS 84
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>net <span class="sc">%&gt;%</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"nodes"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_set_geometry</span>(<span class="cn">NULL</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">vertex.color =</span> <span class="st">"black"</span>, <span class="at">main =</span> <span class="st">"Nodes without geometries"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>net <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"nodes"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_set_geometry</span>(<span class="cn">NULL</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">vertex.color =</span> <span class="st">"black"</span>, <span class="at">main =</span> <span class="st">"Nodes without geometries"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -671,26 +752,149 @@ Geodetic CRS:  WGS 84
 </div>
 </div>
 </div>
+<section id="measures-for-a-small-network" class="level3">
+<h3 class="anchored" data-anchor-id="measures-for-a-small-network">Measures for a small network</h3>
+<p>Remember the list of topological measures we discussed at the beginning of this practical? Roxel is small enough to calculate all of them. Before that, we need to make sure that the network is <em>connected</em>, i.e.&nbsp;that there is a path between every pair of nodes. Otherwise, measures such as the diameter or closeness are not meaningful. The <code>group_components()</code> function assigns each node to a connected component. We then keep only the nodes of the largest component.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>net.roxel <span class="ot">&lt;-</span> net <span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"nodes"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cmp =</span> <span class="fu">group_components</span>()) <span class="sc">%&gt;%</span>       <span class="co"># which component each node belongs to</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(cmp <span class="sc">==</span> <span class="fu">which.max</span>(<span class="fu">tabulate</span>(cmp)))    <span class="co"># keep the nodes of the largest component</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="co"># How many nodes did we lose?</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="fu">gorder</span>(net) <span class="sc">-</span> <span class="fu">gorder</span>(net.roxel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 26</code></pre>
+</div>
+</div>
+<p>And now the measures. Note that eccentricity is always calculated in ‘hops’, i.e.&nbsp;number of street segments, while for the diameter and closeness we can choose between hops and distance.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>net.roxel <span class="ot">&lt;-</span> net.roxel <span class="sc">%&gt;%</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"nodes"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">degree =</span> <span class="fu">centrality_degree</span>(),                     <span class="co"># how many streets meet at each node</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">ecc =</span> <span class="fu">node_eccentricity</span>(),                        <span class="co"># the longest shortest path (in hops) from each node</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">close =</span> <span class="fu">centrality_closeness</span>(<span class="at">weights =</span> length_m,  <span class="co"># closeness based on distance (metres)</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">normalized =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co"># The diameter in hops and in metres.</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="fu">with_graph</span>(net.roxel, <span class="fu">graph_diameter</span>(<span class="at">weights =</span> <span class="cn">NA</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 38</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with_graph</span>(net.roxel, <span class="fu">graph_diameter</span>(<span class="at">weights =</span> length_m))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2872.065</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The clustering coefficient. Do you remember what we said about planar networks?</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">transitivity</span>(net.roxel, <span class="at">type =</span> <span class="st">"global"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.03271328</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The distribution of node degrees.</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>net.roxel <span class="sc">%&gt;%</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"nodes"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(degree)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 4 features and 2 fields
+Geometry type: MULTIPOINT
+Dimension:     XY
+Bounding box:  xmin: 7.522622 ymin: 51.94151 xmax: 7.546705 ymax: 51.9612
+Geodetic CRS:  WGS 84
+# A tibble: 4 × 3
+  degree     n                                                          geometry
+*  &lt;dbl&gt; &lt;int&gt;                                                  &lt;MULTIPOINT [°]&gt;
+1      1   182 ((7.522746 51.94778), (7.525393 51.94898), (7.526416 51.94942), …
+2      2    67 ((7.523891 51.95086), (7.524363 51.95025), (7.529606 51.94966), …
+3      3   344 ((7.52362 51.95081), (7.525223 51.95088), (7.524056 51.95016), (…
+4      4    82 ((7.529657 51.95063), (7.52933 51.94932), (7.528031 51.94901), (…</code></pre>
+</div>
+</div>
+<div class="cell" type="alert alert-warning">
+<div class="alert alert-warning">
+<p>
+<strong>Question</strong>: What do these measures tell us about Roxel’s street network? Why is the clustering coefficient so low? What do the degree values represent (e.g.&nbsp;what is a node with degree <span class="math inline">(1)</span>)?
+</p>
+</div>
+</div>
+</section>
 </section>
 <section id="a-real-world-example-from-open-street-map" class="level2">
 <h2 class="anchored" data-anchor-id="a-real-world-example-from-open-street-map">A real world example from Open Street Map</h2>
 <p>Let’s now try to use some real-world data from OSM. The below code extracts the Bristol street data from the OSM API.</p>
-<p>To understand the <code>key</code> and <code>value</code> options, go to OSM’s wiki <a href="https://wiki.openstreetmap.org/wiki/Map_features#Highway">page</a>.</p>
-<p>Keep an eye on the below. Depending on your internet connections and the OSM’s API response time, it might take a couple of minutes. If you get an error message from running the <code>opq()</code> try again, it might work the second time as something might have gone wrong the first one. This is not uncommon when we extract data over the internet through an API. Usually such API requests are wrapped up in a <code>if_else()</code> function to re-try if the first attempt was unsuccessful.</p>
+<p>To understand the <code>key</code> and <code>value</code> options, go to OSM’s wiki <a href="https://wiki.openstreetmap.org/wiki/Map_features#Highway">page</a>. Our choice of <code>value</code>s below means that we focus on streets which can be used by cars and we exclude e.g.&nbsp;service roads, pedestrian streets, cycleways and footpaths. If we were interested in a walking or a cycling network, we would have to make different choices and the results would be different. Also, note that motorways are included. Think what this might mean for the measures we will calculate.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>bristol_data <span class="ot">&lt;-</span> <span class="fu">opq</span>(<span class="at">bbox =</span> <span class="st">'Bristol'</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>   <span class="co"># getbb ("bristol uk") %&gt;%</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>   <span class="co">#  opq () %&gt;%</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_osm_feature</span>(</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">key =</span> <span class="st">'highway'</span>, </span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> <span class="fu">c</span>(<span class="st">"motorway"</span>, <span class="st">"trunk"</span>, <span class="st">"primary"</span>, <span class="st">"secondary"</span>, <span class="st">"tertiary"</span>, <span class="st">"residential"</span>, <span class="st">"unclassified"</span>, <span class="st">"motorway_link"</span>, <span class="st">"trunk_link"</span>, <span class="st">"primary_link"</span>, <span class="st">"secondary_link"</span>,<span class="st">"tertiary_link"</span>, <span class="st">"residential_link"</span>)</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">osmdata_sf</span>(<span class="at">quiet =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>highway.types <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"motorway"</span>, <span class="st">"trunk"</span>, <span class="st">"primary"</span>, <span class="st">"secondary"</span>, <span class="st">"tertiary"</span>,</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"residential"</span>, <span class="st">"unclassified"</span>, <span class="st">"motorway_link"</span>, <span class="st">"trunk_link"</span>,</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"primary_link"</span>, <span class="st">"secondary_link"</span>, <span class="st">"tertiary_link"</span>, <span class="st">"residential_link"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, we need to tell OSM where Bristol is. We can do this with a <em>bounding box</em>, which is the rectangle around Bristol. <code>getbb()</code> finds it for us. Please note that I am using “Bristol, UK” and not just “Bristol”. There are quite a few Bristols around the world and we want the right one.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>bristol_bb <span class="ot">&lt;-</span> <span class="fu">getbb</span>(<span class="st">"Bristol, UK"</span>)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>bristol_bb  <span class="co"># the min and max of the x (longitude) and y (latitude) coordinates</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        min       max
+x -3.117824 -2.510419
+y 51.341626 51.544432</code></pre>
+</div>
+</div>
+<p>However, a rectangle includes areas outside Bristol, such as parts of South Gloucestershire. So, we also get the actual boundary of the city as a polygon. We will use it to cut the street network at the city’s limits. If <code>getbb()</code> returns more than one polygon, have a look at the object and keep only the one you are interested in.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>bristol_poly <span class="ot">&lt;-</span> <span class="fu">getbb</span>(<span class="st">"Bristol, UK"</span>, <span class="at">format_out =</span> <span class="st">"sf_polygon"</span>)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>bristol_poly</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 2 features and 13 fields
+Geometry type: POLYGON
+Dimension:     XY
+Bounding box:  xmin: -3.117824 ymin: 51.34163 xmax: -2.510419 ymax: 51.54443
+Geodetic CRS:  WGS 84
+   place_id
+1 424654281
+2 424654285
+                                                                licence
+1 Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright
+2 Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright
+  osm_type  osm_id        lat        lon    class           type place_rank
+1 relation   57539 51.4430141 -2.5816622 boundary administrative         12
+2 relation 5746665 51.4538022 -2.5972985    place           city         16
+  importance addresstype            name
+1  0.7042167      county City of Bristol
+2  0.7042167        city         Bristol
+                                                        display_name
+1          City of Bristol, West of England, England, United Kingdom
+2 Bristol, City of Bristol, West of England, England, United Kingdom
+                        geometry
+1 POLYGON ((-3.117824 51.3750...
+2 POLYGON ((-2.71837 51.50617...</code></pre>
+</div>
+</div>
+<p>Keep an eye on the below. Depending on your internet connections and the OSM’s API response time, it might take a couple of minutes. If you get an error message from running the <code>opq()</code> try again, it might work the second time as something might have gone wrong the first one. This is not uncommon when we extract data over the internet through an API.</p>
+<p>Two more things. First, OSM data are updated daily. This means that if you run this code in a month’s time you will get (slightly) different data and, therefore, different results. For reproducibility we need to <em>save the data we used</em>. Second, saving the data means that we do not need to bother the OSM API every time we knit this document. So, the code below checks whether we have already downloaded the data. If yes, it just loads them. If not, it downloads them, cuts them with <code>trim_osmdata()</code> at the boundary of the city and saves them as an <code>.rds</code> file in the <code>data</code> directory.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>osm.file <span class="ot">&lt;-</span> <span class="fu">paste0</span>(path.data, <span class="st">"bristol_osm.rds"</span>)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(osm.file)) {</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  bristol_data <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(osm.file)   <span class="co"># we already have the data</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>  bristol_data <span class="ot">&lt;-</span> <span class="fu">opq</span>(<span class="at">bbox =</span> bristol_bb) <span class="sc">%&gt;%</span></span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">'highway'</span>, <span class="at">value =</span> highway.types) <span class="sc">%&gt;%</span></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">osmdata_sf</span>(<span class="at">quiet =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">trim_osmdata</span>(bristol_poly)        <span class="co"># cuts the streets at the city's boundary</span></span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveRDS</span>(bristol_data, osm.file)     <span class="co"># saves them for next time</span></span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Issuing query to Overpass API ...</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Announced endpoint: gall.openstreetmap.de/</code></pre>
+<pre><code>HTTP 502 Bad Gateway.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Waiting 14.999831199646 seconds</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Query complete!</code></pre>
@@ -698,108 +902,218 @@ Geodetic CRS:  WGS 84
 <div class="cell-output cell-output-stderr">
 <pre><code>converting OSM data to sf format</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the roads</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>bristol_roads <span class="ot">&lt;-</span> <span class="fu">st_geometry</span>(bristol_data<span class="sc">$</span>osm_lines)</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># build the sfnetwork object</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>bristol_sfn <span class="ot">&lt;-</span> <span class="fu">as_sfnetwork</span>(bristol_roads, <span class="at">directed =</span> <span class="cn">FALSE</span>, <span class="at">length_as_weight =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(bristol_sfn, <span class="st">"edges"</span>), <span class="at">col =</span> <span class="st">"grey50"</span>) <span class="sc">+</span></span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(bristol_sfn, <span class="st">"nodes"</span>), <span class="at">size =</span> .<span class="dv">01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we can extract the roads. Note the <code>st_transform()</code>. The OSM data come in longitude and latitude (EPSG:4326). We transform them to the British National Grid (EPSG:27700), which is a projected coordinate reference system with metres as units. This is useful for distances and lengths, but also for any distance threshold we might want to use later. Read more about Geographic Coordinate Systems and Projected Coordinate Systems <a href="https://www.esri.com/arcgis-blog/products/arcgis-pro/mapping/gcs_vs_pcs">here</a>. And here is more information about the <a href="https://docs.os.uk/more-than-maps/a-guide-to-coordinate-systems-in-great-britain/transverse-mercator-map-projections/the-national-grid-reference-convention">British National Grid</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the roads</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>bristol_roads <span class="ot">&lt;-</span> <span class="fu">st_geometry</span>(bristol_data<span class="sc">$</span>osm_lines) <span class="sc">%&gt;%</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="dv">27700</span>)</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="co"># build the sfnetwork object</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>bristol_sfn <span class="ot">&lt;-</span> <span class="fu">as_sfnetwork</span>(bristol_roads, <span class="at">directed =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(bristol_sfn, <span class="st">"edges"</span>), <span class="at">col =</span> <span class="st">"grey50"</span>) <span class="sc">+</span></span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(bristol_sfn, <span class="st">"nodes"</span>), <span class="at">size =</span> .<span class="dv">01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="street_networks_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="street_networks_files/figure-html/bristol_network-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Network data wrangling. We need to:</p>
 <ol type="1">
-<li>Remove multiple edges and loops. AKA simplifying the network.</li>
-</ol>
-<!-- 2.  Create nodes where two lines intersect. -->
-<ol start="2" type="1">
-<li>Remove nodes that are interior points in a line and define the shape of the line. AKA smoothing the network.</li>
+<li><p>Create nodes where two lines intersect.</p></li>
+<li><p>Remove multiple edges and loops. AKA simplifying the network.</p></li>
+<li><p>Remove nodes that are interior points in a line and define the shape of the line. AKA smoothing the network.</p></li>
+<li><p>Keep only the largest connected component.</p></li>
 </ol>
 <p>To keep track of the changes, let’s keep a note of the original network size.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># size of original network</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gsize</span>(bristol_sfn)  <span class="co"># number of edges</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># size of original network</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gsize</span>(bristol_sfn)  <span class="co"># number of edges</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 16138</code></pre>
+<pre><code>[1] 11265</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gorder</span>(bristol_sfn) <span class="co"># number of nodes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gorder</span>(bristol_sfn) <span class="co"># number of nodes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 21798</code></pre>
+<pre><code>[1] 14601</code></pre>
 </div>
 </div>
-<p>Now we can simplify the network.</p>
+<p><strong>Step 1: intersections.</strong> In the OSM data a street (e.g.&nbsp;a long road) can be one single line, even if other streets join it somewhere in the middle. <code>sfnetworks</code> only creates nodes at the <em>end points</em> of the lines. So, a T-junction in the middle of a line would <strong>not</strong> be a node and, therefore, the two streets would not be connected in our network. This would make the network under-connected and affect all the measures. <code>to_spatial_subdivision</code> fixes this by creating nodes wherever lines meet or intersect. It might take a couple of minutes.</p>
+<p>A caveat: this approach is based on geometry. So, it might also connect streets which cross each other without actually meeting, such as a road going over a bridge or through a tunnel. It is not perfect, but it is better than having junctions missing. The <code>osmdata_sc()</code> function or the <code>dodgr</code> package are alternatives which keep the OSM node IDs and, therefore, avoid this problem.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>bristol_wrangled <span class="ot">&lt;-</span> bristol_sfn <span class="sc">%&gt;%</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"edges"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">edge_is_multiple</span>()) <span class="sc">%&gt;%</span>   <span class="co"># Simplify the network</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">edge_is_loop</span>())           <span class="co"># Simplify the network </span></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="co"># size of simplified network</span></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="fu">gsize</span>(bristol_wrangled)  <span class="co"># number of edges</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>bristol_wrangled <span class="ot">&lt;-</span> <span class="fu">convert</span>(bristol_sfn, to_spatial_subdivision)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="co"># size after the intersections</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gsize</span>(bristol_wrangled)  <span class="co"># number of edges</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 15996</code></pre>
+<pre><code>[1] 17604</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gorder</span>(bristol_wrangled) <span class="co"># number of nodes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gorder</span>(bristol_wrangled) <span class="co"># number of nodes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 21798</code></pre>
+<pre><code>[1] 14711</code></pre>
 </div>
 </div>
-<!-- Create nodes where two lines intersect. -->
-<p>Remove the interior points…</p>
+<p><strong>Step 2: simplification.</strong> Now we can simplify the network by removing loops (edges that start and end at the same node) and multiple edges (more than one edge between the same two nodes). A word of caution: although we do this here for the sake of simplicity, there are real street networks with two different streets between the same two junctions. By removing one, we lose some information. To lose as little as possible, we first sort the edges by length (<code>arrange()</code>), so that when we remove the multiple edges we keep the <em>shortest</em> one. <code>edge_is_multiple()</code> flags the second, third, etc. edge between the same nodes, but never the first one.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>bristol_wrangled <span class="ot">&lt;-</span> <span class="fu">convert</span>(bristol_wrangled, to_spatial_smooth)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># size of simplified network</span></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gsize</span>(bristol_wrangled)  <span class="co"># number of edges</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>bristol_wrangled <span class="ot">&lt;-</span> bristol_wrangled <span class="sc">%&gt;%</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"edges"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">length_m =</span> <span class="fu">as.numeric</span>(<span class="fu">edge_length</span>())) <span class="sc">%&gt;%</span>  <span class="co"># we need the length for sorting</span></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(length_m) <span class="sc">%&gt;%</span>                             <span class="co"># shortest first</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">edge_is_multiple</span>()) <span class="sc">%&gt;%</span>                   <span class="co"># Simplify the network</span></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">edge_is_loop</span>())                           <span class="co"># Simplify the network</span></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="co"># size of simplified network</span></span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a><span class="fu">gsize</span>(bristol_wrangled)  <span class="co"># number of edges</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 12402</code></pre>
+<pre><code>[1] 17456</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gorder</span>(bristol_wrangled) <span class="co"># number of nodes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gorder</span>(bristol_wrangled) <span class="co"># number of nodes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 18204</code></pre>
+<pre><code>[1] 14711</code></pre>
 </div>
+</div>
+<p><strong>Step 3: smoothing.</strong> Remove the interior points…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>bristol_wrangled <span class="ot">&lt;-</span> <span class="fu">convert</span>(bristol_wrangled, to_spatial_smooth)</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="co"># size of smoothed network</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gsize</span>(bristol_wrangled)  <span class="co"># number of edges</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 15039</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gorder</span>(bristol_wrangled) <span class="co"># number of nodes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12294</code></pre>
+</div>
+</div>
+<p><strong>Step 4: connectivity.</strong> As in the Roxel example, we need to check if the network is connected. If we have disconnected fragments (e.g.&nbsp;a small cul-de-sac the data do not connect to the rest of the network), the distances and betweenness values will be distorted. So, we keep only the largest component.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>n.before <span class="ot">&lt;-</span> <span class="fu">gorder</span>(bristol_wrangled)</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>bristol_wrangled <span class="ot">&lt;-</span> bristol_wrangled <span class="sc">%&gt;%</span></span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"nodes"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cmp =</span> <span class="fu">group_components</span>()) <span class="sc">%&gt;%</span>       <span class="co"># which component each node belongs to</span></span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(cmp <span class="sc">==</span> <span class="fu">which.max</span>(<span class="fu">tabulate</span>(cmp)))    <span class="co"># keep the nodes of the largest component</span></span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a><span class="co"># How many nodes did we lose?</span></span>
+<span id="cb72-9"><a href="#cb72-9" aria-hidden="true" tabindex="-1"></a>n.before <span class="sc">-</span> <span class="fu">gorder</span>(bristol_wrangled)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 327</code></pre>
+</div>
+</div>
+<p>Lastly, smoothing merges edges, so to be safe we recalculate the length of the street segments. We will use it as a weight below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>bristol_wrangled <span class="ot">&lt;-</span> bristol_wrangled <span class="sc">%&gt;%</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"edges"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">length_m =</span> <span class="fu">as.numeric</span>(<span class="fu">edge_length</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>… and plot the network again.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(bristol_wrangled, <span class="st">"edges"</span>), <span class="at">col =</span> <span class="st">"grey50"</span>) <span class="sc">+</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(bristol_wrangled, <span class="st">"nodes"</span>), <span class="at">size =</span> .<span class="dv">01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(bristol_wrangled, <span class="st">"edges"</span>), <span class="at">col =</span> <span class="st">"grey50"</span>) <span class="sc">+</span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(bristol_wrangled, <span class="st">"nodes"</span>), <span class="at">size =</span> .<span class="dv">01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="street_networks_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="street_networks_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+<!-- ### Optional: consolidating intersections -->
+<!-- This is an optional, more advanced step, which is not run by default (`eval=FALSE`). In real street networks a single junction can be represented by more than one nodes (e.g. a dual carriageway). We can use `dbscan` to cluster nodes which are very close to each other and then merge them into one with `to_spatial_contracted`. Please note that because the network is in metres (we projected it earlier), `eps` is also in metres. Try different values (e.g. 10, 15, 30) and see how the number of nodes and the measures below change. -->
 </section>
 <section id="network-measures" class="level2">
 <h2 class="anchored" data-anchor-id="network-measures">Network measures</h2>
-<p>Now we can calculate betweenness centrality for Bristol, using the OSM street network we acquired.</p>
+<section id="indicators-of-street-network-form" class="level3">
+<h3 class="anchored" data-anchor-id="indicators-of-street-network-form">Indicators of street network form</h3>
+<p>Earlier we listed some topological measures and we calculated them for Roxel. For a big network like Bristol’s, some of them (eccentricity, diameter, closeness) are computationally expensive and not very informative. Instead, urban analysts usually focus on a set of indicators which describe the <em>form</em> of the street network and can be compared across cities <span class="citation" data-cites="boeing2019urban">(e.g. <a href="#ref-boeing2019urban" role="doc-biblioref">Boeing 2019</a>)</span>. The below function calculates some of them. Have a look at the comments to see what each one does.</p>
+<p>As a side note, instead of calculating all these indicators separately, I created a <code>function</code> that does this for me. So, I can run <code>street_indicators()</code> on a different dataset with the same attributes and have the same indicators calculated for the different data. Have a look at <a href="https://adv-r.hadley.nz/fp.html">functional programming</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>bristol_wrangled <span class="ot">&lt;-</span> bristol_wrangled <span class="sc">%&gt;%</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"nodes"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bc =</span> <span class="fu">centrality_betweenness</span>())</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(bristol_wrangled, <span class="st">"edges"</span>), <span class="at">col =</span> <span class="st">"grey50"</span>) <span class="sc">+</span></span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(bristol_wrangled, <span class="st">"nodes"</span>), <span class="fu">aes</span>(<span class="at">col =</span> bc,   </span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>                                                          <span class="at">alpha =</span> bc), <span class="co"># Increase opacity based on betweenness...</span></span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
-<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">alpha=</span><span class="cn">FALSE</span>) <span class="sc">+</span>                                                <span class="co"># ...but exclude this from the legend. Remove this line to see what will happen</span></span>
-<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Betweenness centrality in Bristol"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: The `&lt;scale&gt;` argument of `guides()` cannot be `FALSE`. Use "none" instead as
-of ggplot2 3.3.4.</code></pre>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>street_indicators <span class="ot">&lt;-</span> <span class="cf">function</span>(net, area_km2) {</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>  nodes_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(net, <span class="st">"nodes"</span>)</span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>  edges_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(net, <span class="st">"edges"</span>)</span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Node degree: the number of street segments meeting at each node.</span></span>
+<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a>  deg <span class="ot">&lt;-</span> igraph<span class="sc">::</span><span class="fu">degree</span>(net)</span>
+<span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-9"><a href="#cb76-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Circuity: the ratio between the length of a street segment and the straight line</span></span>
+<span id="cb76-10"><a href="#cb76-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># distance between its two end points. 1 means a straight street, higher values</span></span>
+<span id="cb76-11"><a href="#cb76-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># more winding streets.</span></span>
+<span id="cb76-12"><a href="#cb76-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># The from and to columns tell us the end points of each segment.</span></span>
+<span id="cb76-13"><a href="#cb76-13" aria-hidden="true" tabindex="-1"></a>  straight <span class="ot">&lt;-</span> <span class="fu">st_distance</span>(nodes_sf[edges_sf<span class="sc">$</span>from, ],</span>
+<span id="cb76-14"><a href="#cb76-14" aria-hidden="true" tabindex="-1"></a>                          nodes_sf[edges_sf<span class="sc">$</span>to, ],</span>
+<span id="cb76-15"><a href="#cb76-15" aria-hidden="true" tabindex="-1"></a>                          <span class="at">by_element =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb76-16"><a href="#cb76-16" aria-hidden="true" tabindex="-1"></a>  circuity <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">st_length</span>(edges_sf)) <span class="sc">/</span> <span class="fu">as.numeric</span>(straight)</span>
+<span id="cb76-17"><a href="#cb76-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-18"><a href="#cb76-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb76-19"><a href="#cb76-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">nodes =</span> <span class="fu">nrow</span>(nodes_sf),</span>
+<span id="cb76-20"><a href="#cb76-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">edges =</span> <span class="fu">nrow</span>(edges_sf),</span>
+<span id="cb76-21"><a href="#cb76-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">node_density_km2 =</span> <span class="fu">nrow</span>(nodes_sf) <span class="sc">/</span> area_km2,              <span class="co"># nodes per km2</span></span>
+<span id="cb76-22"><a href="#cb76-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">intersection_density_km2 =</span> <span class="fu">sum</span>(deg <span class="sc">&gt;=</span> <span class="dv">3</span>) <span class="sc">/</span> area_km2,       <span class="co"># junctions (3+ streets) per km2</span></span>
+<span id="cb76-23"><a href="#cb76-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">dead_ends_pct =</span> <span class="dv">100</span> <span class="sc">*</span> <span class="fu">mean</span>(deg <span class="sc">==</span> <span class="dv">1</span>),                      <span class="co"># % of nodes which are dead ends</span></span>
+<span id="cb76-24"><a href="#cb76-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_degree =</span> <span class="fu">mean</span>(deg),</span>
+<span id="cb76-25"><a href="#cb76-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_street_length_km =</span> <span class="fu">sum</span>(edges_sf<span class="sc">$</span>length_m) <span class="sc">/</span> <span class="dv">1000</span>,</span>
+<span id="cb76-26"><a href="#cb76-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_street_length_m =</span> <span class="fu">mean</span>(edges_sf<span class="sc">$</span>length_m),</span>
+<span id="cb76-27"><a href="#cb76-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_circuity =</span> <span class="fu">mean</span>(circuity[<span class="fu">is.finite</span>(circuity)]),</span>
+<span id="cb76-28"><a href="#cb76-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">clustering =</span> igraph<span class="sc">::</span><span class="fu">transitivity</span>(net, <span class="at">type =</span> <span class="st">"global"</span>)</span>
+<span id="cb76-29"><a href="#cb76-29" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb76-30"><a href="#cb76-30" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb76-31"><a href="#cb76-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-32"><a href="#cb76-32" aria-hidden="true" tabindex="-1"></a><span class="co"># The area of the city in km2. We need to use the projected CRS to get this right.</span></span>
+<span id="cb76-33"><a href="#cb76-33" aria-hidden="true" tabindex="-1"></a>bristol_area_km2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">as.numeric</span>(<span class="fu">st_area</span>(<span class="fu">st_transform</span>(bristol_poly, <span class="dv">27700</span>)))) <span class="sc">/</span> <span class="fl">1e6</span></span>
+<span id="cb76-34"><a href="#cb76-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-35"><a href="#cb76-35" aria-hidden="true" tabindex="-1"></a><span class="fu">street_indicators</span>(bristol_wrangled, bristol_area_km2) <span class="sc">%&gt;%</span></span>
+<span id="cb76-36"><a href="#cb76-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"indicator"</span>, <span class="at">values_to =</span> <span class="st">"Bristol"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   indicator                   Bristol
+   &lt;chr&gt;                         &lt;dbl&gt;
+ 1 nodes                    11967     
+ 2 edges                    14779     
+ 3 node_density_km2            34.5   
+ 4 intersection_density_km2    24.4   
+ 5 dead_ends_pct               29.1   
+ 6 mean_degree                  2.47  
+ 7 total_street_length_km    1195.    
+ 8 mean_street_length_m        80.8   
+ 9 mean_circuity                1.04  
+10 clustering                   0.0616</code></pre>
 </div>
+</div>
+<div class="cell" type="alert alert-warning">
+<div class="alert alert-warning">
+<p>
+<strong>Question</strong>: How would you interpret these numbers? Can you download the street network of another city (e.g.&nbsp;Cardiff or a city of your choice) and compare it with Bristol? You can reuse the code above. A <em>function</em> might be handy here. Remember to save the OSM data. What do the differences tell us about the form of the two cities?
+</p>
+</div>
+</div>
+</section>
+<section id="betweenness-centrality" class="level3">
+<h3 class="anchored" data-anchor-id="betweenness-centrality">Betweenness centrality</h3>
+<p>Now we can calculate betweenness centrality for Bristol, using the OSM street network we acquired. A few things to note:</p>
+<ul>
+<li><p>As before, we use the street length as a weight, so that the shortest paths are the shortest in terms of distance.</p></li>
+<li><p><code>normalized = TRUE</code> rescales the values by the maximum possible betweenness for a network of this size. This is what we need if we want to compare different networks, e.g.&nbsp;different cities, as the raw values depend on the size of the network.</p></li>
+<li><p>This might take a few minutes, as the network is large and we need to calculate the shortest paths between all pairs of nodes. This is why we use <code>cache = TRUE</code>, which stores the output of the chunk and does not re-run it every time we knit, unless the code changes.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>bristol_wrangled <span class="ot">&lt;-</span> bristol_wrangled <span class="sc">%&gt;%</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"nodes"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bc =</span> <span class="fu">centrality_betweenness</span>(<span class="at">weights =</span> length_m, <span class="at">normalized =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(bristol_wrangled, <span class="st">"edges"</span>), <span class="at">col =</span> <span class="st">"grey50"</span>) <span class="sc">+</span></span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(bristol_wrangled, <span class="st">"nodes"</span>), <span class="fu">aes</span>(<span class="at">col =</span> bc,</span>
+<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a>                                                          <span class="at">alpha =</span> bc), <span class="co"># Increase opacity based on betweenness...</span></span>
+<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">alpha =</span> <span class="st">"none"</span>) <span class="sc">+</span>                                             <span class="co"># ...but exclude this from the legend. Remove this line to see what will happen</span></span>
+<span id="cb78-11"><a href="#cb78-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Betweenness centrality in Bristol"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -815,73 +1129,27 @@ of ggplot2 3.3.4.</code></pre>
 </p>
 </div>
 </div>
-<p>Remember the community detections algorithms? We can detect such communities within the street network. These are neighbourhoods of <strong>streets</strong> which are better connected internally than externally with the whole network. There is a contradiction here, no? Community detection is about nodes, not edges? However, here we are interested in clustering edges. So, we will do a little trick. We will first ‘inverse’ our spatial network, which means that the nodes become edges and vice versa. We will do this with <code>morph(to_linegraph)</code>. Read the Wikipedia entry of <a href="https://en.wikipedia.org/wiki/Line_graph">line graps</a> and see the below image for an example. The <code>unmorgh()</code> brings the changes – that is the new <code>group</code> column back to the original network, that we now call <code>grouped_net</code>. For more details, have a look <a href="https://cran.r-project.org/web/packages/sfnetworks/vignettes/sfn05_morphers.html">here</a>.</p>
-<p><img src="images/linegraph.png" class="img-fluid"></p>
-<p><small>Source: <a href="https://mathworld.wolfram.com/LineGraph.html">mathworld.wolfram.com</a></small></p>
+<p>Nodes are not the only option though. For streets, it might make more sense to calculate the betweenness of the <em>street segments</em> (edges), as this is closer to the idea of a street being on the shortest paths between other places. This is also what Space Syntax calls <em>choice</em> <span class="citation" data-cites="hillier1976space">(<a href="#ref-hillier1976space" role="doc-biblioref">Hillier et al. 1976</a>)</span>. In addition, the map is much easier to read, as streets are shown as lines and not as dots.</p>
+<p>We also use the <code>cutoff</code> argument. It restricts the calculation to paths shorter than <span class="math inline">\(800\)</span> metres, i.e.&nbsp;approximately a <span class="math inline">\(10\)</span> minutes walk. This gives us a <em>local</em> betweenness: how important is a street segment for trips within the neighbourhood, and not for all the trips across the city. It also makes the calculation much faster. Feel free to try different values (e.g.&nbsp;<span class="math inline">\(400\)</span>, <span class="math inline">\(1600\)</span> or no cutoff at all if you have the time) and see how the map changes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)                                       <span class="co"># The Louvain method is a randomised algorithm, </span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>                                                    <span class="co"># which aims to always maximise modularity. If the communities </span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>                                                    <span class="co"># are week, every time we run the algorithm the results might</span></span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>                                                    <span class="co"># might be different. To avoid such inconsistency, we can add</span></span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>                                                    <span class="co"># the set.seed() function. See what is does here:</span></span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>                                                    <span class="co"># https://www.rdocumentation.org/packages/simEd/versions/2.0.1/topics/set.seed</span></span>
-<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>grouped_net <span class="ot">=</span> bristol_wrangled <span class="sc">%&gt;%</span></span>
-<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">morph</span>(to_linegraph) <span class="sc">%&gt;%</span></span>
-<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group =</span> <span class="fu">group_louvain</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unmorph</span>()</span>
-<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a><span class="co"># A new group column has been added with the community membership</span></span>
-<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>grouped_net</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A sfnetwork with 18204 nodes and 12402 edges
-#
-# CRS:  EPSG:4326 
-#
-# An undirected multigraph with 6680 components with spatially explicit edges
-#
-# Node data: 18,204 × 2 (active)
-                     x     bc
-           &lt;POINT [°]&gt;  &lt;dbl&gt;
-1  (-2.460661 51.5015)     0 
-2 (-2.520817 51.51683)  4288.
-3 (-2.546005 51.54411)  7551 
-4 (-2.552232 51.40076)  7551 
-5 (-2.516866 51.51245)  9843.
-6  (-2.51898 51.51272) 30310.
-# ℹ 18,198 more rows
-#
-# Edge data: 12,402 × 5
-   from    to  weight                                                    x group
-  &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;                                     &lt;LINESTRING [°]&gt; &lt;int&gt;
-1     6     7  219.   (-2.51898 51.51272, -2.518938 51.51293, -2.518937 5…    29
-2    15    16 2713.   (-2.573424 51.54525, -2.575283 51.54459, -2.582798 …    27
-3    18    19    5.23             (-2.528247 51.50576, -2.528179 51.50578)    29
-# ℹ 12,399 more rows</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There are quite a few communities overall</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>grouped_net <span class="sc">%&gt;%</span></span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"edges"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(group) <span class="sc">%&gt;%</span></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">length</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 6723</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>grouped_net <span class="sc">%&gt;%</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"edges"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>() <span class="sc">%&gt;%</span>                                     <span class="co"># If you remember, we used this above.</span></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">group =</span> <span class="fu">as.factor</span>(group)) <span class="sc">%&gt;%</span>            <span class="co"># We turn community membership to a factor.</span></span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(group <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>)) <span class="sc">%&gt;%</span>                     <span class="co"># Only plotting the first 15 communities.</span></span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">col =</span> group), <span class="at">lwd =</span> <span class="dv">4</span>) <span class="sc">+</span>               <span class="co"># This plots the communities ...</span></span>
-<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(bristol_wrangled, <span class="st">"edges"</span>),<span class="co"># ... and this all the network.</span></span>
-<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">col =</span> <span class="st">"grey"</span>, <span class="at">lwd =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="sc">+</span>                    <span class="co"># No legend please.</span></span>
-<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Bristol's street communities"</span>)            </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>bristol_wrangled <span class="ot">&lt;-</span> bristol_wrangled <span class="sc">%&gt;%</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"edges"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ebc =</span> <span class="fu">centrality_edge_betweenness</span>(<span class="at">weights =</span> length_m,</span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">directed =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">cutoff =</span> <span class="dv">800</span>))</span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a><span class="fu">st_as_sf</span>(bristol_wrangled, <span class="st">"edges"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(ebc) <span class="sc">%&gt;%</span>                                <span class="co"># plot the high values last, so they are on top</span></span>
+<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb79-10"><a href="#cb79-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">col =</span> ebc, <span class="at">linewidth =</span> ebc)) <span class="sc">+</span></span>
+<span id="cb79-11"><a href="#cb79-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_viridis_c</span>() <span class="sc">+</span></span>
+<span id="cb79-12"><a href="#cb79-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linewidth</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">1.2</span>)) <span class="sc">+</span></span>
+<span id="cb79-13"><a href="#cb79-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">linewidth =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb79-14"><a href="#cb79-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Local edge betweenness centrality in Bristol (800m)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="street_networks_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="street_networks_files/figure-html/bristol_edge_betweenness-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -889,7 +1157,180 @@ of ggplot2 3.3.4.</code></pre>
 <div class="cell" type="alert alert-warning">
 <div class="alert alert-warning">
 <p>
-<strong>Task</strong>: Read the <a href="https://cran.r-project.org/web/packages/sfnetworks/vignettes/sfn04_routing.html">routing vigneette</a> of `sfnetworks and apply these techniques in the Bristol street network.
+<strong>Question</strong>: How does this map differ from the one for node betweenness? What does a high local betweenness value mean for a street? Which type of streets does it highlight? Is it a <em>measure of traffic</em>? Think about what betweenness assumes (e.g.&nbsp;that people always take the shortest path) and what is missing.
+</p>
+</div>
+</div>
+</section>
+<section id="communities" class="level3">
+<h3 class="anchored" data-anchor-id="communities">Communities</h3>
+<p>Remember the community detections algorithms? We can detect such communities within the street network. These are neighbourhoods of <strong>streets</strong> which are better connected internally than externally with the whole network. There is a contradiction here, no? Community detection is about nodes, not edges? However, here we are interested in clustering edges. So, we will do a little trick. We will first ‘inverse’ our spatial network, which means that the nodes become edges and vice versa. We will do this with <code>morph(to_linegraph)</code>. Read the Wikipedia entry of <a href="https://en.wikipedia.org/wiki/Line_graph">line graphs</a> and see the below image for an example. The <code>unmorph()</code> brings the changes – that is the new <code>group</code> column back to the original network, that we now call <code>grouped_net</code>. For more details, have a look <a href="https://cran.r-project.org/web/packages/sfnetworks/vignettes/sfn05_morphers.html">here</a>.</p>
+<p><img src="images/linegraph.png" class="img-fluid"></p>
+<p><small>Source: <a href="https://mathworld.wolfram.com/LineGraph.html">mathworld.wolfram.com</a></small></p>
+<p>Please note that the line graph does not ‘remember’ the length of the street segments. So, the communities below are based only on the <em>topology</em> of the network, i.e.&nbsp;on which streets are connected with which.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)                                       <span class="co"># The Louvain method is a randomised algorithm,</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>                                                    <span class="co"># which aims to maximise modularity, but it is a heuristic.</span></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>                                                    <span class="co"># If the communities are weak, every time we run the algorithm</span></span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>                                                    <span class="co"># the results might be different. To avoid such inconsistency,</span></span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>                                                    <span class="co"># we can add the set.seed() function. See what is does here:</span></span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>                                                    <span class="co"># https://www.rdocumentation.org/packages/simEd/versions/2.0.1/topics/set.seed</span></span>
+<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a>grouped_net <span class="ot">=</span> bristol_wrangled <span class="sc">%&gt;%</span></span>
+<span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"nodes"</span>) <span class="sc">%&gt;%</span>                             <span class="co"># the nodes need to be active for the line graph</span></span>
+<span id="cb80-9"><a href="#cb80-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">morph</span>(to_linegraph) <span class="sc">%&gt;%</span></span>
+<span id="cb80-10"><a href="#cb80-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group =</span> <span class="fu">group_louvain</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb80-11"><a href="#cb80-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unmorph</span>()</span>
+<span id="cb80-12"><a href="#cb80-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-13"><a href="#cb80-13" aria-hidden="true" tabindex="-1"></a><span class="co"># A new group column has been added with the community membership</span></span>
+<span id="cb80-14"><a href="#cb80-14" aria-hidden="true" tabindex="-1"></a>grouped_net</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A sfnetwork with 11967 nodes and 14779 edges
+#
+# CRS:  EPSG:27700 
+#
+# An undirected multigraph with 1 component with spatially explicit edges
+#
+# Node data: 11,967 × 3 (active)
+                    x   cmp       bc
+          &lt;POINT [m]&gt; &lt;int&gt;    &lt;dbl&gt;
+1   (353810.1 179131)     1 0.000167
+2 (353952.9 179345.8)     1 0       
+3 (353731.3 178372.7)     1 0.000501
+4   (352600 177757.8)     1 0.000167
+5   (360497.3 173478)     1 0.0305  
+6   (360485 173411.4)     1 0.0255  
+# ℹ 11,961 more rows
+#
+# Edge data: 14,779 × 6
+   from    to length_m                                      x   ebc group
+  &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;                       &lt;LINESTRING [m]&gt; &lt;dbl&gt; &lt;int&gt;
+1  9431 10239    0.485   (356490.3 171552, 356490.2 171552.5)   741    15
+2 11421 11422    0.737 (356902.6 171197.9, 356903.3 171197.9)   489    15
+3   295  6471    0.819     (359007 172060, 359007.8 172060.3)  1584    14
+# ℹ 14,776 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There are quite a few communities overall</span></span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>grouped_net <span class="sc">%&gt;%</span></span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"edges"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(group) <span class="sc">%&gt;%</span></span>
+<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 73</code></pre>
+</div>
+</div>
+<p>The community labels (1, 2, 3, …) are arbitrary. Group 1 is not necessarily the biggest community. So, in order to plot the <span class="math inline">\(15\)</span> largest communities, we first need to find them, by counting how many street segments each community has.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>largest.groups <span class="ot">&lt;-</span> grouped_net <span class="sc">%&gt;%</span></span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"edges"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>() <span class="sc">%&gt;%</span>                                     <span class="co"># If you remember, we used this above.</span></span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_drop_geometry</span>() <span class="sc">%&gt;%</span>                             <span class="co"># We only need the table, not the geometries.</span></span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(group, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span>                      <span class="co"># How many street segments per community, largest first.</span></span>
+<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">15</span>) <span class="sc">%&gt;%</span>                             <span class="co"># The first 15 rows, i.e. the 15 largest communities.</span></span>
+<span id="cb84-7"><a href="#cb84-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(group)</span>
+<span id="cb84-8"><a href="#cb84-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-9"><a href="#cb84-9" aria-hidden="true" tabindex="-1"></a>grouped_net <span class="sc">%&gt;%</span></span>
+<span id="cb84-10"><a href="#cb84-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"edges"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb84-11"><a href="#cb84-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb84-12"><a href="#cb84-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">group =</span> <span class="fu">as.factor</span>(group)) <span class="sc">%&gt;%</span>            <span class="co"># We turn community membership to a factor.</span></span>
+<span id="cb84-13"><a href="#cb84-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(group <span class="sc">%in%</span> largest.groups) <span class="sc">%&gt;%</span>              <span class="co"># Only plotting the 15 largest communities.</span></span>
+<span id="cb84-14"><a href="#cb84-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb84-15"><a href="#cb84-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">col =</span> group), <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span>         <span class="co"># This plots the communities ...</span></span>
+<span id="cb84-16"><a href="#cb84-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(bristol_wrangled, <span class="st">"edges"</span>),<span class="co"># ... and this all the network.</span></span>
+<span id="cb84-17"><a href="#cb84-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">col =</span> <span class="st">"grey"</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb84-18"><a href="#cb84-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="sc">+</span>                    <span class="co"># No legend please.</span></span>
+<span id="cb84-19"><a href="#cb84-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Bristol's street communities"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="street_networks_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" type="alert alert-warning">
+<div class="alert alert-warning">
+<p>
+<strong>Question</strong>: What do you think about the communities? Do they correspond to neighbourhoods or areas of Bristol that you know? What is the role of the barriers (e.g.&nbsp;the railway, major roads) in the community structure? Try to run the code with a different <code>set.seed()</code>. How stable are the results?
+</p>
+</div>
+</div>
+</section>
+</section>
+<section id="routing" class="level2">
+<h2 class="anchored" data-anchor-id="routing">Routing</h2>
+<p>One of the most common uses of street networks is routing, i.e.&nbsp;finding the shortest path between two places. Let’s try this for two Bristol landmarks: Temple Meads station and the Wills Memorial Building of the University of Bristol. The coordinates below are approximate, so have a look on a map to check them. Note that we transform them to the same CRS as the network.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>landmarks <span class="ot">&lt;-</span> <span class="fu">st_sfc</span>(</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_point</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.5813</span>, <span class="fl">51.4490</span>)),    <span class="co"># Bristol Temple Meads</span></span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_point</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.6022</span>, <span class="fl">51.4561</span>)),    <span class="co"># Wills Memorial Building</span></span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">crs =</span> <span class="dv">4326</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="dv">27700</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>st_network_paths()</code> calculates the shortest paths. If we give it points, it automatically ‘snaps’ them to the nearest node of the network. We will calculate two different paths: the shortest in terms of distance, using the <code>length_m</code> weights, and the shortest in terms of number of street segments, which is a very rough proxy for the ‘simplest’ route with the fewest intersection. For the latter we need a column of ones, which acts as ‘equal’ weights.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>bristol_wrangled <span class="ot">&lt;-</span> bristol_wrangled <span class="sc">%&gt;%</span></span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"edges"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">one =</span> <span class="dv">1</span>)                       <span class="co"># equal weights for all street segments</span></span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>path.dist <span class="ot">&lt;-</span> <span class="fu">st_network_paths</span>(bristol_wrangled,</span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">from =</span> landmarks[<span class="dv">1</span>],</span>
+<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a>                              <span class="at">to =</span> landmarks[<span class="dv">2</span>],</span>
+<span id="cb86-8"><a href="#cb86-8" aria-hidden="true" tabindex="-1"></a>                              <span class="at">weights =</span> <span class="st">"length_m"</span>)</span>
+<span id="cb86-9"><a href="#cb86-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-10"><a href="#cb86-10" aria-hidden="true" tabindex="-1"></a>path.hops <span class="ot">&lt;-</span> <span class="fu">st_network_paths</span>(bristol_wrangled,</span>
+<span id="cb86-11"><a href="#cb86-11" aria-hidden="true" tabindex="-1"></a>                              <span class="at">from =</span> landmarks[<span class="dv">1</span>],</span>
+<span id="cb86-12"><a href="#cb86-12" aria-hidden="true" tabindex="-1"></a>                              <span class="at">to =</span> landmarks[<span class="dv">2</span>],</span>
+<span id="cb86-13"><a href="#cb86-13" aria-hidden="true" tabindex="-1"></a>                              <span class="at">weights =</span> <span class="st">"one"</span>)</span>
+<span id="cb86-14"><a href="#cb86-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-15"><a href="#cb86-15" aria-hidden="true" tabindex="-1"></a><span class="co"># The output includes the edges (and nodes) the paths go through.</span></span>
+<span id="cb86-16"><a href="#cb86-16" aria-hidden="true" tabindex="-1"></a><span class="co"># This is how we can extract the edges of each path as an sf object:</span></span>
+<span id="cb86-17"><a href="#cb86-17" aria-hidden="true" tabindex="-1"></a>route.dist <span class="ot">&lt;-</span> bristol_wrangled <span class="sc">%&gt;%</span></span>
+<span id="cb86-18"><a href="#cb86-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"edges"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb86-19"><a href="#cb86-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="fu">unlist</span>(path.dist<span class="sc">$</span>edge_paths)) <span class="sc">%&gt;%</span></span>
+<span id="cb86-20"><a href="#cb86-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>()</span>
+<span id="cb86-21"><a href="#cb86-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-22"><a href="#cb86-22" aria-hidden="true" tabindex="-1"></a>route.hops <span class="ot">&lt;-</span> bristol_wrangled <span class="sc">%&gt;%</span></span>
+<span id="cb86-23"><a href="#cb86-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">"edges"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb86-24"><a href="#cb86-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="fu">unlist</span>(path.hops<span class="sc">$</span>edge_paths)) <span class="sc">%&gt;%</span></span>
+<span id="cb86-25"><a href="#cb86-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>()</span>
+<span id="cb86-26"><a href="#cb86-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-27"><a href="#cb86-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Lengths of the two routes in metres</span></span>
+<span id="cb86-28"><a href="#cb86-28" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(route.dist<span class="sc">$</span>length_m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1949.99</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(route.hops<span class="sc">$</span>length_m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2441.156</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(bristol_wrangled, <span class="st">"edges"</span>), <span class="at">col =</span> <span class="st">"grey80"</span>) <span class="sc">+</span></span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> route.hops, <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> route.dist, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> landmarks, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb90-6"><a href="#cb90-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Shortest path by distance (red) and by number of street segments (blue)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="street_networks_files/figure-html/routing-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" type="alert alert-warning">
+<div class="alert alert-warning">
+<p>
+<strong>Question</strong>: Are the two routes the same? If not, why? Which one would you prefer if you were walking? And driving?
+</p>
+</div>
+</div>
+<div class="cell" type="alert alert-warning">
+<div class="alert alert-warning">
+<p>
+<strong>Task</strong>: Read the <a href="https://cran.r-project.org/web/packages/sfnetworks/vignettes/sfn04_routing.html">routing vignette</a> of <code>sfnetworks</code> and apply more of these techniques in the Bristol street network. For example:
+</p>
+<p>
+Use <code>to_spatial_neighbourhood()</code> (see the <a href="https://cran.r-project.org/web/packages/sfnetworks/vignettes/sfn05_morphers.html">morphers vignette</a>) to map which parts of the network are within <span class="math inline">(15)</span> minutes walking distance from Temple Meads (assume a walking speed of about <span class="math inline">(5)</span> km/h, i.e.&nbsp;<span class="math inline">(1250)</span> m in <span class="math inline">(15)</span> minutes). Then do the same for another place. What differences do you observe? This is the basic idea behind many accessibility measures.
 </p>
 </div>
 </div>
