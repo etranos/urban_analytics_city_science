@@ -83,7 +83,7 @@ C -- F
 
 -   Large scale networks with no obvious structure
 
--   Nodes degree follows a Poisson distribution: similar degree, close to the average degree <k>, rare exceptions
+-   Nodes degree follows a Poisson distribution: similar degree, close to the average degree $\langle k \rangle$, rare exceptions
 
 -   Representative of real world network?
 
@@ -191,7 +191,7 @@ C -- F
 
 -   The probability $P(k)$ that a node has a degree $k$ decays following a power function, with usually $2 < \gamma < 3$
 
-    $P(k)≈𝑘^{−\gamma}$
+    $P(k) \approx𝑘^{−\gamma}$
 
 -   Power laws in networks are related with the existence of **both of the above two mechanisms**
 
@@ -233,9 +233,9 @@ And finally the power law...
 
 -   RN cannot be included in SW because they lack the high clustering coefficient
 
--   SF networks share the short average distance and the high cluster coefficient of SW ones, but the SW are not characterized by the scale-free distribution
+-   SF networks share the short average distance of SW ones, but the SW are not characterized by the scale-free distribution
 
--   All scale free networks display small world properties, while all small-world networks are not necessarily scale free
+<!-- -   All scale free networks display small world properties, while all small-world networks are not necessarily scale free -->
 
 ## Network science: An epistemological discussion
 
@@ -323,7 +323,7 @@ Based on @batty2013new. See also @bettencourt2021introduction
 
 <!-- Zipf's law -->
 
-## Metcalfe's law / Moore's law
+## Metcalfe's law
 
 -   As cities grow...
 
@@ -495,13 +495,13 @@ $Y_i = Y_0P_i^\beta$
 
 -   Plotting the results
 
--   Economies of scale
+<!-- -   Economies of scale -->
 
--   $b<1$ decreasing returns to scale
-
--   $b=1$ constant returns
-
--   $b>1$ increasing returns
+    -   $b<1$ decreasing returns to scale
+    
+    -   $b=1$ constant returns
+    
+    -   $b>1$ increasing returns
 
 -   SF networks, economies of scale?
 

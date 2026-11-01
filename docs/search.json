@@ -473,7 +473,7 @@
     "href": "src/network_science.html#st-milestone-random-networks-rn",
     "title": "Network science, urban laws and scaling",
     "section": "1st milestone: Random networks (RN)",
-    "text": "1st milestone: Random networks (RN)\n\n20th Century: advances in mathematics and statistics\nAlgorithmic network analysis\nErdős, Rényi, et al. (1960)\nLarge scale networks with no obvious structure\nNodes degree follows a Poisson distribution: similar degree, close to the average degree , rare exceptions\nRepresentative of real world network?",
+    "text": "1st milestone: Random networks (RN)\n\n20th Century: advances in mathematics and statistics\nAlgorithmic network analysis\nErdős, Rényi, et al. (1960)\nLarge scale networks with no obvious structure\nNodes degree follows a Poisson distribution: similar degree, close to the average degree \\(\\langle k \\rangle\\), rare exceptions\nRepresentative of real world network?",
     "crumbs": [
       "Lectures",
       "Network science, urban laws and scaling"
@@ -583,7 +583,7 @@
     "href": "src/network_science.html#rd-milestone-scale-free-sf-networks-1",
     "title": "Network science, urban laws and scaling",
     "section": "3rd milestone: Scale-free (SF) networks",
-    "text": "3rd milestone: Scale-free (SF) networks\n\nAn initial difference in the connectivity between two nodes will increase further as the network grows\nThis is a cumulative — rich get richer — process\nThe probability \\(P(k)\\) that a node has a degree \\(k\\) decays following a power function, with usually \\(2 &lt; \\gamma &lt; 3\\)\n\\(P(k)≈𝑘^{−\\gamma}\\)\nPower laws in networks are related with the existence of both of the above two mechanisms\nLater versions of SF models included more realistic options for the network growth",
+    "text": "3rd milestone: Scale-free (SF) networks\n\nAn initial difference in the connectivity between two nodes will increase further as the network grows\nThis is a cumulative — rich get richer — process\nThe probability \\(P(k)\\) that a node has a degree \\(k\\) decays following a power function, with usually \\(2 &lt; \\gamma &lt; 3\\)\n\\(P(k) \\approx𝑘^{−\\gamma}\\)\nPower laws in networks are related with the existence of both of the above two mechanisms\nLater versions of SF models included more realistic options for the network growth",
     "crumbs": [
       "Lectures",
       "Network science, urban laws and scaling"
@@ -638,7 +638,7 @@
     "href": "src/network_science.html#network-science-a-summary",
     "title": "Network science, urban laws and scaling",
     "section": "Network Science: a summary",
-    "text": "Network Science: a summary\n\nBoth RN and SW have short average distances\nRN cannot be included in SW because they lack the high clustering coefficient\nSF networks share the short average distance and the high cluster coefficient of SW ones, but the SW are not characterized by the scale-free distribution\nAll scale free networks display small world properties, while all small-world networks are not necessarily scale free",
+    "text": "Network Science: a summary\n\nBoth RN and SW have short average distances\nRN cannot be included in SW because they lack the high clustering coefficient\nSF networks share the short average distance of SW ones, but the SW are not characterized by the scale-free distribution",
     "crumbs": [
       "Lectures",
       "Network science, urban laws and scaling"
@@ -847,7 +847,7 @@
     "href": "src/network_science.html#bettencourt-west-or-marshalls-law-4",
     "title": "Network science, urban laws and scaling",
     "section": "Bettencourt-West or Marshall’s law",
-    "text": "Bettencourt-West or Marshall’s law\n\n\n\n\n\n\n\\(Y=3P^b\\)\n300 random observation\nPlotting the results\nEconomies of scale\n\\(b&lt;1\\) decreasing returns to scale\n\\(b=1\\) constant returns\n\\(b&gt;1\\) increasing returns\nSF networks, economies of scale?",
+    "text": "Bettencourt-West or Marshall’s law\n\n\n\n\n\n\n\\(Y=3P^b\\)\n300 random observation\nPlotting the results\n\n\n-   $b&lt;1$ decreasing returns to scale\n\n-   $b=1$ constant returns\n\n-   $b&gt;1$ increasing returns\n\nSF networks, economies of scale?",
     "crumbs": [
       "Lectures",
       "Network science, urban laws and scaling"
@@ -3117,6 +3117,17 @@
     "crumbs": [
       "Practicals",
       "Street network analysis practical: networks within cities"
+    ]
+  },
+  {
+    "objectID": "src/network_science.html#metcalfes-law",
+    "href": "src/network_science.html#metcalfes-law",
+    "title": "Network science, urban laws and scaling",
+    "section": "Metcalfe’s law",
+    "text": "Metcalfe’s law\n\nAs cities grow…\n… the number of potential connections increases as the square of population.\n\\(C = p(p-1)/2 \\propto p^2\\)",
+    "crumbs": [
+      "Lectures",
+      "Network science, urban laws and scaling"
     ]
   }
 ]
