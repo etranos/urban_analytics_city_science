@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Emmanouil Tranos">
-<meta name="dcterms.date" content="2025-11-15">
+<meta name="dcterms.date" content="2026-11-02">
 
 <title>Network models in practice – Urban analytics and city science</title>
 <style>
@@ -123,6 +123,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -315,6 +344,9 @@ div.csl-indent {
   <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
   <li><a href="#aims-of-the-practical" id="toc-aims-of-the-practical" class="nav-link" data-scroll-target="#aims-of-the-practical">Aims of the practical</a></li>
   <li><a href="#examples-of-modelled-networks" id="toc-examples-of-modelled-networks" class="nav-link" data-scroll-target="#examples-of-modelled-networks">Examples of modelled networks</a></li>
+  <li><a href="#network-metrics" id="toc-network-metrics" class="nav-link" data-scroll-target="#network-metrics">Network metrics</a></li>
+  <li><a href="#degree-distributions" id="toc-degree-distributions" class="nav-link" data-scroll-target="#degree-distributions">Degree distributions</a></li>
+  <li><a href="#replicating-the-simulation" id="toc-replicating-the-simulation" class="nav-link" data-scroll-target="#replicating-the-simulation">Replicating the simulation</a></li>
   </ul>
 </nav>
     </div>
@@ -340,7 +372,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 15, 2025</p>
+      <p class="date">November 2, 2026</p>
     </div>
   </div>
   
@@ -354,12 +386,12 @@ div.csl-indent {
 
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<p>Pay attention on the packages <code>sand</code> and <code>igraphdata</code>. The first one contains all the different network datasets used by <span class="citation" data-cites="kolaczyk2020statistical">(<a href="#ref-kolaczyk2020statistical" role="doc-biblioref">Kolaczyk and Csárdi 2020</a>)</span>. Then, the second one contain network data to be used together with the <code>igraph</code> package. More information can be found <a href="https://cran.r-project.org/web/packages/sand/sand.pdf" target="_blank">here</a> and <a href="https://cran.r-project.org/web/packages/igraphdata/igraphdata.pdf" target="_blank">here</a>. Feel free to explore these network data on your own time.</p>
+<p>Pay attention to the packages <code>sand</code> and <code>igraphdata</code>. The first one contains all the different network datasets used by <span class="citation" data-cites="kolaczyk2020statistical">(<a href="#ref-kolaczyk2020statistical" role="doc-biblioref">Kolaczyk and Csárdi 2020</a>)</span>. Then, the second one contains network data to be used together with the <code>igraph</code> package. More information can be found <a href="https://cran.r-project.org/web/packages/sand/sand.pdf" target="_blank">here</a> and <a href="https://cran.r-project.org/web/packages/igraphdata/igraphdata.pdf" target="_blank">here</a>. Feel free to explore these network data on your own time.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sand)       </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sand)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraphdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -370,75 +402,281 @@ div.csl-indent {
 <li><p>Analyse their key attributes</p></li>
 <li><p>Compare them</p></li>
 </ul>
-<p><code>igraph</code> enables us to generate networks based on some of the some key network models we discussed. I list below some of these functions:</p>
+<p><code>igraph</code> enables us to generate networks based on some of the key network models we discussed. I list below some of these functions:</p>
 <ul>
 <li><p><code>sample_gnp()</code></p></li>
 <li><p><code>sample_smallworld()</code></p></li>
 <li><p><code>sample_pa()</code></p></li>
 </ul>
+</section>
+<section id="examples-of-modelled-networks" class="level2">
+<h2 class="anchored" data-anchor-id="examples-of-modelled-networks">Examples of modelled networks</h2>
+<p>So, let’s create three networks using these three functions with <span class="math inline">\(n = 100\)</span> nodes each. Then, we can visualise and compare them.</p>
 <p>Go to <code>igraph</code>’s <a href="https://igraph.org/r/html/latest/" target="_blank">webpage</a> and familiarise yourselves with the syntax of these functions.</p>
-<div class="cell" type="alert alert-warning">
-<div class="alert alert-warning">
-<p>
-<strong>Task</strong>: Create three networks using these three functions with, let’s say, <span class="math inline">(n = 500)</span> nodes each.
-</p>
-<p>
-Visualise and compare these networks.
-</p>
-</div>
-</div>
 <p>Importantly, just before you generate a network with one of the above three functions you will need to define a random seed for reproducibility reasons, e.g.&nbsp;<code>set.seed(55)</code>.</p>
+<p>This time we are saving each network in an object (e.g.&nbsp;<code>g.reg</code>), instead of plotting it straight away. We will need these objects below in order to calculate their attributes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Regular network</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">55</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>g.reg <span class="ot">&lt;-</span> <span class="fu">make_ring</span>(<span class="dv">100</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g.reg, <span class="at">layout=</span>layout_in_circle, <span class="at">vertex.label=</span><span class="cn">NA</span>, <span class="at">vertex.size =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="network_models_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Random network</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">55</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>g.rnd <span class="ot">&lt;-</span> <span class="fu">sample_gnp</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">p =</span> <span class="fl">0.02</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g.rnd, <span class="at">layout=</span>layout_with_fr, <span class="at">vertex.label=</span><span class="cn">NA</span>, <span class="at">vertex.size =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="network_models_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Small world network</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">55</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>g.sw <span class="ot">&lt;-</span> <span class="fu">sample_smallworld</span>(<span class="at">dim =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">nei =</span> <span class="dv">5</span>, <span class="at">p =</span> <span class="fl">0.05</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g.sw, <span class="at">layout=</span>layout_with_fr, <span class="at">vertex.label=</span><span class="cn">NA</span>, <span class="at">vertex.size =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="network_models_files/figure-html/unnamed-chunk-1-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scale free network</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">55</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>g.sf <span class="ot">&lt;-</span> <span class="fu">sample_pa</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">directed=</span><span class="cn">FALSE</span>, <span class="at">power =</span> <span class="fl">1.5</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g.sf, <span class="at">layout=</span>layout_with_fr, <span class="at">vertex.label=</span><span class="cn">NA</span>, <span class="at">vertex.size =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="network_models_files/figure-html/unnamed-chunk-1-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="network-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="network-metrics">Network metrics</h2>
+<p>The plots are useful, but it is hard to compare networks only by looking at them. Let’s calculate some of the network measures we discussed and put them in a table. To do so efficiently, we first create a function, which takes a network as an input and returns its measures in a one-row table (a <code>tibble</code>). Have a look at the comments to see what each measure represents.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>net_metrics <span class="ot">&lt;-</span> <span class="cf">function</span>(g) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">nodes =</span> <span class="fu">gorder</span>(g),                          <span class="co"># number of nodes</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">edges =</span> <span class="fu">gsize</span>(g),                           <span class="co"># number of edges</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">density =</span> <span class="fu">edge_density</span>(g),                  <span class="co"># edges / maximum possible edges</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_degree =</span> <span class="fu">mean</span>(<span class="fu">degree</span>(g)),              <span class="co"># average number of links per node</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_degree =</span> <span class="fu">max</span>(<span class="fu">degree</span>(g)),                <span class="co"># the most connected node. Hubs?</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">clustering =</span> <span class="fu">transitivity</span>(g, <span class="at">type =</span> <span class="st">"global"</span>), <span class="co"># clustering coefficient (aka transitivity)</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_distance =</span> <span class="fu">mean_distance</span>(g),           <span class="co"># average path length</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">diameter =</span> <span class="fu">diameter</span>(g),                     <span class="co"># the longest shortest path</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">components =</span> <span class="fu">components</span>(g)<span class="sc">$</span>no               <span class="co"># number of disconnected parts. 1 = connected</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Please note that if a network is not connected (i.e.&nbsp;<code>components</code> &gt; 1), <code>mean_distance()</code> and <code>diameter()</code> only consider the pairs of nodes which are connected with each other. Keep this in mind when you interpret the results below.</p>
+<p>Now we can apply this function to all four networks. First, we put the networks in a <em>list</em> and give them names. Then, <code>map_dfr()</code> applies the function to each element of the list and stacks the results by row. The <code>.id</code> argument creates a column with the names of the list.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>networks <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"Regular"</span> <span class="ot">=</span> g.reg,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Random"</span> <span class="ot">=</span> g.rnd,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Small world"</span> <span class="ot">=</span> g.sw,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Scale free"</span> <span class="ot">=</span> g.sf)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(networks, net_metrics, <span class="at">.id =</span> <span class="st">"network"</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(metrics, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">caption =</span> <span class="st">"Key attributes of the modelled networks"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Key attributes of the modelled networks</caption>
+<colgroup>
+<col style="width: 12%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 14%">
+<col style="width: 9%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">network</th>
+<th style="text-align: right;">nodes</th>
+<th style="text-align: right;">edges</th>
+<th style="text-align: right;">density</th>
+<th style="text-align: right;">mean_degree</th>
+<th style="text-align: right;">max_degree</th>
+<th style="text-align: right;">clustering</th>
+<th style="text-align: right;">mean_distance</th>
+<th style="text-align: right;">diameter</th>
+<th style="text-align: right;">components</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Regular</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0.020</td>
+<td style="text-align: right;">2.00</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">25.253</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">0.019</td>
+<td style="text-align: right;">1.86</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0.017</td>
+<td style="text-align: right;">4.956</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">23</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Small world</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">0.101</td>
+<td style="text-align: right;">10.00</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">0.487</td>
+<td style="text-align: right;">2.707</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Scale free</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">99</td>
+<td style="text-align: right;">0.020</td>
+<td style="text-align: right;">1.98</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">4.111</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div class="cell" type="alert alert-warning">
 <div class="alert alert-warning">
 <p>
-<strong>Question</strong>: <em>Without</em> defining a random seed, generate a network as per the above, run some type of quick analysis about this network and then repeat the code by generating a second network with the exact same characteristics. Run the same analysis for the second network. Are the results the same?
+<strong>Question</strong>: Have a look at the number of edges and the mean degree of the four networks. What is your interpretation of the differences?
 </p>
 <p>
-Why do we need to define the random seed ?
+Then, compare the clustering coefficient and the mean distance. Do the results match what we discussed during the lecture?
 </p>
 </div>
 </div>
 </section>
-<section id="examples-of-modelled-networks" class="level2">
-<h2 class="anchored" data-anchor-id="examples-of-modelled-networks">Examples of modelled networks</h2>
+<section id="degree-distributions" class="level2">
+<h2 class="anchored" data-anchor-id="degree-distributions">Degree distributions</h2>
+<p>The degree distribution is a key characteristic of the network models. We will visualise it in two different ways. First, we need a data frame with the degrees of all nodes for each network.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample_gnp</span>(<span class="at">n =</span> <span class="dv">500</span>, <span class="at">p =</span> <span class="fl">0.02</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">layout=</span>layout_in_circle, <span class="at">vertex.label=</span><span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>degrees <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(networks, <span class="sc">~</span> <span class="fu">tibble</span>(<span class="at">degree =</span> <span class="fu">degree</span>(.x)), <span class="at">.id =</span> <span class="st">"network"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">network =</span> <span class="fu">factor</span>(network, <span class="at">levels =</span> <span class="fu">names</span>(networks)))  <span class="co"># keeps the order of the list</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(degrees)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 400
+Columns: 2
+$ network &lt;fct&gt; Regular, Regular, Regular, Regular, Regular, Regular, Regular,…
+$ degree  &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,…</code></pre>
+</div>
+</div>
+<p>The first plot is a histogram. We use <code>facet_wrap()</code> to get one panel per network. <code>scales = "free"</code> allows each panel to have its own axes, as the networks might have very different degree ranges.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(degrees, <span class="fu">aes</span>(<span class="at">x =</span> degree)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">"orange"</span>, <span class="at">colour =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> network, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Degree"</span>, <span class="at">y =</span> <span class="st">"Number of nodes"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Degree distributions of the modelled networks"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="network_models_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample_pa</span>(<span class="at">n =</span> <span class="dv">500</span>, <span class="at">directed=</span><span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">layout=</span>layout_in_circle, <span class="at">vertex.label=</span><span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="network_models_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample_smallworld</span>(<span class="at">dim =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">500</span>, <span class="at">nei =</span> <span class="dv">5</span>, <span class="at">p =</span> <span class="fl">0.05</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">layout=</span>layout_in_circle, <span class="at">vertex.label=</span><span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="network_models_files/figure-html/unnamed-chunk-3-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_lattice</span>(<span class="at">dim =</span><span class="dv">1</span>, <span class="at">length =</span> <span class="dv">100</span>, <span class="at">nei =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">vertex.label=</span><span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="network_models_files/figure-html/unnamed-chunk-3-4.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="network_models_files/figure-html/degree_histograms-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>The second plot shows the same information on a log-log scale. We first calculate the share of nodes (<span class="math inline">\(P(k)\)</span>) with each degree <span class="math inline">\(k\)</span>. A power law (<span class="math inline">\(P(k) \propto k^{-\gamma}\)</span>) would appear as a straight line on this scale. Please note that we exclude nodes with degree <span class="math inline">\(0\)</span> (i.e.&nbsp;isolated nodes), because we cannot take the logarithm of <span class="math inline">\(0\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>degrees <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(degree <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span>                        <span class="co"># no logs of zero</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(network, degree) <span class="sc">%&gt;%</span>                    <span class="co"># how many nodes for each degree</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(network) <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">p =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span>                    <span class="co"># share of nodes: P(k)</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> degree, <span class="at">y =</span> p)) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">"orange"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> network, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Degree (log scale)"</span>, <span class="at">y =</span> <span class="st">"P(k) (log scale)"</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Degree distributions on a log-log scale"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="network_models_files/figure-html/degree_loglog-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" type="alert alert-warning">
+<div class="alert alert-warning">
+<p>
+<strong>Question</strong>: Which network has the longest tail, i.e.&nbsp;a few nodes with a much higher degree than the rest? What does this mean in terms of hubs? What is the shape of the distribution for the random network? Why do all nodes of the regular network have the same degree?
+</p>
+<p>
+Be careful with the log-log plot though. We only have <span class="math inline">(100)</span> nodes and, therefore, few distinct degree values.
+</p>
+</div>
+</div>
+</section>
+<section id="replicating-the-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="replicating-the-simulation">Replicating the simulation</h2>
+<p>Until now we looked at <em>one</em> network for each model. However, these networks are random draws. If we had used a different seed, we would have got a (slightly) different network and different values for the measures above. So, how can we be sure that the differences we observe between the models are real and not just due to the specific draw?</p>
+<p>The answer is to repeat the simulation many times and see how much the measures vary. The <code>replicate()</code> function does exactly this. It takes a number of repetitions and an expression, and it runs the expression this many times. Each time, any random step in the expression gives a new draw.</p>
+<p>Let’s start with a simple example. We generate <span class="math inline">\(100\)</span> random networks and calculate the clustering coefficient of each one. Please note that we set the seed <em>once</em>, just before <code>replicate()</code>. The <span class="math inline">\(100\)</span> networks are different from each other, but the whole set is reproducible. If we had put <code>set.seed()</code> inside the expression, we would have got the same network <span class="math inline">\(100\)</span> times!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">55</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>clustering.rnd <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">100</span>, <span class="fu">transitivity</span>(<span class="fu">sample_gnp</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">p =</span> <span class="fl">0.02</span>)))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(clustering.rnd)    <span class="co"># one value per network</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 100</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(clustering.rnd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.00000 0.00000 0.01786 0.01930 0.02785 0.06977 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(clustering.rnd,</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Clustering coefficient of 100 random networks"</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Clustering coefficient"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="network_models_files/figure-html/replicate_simple-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As you can see, there is quite variation within <span class="math inline">\(100\)</span> random networks.</p>
 
 
 

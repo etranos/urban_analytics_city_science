@@ -12,13 +12,13 @@ bibliography: references.bib
 
 ## Setup
 
-Pay attention on the packages `sand` and `igraphdata`. The first one contains all the different network datasets used by [@kolaczyk2020statistical]. Then, the second one contain network data to be used together with the `igraph` package. More information can be found [here](https://cran.r-project.org/web/packages/sand/sand.pdf){target="_blank"} and [here](https://cran.r-project.org/web/packages/igraphdata/igraphdata.pdf){target="_blank"}. Feel free to explore these network data on your own time.
+Pay attention to the packages `sand` and `igraphdata`. The first one contains all the different network datasets used by [@kolaczyk2020statistical]. Then, the second one contains network data to be used together with the `igraph` package. More information can be found [here](https://cran.r-project.org/web/packages/sand/sand.pdf){target="_blank"} and [here](https://cran.r-project.org/web/packages/igraphdata/igraphdata.pdf){target="_blank"}. Feel free to explore these network data on your own time.
 
 ```{r setup, include=TRUE, results= 'hide', message=FALSE, warning=FALSE}
 library(tidyverse)
 library(igraph)
 
-library(sand)       
+library(sand)
 library(igraphdata)
 ```
 
@@ -30,7 +30,7 @@ library(igraphdata)
 
 -   Compare them
 
-`igraph` enables us to generate networks based on some of the some key network models we discussed. I list below some of these functions:
+`igraph` enables us to generate networks based on some of the key network models we discussed. I list below some of these functions:
 
 -   `sample_gnp()`
 
@@ -38,41 +38,144 @@ library(igraphdata)
 
 -   `sample_pa()`
 
+## Examples of modelled networks
+
+So, let's create three networks using these three functions with $n = 100$ nodes each. Then, we can visualise and compare them.
+
 Go to `igraph`'s [webpage](https://igraph.org/r/html/latest/){target="_blank"} and familiarise yourselves with the syntax of these functions.
-
-```{block, type='alert alert-warning'}
-
-**Task**: Create three networks using these three functions with, let's say, $n = 500$ nodes each.
-
-Visualise and compare these networks.
-```
 
 Importantly, just before you generate a network with one of the above three functions you will need to define a random seed for reproducibility reasons, e.g. `set.seed(55)`.
 
-```{block, type='alert alert-warning'}
-
-**Question**: *Without* defining a random seed, generate a network as per the above, 
-run some type of quick analysis about this network and then repeat the code by generating 
-a second network with the exact same characteristics. Run the same analysis for the
-second network. Are the results the same?
-
-Why do we need to define the random seed ?
-```
-
-## Examples of modelled networks
+This time we are saving each network in an object (e.g. `g.reg`), instead of plotting it straight away. We will need these objects below in order to calculate their attributes.
 
 ```{r}
+# Regular network
+set.seed(55)
+g.reg <- make_ring(100)
+plot(g.reg, layout=layout_in_circle, vertex.label=NA, vertex.size = 3)
 
-sample_gnp(n = 500, p = 0.02) %>% 
-  plot(layout=layout_in_circle, vertex.label=NA)
+# Random network
+set.seed(55)
+g.rnd <- sample_gnp(n = 100, p = 0.02)
+plot(g.rnd, layout=layout_with_fr, vertex.label=NA, vertex.size = 3)
 
-sample_pa(n = 500, directed=FALSE) %>% 
-  plot(layout=layout_in_circle, vertex.label=NA)
+# Small world network
+set.seed(55)
+g.sw <- sample_smallworld(dim = 1, size = 100, nei = 5, p = 0.05)
+plot(g.sw, layout=layout_with_fr, vertex.label=NA, vertex.size = 3)
 
-sample_smallworld(dim = 1, size = 500, nei = 5, p = 0.05) %>% 
-  plot(layout=layout_in_circle, vertex.label=NA)
-
-make_lattice(dim =1, length = 100, nei = 5) %>% 
-  plot(vertex.label=NA)
-
+# Scale free network
+set.seed(55)
+g.sf <- sample_pa(n = 100, directed=FALSE, power = 1.5)
+plot(g.sf, layout=layout_with_fr, vertex.label=NA, vertex.size = 3)
 ```
+
+## Network metrics
+
+The plots are useful, but it is hard to compare networks only by looking at them. Let's calculate some of the network measures we discussed and put them in a table. To do so efficiently, we first create a function, which takes a network as an input and returns its measures in a one-row table (a `tibble`). Have a look at the comments to see what each measure represents.
+
+```{r metrics_function}
+net_metrics <- function(g) {
+  tibble(
+    nodes = gorder(g),                          # number of nodes
+    edges = gsize(g),                           # number of edges
+    density = edge_density(g),                  # edges / maximum possible edges
+    mean_degree = mean(degree(g)),              # average number of links per node
+    max_degree = max(degree(g)),                # the most connected node. Hubs?
+    clustering = transitivity(g, type = "global"), # clustering coefficient (aka transitivity)
+    mean_distance = mean_distance(g),           # average path length
+    diameter = diameter(g),                     # the longest shortest path
+    components = components(g)$no               # number of disconnected parts. 1 = connected
+  )
+}
+```
+
+Please note that if a network is not connected (i.e. `components` > 1), `mean_distance()` and `diameter()` only consider the pairs of nodes which are connected with each other. Keep this in mind when you interpret the results below.
+
+Now we can apply this function to all four networks. First, we put the networks in a *list* and give them names. Then, `map_dfr()` applies the function to each element of the list and stacks the results by row. The `.id` argument creates a column with the names of the list.
+
+```{r metrics_table}
+networks <- list("Regular" = g.reg,
+                 "Random" = g.rnd,
+                 "Small world" = g.sw,
+                 "Scale free" = g.sf)
+
+metrics <- map_dfr(networks, net_metrics, .id = "network")
+
+knitr::kable(metrics, digits = 3, caption = "Key attributes of the modelled networks")
+```
+
+```{block, type='alert alert-warning'}
+
+**Question**: Have a look at the number of edges and the mean degree of the four networks. What is your interpretation of the differences?
+
+Then, compare the clustering coefficient and the mean distance. Do the results match what we discussed during the lecture?
+```
+
+## Degree distributions
+
+The degree distribution is a key characteristic of the network models. We will visualise it in two different ways. First, we need a data frame with the degrees of all nodes for each network.
+
+```{r degree_data}
+degrees <- map_dfr(networks, ~ tibble(degree = degree(.x)), .id = "network") %>%
+  mutate(network = factor(network, levels = names(networks)))  # keeps the order of the list
+
+glimpse(degrees)
+```
+
+The first plot is a histogram. We use `facet_wrap()` to get one panel per network. `scales = "free"` allows each panel to have its own axes, as the networks might have very different degree ranges.
+
+```{r degree_histograms}
+ggplot(degrees, aes(x = degree)) +
+  geom_histogram(binwidth = 1, fill = "orange", colour = "white") +
+  facet_wrap(~ network, scales = "free") +
+  labs(x = "Degree", y = "Number of nodes",
+       title = "Degree distributions of the modelled networks")
+```
+
+The second plot shows the same information on a log-log scale. We first calculate the share of nodes ($P(k)$) with each degree $k$. A power law ($P(k) \propto k^{-\gamma}$) would appear as a straight line on this scale. Please note that we exclude nodes with degree $0$ (i.e. isolated nodes), because we cannot take the logarithm of $0$.
+
+```{r degree_loglog, warning=FALSE}
+degrees %>%
+  filter(degree > 0) %>%                        # no logs of zero
+  count(network, degree) %>%                    # how many nodes for each degree
+  group_by(network) %>%
+  mutate(p = n / sum(n)) %>%                    # share of nodes: P(k)
+  ggplot(aes(x = degree, y = p)) +
+  geom_point(colour = "orange", size = 2) +
+  scale_x_log10() +
+  scale_y_log10() +
+  facet_wrap(~ network, scales = "free") +
+  labs(x = "Degree (log scale)", y = "P(k) (log scale)",
+       title = "Degree distributions on a log-log scale")
+```
+
+```{block, type='alert alert-warning'}
+
+**Question**: Which network has the longest tail, i.e. a few nodes with a much higher degree than the rest? What does this mean in terms of hubs? What is the shape of the distribution for the random network? Why do all nodes of the regular network have the same degree?
+
+Be careful with the log-log plot though. We only have $100$ nodes and, therefore, few distinct degree values. 
+```
+
+## Replicating the simulation
+
+Until now we looked at *one* network for each model. However, these networks are random draws. If we had used a different seed, we would have got a (slightly) different network and different values for the measures above. So, how can we be sure that the differences we observe between the models are real and not just due to the specific draw?
+
+The answer is to repeat the simulation many times and see how much the measures vary. The `replicate()` function does exactly this. It takes a number of repetitions and an expression, and it runs the expression this many times. Each time, any random step in the expression gives a new draw.
+
+Let's start with a simple example. We generate $100$ random networks and calculate the clustering coefficient of each one. Please note that we set the seed *once*, just before `replicate()`. The $100$ networks are different from each other, but the whole set is reproducible. If we had put `set.seed()` inside the expression, we would have got the same network $100$ times!
+
+```{r replicate_simple}
+set.seed(55)
+clustering.rnd <- replicate(100, transitivity(sample_gnp(n = 100, p = 0.02)))
+
+length(clustering.rnd)    # one value per network
+summary(clustering.rnd)
+
+hist(clustering.rnd,
+     main = "Clustering coefficient of 100 random networks",
+     xlab = "Clustering coefficient")
+```
+
+As you can see, there is quite variation within $100$ random networks.
+

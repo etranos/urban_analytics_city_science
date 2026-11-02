@@ -2519,7 +2519,7 @@
     "href": "src/network_models.html",
     "title": "Network models in practice",
     "section": "",
-    "text": "Pay attention on the packages sand and igraphdata. The first one contains all the different network datasets used by (Kolaczyk and Csárdi 2020). Then, the second one contain network data to be used together with the igraph package. More information can be found here and here. Feel free to explore these network data on your own time.\n\nlibrary(tidyverse)\nlibrary(igraph)\n\nlibrary(sand)       \nlibrary(igraphdata)",
+    "text": "Pay attention to the packages sand and igraphdata. The first one contains all the different network datasets used by (Kolaczyk and Csárdi 2020). Then, the second one contains network data to be used together with the igraph package. More information can be found here and here. Feel free to explore these network data on your own time.\n\nlibrary(tidyverse)\nlibrary(igraph)\n\nlibrary(sand)\nlibrary(igraphdata)",
     "crumbs": [
       "Practicals",
       "Network models in practice"
@@ -2530,7 +2530,7 @@
     "href": "src/network_models.html#setup",
     "title": "Network models in practice",
     "section": "",
-    "text": "Pay attention on the packages sand and igraphdata. The first one contains all the different network datasets used by (Kolaczyk and Csárdi 2020). Then, the second one contain network data to be used together with the igraph package. More information can be found here and here. Feel free to explore these network data on your own time.\n\nlibrary(tidyverse)\nlibrary(igraph)\n\nlibrary(sand)       \nlibrary(igraphdata)",
+    "text": "Pay attention to the packages sand and igraphdata. The first one contains all the different network datasets used by (Kolaczyk and Csárdi 2020). Then, the second one contains network data to be used together with the igraph package. More information can be found here and here. Feel free to explore these network data on your own time.\n\nlibrary(tidyverse)\nlibrary(igraph)\n\nlibrary(sand)\nlibrary(igraphdata)",
     "crumbs": [
       "Practicals",
       "Network models in practice"
@@ -2541,7 +2541,7 @@
     "href": "src/network_models.html#aims-of-the-practical",
     "title": "Network models in practice",
     "section": "Aims of the practical",
-    "text": "Aims of the practical\n\nSimulate network models\nAnalyse their key attributes\nCompare them\n\nigraph enables us to generate networks based on some of the some key network models we discussed. I list below some of these functions:\n\nsample_gnp()\nsample_smallworld()\nsample_pa()\n\nGo to igraph’s webpage and familiarise yourselves with the syntax of these functions.\n\n\n\nTask: Create three networks using these three functions with, let’s say, (n = 500) nodes each.\n\n\nVisualise and compare these networks.\n\n\n\nImportantly, just before you generate a network with one of the above three functions you will need to define a random seed for reproducibility reasons, e.g. set.seed(55).\n\n\n\nQuestion: Without defining a random seed, generate a network as per the above, run some type of quick analysis about this network and then repeat the code by generating a second network with the exact same characteristics. Run the same analysis for the second network. Are the results the same?\n\n\nWhy do we need to define the random seed ?",
+    "text": "Aims of the practical\n\nSimulate network models\nAnalyse their key attributes\nCompare them\n\nigraph enables us to generate networks based on some of the key network models we discussed. I list below some of these functions:\n\nsample_gnp()\nsample_smallworld()\nsample_pa()",
     "crumbs": [
       "Practicals",
       "Network models in practice"
@@ -2552,7 +2552,7 @@
     "href": "src/network_models.html#examples-of-modelled-networks",
     "title": "Network models in practice",
     "section": "Examples of modelled networks",
-    "text": "Examples of modelled networks\n\nsample_gnp(n = 500, p = 0.02) %&gt;% \n  plot(layout=layout_in_circle, vertex.label=NA)\n\n\n\n\n\n\n\nsample_pa(n = 500, directed=FALSE) %&gt;% \n  plot(layout=layout_in_circle, vertex.label=NA)\n\n\n\n\n\n\n\nsample_smallworld(dim = 1, size = 500, nei = 5, p = 0.05) %&gt;% \n  plot(layout=layout_in_circle, vertex.label=NA)\n\n\n\n\n\n\n\nmake_lattice(dim =1, length = 100, nei = 5) %&gt;% \n  plot(vertex.label=NA)",
+    "text": "Examples of modelled networks\nSo, let’s create three networks using these three functions with \\(n = 100\\) nodes each. Then, we can visualise and compare them.\nGo to igraph’s webpage and familiarise yourselves with the syntax of these functions.\nImportantly, just before you generate a network with one of the above three functions you will need to define a random seed for reproducibility reasons, e.g. set.seed(55).\nThis time we are saving each network in an object (e.g. g.reg), instead of plotting it straight away. We will need these objects below in order to calculate their attributes.\n\n# Regular network\nset.seed(55)\ng.reg &lt;- make_ring(100)\nplot(g.reg, layout=layout_in_circle, vertex.label=NA, vertex.size = 3)\n\n\n\n\n\n\n\n# Random network\nset.seed(55)\ng.rnd &lt;- sample_gnp(n = 100, p = 0.02)\nplot(g.rnd, layout=layout_with_fr, vertex.label=NA, vertex.size = 3)\n\n\n\n\n\n\n\n# Small world network\nset.seed(55)\ng.sw &lt;- sample_smallworld(dim = 1, size = 100, nei = 5, p = 0.05)\nplot(g.sw, layout=layout_with_fr, vertex.label=NA, vertex.size = 3)\n\n\n\n\n\n\n\n# Scale free network\nset.seed(55)\ng.sf &lt;- sample_pa(n = 100, directed=FALSE, power = 1.5)\nplot(g.sf, layout=layout_with_fr, vertex.label=NA, vertex.size = 3)",
     "crumbs": [
       "Practicals",
       "Network models in practice"
@@ -3128,6 +3128,39 @@
     "crumbs": [
       "Lectures",
       "Network science, urban laws and scaling"
+    ]
+  },
+  {
+    "objectID": "src/network_models.html#network-metrics",
+    "href": "src/network_models.html#network-metrics",
+    "title": "Network models in practice",
+    "section": "Network metrics",
+    "text": "Network metrics\nThe plots are useful, but it is hard to compare networks only by looking at them. Let’s calculate some of the network measures we discussed and put them in a table. To do so efficiently, we first create a function, which takes a network as an input and returns its measures in a one-row table (a tibble). Have a look at the comments to see what each measure represents.\n\nnet_metrics &lt;- function(g) {\n  tibble(\n    nodes = gorder(g),                          # number of nodes\n    edges = gsize(g),                           # number of edges\n    density = edge_density(g),                  # edges / maximum possible edges\n    mean_degree = mean(degree(g)),              # average number of links per node\n    max_degree = max(degree(g)),                # the most connected node. Hubs?\n    clustering = transitivity(g, type = \"global\"), # clustering coefficient (aka transitivity)\n    mean_distance = mean_distance(g),           # average path length\n    diameter = diameter(g),                     # the longest shortest path\n    components = components(g)$no               # number of disconnected parts. 1 = connected\n  )\n}\n\nPlease note that if a network is not connected (i.e. components &gt; 1), mean_distance() and diameter() only consider the pairs of nodes which are connected with each other. Keep this in mind when you interpret the results below.\nNow we can apply this function to all four networks. First, we put the networks in a list and give them names. Then, map_dfr() applies the function to each element of the list and stacks the results by row. The .id argument creates a column with the names of the list.\n\nnetworks &lt;- list(\"Regular\" = g.reg,\n                 \"Random\" = g.rnd,\n                 \"Small world\" = g.sw,\n                 \"Scale free\" = g.sf)\n\nmetrics &lt;- map_dfr(networks, net_metrics, .id = \"network\")\n\nknitr::kable(metrics, digits = 3, caption = \"Key attributes of the modelled networks\")\n\n\nKey attributes of the modelled networks\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nnetwork\nnodes\nedges\ndensity\nmean_degree\nmax_degree\nclustering\nmean_distance\ndiameter\ncomponents\n\n\n\n\nRegular\n100\n100\n0.020\n2.00\n2\n0.000\n25.253\n50\n1\n\n\nRandom\n100\n93\n0.019\n1.86\n6\n0.017\n4.956\n10\n23\n\n\nSmall world\n100\n500\n0.101\n10.00\n12\n0.487\n2.707\n5\n1\n\n\nScale free\n100\n99\n0.020\n1.98\n34\n0.000\n4.111\n10\n1\n\n\n\n\n\n\n\n\nQuestion: Have a look at the number of edges and the mean degree of the four networks. What is your interpretation of the differences?\n\n\nThen, compare the clustering coefficient and the mean distance. Do the results match what we discussed during the lecture?",
+    "crumbs": [
+      "Practicals",
+      "Network models in practice"
+    ]
+  },
+  {
+    "objectID": "src/network_models.html#degree-distributions",
+    "href": "src/network_models.html#degree-distributions",
+    "title": "Network models in practice",
+    "section": "Degree distributions",
+    "text": "Degree distributions\nThe degree distribution is a key characteristic of the network models. We will visualise it in two different ways. First, we need a data frame with the degrees of all nodes for each network.\n\ndegrees &lt;- map_dfr(networks, ~ tibble(degree = degree(.x)), .id = \"network\") %&gt;%\n  mutate(network = factor(network, levels = names(networks)))  # keeps the order of the list\n\nglimpse(degrees)\n\nRows: 400\nColumns: 2\n$ network &lt;fct&gt; Regular, Regular, Regular, Regular, Regular, Regular, Regular,…\n$ degree  &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,…\n\n\nThe first plot is a histogram. We use facet_wrap() to get one panel per network. scales = \"free\" allows each panel to have its own axes, as the networks might have very different degree ranges.\n\nggplot(degrees, aes(x = degree)) +\n  geom_histogram(binwidth = 1, fill = \"orange\", colour = \"white\") +\n  facet_wrap(~ network, scales = \"free\") +\n  labs(x = \"Degree\", y = \"Number of nodes\",\n       title = \"Degree distributions of the modelled networks\")\n\n\n\n\n\n\n\n\nThe second plot shows the same information on a log-log scale. We first calculate the share of nodes (\\(P(k)\\)) with each degree \\(k\\). A power law (\\(P(k) \\propto k^{-\\gamma}\\)) would appear as a straight line on this scale. Please note that we exclude nodes with degree \\(0\\) (i.e. isolated nodes), because we cannot take the logarithm of \\(0\\).\n\ndegrees %&gt;%\n  filter(degree &gt; 0) %&gt;%                        # no logs of zero\n  count(network, degree) %&gt;%                    # how many nodes for each degree\n  group_by(network) %&gt;%\n  mutate(p = n / sum(n)) %&gt;%                    # share of nodes: P(k)\n  ggplot(aes(x = degree, y = p)) +\n  geom_point(colour = \"orange\", size = 2) +\n  scale_x_log10() +\n  scale_y_log10() +\n  facet_wrap(~ network, scales = \"free\") +\n  labs(x = \"Degree (log scale)\", y = \"P(k) (log scale)\",\n       title = \"Degree distributions on a log-log scale\")\n\n\n\n\n\n\n\n\n\n\n\nQuestion: Which network has the longest tail, i.e. a few nodes with a much higher degree than the rest? What does this mean in terms of hubs? What is the shape of the distribution for the random network? Why do all nodes of the regular network have the same degree?\n\n\nBe careful with the log-log plot though. We only have (100) nodes and, therefore, few distinct degree values.",
+    "crumbs": [
+      "Practicals",
+      "Network models in practice"
+    ]
+  },
+  {
+    "objectID": "src/network_models.html#replicating-the-simulation",
+    "href": "src/network_models.html#replicating-the-simulation",
+    "title": "Network models in practice",
+    "section": "Replicating the simulation",
+    "text": "Replicating the simulation\nUntil now we looked at one network for each model. However, these networks are random draws. If we had used a different seed, we would have got a (slightly) different network and different values for the measures above. So, how can we be sure that the differences we observe between the models are real and not just due to the specific draw?\nThe answer is to repeat the simulation many times and see how much the measures vary. The replicate() function does exactly this. It takes a number of repetitions and an expression, and it runs the expression this many times. Each time, any random step in the expression gives a new draw.\nLet’s start with a simple example. We generate \\(100\\) random networks and calculate the clustering coefficient of each one. Please note that we set the seed once, just before replicate(). The \\(100\\) networks are different from each other, but the whole set is reproducible. If we had put set.seed() inside the expression, we would have got the same network \\(100\\) times!\n\nset.seed(55)\nclustering.rnd &lt;- replicate(100, transitivity(sample_gnp(n = 100, p = 0.02)))\n\nlength(clustering.rnd)    # one value per network\n\n[1] 100\n\nsummary(clustering.rnd)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n0.00000 0.00000 0.01786 0.01930 0.02785 0.06977 \n\nhist(clustering.rnd,\n     main = \"Clustering coefficient of 100 random networks\",\n     xlab = \"Clustering coefficient\")\n\n\n\n\n\n\n\n\nAs you can see, there is quite variation within \\(100\\) random networks.",
+    "crumbs": [
+      "Practicals",
+      "Network models in practice"
     ]
   }
 ]
