@@ -439,7 +439,7 @@ $Y_i = Y_0P_i^\beta$
 
 -   $Y_o$: normalization constant
 
--   $P_i$: population of city i
+-   $P_i$: population of city $i$
 
 -   $\beta$: exponent
 
@@ -497,11 +497,11 @@ $Y_i = Y_0P_i^\beta$
 
 <!-- -   Economies of scale -->
 
-    -   $b<1$ decreasing returns to scale
+  -   $b<1$ decreasing returns to scale
     
-    -   $b=1$ constant returns
+  -   $b=1$ constant returns
     
-    -   $b>1$ increasing returns
+  -   $b>1$ increasing returns
 
 -   SF networks, economies of scale?
 

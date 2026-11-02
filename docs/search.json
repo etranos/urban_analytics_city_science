@@ -803,7 +803,7 @@
     "href": "src/network_science.html#bettencourt-west-or-marshalls-law",
     "title": "Network science, urban laws and scaling",
     "section": "Bettencourt-West or Marshall’s law",
-    "text": "Bettencourt-West or Marshall’s law\n\nAs cities grow…\n… their average real income (and wealth) increases more than proportionately (Bettencourt et al. 2007)\n\n\\(Y_i = Y_0P_i^\\beta\\)\n\n\\(Y_i\\): material resources (energy or infrastructure) or social activity (wealth, patents, and pollution) in city \\(i\\)\n\\(Y_o\\): normalization constant\n\\(P_i\\): population of city i\n\\(\\beta\\): exponent",
+    "text": "Bettencourt-West or Marshall’s law\n\nAs cities grow…\n… their average real income (and wealth) increases more than proportionately (Bettencourt et al. 2007)\n\n\\(Y_i = Y_0P_i^\\beta\\)\n\n\\(Y_i\\): material resources (energy or infrastructure) or social activity (wealth, patents, and pollution) in city \\(i\\)\n\\(Y_o\\): normalization constant\n\\(P_i\\): population of city \\(i\\)\n\\(\\beta\\): exponent",
     "crumbs": [
       "Lectures",
       "Network science, urban laws and scaling"
@@ -847,7 +847,7 @@
     "href": "src/network_science.html#bettencourt-west-or-marshalls-law-4",
     "title": "Network science, urban laws and scaling",
     "section": "Bettencourt-West or Marshall’s law",
-    "text": "Bettencourt-West or Marshall’s law\n\n\n\n\n\n\n\\(Y=3P^b\\)\n300 random observation\nPlotting the results\n\n\n-   $b&lt;1$ decreasing returns to scale\n\n-   $b=1$ constant returns\n\n-   $b&gt;1$ increasing returns\n\nSF networks, economies of scale?",
+    "text": "Bettencourt-West or Marshall’s law\n\n\n\n\n\n\n\\(Y=3P^b\\)\n300 random observation\nPlotting the results\n\n\n\n\\(b&lt;1\\) decreasing returns to scale\n\\(b=1\\) constant returns\n\\(b&gt;1\\) increasing returns\nSF networks, economies of scale?",
     "crumbs": [
       "Lectures",
       "Network science, urban laws and scaling"
