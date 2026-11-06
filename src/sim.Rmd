@@ -47,7 +47,7 @@ web data [@tranos2022using].
 
 ## Commuting data and networks
 
-This the same data and the same data preparation we did for the [network analysis practical](https://etranos.info/urban_analytics_city_science/src/network_analysis.html). Please follow the below workflow, which you should already be familiar with. Once the data preperation is done, we will model these commuting flows.
+This the same data and the same data preparation we did for the [network analysis practical](https://etranos.info/urban_analytics_city_science/src/network_analysis.html). Please follow the below workflow, which you should already be familiar with. Once the data preparation is done, we will model these commuting flows.
 
 For this tutorial we will use travel to work data from the 2011 UK Census. The data is available [online](http://wicid.ukdataservice.ac.uk/cider/wicid/downloads.php?wicid_Session=742d61be88b0614c3982455e542bc776), but it requires an academic login. After you log in, download the **WU03UK** element, save the .csv on your working directory under a `/data` directory and unzip it. We will use the:
 
@@ -164,7 +164,7 @@ commuting.bicycle <- commuting %>%
 
 Unless you know the local authority codes by hard, it might be useful to also add the corresponding local authority names. These can be easily obtained from the [ONS](https://geoportal.statistics.gov.uk/datasets/ons::cmlad-dec-2011-super-generalised-clipped-boundaries-gb/explore?showTable=true). The below code directly downloads a `GeoJSON` file with the local authorities in England and Wales. If you don't know what a `GeoJSON` file is, have a look [here](https://en.wikipedia.org/wiki/GeoJSON). Boundary data can also be obtained by [UK Data Service](https://borders.ukdataservice.ac.uk/easy_download.html).
 
-For the time being we are only interested in the local authority names and codes. We will use the spatial object later.
+For the time being we are only interested in the local authority names and codes. We will use the spatial object later.  
 
 **Tip**: the below code downloads the `GeoJSON` file over the web. If you want to run the code multiple times, it might be faster to download the file ones, save it on your hard drive and the point this location to `st_read()`.
 
@@ -190,7 +190,7 @@ The above transformed equation can be estimated as a linear model if we assume t
 
 $$lnT_{ij} = lnk + \lambda lnV_i + \alpha lnM_j - \beta lnD_{ij} + e_{ij}$$
 
-This is what is known as the log-linear or log-normal transformation.
+This is what is known as the log-log transformation.
 
 There are a number of issues with such an approach though. Most importantly, our dependent variable is not continuous, but instead a discrete, positive variable (there are no flows of -324.56 people!). Therefore we need to employ an appropriate estimator and this is what the Poisson regression does. Briefly, if we exponentiate both sides, the above equation can be written as:
 
@@ -217,7 +217,7 @@ glimpse(la.d)
 # Please note that the elements of the diagonal are present in this distance matrix.
 ```
 
-If you want to check that the distances we are correct, use google maps to calculate the distance between E41000001 (Middlesbrough) and E41000002 (Hartlepool). Remember that the la.d is expressed in meters.
+If you want to check that the distances we are correct, use Google maps to calculate the distance between E41000001 (Middlesbrough) and E41000002 (Hartlepool). Remember that the la.d is expressed in meters.
 
 What is missing here? Do you remember the intra-zone commuting flows? E.g. the commuters that live and work in Bristol? We had removed these from the network analysis and visualisation element. Because we don't have information about the distances of the intra-zone commutes, we will exclude them from this analysis.
 
@@ -272,6 +272,8 @@ commuting.si <- commuting.si %>%
 ```
 
 Now let's bring data for some $i$ and $j$ characteristics that we believe that affect commuting. I have prepared such a small data set from the census, which includes resident population and working populations as *push* and *pull* variables. These data have been obtained by [nomis](https://www.nomisweb.co.uk/published/census/odexplorer.asp).
+
+As you can see, there are two columns with LA codes: `la.code.st` and `Merging.Local.Authority.Code`. Because Local Authority codes and definitions change overtime, I had to do some pre-processing. We will use the `Merging.Local.Authority.Code` to merge with our flow data, but there are 6 Local Authorities that I couldn't much. Later down the pipeline, I will drop these cases.   
 
 ```{r si ij data, include=TRUE, results= 'markup', message=FALSE, warning = FALSE}
 # To avoid issues with read_csv() reading directly from Dropbox, we use a 
@@ -384,80 +386,366 @@ stargazer(ols.model, glm.model, type = "html")
 **Question** Can you interpret the regression results?
 ```
 
+## Constrained spatial interaction models
+
+The Poisson (and the OLS) model we just estimated is an *unconstrained* spatial interaction model. Nothing forces the predicted flows to be consistent with what we already know about the system. For example, if we sum the predicted flows for all the commuters who live in Bristol, there is no guarantee that we will get the actual number of Bristol residents who commute to another local authority.
+
+But very often we *do* know these totals. The census tells us how many people live in each local authority and commute elsewhere ($O_i$, the *origin* totals) and how many jobs are taken by commuters in each local authority ($D_j$, the *destination* totals). What we do not know, or what we want to predict, is how these totals are *distributed*, i.e. who commutes where. This is what *constrained* spatial interaction models do [@wilson1971family]. There are four types:
+
+| Type                   | What is fixed            | $\sum_j T_{ij}$ | $\sum_i T_{ij}$ |
+|------------------------|--------------------------|-----------------|-----------------|
+| Unconstrained          | nothing                  | free            | free            |
+| Production-constrained | origin totals, $O_i$     | $= O_i$         | free            |
+| Attraction-constrained | destination totals, $D_j$| free            | $= D_j$         |
+| Doubly constrained     | both                     | $= O_i$         | $= D_j$         |
+
+In this section we will estimate the production-constrained and the doubly constrained models for the same commuting flows and compare them with the unconstrained one we estimated above. The attraction-constrained model is the mirror image of the production-constrained one and you will estimate it as a task at the end.
+
+### Production-constrained model
+
+The production-constrained model is defined as:
+
+$$T_{ij} = A_i \, O_i \, M_j^\alpha \, D_{ij}^{-\beta} \qquad \text{where} \qquad A_i = \frac{1}{\sum_j M_j^\alpha D_{ij}^{-\beta}}$$
+
+Compare it with the unconstrained model. The origin characteristic $V_i^\lambda$ has been replaced by the *known* origin total $O_i$ and the new term $A_i$ is a *balancing factor*, which makes sure that the predicted flows from each origin add up to $O_i$, i.e. $\sum_j T_{ij} = O_i$. Please note that we do not estimate $\lambda$ any more. We still estimate $\alpha$ and $\beta$.
+
+An important by-product: $1/A_i = \sum_j M_j^\alpha D_{ij}^{-\beta}$ is the gravity-based *accessibility* of origin $i$ (do you remember the accessibility indicators from the lecture?). We will come back to this below.
+
+
+### Preparing the data
+
+Good news: we do not need to change the format of the data. We keep working with the long format, in which each line is an origin-destination pair, and we estimate the constrained models with a Poisson regression, as we did above. The below code prepares a data frame for this. Pay attention to the comments.
+
+```{r constrained_data}
+# This package allows us to estimate generalised linear models with a sparse
+# matrix of dummy variables. See below why we need it. If you do not have it, run
+# install.packages("MatrixModels")
+library(MatrixModels)
+
+# First, we keep only the English and Welsh local authorities, as we do not have
+# commuting flows for Scotland and Northern Ireland, and we simplify the data
+# frame. Note the as.character(), because i and j might be factors.
+commuting.c <- commuting.si %>%
+  mutate(i = as.character(i),
+         j = as.character(j)) %>%
+  filter(str_detect(i, "^[EW]"), str_detect(j, "^[EW]")) %>%
+  rename(flow = `All categories: Method of travel to work`) %>%
+  select(i, j, flow, distance, resident, workplace)
+
+# Do we have any missing values? We want this to be 0, but we have quite a few.
+sum(is.na(commuting.c))
+
+# Which variables are they in? These are the resident and workplace populations,
+# which come from the census data we joined above.
+colSums(is.na(commuting.c))
+
+# Which local authorities do not have such data? An origin without resident
+# population or a destination without workplace population.
+missing.la <- unique(c(commuting.c$i[is.na(commuting.c$resident)],
+                       commuting.c$j[is.na(commuting.c$workplace)]))
+
+la.names %>% filter(cmlad11cd %in% missing.la)
+
+# For the constrained models we need a *complete* set of origins and destinations,
+# otherwise the totals O and D would not be consistent. So, we remove all the
+# pairs which involve these local authorities, either as origins or as destinations.
+commuting.c <- commuting.c %>%
+  filter(!i %in% missing.la, !j %in% missing.la)
+
+# Now we should be fine.
+sum(is.na(commuting.c))
+
+# The local authority codes. We turn the origin (i) and the destination (j) into
+# factors with the same levels, as glm() will create one dummy variable for each level.
+codes <- sort(unique(c(commuting.c$i, commuting.c$j)))
+commuting.c <- commuting.c %>%
+  mutate(i = factor(i, levels = codes),
+         j = factor(j, levels = codes))
+
+length(codes)      # number of local authorities
+nrow(commuting.c)  # number of origin-destination pairs
+
+# The known totals. O: commuters by origin, D: commuters by destination. Please note
+# that they only include commuters who work in a *different* local authority, as
+# there are no intra-zonal flows in our data.
+O <- tapply(commuting.c$flow, commuting.c$i, sum)
+D <- tapply(commuting.c$flow, commuting.c$j, sum)
+
+# A good sanity check: the total of the origins must be equal to the total of
+# the destinations.
+c(sum(O), sum(D))
+```
+
+### Estimating the production-constrained model
+
+How do we estimate $\alpha$ and $\beta$ when the balancing factor $A_i$ is part of the model? Remember that the unconstrained model is, after taking logarithms, a linear model:
+
+$$\ln T_{ij} = \ln A_i + \ln O_i + \alpha \ln M_j - \beta \ln D_{ij}$$
+
+Here, $\ln A_i + \ln O_i$ is a different constant for each origin. Therefore, we can estimate the model with the Poisson regression we already know, by simply adding a *dummy variable for each origin*, which will absorb this term. This is why this model is also known as a Poisson model with *origin fixed effects*. A nice property of the Poisson regression is that, when it includes such dummies, the predicted flows of each origin add up *exactly* to the observed ones. In other words, the constraint is satisfied by construction.
+
+Please note that the `0 +` in the formula removes the common intercept, so that we get one dummy for each origin.
+
+We have around $350$ origins and more than $100,000$ origin-destination pairs. A model matrix with a dummy variable for each origin is huge, but it is almost all zeros. The base `glm()` function stores all these zeros and, as a result, it is very slow for this kind of models (it can take many minutes). The function `glm4()` of the `MatrixModels` package has almost exactly the same syntax, but with the argument `sparse = TRUE` it stores only the non-zero values. It estimates the same model in about a second. The `TOL` argument is the convergence tolerance, which we make stricter than the default so that the constraints are satisfied with high precision.
+
+```{r production_constrained}
+prod.glm <- glm4(flow ~ 0 + i + log(workplace) + log(distance),
+                 family = poisson(link = "log"), data = commuting.c,
+                 sparse = TRUE, control = list(TOL = 1e-7))
+
+# We do not want to print the coefficients of all the origin dummies.
+# The last two coefficients are alpha (workplace) and minus beta (distance).
+tail(coef(prod.glm), 2)
+```
+
+Check that the model does what it promises. The predicted flows from each origin should add up to $O_i$, while there is no such guarantee for the destinations.
+
+```{r production_check}
+# The largest difference between predicted and observed origin totals.
+max(abs(tapply(fitted(prod.glm), commuting.c$i, sum) - O))
+
+# And the same for the destination totals.
+max(abs(tapply(fitted(prod.glm), commuting.c$j, sum) - D))
+```
+
+If you are familiar with discrete choice models, this is the same as a multinomial logit model of the choice of destination for the commuters of each origin.
+
+```{block, type='alert alert-warning'}
+**Question** Compare the estimates of $\alpha$ and $\beta$ with the ones from the Poisson regression above. Are they similar? Why do you think that this is (or is not) the case?
+```
+
+### Doubly constrained model
+
+If we know both the origin and the destination totals, we can use both:
+
+$$T_{ij} = A_i \, B_j \, O_i \, D_j \, D_{ij}^{-\beta}$$
+
+$$A_i = \frac{1}{\sum_j B_j D_j D_{ij}^{-\beta}} \qquad B_j = \frac{1}{\sum_i A_i O_i D_{ij}^{-\beta}}$$
+
+Now all the flows are shaped by the totals and the *only* parameter left to estimate is $\beta$, the friction of distance. Note that $A_i$ depends on $B_j$ and vice versa. We cannot solve them directly, but we can solve them iteratively: start with $B_j = 1$, calculate $A_i$, use it to update $B_j$, and so on, until they stop changing. This is known as the *Furness* (or *iterative proportional fitting*) procedure, which was the traditional way of calibrating these models.
+
+The Poisson regression gives us the same result in one go. This time we add a dummy variable for each origin *and* for each destination. Then, $\ln(A_i O_i)$ is absorbed by the origin dummies and $\ln(B_j D_j)$ by the destination dummies, and the only coefficient left is the one of distance, i.e. $-\beta$. As the origin dummies already play the role of a constant, R drops the dummy of the first destination, which becomes the reference category. This is not a problem, as the predicted flows are not affected.
+
+This is a *big* model, with around $700$ dummies. With the base `glm()` it would take a very long time, but with the sparse matrices of `glm4()` it is again a matter of seconds.
+
+```{r doubly_constrained}
+dbl.glm <- glm4(flow ~ 0 + i + j + log(distance),
+                family = poisson(link = "log"), data = commuting.c,
+                sparse = TRUE, control = list(TOL = 1e-7))
+
+# The estimate for the distance. The coefficient is minus beta.
+coef(dbl.glm)["log(distance)"]
+```
+
+And the same check as before. This time both the origin and the destination totals should be reproduced.
+
+```{r doubly_check}
+max(abs(tapply(fitted(dbl.glm), commuting.c$i, sum) - O))
+max(abs(tapply(fitted(dbl.glm), commuting.c$j, sum) - D))
+```
+
+```{block, type='alert alert-warning'}
+**Question** What is the difference between the estimate of $\beta$ in the production-constrained and in the doubly constrained model? Why do you think that this is the case? (Hint: in which model does the *distance* have to do all the work of explaining how flows are distributed, and in which is it helped by the destination dummies?)
+```
+
+### Comparing the models
+
+Let's now compare the three models. For the unconstrained model we use the Poisson model we estimated earlier. We use three goodness-of-fit measures: the root mean squared error (RMSE), the $R^2$ (here the squared correlation between observed and predicted flows) and the Sørensen index (also known as the Common Part of Commuters, CPC), which is very popular in the flow literature. It is the proportion of commuters who are correctly allocated to their origin-destination pair. It ranges between $0$ (nothing in common) and $1$ (perfect). For more information about the CPC, have a look at @THOMPSON2019102461.
+
+$$CPC = \frac{2\sum_{ij} \min(T_{ij}, \hat{T}_{ij})}{\sum_{ij} T_{ij} + \sum_{ij} \hat{T}_{ij}}$$
+
+```{r compare_models}
+# Predictions of the unconstrained model for the same origin-destination pairs
+T.unc <- predict(glm.model, newdata = commuting.c, type = "response")
+
+# A function which takes a vector of predicted flows and returns the fit statistics
+# and the largest errors in the origin and destination totals.
+evaluate <- function(pred) {
+  obs <- commuting.c$flow
+
+  tibble(RMSE = sqrt(mean((obs - pred)^2)),
+         R2 = cor(obs, pred)^2,
+         CPC = 2 * sum(pmin(obs, pred)) / (sum(obs) + sum(pred)),
+         origin.error = max(abs(tapply(pred, commuting.c$i, sum) - O)),        # largest error in origin totals
+         destination.error = max(abs(tapply(pred, commuting.c$j, sum) - D)))   # largest error in destination totals
+}
+
+models <- list("Unconstrained" = T.unc,
+               "Production-constrained" = fitted(prod.glm),
+               "Doubly constrained" = fitted(dbl.glm))
+
+map_dfr(models, evaluate, .id = "Model") %>%
+  kable(digits = 3, caption = "Comparison of the spatial interaction models")
+```
+
+```{block, type='alert alert-warning'}
+**Question** Which model fits the data better? Is this surprising? Please note that the constrained models use information from the *observed* flows (the totals), while the unconstrained one doesn't. What does this mean for the comparison? In which cases would it be fair to compare the models like this and in which cases not?
+
+Also, have a look at the last two columns. What do they tell us?
+```
+
+
+```{block, type='alert alert-warning'}
+**Tasks**
+
+1. Estimate the *attraction-constrained* model, $T_{ij} = B_j D_j V_i^\lambda D_{ij}^{-\beta}$. Hint: it is the mirror image of the production-constrained one. You need dummies for the destinations (`j`) instead of the origins and the resident population `resident` instead of `workplace`. Which parameters do you estimate? Check that the destination totals are reproduced.
+
+2. So far we used a power function for the distance decay: $D_{ij}^{-\beta}$. Another common choice is the exponential function: $e^{-\beta D_{ij}}$. In the Poisson regression this means that you use `distance` in kilometres instead of `log(distance)`. Estimate the production-constrained model with this specification. Which one fits the data better? (Hint: you can use the `evaluate()` function from above.)
+
+3. (Advanced) Distance is a crude measure of the cost of commuting. Replace the `distance` variable with public transport travel times between the local authorities. You can calculate such a matrix with the [`r5r`](https://ipeagit.github.io/r5r/){target="_blank"} package, which needs OpenStreetMap and public transport (GTFS) data. Does the fit improve?
+```
+
 ## This is not a Machine Learning introduction...
 
 ... but maybe a sneak preview of the philosophy behind *modern* data science approaches to answer computational problems. We are using the `caret` package to:
 
--   split our data into test and training
+-   split our data into a training and a test data set
 
--   train a `lm()`and a `glm()` model using the training data set
+-   train three different models using *only* the training data set: a linear regression (`lm`), the Poisson regression (`glm`) we are already familiar with, and a random forest
 
--   use the estimated models to make *out-of-sample* predictions using the test data set
+-   use the estimated models to make *out-of-sample* predictions using the test data set, i.e. data that the models have never seen
 
--   plot the results and the relevant metrics and choose the best model.
+-   compare the predictions with the actual flows and choose the best model.
 
-This is obviously an oversimplification, but it provides a good preview of machine learning frameworks.
+This is obviously an oversimplification, but it provides a good preview of machine learning frameworks. The key idea is that we do not judge a model by how well it fits the data we used to estimate it, but by how well it predicts *new* data.
 
 It is worth browsing the [`caret`](https://topepo.github.io/caret/) package.
 
-**The below will take a few minutes!**
+The random forest is the only *real* machine learning model here. It is an ensemble of many decision trees. Each tree splits the data repeatedly using the explanatory variables (e.g. is the distance smaller than x km?) and the final prediction is the average across the trees. Unlike the regressions, we do not tell it what the relationship looks like. It can find non-linear relationships and interactions between variables on its own. We use the `ranger` package, which is a fast implementation of random forests, through `caret`. If you do not have it, run `install.packages("ranger")`.
 
-```{r predict, eval = TRUE, include=TRUE, results= 'asis', message=FALSE, warning = FALSE}
-commuting.si <- commuting.si %>% 
-  drop_na() 
+First, we split the data. We keep $80\%$ of the observations for training and $20\%$ for testing. Please note that we do not change `commuting.si`. Instead, we create a new data frame without missing values and with a shorter name for the number of commuters. The `set.seed()` makes the random split reproducible.
+
+```{r ml_split}
+commuting.ml <- commuting.si %>%
+  drop_na() %>%
+  rename(flow = `All categories: Method of travel to work`)
 
 set.seed(3456)
-trainIndex <- createDataPartition(commuting.si$`All categories: Method of travel to work`, p = .8, 
-                                  list = FALSE, 
+trainIndex <- createDataPartition(commuting.ml$flow, p = .8,
+                                  list = FALSE,
                                   times = 1)
-dim(trainIndex)
-dim(commuting.si)
 
-commuting.si.train <- commuting.si[ trainIndex,]
-commuting.si.test  <- commuting.si[-trainIndex,]
+commuting.train <- commuting.ml[ trainIndex, ]
+commuting.test  <- commuting.ml[-trainIndex, ]
 
-model.lm <- train(`All categories: Method of travel to work` ~
-                    distance + resident + workplace,
-                    data = commuting.si,
-                    method = "lm")
+# How many observations in each?
+nrow(commuting.train)
+nrow(commuting.test)
+```
 
-predictions.lm <- predict(model.lm, commuting.si.test)
-lm.metrics <- postResample(pred = predictions.lm, obs = commuting.si.test$`All categories: Method of travel to work`) 
+Now we train the models. Please pay attention to the `data` argument: we use the *training* data. `caret` can also do a lot of tuning and resampling, which we skip here with `trainControl(method = "none")` to keep this quick. The random forest has a couple of settings (`mtry`, `min.node.size`), which we fix at reasonable values instead of tuning them. This chunk will take about a minute, mostly because of the random forest.
 
-model.glm <- train(`All categories: Method of travel to work` ~
-                    distance + resident + workplace,
-                    data = commuting.si,
-                    method = "glmnet",
-                    family = "poisson", 
-                    na.action = na.omit)
+```{r ml_train}
+# No resampling or tuning: each model is estimated once
+ctrl <- trainControl(method = "none")
 
-predictions.glm <- predict(model.glm, commuting.si.test)
-glm.metrics <- postResample(pred = predictions.glm, obs = commuting.si.test$`All categories: Method of travel to work`) 
-bind_rows(lm.metrics, glm.metrics) %>% 
-  mutate(Model = c("lm", "glm")) %>% 
-  select(Model, Rsquared, RMSE, MAE) %>% 
-  kable(digits = 3)
+model.lm <- train(flow ~ distance + resident + workplace,
+                  data = commuting.train,
+                  method = "lm",
+                  trControl = ctrl)
+
+model.glm <- train(flow ~ distance + resident + workplace,
+                   data = commuting.train,
+                   method = "glm",
+                   family = poisson(link = "log"),
+                   trControl = ctrl)
+
+# The random forest has a random element, so we need a seed
+set.seed(3456)
+model.rf <- train(flow ~ distance + resident + workplace,
+                  data = commuting.train,
+                  method = "ranger",
+                  trControl = ctrl,
+                  tuneGrid = data.frame(mtry = 2,                 # variables tried at each split
+                                        splitrule = "variance",
+                                        min.node.size = 5),       # minimum size of the final nodes
+                  num.trees = 200,                                # number of trees
+                  importance = "impurity")                        # we need this to see which variables matter
+```
+
+Then, we use the estimated models to predict the flows for the test data set. We evaluate them with four metrics: the RMSE and the MAE, which are errors measured in commuters (the lower the better); $R^2$, here the squared correlation between observed and predicted flows; and the Sørensen index (CPC) we used above. We use a function, because we will need these metrics more than once. Please note that the linear regression can predict negative flows, which we set to $0$ for the CPC.
+
+```{r ml_metrics}
+# A function which takes the observed and the predicted flows and calculates
+# the metrics
+ml_metrics <- function(obs, pred) {
+  tibble(RMSE = sqrt(mean((obs - pred)^2)),
+         MAE = mean(abs(obs - pred)),
+         Rsquared = cor(obs, pred)^2,
+         CPC = 2 * sum(pmin(obs, pmax(pred, 0))) / (sum(obs) + sum(pmax(pred, 0))))
+}
+
+models.ml <- list("lm" = model.lm,
+                  "glm" = model.glm,
+                  "Random forest" = model.rf)
+
+# The predictions for the test data. predict() works in the same way for all the models.
+predictions <- map(models.ml, ~ predict(.x, commuting.test))
+
+# The metrics for the test data
+map_dfr(predictions, ~ ml_metrics(commuting.test$flow, .x), .id = "Model") %>%
+  select(Model, Rsquared, RMSE, MAE, CPC) %>%
+  kable(digits = 3, caption = "Out-of-sample performance (test data)")
 ```
 
 ```{block, type='alert alert-warning'}
-**Question** Which model would you choose?
+**Question** Which model would you choose? Which model predicts best on the *test* data? Why do you think this is the case?
+
+And why does it matter that the test data were *not* used to estimate the models? What would have happened to the results if we had trained the models using all the data?
 ```
 
-```{r predict.plots, eval = TRUE, include=TRUE, results= 'asis', message=FALSE, warning = FALSE}
+The plots below show the actual versus the predicted flows for the test data. A perfect model would have all the points on the red line. Because most flows are small and a few are very large, we use a transformation of the axes which is similar to a logarithmic one, but works with zeros and negative values.
 
-predict.lm.plot <- bind_cols(commuting.si.test$`All categories: Method of travel to work`, predictions.lm) %>% 
-  rename(y = '...1',
-         y_hat = '...2') %>% 
-  ggplot(aes(x=y, y=y_hat)) + geom_point() + ggtitle("lm") + 
-  theme(plot.title = element_text(hjust = 0.5))
+```{r ml_plots}
+tibble(y = commuting.test$flow,
+       lm = predictions$lm,
+       glm = predictions$glm,
+       `Random forest` = predictions$`Random forest`) %>%
+  pivot_longer(-y, names_to = "Model", values_to = "y_hat") %>%
+  mutate(Model = factor(Model, levels = names(models.ml))) %>%
+  ggplot(aes(x = y, y = y_hat)) +
+  geom_point(alpha = 0.2) +
+  geom_abline(intercept = 0, slope = 1, colour = "red") +    # perfect predictions
+  scale_x_continuous(trans = "pseudo_log") +
+  scale_y_continuous(trans = "pseudo_log") +
+  facet_wrap(~ Model) +
+  labs(x = "Actual flows", y = "Predicted flows")
+```
 
-predict.glm.plot <- bind_cols(commuting.si.test$`All categories: Method of travel to work`, predictions.glm) %>% 
-  rename(y = '...1',
-         y_hat = '...2') %>% 
-  ggplot(aes(x=y, y=y_hat)) + geom_point() + ggtitle("glm") + 
-  theme(plot.title = element_text(hjust = 0.5))
+Now, let's see why we need a test data set. We can also use the models to predict the data that we used to *train* them. Compare how well each model performs on the training and the test data.
 
-library(patchwork)
-predict.lm.plot + predict.glm.plot
+```{r ml_overfitting}
+# The same metrics for the training data
+predictions.train <- map(models.ml, ~ predict(.x, commuting.train))
 
+bind_rows(
+  map2_dfr(predictions.train, names(predictions.train),
+           ~ ml_metrics(commuting.train$flow, .x) %>% mutate(Model = .y, Data = "Training")),
+  map2_dfr(predictions, names(predictions),
+           ~ ml_metrics(commuting.test$flow, .x) %>% mutate(Model = .y, Data = "Test"))
+) %>%
+  select(Model, Data, Rsquared, RMSE, CPC) %>%
+  arrange(Model, desc(Data)) %>%
+  kable(digits = 3, caption = "Performance on the training and the test data")
+```
+
+```{block, type='alert alert-warning'}
+**Question** Which model performs a lot better on the training than on the test data? This is called *overfitting*: the model memorises the noise of the training data instead of learning the general pattern. Why do you think that more flexible models, such as the random forest, are more prone to this? Why can we not detect overfitting if we only look at the training data?
+```
+
+Finally, the random forest can also tell us which variables were more useful for making predictions. This is the *variable importance*. It is not the same as the coefficients of a regression, as it does not tell us the direction of the effect, only how much each variable contributed to the predictions.
+
+```{r ml_importance}
+tibble(variable = names(model.rf$finalModel$variable.importance),
+       importance = model.rf$finalModel$variable.importance) %>%
+  ggplot(aes(x = reorder(variable, importance), y = importance)) +
+  geom_col(fill = "orange") +
+  coord_flip() +
+  labs(x = NULL, y = "Importance")
+```
+
+```{block, type='alert alert-warning'}
+**Question** Which variable is the most important for predicting the commuting flows? Does this match what we found with the gravity models above? Why could it be misleading to treat the importance as the *effect* of the variable?
+
+**Task** Try to improve the predictions of the random forest, e.g. by changing `num.trees` or `min.node.size`, or by adding another explanatory variable. Always evaluate the changes using the *test* data.
 ```

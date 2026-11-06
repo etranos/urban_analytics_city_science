@@ -390,14 +390,12 @@
 <div class="column" style="width:40%;">
 <p><small></small></p><small>
 <ul>
-<li><p>Abstraction</p></li>
-<li><p>Represent the structure not the appearance</p></li>
+<li><p>Abstraction: represent the topology not the exact geometry</p></li>
 <li><p>Terminal = node</p></li>
 <li><p>Node (vertex)</p></li>
 <li><p>Link (edge)</p></li>
-<li><p>Sub-graph - Loop (buckle)</p></li>
-<li><p>Planar graph</p></li>
-<li><p>Non-planar graph</p></li>
+<li><p>Sub-graph, loops (buckles)</p></li>
+<li><p>Planar and non-planar graphs</p></li>
 <li><p>Cycle, circuit</p></li>
 <li><p>Tree <span class="math inline">\((e = v-1)\)</span></p></li>
 </ul>
@@ -410,7 +408,7 @@
 <h2>Graph theory, aka network analysis</h2>
 <ul>
 <li><p><span class="math inline">\(\beta = e / v\)</span>, where <span class="math inline">\(e\)</span> is the number of links &amp; <span class="math inline">\(v\)</span> the number of nodes</p></li>
-<li><p><span class="math inline">\(Gamma\)</span> AKA network density (number of liks / maximum number of links)</p>
+<li><p><span class="math inline">\(\gamma\)</span> AKA network density (number of liks / maximum number of links)</p>
 <ul>
 <li><p>planar: <span class="math inline">\(\gamma = \frac{e}{3(v-2)}\)</span></p></li>
 <li><p>non-planar: <span class="math inline">\(\gamma = \frac{2e}{v(v-1)}\)</span></p></li>
@@ -432,7 +430,7 @@
 <section id="closeness-centrality-from-lecture-3" class="slide level2">
 <h2>Closeness centrality (from Lecture 3)</h2>
 <ul>
-<li><p>Which node has the shortest distance to other nodes</p></li>
+<li><p>Which node has the shortest distance to all other nodes</p></li>
 <li><p>Instead of focusing on the number of links, the focus turns to the network distances</p></li>
 <li><p>Different definitions:</p></li>
 <li><p>Closeness, <span class="math inline">\(c_{i} = 1/\sum_{j} d_{ij}\)</span></p></li>
@@ -448,7 +446,7 @@
 <li><p>Inequality measure</p>
 <ul>
 <li>0: perfect equality</li>
-<li>1 :perfect inequality</li>
+<li>1: perfect inequality</li>
 </ul></li>
 <li><p>Ordered X and Y, cumulative percentage</p></li>
 <li><p>Mostly used for income inequalities, but can be more widely used</p></li>
@@ -472,10 +470,10 @@
 <ul>
 <li><p>Degree of concentration of a certain activities</p></li>
 <li><p>Very common for regional analysis too</p></li>
-<li><p><span class="math inline">\(M_{ti}\)</span> is the traffic of a merchandise <span class="math inline">\(t\)</span> at a terminal <span class="math inline">\(i\)</span></p></li>
-<li><p><span class="math inline">\(Mi\)</span> is the traffic of all merchandise at a terminal <span class="math inline">\(i\)</span></p></li>
-<li><p><span class="math inline">\(M_{t}\)</span> is the total of all merchandises of type <span class="math inline">\(t\)</span> for all terminals, and</p></li>
-<li><p><span class="math inline">\(M\)</span> is the total of all types of merchandises for all terminals</p></li>
+<li><p><span class="math inline">\(T_{mi}\)</span> is the traffic of a merchandise <span class="math inline">\(m\)</span> at a terminal <span class="math inline">\(i\)</span></p></li>
+<li><p><span class="math inline">\(Ti\)</span> is the traffic of all merchandise at a terminal <span class="math inline">\(i\)</span></p></li>
+<li><p><span class="math inline">\(T_{m}\)</span> is the total traffic of all merchandises of type <span class="math inline">\(m\)</span> for all terminals, and</p></li>
+<li><p><span class="math inline">\(T\)</span> is the total of traffic all types of merchandises for all terminals</p></li>
 </ul>
 </section>
 <section id="the-location-quotient-coefficient-1" class="slide level2">
@@ -483,12 +481,12 @@
 <div class="columns">
 <div class="column" style="width:40%;">
 <p><br> <br> <br></p>
-<p><span class="math inline">\(LQ = \frac{\frac{M_{it}}{M_i}}{\frac{M_t}{M}}\)</span></p>
+<p><span class="math inline">\(LQ = \frac{\frac{T_{mi}}{T_i}}{\frac{T_m}{T}}\)</span></p>
 </div><div class="column" style="width:60%;">
 <ul>
-<li><p><span class="math inline">\(LQ &lt;1\)</span>: traffic of merchandise <span class="math inline">\(t\)</span> in terminal <span class="math inline">\(i\)</span> is under-represented compared to the same merchandise in all terminals</p></li>
-<li><p><span class="math inline">\(LQ = 1\)</span> traffic of merchandise <span class="math inline">\(t\)</span> in terminal <span class="math inline">\(i\)</span> is proportional to its participation to total traffic</p></li>
-<li><p><span class="math inline">\(LQ &gt; 1\)</span> traffic of merchandise <span class="math inline">\(t\)</span> in a terminal <span class="math inline">\(i\)</span> is preponderant in total traffic.</p></li>
+<li><p><span class="math inline">\(LQ &lt;1\)</span>: traffic of merchandise <span class="math inline">\(m\)</span> in terminal <span class="math inline">\(i\)</span> is under-represented compared to the same merchandise in all terminals</p></li>
+<li><p><span class="math inline">\(LQ = 1\)</span> traffic of merchandise <span class="math inline">\(m\)</span> in terminal <span class="math inline">\(i\)</span> is proportional to its participation to total traffic</p></li>
+<li><p><span class="math inline">\(LQ &gt; 1\)</span> traffic of merchandise <span class="math inline">\(m\)</span> in a terminal <span class="math inline">\(i\)</span> is over-represented compared to the same merchandise in all terminals.</p></li>
 </ul>
 </div></div>
 </section>
@@ -594,10 +592,10 @@
 <section id="estimate-lambda-alpha-beta-and-k" class="slide level2">
 <h2>2. Estimate <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(k\)</span></h2>
 <ul>
-<li><p>Known: <span class="math inline">\(T\)</span>, <span class="math inline">\(V\)</span>, <span class="math inline">\(W\)</span>, <span class="math inline">\(d\)</span> and <span class="math inline">\(k\)</span></p></li>
-<li><p>Estiamte: <span class="math inline">\(\lambda=1\)</span>, <span class="math inline">\(\alpha=1\)</span>, and <span class="math inline">\(\beta=2\)</span></p></li>
+<li><p>Known: <span class="math inline">\(T\)</span>, <span class="math inline">\(V\)</span>, <span class="math inline">\(W\)</span> and <span class="math inline">\(d\)</span></p></li>
+<li><p>Estimate: <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(k\)</span></p></li>
 <li><p><em>Why?</em> To understand the effect of distance, pull and push factors</p></li>
-<li><p>How? Regression</p></li>
+<li><p>How? Regression analysis</p></li>
 </ul>
 </section>
 <section id="estimate-lambda-alpha-beta-and-k-1" class="slide level2">
@@ -625,7 +623,7 @@
 <h2>2. Estimate <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(k\)</span></h2>
 <ul>
 <li><p><span class="math inline">\(c = lnk: -13.84\)</span></p></li>
-<li><p><span class="math inline">\(\lambda = 0.727\)</span>, coefficient for <span class="math inline">\((lnV_i)\)</span></p></li>
+<li><p><span class="math inline">\(\lambda = 0.727\)</span>, coefficient for <span class="math inline">\(lnV_i\)</span></p></li>
 <li><p><span class="math inline">\(\alpha = 0.464\)</span>, coefficient for <span class="math inline">\(lnW_j\)</span></p></li>
 <li><p><span class="math inline">\(\beta = -0.624\)</span>, coefficient for <span class="math inline">\(lnd_{ij}\)</span></p></li>
 <li><p>What did we learn?</p></li>
@@ -694,7 +692,7 @@
 </div>
 </div>
 <center>
-<small>Source:<span class="citation" data-cites="rodrigue2020geography">Rodrigue (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span></small>
+<small>Source: <span class="citation" data-cites="rodrigue2020geography">Rodrigue (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span></small>
 </center>
 </section>
 <section class="slide level2">

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Emmanouil Tranos">
-<meta name="dcterms.date" content="2025-11-15">
+<meta name="dcterms.date" content="2026-11-06">
 
 <title>Spatial interaction modelling – Urban analytics and city science</title>
 <style>
@@ -345,6 +345,14 @@ window.Quarto = {
   <li><a href="#current-research" id="toc-current-research" class="nav-link" data-scroll-target="#current-research">Current research</a></li>
   <li><a href="#commuting-data-and-networks" id="toc-commuting-data-and-networks" class="nav-link" data-scroll-target="#commuting-data-and-networks">Commuting data and networks</a></li>
   <li><a href="#spatial-interaction-modelling" id="toc-spatial-interaction-modelling" class="nav-link" data-scroll-target="#spatial-interaction-modelling">Spatial interaction modelling</a></li>
+  <li><a href="#constrained-spatial-interaction-models" id="toc-constrained-spatial-interaction-models" class="nav-link" data-scroll-target="#constrained-spatial-interaction-models">Constrained spatial interaction models</a>
+  <ul class="collapse">
+  <li><a href="#production-constrained-model" id="toc-production-constrained-model" class="nav-link" data-scroll-target="#production-constrained-model">Production-constrained model</a></li>
+  <li><a href="#preparing-the-data" id="toc-preparing-the-data" class="nav-link" data-scroll-target="#preparing-the-data">Preparing the data</a></li>
+  <li><a href="#estimating-the-production-constrained-model" id="toc-estimating-the-production-constrained-model" class="nav-link" data-scroll-target="#estimating-the-production-constrained-model">Estimating the production-constrained model</a></li>
+  <li><a href="#doubly-constrained-model" id="toc-doubly-constrained-model" class="nav-link" data-scroll-target="#doubly-constrained-model">Doubly constrained model</a></li>
+  <li><a href="#comparing-the-models" id="toc-comparing-the-models" class="nav-link" data-scroll-target="#comparing-the-models">Comparing the models</a></li>
+  </ul></li>
   <li><a href="#this-is-not-a-machine-learning-introduction" id="toc-this-is-not-a-machine-learning-introduction" class="nav-link" data-scroll-target="#this-is-not-a-machine-learning-introduction">This is not a Machine Learning introduction…</a></li>
   </ul>
 </nav>
@@ -371,7 +379,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 15, 2025</p>
+      <p class="date">November 6, 2026</p>
     </div>
   </div>
   
@@ -414,7 +422,7 @@ window.Quarto = {
 </section>
 <section id="commuting-data-and-networks" class="level2">
 <h2 class="anchored" data-anchor-id="commuting-data-and-networks">Commuting data and networks</h2>
-<p>This the same data and the same data preparation we did for the <a href="https://etranos.info/urban_analytics_city_science/src/network_analysis.html">network analysis practical</a>. Please follow the below workflow, which you should already be familiar with. Once the data preperation is done, we will model these commuting flows.</p>
+<p>This the same data and the same data preparation we did for the <a href="https://etranos.info/urban_analytics_city_science/src/network_analysis.html">network analysis practical</a>. Please follow the below workflow, which you should already be familiar with. Once the data preparation is done, we will model these commuting flows.</p>
 <p>For this tutorial we will use travel to work data from the 2011 UK Census. The data is available <a href="http://wicid.ukdataservice.ac.uk/cider/wicid/downloads.php?wicid_Session=742d61be88b0614c3982455e542bc776">online</a>, but it requires an academic login. After you log in, download the <strong>WU03UK</strong> element, save the .csv on your working directory under a <code>/data</code> directory and unzip it. We will use the:</p>
 <blockquote class="blockquote">
 <p>Location of usual residence and place of work by method of travel to work</p>
@@ -583,7 +591,7 @@ $ `Other method of travel to work`           &lt;dbl&gt; 4, 2, 7, 0, 0, 0, 0, 0,
 <p><span class="math display">\[lnT_{ij} = lnk + \lambda lnV_i + \alpha lnM_j - \beta lnD_{ij}\]</span></p>
 <p>The above transformed equation can be estimated as a linear model if we assume that <span class="math inline">\(y = lnT_{ij}\)</span>, <span class="math inline">\(c = lnk\)</span>, <span class="math inline">\(x_1 = lnV_i\)</span>, <span class="math inline">\(a_1 = \lambda\)</span> etc. Hence, we can use OLS to estimate the following:</p>
 <p><span class="math display">\[lnT_{ij} = lnk + \lambda lnV_i + \alpha lnM_j - \beta lnD_{ij} + e_{ij}\]</span></p>
-<p>This is what is known as the log-linear or log-normal transformation.</p>
+<p>This is what is known as the log-log transformation.</p>
 <p>There are a number of issues with such an approach though. Most importantly, our dependent variable is not continuous, but instead a discrete, positive variable (there are no flows of -324.56 people!). Therefore we need to employ an appropriate estimator and this is what the Poisson regression does. Briefly, if we exponentiate both sides, the above equation can be written as:</p>
 <p><span class="math display">\[T_{ij} = e^{lnk + \lambda lnV_i + \alpha lnM_j - \beta lnD_{ij}}\]</span> The above is in the form of the Poisson regression. So, we are interested in modelling <em>not</em> the mean <span class="math inline">\(T_{ij}\)</span> drawn from a normally distributed <span class="math inline">\(T\)</span>, but, instead, the mean <span class="math inline">\(T_{ij}\)</span>, which is the average of the all the flows (i.e.&nbsp;counts) between any <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>. For more details about the Poisson regression have a look at <a href="https://bookdown.org/roback/bookdown-bysh/ch-poissonreg.html#initial-models"><span class="citation" data-cites="roback2021beyond">Roback and Legler (<span>2021</span>)</span></a>. For this practical we will estimate the commuting flows using both OLS and Poisson regressions.</p>
 <p>But before we get into the estimation we need to build a data frame, which includes all the necessary variables. These are the origin-destination flows <span class="math inline">\(T\)</span> between <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>, the distance <span class="math inline">\(dist\)</span> between <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> and the characteristics <span class="math inline">\(V\)</span> and <span class="math inline">\(M\)</span> of origin <span class="math inline">\(i\)</span> and destinations <span class="math inline">\(j\)</span> that we believe <em>push</em> and <em>pull</em> individuals to commute.</p>
@@ -610,7 +618,7 @@ $ value &lt;dbl&gt; 0.00, 14338.99, 20147.01, 12892.19, 23203.28, 175341.09, 164
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Please note that the elements of the diagonal are present in this distance matrix.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>If you want to check that the distances we are correct, use google maps to calculate the distance between E41000001 (Middlesbrough) and E41000002 (Hartlepool). Remember that the la.d is expressed in meters.</p>
+<p>If you want to check that the distances we are correct, use Google maps to calculate the distance between E41000001 (Middlesbrough) and E41000002 (Hartlepool). Remember that the la.d is expressed in meters.</p>
 <p>What is missing here? Do you remember the intra-zone commuting flows? E.g. the commuters that live and work in Bristol? We had removed these from the network analysis and visualisation element. Because we don’t have information about the distances of the intra-zone commutes, we will exclude them from this analysis.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>la.d <span class="ot">&lt;-</span> la.d <span class="sc">%&gt;%</span></span>
@@ -760,6 +768,7 @@ All categories: Method of travel to work
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace</span>(., <span class="fu">is.na</span>(.), <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now let’s bring data for some <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> characteristics that we believe that affect commuting. I have prepared such a small data set from the census, which includes resident population and working populations as <em>push</em> and <em>pull</em> variables. These data have been obtained by <a href="https://www.nomisweb.co.uk/published/census/odexplorer.asp">nomis</a>.</p>
+<p>As you can see, there are two columns with LA codes: <code>la.code.st</code> and <code>Merging.Local.Authority.Code</code>. Because Local Authority codes and definitions change overtime, I had to do some pre-processing. We will use the <code>Merging.Local.Authority.Code</code> to merge with our flow data, but there are 6 Local Authorities that I couldn’t much. Later down the pipeline, I will drop these cases.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To avoid issues with read_csv() reading directly from Dropbox, we use a </span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># tempfile trick. First, an empty temp file is created with tempfile(). Then, we </span></span>
@@ -1171,99 +1180,603 @@ F Statistic
 </div>
 </div>
 </section>
+<section id="constrained-spatial-interaction-models" class="level2">
+<h2 class="anchored" data-anchor-id="constrained-spatial-interaction-models">Constrained spatial interaction models</h2>
+<p>The Poisson (and the OLS) model we just estimated is an <em>unconstrained</em> spatial interaction model. Nothing forces the predicted flows to be consistent with what we already know about the system. For example, if we sum the predicted flows for all the commuters who live in Bristol, there is no guarantee that we will get the actual number of Bristol residents who commute to another local authority.</p>
+<p>But very often we <em>do</em> know these totals. The census tells us how many people live in each local authority and commute elsewhere (<span class="math inline">\(O_i\)</span>, the <em>origin</em> totals) and how many jobs are taken by commuters in each local authority (<span class="math inline">\(D_j\)</span>, the <em>destination</em> totals). What we do not know, or what we want to predict, is how these totals are <em>distributed</em>, i.e.&nbsp;who commutes where. This is what <em>constrained</em> spatial interaction models do <span class="citation" data-cites="wilson1971family">(<a href="#ref-wilson1971family" role="doc-biblioref">Wilson 1971</a>)</span>. There are four types:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 30%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>What is fixed</th>
+<th><span class="math inline">\(\sum_j T_{ij}\)</span></th>
+<th><span class="math inline">\(\sum_i T_{ij}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Unconstrained</td>
+<td>nothing</td>
+<td>free</td>
+<td>free</td>
+</tr>
+<tr class="even">
+<td>Production-constrained</td>
+<td>origin totals, <span class="math inline">\(O_i\)</span></td>
+<td><span class="math inline">\(= O_i\)</span></td>
+<td>free</td>
+</tr>
+<tr class="odd">
+<td>Attraction-constrained</td>
+<td>destination totals, <span class="math inline">\(D_j\)</span></td>
+<td>free</td>
+<td><span class="math inline">\(= D_j\)</span></td>
+</tr>
+<tr class="even">
+<td>Doubly constrained</td>
+<td>both</td>
+<td><span class="math inline">\(= O_i\)</span></td>
+<td><span class="math inline">\(= D_j\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>In this section we will estimate the production-constrained and the doubly constrained models for the same commuting flows and compare them with the unconstrained one we estimated above. The attraction-constrained model is the mirror image of the production-constrained one and you will estimate it as a task at the end.</p>
+<section id="production-constrained-model" class="level3">
+<h3 class="anchored" data-anchor-id="production-constrained-model">Production-constrained model</h3>
+<p>The production-constrained model is defined as:</p>
+<p><span class="math display">\[T_{ij} = A_i \, O_i \, M_j^\alpha \, D_{ij}^{-\beta} \qquad \text{where} \qquad A_i = \frac{1}{\sum_j M_j^\alpha D_{ij}^{-\beta}}\]</span></p>
+<p>Compare it with the unconstrained model. The origin characteristic <span class="math inline">\(V_i^\lambda\)</span> has been replaced by the <em>known</em> origin total <span class="math inline">\(O_i\)</span> and the new term <span class="math inline">\(A_i\)</span> is a <em>balancing factor</em>, which makes sure that the predicted flows from each origin add up to <span class="math inline">\(O_i\)</span>, i.e.&nbsp;<span class="math inline">\(\sum_j T_{ij} = O_i\)</span>. Please note that we do not estimate <span class="math inline">\(\lambda\)</span> any more. We still estimate <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>.</p>
+<p>An important by-product: <span class="math inline">\(1/A_i = \sum_j M_j^\alpha D_{ij}^{-\beta}\)</span> is the gravity-based <em>accessibility</em> of origin <span class="math inline">\(i\)</span> (do you remember the accessibility indicators from the lecture?). We will come back to this below.</p>
+</section>
+<section id="preparing-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="preparing-the-data">Preparing the data</h3>
+<p>Good news: we do not need to change the format of the data. We keep working with the long format, in which each line is an origin-destination pair, and we estimate the constrained models with a Poisson regression, as we did above. The below code prepares a data frame for this. Pay attention to the comments.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This package allows us to estimate generalised linear models with a sparse</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># matrix of dummy variables. See below why we need it. If you do not have it, run</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("MatrixModels")</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MatrixModels)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co"># First, we keep only the English and Welsh local authorities, as we do not have</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co"># commuting flows for Scotland and Northern Ireland, and we simplify the data</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co"># frame. Note the as.character(), because i and j might be factors.</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>commuting.c <span class="ot">&lt;-</span> commuting.si <span class="sc">%&gt;%</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">i =</span> <span class="fu">as.character</span>(i),</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">j =</span> <span class="fu">as.character</span>(j)) <span class="sc">%&gt;%</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(i, <span class="st">"^[EW]"</span>), <span class="fu">str_detect</span>(j, <span class="st">"^[EW]"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">flow =</span> <span class="st">`</span><span class="at">All categories: Method of travel to work</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(i, j, flow, distance, resident, workplace)</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Do we have any missing values? We want this to be 0, but we have quite a few.</span></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(commuting.c))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4858</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Which variables are they in? These are the resident and workplace populations,</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># which come from the census data we joined above.</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(commuting.c))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        i         j      flow  distance  resident workplace 
+        0         0         0         0      2429      2429 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Which local authorities do not have such data? An origin without resident</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># population or a destination without workplace population.</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>missing.la <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">c</span>(commuting.c<span class="sc">$</span>i[<span class="fu">is.na</span>(commuting.c<span class="sc">$</span>resident)],</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>                       commuting.c<span class="sc">$</span>j[<span class="fu">is.na</span>(commuting.c<span class="sc">$</span>workplace)]))</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>la.names <span class="sc">%&gt;%</span> <span class="fu">filter</span>(cmlad11cd <span class="sc">%in%</span> missing.la)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  cmlad11cd          cmlad11nm
+1 E41000005         Darlington
+2 E41000048     Northumberland
+3 E41000129 East Hertfordshire
+4 E41000132          St Albans
+5 E41000133          Stevenage
+6 E41000136    Welwyn Hatfield
+7 E41000276          Gateshead</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For the constrained models we need a *complete* set of origins and destinations,</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co"># otherwise the totals O and D would not be consistent. So, we remove all the</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co"># pairs which involve these local authorities, either as origins or as destinations.</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>commuting.c <span class="ot">&lt;-</span> commuting.c <span class="sc">%&gt;%</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>i <span class="sc">%in%</span> missing.la, <span class="sc">!</span>j <span class="sc">%in%</span> missing.la)</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Now we should be fine.</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(commuting.c))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The local authority codes. We turn the origin (i) and the destination (j) into</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># factors with the same levels, as glm() will create one dummy variable for each level.</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>codes <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(<span class="fu">c</span>(commuting.c<span class="sc">$</span>i, commuting.c<span class="sc">$</span>j)))</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>commuting.c <span class="ot">&lt;-</span> commuting.c <span class="sc">%&gt;%</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">i =</span> <span class="fu">factor</span>(i, <span class="at">levels =</span> codes),</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">j =</span> <span class="fu">factor</span>(j, <span class="at">levels =</span> codes))</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(codes)      <span class="co"># number of local authorities</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 339</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(commuting.c)  <span class="co"># number of origin-destination pairs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 115936</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The known totals. O: commuters by origin, D: commuters by destination. Please note</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co"># that they only include commuters who work in a *different* local authority, as</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="co"># there are no intra-zonal flows in our data.</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>O <span class="ot">&lt;-</span> <span class="fu">tapply</span>(commuting.c<span class="sc">$</span>flow, commuting.c<span class="sc">$</span>i, sum)</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> <span class="fu">tapply</span>(commuting.c<span class="sc">$</span>flow, commuting.c<span class="sc">$</span>j, sum)</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="co"># A good sanity check: the total of the origins must be equal to the total of</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="co"># the destinations.</span></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">sum</span>(O), <span class="fu">sum</span>(D))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10873062 10873062</code></pre>
+</div>
+</div>
+</section>
+<section id="estimating-the-production-constrained-model" class="level3">
+<h3 class="anchored" data-anchor-id="estimating-the-production-constrained-model">Estimating the production-constrained model</h3>
+<p>How do we estimate <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> when the balancing factor <span class="math inline">\(A_i\)</span> is part of the model? Remember that the unconstrained model is, after taking logarithms, a linear model:</p>
+<p><span class="math display">\[\ln T_{ij} = \ln A_i + \ln O_i + \alpha \ln M_j - \beta \ln D_{ij}\]</span></p>
+<p>Here, <span class="math inline">\(\ln A_i + \ln O_i\)</span> is a different constant for each origin. Therefore, we can estimate the model with the Poisson regression we already know, by simply adding a <em>dummy variable for each origin</em>, which will absorb this term. This is why this model is also known as a Poisson model with <em>origin fixed effects</em>. A nice property of the Poisson regression is that, when it includes such dummies, the predicted flows of each origin add up <em>exactly</em> to the observed ones. In other words, the constraint is satisfied by construction.</p>
+<p>Please note that the <code>0 +</code> in the formula removes the common intercept, so that we get one dummy for each origin.</p>
+<p>We have around <span class="math inline">\(350\)</span> origins and more than <span class="math inline">\(100,000\)</span> origin-destination pairs. A model matrix with a dummy variable for each origin is huge, but it is almost all zeros. The base <code>glm()</code> function stores all these zeros and, as a result, it is very slow for this kind of models (it can take many minutes). The function <code>glm4()</code> of the <code>MatrixModels</code> package has almost exactly the same syntax, but with the argument <code>sparse = TRUE</code> it stores only the non-zero values. It estimates the same model in about a second. The <code>TOL</code> argument is the convergence tolerance, which we make stricter than the default so that the constraints are satisfied with high precision.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>prod.glm <span class="ot">&lt;-</span> <span class="fu">glm4</span>(flow <span class="sc">~</span> <span class="dv">0</span> <span class="sc">+</span> i <span class="sc">+</span> <span class="fu">log</span>(workplace) <span class="sc">+</span> <span class="fu">log</span>(distance),</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> <span class="st">"log"</span>), <span class="at">data =</span> commuting.c,</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">sparse =</span> <span class="cn">TRUE</span>, <span class="at">control =</span> <span class="fu">list</span>(<span class="at">TOL =</span> <span class="fl">1e-7</span>))</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="co"># We do not want to print the coefficients of all the origin dummies.</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="co"># The last two coefficients are alpha (workplace) and minus beta (distance).</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(<span class="fu">coef</span>(prod.glm), <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>log(workplace)  log(distance) 
+      1.226157      -2.577761 </code></pre>
+</div>
+</div>
+<p>Check that the model does what it promises. The predicted flows from each origin should add up to <span class="math inline">\(O_i\)</span>, while there is no such guarantee for the destinations.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The largest difference between predicted and observed origin totals.</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">tapply</span>(<span class="fu">fitted</span>(prod.glm), commuting.c<span class="sc">$</span>i, sum) <span class="sc">-</span> O))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.03908384</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># And the same for the destination totals.</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">tapply</span>(<span class="fu">fitted</span>(prod.glm), commuting.c<span class="sc">$</span>j, sum) <span class="sc">-</span> D))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 684455.1</code></pre>
+</div>
+</div>
+<p>If you are familiar with discrete choice models, this is the same as a multinomial logit model of the choice of destination for the commuters of each origin.</p>
+<div class="cell" type="alert alert-warning">
+<div class="alert alert-warning">
+<p>
+<strong>Question</strong> Compare the estimates of <span class="math inline">()</span> and <span class="math inline">()</span> with the ones from the Poisson regression above. Are they similar? Why do you think that this is (or is not) the case?
+</p>
+</div>
+</div>
+</section>
+<section id="doubly-constrained-model" class="level3">
+<h3 class="anchored" data-anchor-id="doubly-constrained-model">Doubly constrained model</h3>
+<p>If we know both the origin and the destination totals, we can use both:</p>
+<p><span class="math display">\[T_{ij} = A_i \, B_j \, O_i \, D_j \, D_{ij}^{-\beta}\]</span></p>
+<p><span class="math display">\[A_i = \frac{1}{\sum_j B_j D_j D_{ij}^{-\beta}} \qquad B_j = \frac{1}{\sum_i A_i O_i D_{ij}^{-\beta}}\]</span></p>
+<p>Now all the flows are shaped by the totals and the <em>only</em> parameter left to estimate is <span class="math inline">\(\beta\)</span>, the friction of distance. Note that <span class="math inline">\(A_i\)</span> depends on <span class="math inline">\(B_j\)</span> and vice versa. We cannot solve them directly, but we can solve them iteratively: start with <span class="math inline">\(B_j = 1\)</span>, calculate <span class="math inline">\(A_i\)</span>, use it to update <span class="math inline">\(B_j\)</span>, and so on, until they stop changing. This is known as the <em>Furness</em> (or <em>iterative proportional fitting</em>) procedure, which was the traditional way of calibrating these models.</p>
+<p>The Poisson regression gives us the same result in one go. This time we add a dummy variable for each origin <em>and</em> for each destination. Then, <span class="math inline">\(\ln(A_i O_i)\)</span> is absorbed by the origin dummies and <span class="math inline">\(\ln(B_j D_j)\)</span> by the destination dummies, and the only coefficient left is the one of distance, i.e.&nbsp;<span class="math inline">\(-\beta\)</span>. As the origin dummies already play the role of a constant, R drops the dummy of the first destination, which becomes the reference category. This is not a problem, as the predicted flows are not affected.</p>
+<p>This is a <em>big</em> model, with around <span class="math inline">\(700\)</span> dummies. With the base <code>glm()</code> it would take a very long time, but with the sparse matrices of <code>glm4()</code> it is again a matter of seconds.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>dbl.glm <span class="ot">&lt;-</span> <span class="fu">glm4</span>(flow <span class="sc">~</span> <span class="dv">0</span> <span class="sc">+</span> i <span class="sc">+</span> j <span class="sc">+</span> <span class="fu">log</span>(distance),</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> <span class="st">"log"</span>), <span class="at">data =</span> commuting.c,</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">sparse =</span> <span class="cn">TRUE</span>, <span class="at">control =</span> <span class="fu">list</span>(<span class="at">TOL =</span> <span class="fl">1e-7</span>))</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="co"># The estimate for the distance. The coefficient is minus beta.</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(dbl.glm)[<span class="st">"log(distance)"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>log(distance) 
+    -2.712872 </code></pre>
+</div>
+</div>
+<p>And the same check as before. This time both the origin and the destination totals should be reproduced.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">tapply</span>(<span class="fu">fitted</span>(dbl.glm), commuting.c<span class="sc">$</span>i, sum) <span class="sc">-</span> O))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.085074e-06</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">tapply</span>(<span class="fu">fitted</span>(dbl.glm), commuting.c<span class="sc">$</span>j, sum) <span class="sc">-</span> D))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7.161621e-06</code></pre>
+</div>
+</div>
+<div class="cell" type="alert alert-warning">
+<div class="alert alert-warning">
+<p>
+<strong>Question</strong> What is the difference between the estimate of <span class="math inline">()</span> in the production-constrained and in the doubly constrained model? Why do you think that this is the case? (Hint: in which model does the <em>distance</em> have to do all the work of explaining how flows are distributed, and in which is it helped by the destination dummies?)
+</p>
+</div>
+</div>
+</section>
+<section id="comparing-the-models" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-the-models">Comparing the models</h3>
+<p>Let’s now compare the three models. For the unconstrained model we use the Poisson model we estimated earlier. We use three goodness-of-fit measures: the root mean squared error (RMSE), the <span class="math inline">\(R^2\)</span> (here the squared correlation between observed and predicted flows) and the Sørensen index (also known as the Common Part of Commuters, CPC), which is very popular in the flow literature. It is the proportion of commuters who are correctly allocated to their origin-destination pair. It ranges between <span class="math inline">\(0\)</span> (nothing in common) and <span class="math inline">\(1\)</span> (perfect). For more information about the CPC, have a look at <span class="citation" data-cites="THOMPSON2019102461">Thompson et al. (<a href="#ref-THOMPSON2019102461" role="doc-biblioref">2019</a>)</span>.</p>
+<p><span class="math display">\[CPC = \frac{2\sum_{ij} \min(T_{ij}, \hat{T}_{ij})}{\sum_{ij} T_{ij} + \sum_{ij} \hat{T}_{ij}}\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Predictions of the unconstrained model for the same origin-destination pairs</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>T.unc <span class="ot">&lt;-</span> <span class="fu">predict</span>(glm.model, <span class="at">newdata =</span> commuting.c, <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A function which takes a vector of predicted flows and returns the fit statistics</span></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="co"># and the largest errors in the origin and destination totals.</span></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>evaluate <span class="ot">&lt;-</span> <span class="cf">function</span>(pred) {</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>  obs <span class="ot">&lt;-</span> commuting.c<span class="sc">$</span>flow</span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">RMSE =</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((obs <span class="sc">-</span> pred)<span class="sc">^</span><span class="dv">2</span>)),</span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">R2 =</span> <span class="fu">cor</span>(obs, pred)<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">CPC =</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">sum</span>(<span class="fu">pmin</span>(obs, pred)) <span class="sc">/</span> (<span class="fu">sum</span>(obs) <span class="sc">+</span> <span class="fu">sum</span>(pred)),</span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">origin.error =</span> <span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">tapply</span>(pred, commuting.c<span class="sc">$</span>i, sum) <span class="sc">-</span> O)),        <span class="co"># largest error in origin totals</span></span>
+<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">destination.error =</span> <span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">tapply</span>(pred, commuting.c<span class="sc">$</span>j, sum) <span class="sc">-</span> D)))   <span class="co"># largest error in destination totals</span></span>
+<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-16"><a href="#cb62-16" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"Unconstrained"</span> <span class="ot">=</span> T.unc,</span>
+<span id="cb62-17"><a href="#cb62-17" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Production-constrained"</span> <span class="ot">=</span> <span class="fu">fitted</span>(prod.glm),</span>
+<span id="cb62-18"><a href="#cb62-18" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Doubly constrained"</span> <span class="ot">=</span> <span class="fu">fitted</span>(dbl.glm))</span>
+<span id="cb62-19"><a href="#cb62-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-20"><a href="#cb62-20" aria-hidden="true" tabindex="-1"></a><span class="fu">map_dfr</span>(models, evaluate, <span class="at">.id =</span> <span class="st">"Model"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb62-21"><a href="#cb62-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">3</span>, <span class="at">caption =</span> <span class="st">"Comparison of the spatial interaction models"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Comparison of the spatial interaction models</caption>
+<colgroup>
+<col style="width: 31%">
+<col style="width: 10%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 17%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Model</th>
+<th style="text-align: right;">RMSE</th>
+<th style="text-align: right;">R2</th>
+<th style="text-align: right;">CPC</th>
+<th style="text-align: right;">origin.error</th>
+<th style="text-align: right;">destination.error</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Unconstrained</td>
+<td style="text-align: right;">828.064</td>
+<td style="text-align: right;">0.370</td>
+<td style="text-align: right;">0.561</td>
+<td style="text-align: right;">332077.380</td>
+<td style="text-align: right;">377966.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Production-constrained</td>
+<td style="text-align: right;">438.903</td>
+<td style="text-align: right;">0.736</td>
+<td style="text-align: right;">0.719</td>
+<td style="text-align: right;">0.039</td>
+<td style="text-align: right;">684455.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Doubly constrained</td>
+<td style="text-align: right;">288.889</td>
+<td style="text-align: right;">0.889</td>
+<td style="text-align: right;">0.788</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" type="alert alert-warning">
+<div class="alert alert-warning">
+<p>
+<strong>Question</strong> Which model fits the data better? Is this surprising? Please note that the constrained models use information from the <em>observed</em> flows (the totals), while the unconstrained one doesn’t. What does this mean for the comparison? In which cases would it be fair to compare the models like this and in which cases not?
+</p>
+<p>
+Also, have a look at the last two columns. What do they tell us?
+</p>
+</div>
+</div>
+<div class="cell" type="alert alert-warning">
+<div class="alert alert-warning">
+<p>
+<strong>Tasks</strong>
+</p>
+<ol style="list-style-type: decimal">
+<li>
+<p>
+Estimate the <em>attraction-constrained</em> model, <span class="math inline">(T_{ij} = B_j D_j V_i^ D_{ij}^{-})</span>. Hint: it is the mirror image of the production-constrained one. You need dummies for the destinations (<code>j</code>) instead of the origins and the resident population <code>resident</code> instead of <code>workplace</code>. Which parameters do you estimate? Check that the destination totals are reproduced.
+</p>
+</li>
+<li>
+<p>
+So far we used a power function for the distance decay: <span class="math inline">(D_{ij}^{-})</span>. Another common choice is the exponential function: <span class="math inline">(e^{- D_{ij}})</span>. In the Poisson regression this means that you use <code>distance</code> in kilometres instead of <code>log(distance)</code>. Estimate the production-constrained model with this specification. Which one fits the data better? (Hint: you can use the <code>evaluate()</code> function from above.)
+</p>
+</li>
+<li>
+<p>
+(Advanced) Distance is a crude measure of the cost of commuting. Replace the <code>distance</code> variable with public transport travel times between the local authorities. You can calculate such a matrix with the <a href="https://ipeagit.github.io/r5r/" target="_blank"><code>r5r</code></a> package, which needs OpenStreetMap and public transport (GTFS) data. Does the fit improve?
+</p>
+</li>
+</ol>
+</div>
+</div>
+</section>
+</section>
 <section id="this-is-not-a-machine-learning-introduction" class="level2">
 <h2 class="anchored" data-anchor-id="this-is-not-a-machine-learning-introduction">This is not a Machine Learning introduction…</h2>
 <p>… but maybe a sneak preview of the philosophy behind <em>modern</em> data science approaches to answer computational problems. We are using the <code>caret</code> package to:</p>
 <ul>
-<li><p>split our data into test and training</p></li>
-<li><p>train a <code>lm()</code>and a <code>glm()</code> model using the training data set</p></li>
-<li><p>use the estimated models to make <em>out-of-sample</em> predictions using the test data set</p></li>
-<li><p>plot the results and the relevant metrics and choose the best model.</p></li>
+<li><p>split our data into a training and a test data set</p></li>
+<li><p>train three different models using <em>only</em> the training data set: a linear regression (<code>lm</code>), the Poisson regression (<code>glm</code>) we are already familiar with, and a random forest</p></li>
+<li><p>use the estimated models to make <em>out-of-sample</em> predictions using the test data set, i.e.&nbsp;data that the models have never seen</p></li>
+<li><p>compare the predictions with the actual flows and choose the best model.</p></li>
 </ul>
-<p>This is obviously an oversimplification, but it provides a good preview of machine learning frameworks.</p>
+<p>This is obviously an oversimplification, but it provides a good preview of machine learning frameworks. The key idea is that we do not judge a model by how well it fits the data we used to estimate it, but by how well it predicts <em>new</em> data.</p>
 <p>It is worth browsing the <a href="https://topepo.github.io/caret/"><code>caret</code></a> package.</p>
-<p><strong>The below will take a few minutes!</strong></p>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>commuting.si <span class="ot">&lt;-</span> commuting.si <span class="sc">%&gt;%</span> </span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() </span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3456</span>)</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>trainIndex <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(commuting.si<span class="sc">$</span><span class="st">`</span><span class="at">All categories: Method of travel to work</span><span class="st">`</span>, <span class="at">p =</span> .<span class="dv">8</span>, </span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">list =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">times =</span> <span class="dv">1</span>)</span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(trainIndex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>[1] 92751 1</p>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(commuting.si)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>[1] 115936 22</p>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>commuting.si.train <span class="ot">&lt;-</span> commuting.si[ trainIndex,]</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>commuting.si.test  <span class="ot">&lt;-</span> commuting.si[<span class="sc">-</span>trainIndex,]</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>model.lm <span class="ot">&lt;-</span> <span class="fu">train</span>(<span class="st">`</span><span class="at">All categories: Method of travel to work</span><span class="st">`</span> <span class="sc">~</span></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>                    distance <span class="sc">+</span> resident <span class="sc">+</span> workplace,</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> commuting.si,</span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">method =</span> <span class="st">"lm"</span>)</span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>predictions.lm <span class="ot">&lt;-</span> <span class="fu">predict</span>(model.lm, commuting.si.test)</span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>lm.metrics <span class="ot">&lt;-</span> <span class="fu">postResample</span>(<span class="at">pred =</span> predictions.lm, <span class="at">obs =</span> commuting.si.test<span class="sc">$</span><span class="st">`</span><span class="at">All categories: Method of travel to work</span><span class="st">`</span>) </span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>model.glm <span class="ot">&lt;-</span> <span class="fu">train</span>(<span class="st">`</span><span class="at">All categories: Method of travel to work</span><span class="st">`</span> <span class="sc">~</span></span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>                    distance <span class="sc">+</span> resident <span class="sc">+</span> workplace,</span>
-<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> commuting.si,</span>
-<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>                    <span class="at">method =</span> <span class="st">"glmnet"</span>,</span>
-<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>                    <span class="at">family =</span> <span class="st">"poisson"</span>, </span>
-<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>                    <span class="at">na.action =</span> na.omit)</span>
-<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>predictions.glm <span class="ot">&lt;-</span> <span class="fu">predict</span>(model.glm, commuting.si.test)</span>
-<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>glm.metrics <span class="ot">&lt;-</span> <span class="fu">postResample</span>(<span class="at">pred =</span> predictions.glm, <span class="at">obs =</span> commuting.si.test<span class="sc">$</span><span class="st">`</span><span class="at">All categories: Method of travel to work</span><span class="st">`</span>) </span>
-<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(lm.metrics, glm.metrics) <span class="sc">%&gt;%</span> </span>
-<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Model =</span> <span class="fu">c</span>(<span class="st">"lm"</span>, <span class="st">"glm"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Model, Rsquared, RMSE, MAE) <span class="sc">%&gt;%</span> </span>
-<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="caption-top table">
+<p>The random forest is the only <em>real</em> machine learning model here. It is an ensemble of many decision trees. Each tree splits the data repeatedly using the explanatory variables (e.g.&nbsp;is the distance smaller than x km?) and the final prediction is the average across the trees. Unlike the regressions, we do not tell it what the relationship looks like. It can find non-linear relationships and interactions between variables on its own. We use the <code>ranger</code> package, which is a fast implementation of random forests, through <code>caret</code>. If you do not have it, run <code>install.packages("ranger")</code>.</p>
+<p>First, we split the data. We keep <span class="math inline">\(80\%\)</span> of the observations for training and <span class="math inline">\(20\%\)</span> for testing. Please note that we do not change <code>commuting.si</code>. Instead, we create a new data frame without missing values and with a shorter name for the number of commuters. The <code>set.seed()</code> makes the random split reproducible.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>commuting.ml <span class="ot">&lt;-</span> commuting.si <span class="sc">%&gt;%</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">flow =</span> <span class="st">`</span><span class="at">All categories: Method of travel to work</span><span class="st">`</span>)</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3456</span>)</span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>trainIndex <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(commuting.ml<span class="sc">$</span>flow, <span class="at">p =</span> .<span class="dv">8</span>,</span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">list =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">times =</span> <span class="dv">1</span>)</span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a>commuting.train <span class="ot">&lt;-</span> commuting.ml[ trainIndex, ]</span>
+<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a>commuting.test  <span class="ot">&lt;-</span> commuting.ml[<span class="sc">-</span>trainIndex, ]</span>
+<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a><span class="co"># How many observations in each?</span></span>
+<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(commuting.train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 92751</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(commuting.test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 23185</code></pre>
+</div>
+</div>
+<p>Now we train the models. Please pay attention to the <code>data</code> argument: we use the <em>training</em> data. <code>caret</code> can also do a lot of tuning and resampling, which we skip here with <code>trainControl(method = "none")</code> to keep this quick. The random forest has a couple of settings (<code>mtry</code>, <code>min.node.size</code>), which we fix at reasonable values instead of tuning them. This chunk will take about a minute, mostly because of the random forest.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># No resampling or tuning: each model is estimated once</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>ctrl <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">"none"</span>)</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>model.lm <span class="ot">&lt;-</span> <span class="fu">train</span>(flow <span class="sc">~</span> distance <span class="sc">+</span> resident <span class="sc">+</span> workplace,</span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> commuting.train,</span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">trControl =</span> ctrl)</span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a>model.glm <span class="ot">&lt;-</span> <span class="fu">train</span>(flow <span class="sc">~</span> distance <span class="sc">+</span> resident <span class="sc">+</span> workplace,</span>
+<span id="cb67-10"><a href="#cb67-10" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> commuting.train,</span>
+<span id="cb67-11"><a href="#cb67-11" aria-hidden="true" tabindex="-1"></a>                   <span class="at">method =</span> <span class="st">"glm"</span>,</span>
+<span id="cb67-12"><a href="#cb67-12" aria-hidden="true" tabindex="-1"></a>                   <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> <span class="st">"log"</span>),</span>
+<span id="cb67-13"><a href="#cb67-13" aria-hidden="true" tabindex="-1"></a>                   <span class="at">trControl =</span> ctrl)</span>
+<span id="cb67-14"><a href="#cb67-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-15"><a href="#cb67-15" aria-hidden="true" tabindex="-1"></a><span class="co"># The random forest has a random element, so we need a seed</span></span>
+<span id="cb67-16"><a href="#cb67-16" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3456</span>)</span>
+<span id="cb67-17"><a href="#cb67-17" aria-hidden="true" tabindex="-1"></a>model.rf <span class="ot">&lt;-</span> <span class="fu">train</span>(flow <span class="sc">~</span> distance <span class="sc">+</span> resident <span class="sc">+</span> workplace,</span>
+<span id="cb67-18"><a href="#cb67-18" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> commuting.train,</span>
+<span id="cb67-19"><a href="#cb67-19" aria-hidden="true" tabindex="-1"></a>                  <span class="at">method =</span> <span class="st">"ranger"</span>,</span>
+<span id="cb67-20"><a href="#cb67-20" aria-hidden="true" tabindex="-1"></a>                  <span class="at">trControl =</span> ctrl,</span>
+<span id="cb67-21"><a href="#cb67-21" aria-hidden="true" tabindex="-1"></a>                  <span class="at">tuneGrid =</span> <span class="fu">data.frame</span>(<span class="at">mtry =</span> <span class="dv">2</span>,                 <span class="co"># variables tried at each split</span></span>
+<span id="cb67-22"><a href="#cb67-22" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">splitrule =</span> <span class="st">"variance"</span>,</span>
+<span id="cb67-23"><a href="#cb67-23" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">min.node.size =</span> <span class="dv">5</span>),       <span class="co"># minimum size of the final nodes</span></span>
+<span id="cb67-24"><a href="#cb67-24" aria-hidden="true" tabindex="-1"></a>                  <span class="at">num.trees =</span> <span class="dv">200</span>,                                <span class="co"># number of trees</span></span>
+<span id="cb67-25"><a href="#cb67-25" aria-hidden="true" tabindex="-1"></a>                  <span class="at">importance =</span> <span class="st">"impurity"</span>)                        <span class="co"># we need this to see which variables matter</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, we use the estimated models to predict the flows for the test data set. We evaluate them with four metrics: the RMSE and the MAE, which are errors measured in commuters (the lower the better); <span class="math inline">\(R^2\)</span>, here the squared correlation between observed and predicted flows; and the Sørensen index (CPC) we used above. We use a function, because we will need these metrics more than once. Please note that the linear regression can predict negative flows, which we set to <span class="math inline">\(0\)</span> for the CPC.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A function which takes the observed and the predicted flows and calculates</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the metrics</span></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>ml_metrics <span class="ot">&lt;-</span> <span class="cf">function</span>(obs, pred) {</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">RMSE =</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((obs <span class="sc">-</span> pred)<span class="sc">^</span><span class="dv">2</span>)),</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">MAE =</span> <span class="fu">mean</span>(<span class="fu">abs</span>(obs <span class="sc">-</span> pred)),</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">Rsquared =</span> <span class="fu">cor</span>(obs, pred)<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">CPC =</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">sum</span>(<span class="fu">pmin</span>(obs, <span class="fu">pmax</span>(pred, <span class="dv">0</span>))) <span class="sc">/</span> (<span class="fu">sum</span>(obs) <span class="sc">+</span> <span class="fu">sum</span>(<span class="fu">pmax</span>(pred, <span class="dv">0</span>))))</span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>models.ml <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"lm"</span> <span class="ot">=</span> model.lm,</span>
+<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"glm"</span> <span class="ot">=</span> model.glm,</span>
+<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Random forest"</span> <span class="ot">=</span> model.rf)</span>
+<span id="cb68-13"><a href="#cb68-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-14"><a href="#cb68-14" aria-hidden="true" tabindex="-1"></a><span class="co"># The predictions for the test data. predict() works in the same way for all the models.</span></span>
+<span id="cb68-15"><a href="#cb68-15" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">map</span>(models.ml, <span class="sc">~</span> <span class="fu">predict</span>(.x, commuting.test))</span>
+<span id="cb68-16"><a href="#cb68-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-17"><a href="#cb68-17" aria-hidden="true" tabindex="-1"></a><span class="co"># The metrics for the test data</span></span>
+<span id="cb68-18"><a href="#cb68-18" aria-hidden="true" tabindex="-1"></a><span class="fu">map_dfr</span>(predictions, <span class="sc">~</span> <span class="fu">ml_metrics</span>(commuting.test<span class="sc">$</span>flow, .x), <span class="at">.id =</span> <span class="st">"Model"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb68-19"><a href="#cb68-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Model, Rsquared, RMSE, MAE, CPC) <span class="sc">%&gt;%</span></span>
+<span id="cb68-20"><a href="#cb68-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">3</span>, <span class="at">caption =</span> <span class="st">"Out-of-sample performance (test data)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Out-of-sample performance (test data)</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Model</th>
 <th style="text-align: right;">Rsquared</th>
 <th style="text-align: right;">RMSE</th>
 <th style="text-align: right;">MAE</th>
+<th style="text-align: right;">CPC</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">lm</td>
 <td style="text-align: right;">0.067</td>
-<td style="text-align: right;">824.067</td>
-<td style="text-align: right;">214.033</td>
+<td style="text-align: right;">824.126</td>
+<td style="text-align: right;">212.271</td>
+<td style="text-align: right;">0.237</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">glm</td>
-<td style="text-align: right;">0.422</td>
-<td style="text-align: right;">687.811</td>
-<td style="text-align: right;">112.527</td>
+<td style="text-align: right;">0.599</td>
+<td style="text-align: right;">540.657</td>
+<td style="text-align: right;">80.387</td>
+<td style="text-align: right;">0.586</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Random forest</td>
+<td style="text-align: right;">0.748</td>
+<td style="text-align: right;">428.855</td>
+<td style="text-align: right;">55.957</td>
+<td style="text-align: right;">0.713</td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
 <div class="cell" type="alert alert-warning">
 <div class="alert alert-warning">
 <p>
-<strong>Question</strong> Which model would you choose?
+<strong>Question</strong> Which model would you choose? Which model predicts best on the <em>test</em> data? Why do you think this is the case?
+</p>
+<p>
+And why does it matter that the test data were <em>not</em> used to estimate the models? What would have happened to the results if we had trained the models using all the data?
 </p>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>predict.lm.plot <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(commuting.si.test<span class="sc">$</span><span class="st">`</span><span class="at">All categories: Method of travel to work</span><span class="st">`</span>, predictions.lm) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">y =</span> <span class="st">'...1'</span>,</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">y_hat =</span> <span class="st">'...2'</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>y, <span class="at">y=</span>y_hat)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"lm"</span>) <span class="sc">+</span> </span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>predict.glm.plot <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(commuting.si.test<span class="sc">$</span><span class="st">`</span><span class="at">All categories: Method of travel to work</span><span class="st">`</span>, predictions.glm) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">y =</span> <span class="st">'...1'</span>,</span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">y_hat =</span> <span class="st">'...2'</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>y, <span class="at">y=</span>y_hat)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"glm"</span>) <span class="sc">+</span> </span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>predict.lm.plot <span class="sc">+</span> predict.glm.plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="sim_files/figure-html/predict.plots-1.png" class="img-fluid" width="672"></p>
+<p>The plots below show the actual versus the predicted flows for the test data. A perfect model would have all the points on the red line. Because most flows are small and a few are very large, we use a transformation of the axes which is similar to a logarithmic one, but works with zeros and negative values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">y =</span> commuting.test<span class="sc">$</span>flow,</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">lm =</span> predictions<span class="sc">$</span>lm,</span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">glm =</span> predictions<span class="sc">$</span>glm,</span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">`</span><span class="at">Random forest</span><span class="st">`</span> <span class="ot">=</span> predictions<span class="sc">$</span><span class="st">`</span><span class="at">Random forest</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>y, <span class="at">names_to =</span> <span class="st">"Model"</span>, <span class="at">values_to =</span> <span class="st">"y_hat"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Model =</span> <span class="fu">factor</span>(Model, <span class="at">levels =</span> <span class="fu">names</span>(models.ml))) <span class="sc">%&gt;%</span></span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> y, <span class="at">y =</span> y_hat)) <span class="sc">+</span></span>
+<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">colour =</span> <span class="st">"red"</span>) <span class="sc">+</span>    <span class="co"># perfect predictions</span></span>
+<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">"pseudo_log"</span>) <span class="sc">+</span></span>
+<span id="cb69-11"><a href="#cb69-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">"pseudo_log"</span>) <span class="sc">+</span></span>
+<span id="cb69-12"><a href="#cb69-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Model) <span class="sc">+</span></span>
+<span id="cb69-13"><a href="#cb69-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Actual flows"</span>, <span class="at">y =</span> <span class="st">"Predicted flows"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="sim_files/figure-html/ml_plots-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now, let’s see why we need a test data set. We can also use the models to predict the data that we used to <em>train</em> them. Compare how well each model performs on the training and the test data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The same metrics for the training data</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>predictions.train <span class="ot">&lt;-</span> <span class="fu">map</span>(models.ml, <span class="sc">~</span> <span class="fu">predict</span>(.x, commuting.train))</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(</span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map2_dfr</span>(predictions.train, <span class="fu">names</span>(predictions.train),</span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>           <span class="sc">~</span> <span class="fu">ml_metrics</span>(commuting.train<span class="sc">$</span>flow, .x) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Model =</span> .y, <span class="at">Data =</span> <span class="st">"Training"</span>)),</span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map2_dfr</span>(predictions, <span class="fu">names</span>(predictions),</span>
+<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a>           <span class="sc">~</span> <span class="fu">ml_metrics</span>(commuting.test<span class="sc">$</span>flow, .x) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Model =</span> .y, <span class="at">Data =</span> <span class="st">"Test"</span>))</span>
+<span id="cb70-9"><a href="#cb70-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb70-10"><a href="#cb70-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Model, Data, Rsquared, RMSE, CPC) <span class="sc">%&gt;%</span></span>
+<span id="cb70-11"><a href="#cb70-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Model, <span class="fu">desc</span>(Data)) <span class="sc">%&gt;%</span></span>
+<span id="cb70-12"><a href="#cb70-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">3</span>, <span class="at">caption =</span> <span class="st">"Performance on the training and the test data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Performance on the training and the test data</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Model</th>
+<th style="text-align: left;">Data</th>
+<th style="text-align: right;">Rsquared</th>
+<th style="text-align: right;">RMSE</th>
+<th style="text-align: right;">CPC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Random forest</td>
+<td style="text-align: left;">Training</td>
+<td style="text-align: right;">0.954</td>
+<td style="text-align: right;">182.705</td>
+<td style="text-align: right;">0.869</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random forest</td>
+<td style="text-align: left;">Test</td>
+<td style="text-align: right;">0.748</td>
+<td style="text-align: right;">428.855</td>
+<td style="text-align: right;">0.713</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">glm</td>
+<td style="text-align: left;">Training</td>
+<td style="text-align: right;">0.562</td>
+<td style="text-align: right;">539.974</td>
+<td style="text-align: right;">0.578</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">glm</td>
+<td style="text-align: left;">Test</td>
+<td style="text-align: right;">0.599</td>
+<td style="text-align: right;">540.657</td>
+<td style="text-align: right;">0.586</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lm</td>
+<td style="text-align: left;">Training</td>
+<td style="text-align: right;">0.063</td>
+<td style="text-align: right;">788.137</td>
+<td style="text-align: right;">0.231</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">lm</td>
+<td style="text-align: left;">Test</td>
+<td style="text-align: right;">0.067</td>
+<td style="text-align: right;">824.126</td>
+<td style="text-align: right;">0.237</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" type="alert alert-warning">
+<div class="alert alert-warning">
+<p>
+<strong>Question</strong> Which model performs a lot better on the training than on the test data? This is called <em>overfitting</em>: the model memorises the noise of the training data instead of learning the general pattern. Why do you think that more flexible models, such as the random forest, are more prone to this? Why can we not detect overfitting if we only look at the training data?
+</p>
+</div>
+</div>
+<p>Finally, the random forest can also tell us which variables were more useful for making predictions. This is the <em>variable importance</em>. It is not the same as the coefficients of a regression, as it does not tell us the direction of the effect, only how much each variable contributed to the predictions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">variable =</span> <span class="fu">names</span>(model.rf<span class="sc">$</span>finalModel<span class="sc">$</span>variable.importance),</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">importance =</span> model.rf<span class="sc">$</span>finalModel<span class="sc">$</span>variable.importance) <span class="sc">%&gt;%</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(variable, importance), <span class="at">y =</span> importance)) <span class="sc">+</span></span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"orange"</span>) <span class="sc">+</span></span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Importance"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="sim_files/figure-html/ml_importance-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" type="alert alert-warning">
+<div class="alert alert-warning">
+<p>
+<strong>Question</strong> Which variable is the most important for predicting the commuting flows? Does this match what we found with the gravity models above? Why could it be misleading to treat the importance as the <em>effect</em> of the variable?
+</p>
+<p>
+<strong>Task</strong> Try to improve the predictions of the random forest, e.g.&nbsp;by changing <code>num.trees</code> or <code>min.node.size</code>, or by adding another explanatory variable. Always evaluate the changes using the <em>test</em> data.
+</p>
+</div>
+</div>
 
 
 
@@ -1279,8 +1792,14 @@ Oshan, Taylor M. 2021. <span>“The Spatial Structure Debate in Spatial Interact
 <div id="ref-roback2021beyond" class="csl-entry" role="listitem">
 Roback, Paul, and Julie Legler. 2021. <em>Beyond Multiple Linear Regression: Applied Generalized Linear Models and Multilevel Models in r</em>. Chapman; Hall/CRC.
 </div>
+<div id="ref-THOMPSON2019102461" class="csl-entry" role="listitem">
+Thompson, C. A., K. Saxberg, J. Lega, D. Tong, and H. E. Brown. 2019. <span>“A Cumulative Gravity Model for Inter-Urban Spatial Interaction at Different Scales.”</span> <em>Journal of Transport Geography</em> 79: 102461. https://doi.org/<a href="https://doi.org/10.1016/j.jtrangeo.2019.102461">https://doi.org/10.1016/j.jtrangeo.2019.102461</a>.
+</div>
 <div id="ref-tranos2022using" class="csl-entry" role="listitem">
 Tranos, Emmanouil, André Carrascal-Incera, and George Willis. 2022. <span>“Using the Web to Predict Regional Trade Flows: Data Extraction, Modeling, and Validation.”</span> <em>Annals of the American Association of Geographers</em>, 1–23.
+</div>
+<div id="ref-wilson1971family" class="csl-entry" role="listitem">
+Wilson, Alan G. 1971. <span>“A Family of Spatial Interaction Models, and Associated Developments.”</span> <em>Environment and Planning A: Economy and Space</em> 3 (1): 1–32. <a href="https://doi.org/10.1068/a030001">https://doi.org/10.1068/a030001</a>.
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -50,9 +50,7 @@ bibliography: references.bib
 ::: {.column width="40%"}
 <small>
 
--   Abstraction
-
--   Represent the structure not the appearance
+-   Abstraction: represent the topology not the exact geometry
 
 -   Terminal = node
 
@@ -60,11 +58,9 @@ bibliography: references.bib
 
 -   Link (edge)
 
--   Sub-graph - Loop (buckle)
+-   Sub-graph, loops (buckles)
 
--   Planar graph
-
--   Non-planar graph
+-   Planar and non-planar graphs
 
 -   Cycle, circuit
 
@@ -82,7 +78,7 @@ bibliography: references.bib
 
 -   $\beta = e / v$, where $e$ is the number of links & $v$ the number of nodes
 
--   $Gamma$ AKA network density (number of liks / maximum number of links)
+-   $\gamma$ AKA network density (number of liks / maximum number of links)
 
     -   planar: $\gamma = \frac{e}{3(v-2)}$
 
@@ -102,15 +98,15 @@ bibliography: references.bib
 
 ## Closeness centrality (from Lecture 3)
 
--   Which node has the shortest distance to other nodes
+-   Which node has the shortest distance to all other nodes
 
 -   Instead of focusing on the number of links, the focus turns to the network distances
 
 -   Different definitions:
 
--   Closeness, $c_{i} = 1/\sum_{j} d_{ij}$
+  -   Closeness, $c_{i} = 1/\sum_{j} d_{ij}$
 
--   Fareness, $c_{i} = \sum_{j} d_{ij}$
+  -   Fareness, $c_{i} = \sum_{j} d_{ij}$
 
 -   `igraph` calculates closeness
 
@@ -121,7 +117,7 @@ bibliography: references.bib
 -   Inequality measure
 
     -   0: perfect equality
-    -   1 :perfect inequality
+    -   1: perfect inequality
 
 -   Ordered X and Y, cumulative percentage
 
@@ -151,13 +147,13 @@ bibliography: references.bib
 
 -   Very common for regional analysis too
 
--   $M_{ti}$ is the traffic of a merchandise $t$ at a terminal $i$
+-   $T_{mi}$ is the traffic of a merchandise $m$ at a terminal $i$
 
--   $Mi$ is the traffic of all merchandise at a terminal $i$
+-   $Ti$ is the traffic of all merchandise at a terminal $i$
 
--   $M_{t}$ is the total of all merchandises of type $t$ for all terminals, and
+-   $T_{m}$ is the total traffic of all merchandises of type $m$ for all terminals, and
 
--   $M$ is the total of all types of merchandises for all terminals
+-   $T$ is the total of traffic all types of merchandises for all terminals
 
 ## The Location Quotient Coefficient
 
@@ -165,15 +161,15 @@ bibliography: references.bib
 ::: {.column width="40%"}
 <br> <br> <br>
 
-$LQ = \frac{\frac{M_{it}}{M_i}}{\frac{M_t}{M}}$
+$LQ = \frac{\frac{T_{mi}}{T_i}}{\frac{T_m}{T}}$
 :::
 
 ::: {.column width="60%"}
--   $LQ <1$: traffic of merchandise $t$ in terminal $i$ is under-represented compared to the same merchandise in all terminals
+-   $LQ <1$: traffic of merchandise $m$ in terminal $i$ is under-represented compared to the same merchandise in all terminals
 
--   $LQ = 1$ traffic of merchandise $t$ in terminal $i$ is proportional to its participation to total traffic
+-   $LQ = 1$ traffic of merchandise $m$ in terminal $i$ is proportional to its participation to total traffic
 
--   $LQ > 1$ traffic of merchandise $t$ in a terminal $i$ is preponderant in total traffic.
+-   $LQ > 1$ traffic of merchandise $m$ in a terminal $i$ is over-represented compared to the same merchandise in all terminals.
 :::
 :::
 
@@ -283,13 +279,13 @@ $T_{ij} = k\frac{V_i^\lambda W_j^\alpha}{d_{ij}^\beta}$
 
 ## 2. Estimate $\lambda$, $\alpha$, $\beta$ and $k$
 
--   Known: $T$, $V$, $W$, $d$ and $k$
+-   Known: $T$, $V$, $W$ and $d$
 
--   Estiamte: $\lambda=1$, $\alpha=1$, and $\beta=2$
+-   Estimate: $\lambda$, $\alpha$, $\beta$ and $k$
 
 -   *Why?* To understand the effect of distance, pull and push factors
 
--   How? Regression
+-   How? Regression analysis
 
 ## 2. Estimate $\lambda$, $\alpha$, $\beta$ and $k$
 
@@ -319,7 +315,7 @@ $T_{ij} = k\frac{V_i^\lambda W_j^\alpha}{d_{ij}^\beta}$
 
 -   $c = lnk: -13.84$
 
--   $\lambda = 0.727$, coefficient for $(lnV_i)$
+-   $\lambda = 0.727$, coefficient for $lnV_i$
 
 -   $\alpha = 0.464$, coefficient for $lnW_j$
 
@@ -373,7 +369,7 @@ Different typologies [@HOLL2007286]
 ![](images/accessibility.png){fig-align="center"}
 :::
 
-<center><small>Source:@rodrigue2020geography</small></center>
+<center><small>Source: @rodrigue2020geography</small></center>
 
 ------------------------------------------------------------------------
 

@@ -12,7 +12,7 @@ bibliography: references.bib
 
 ## Setup
 
-To run this pratical you need to have an RStudio project as discussed in the 
+To run this practical you need to have an RStudio project as discussed in the 
 [previous practical](https://etranos.info/urban_analytics_city_science/src/network_analysis.html). 
 
 ```{r setup, results='hide', message=FALSE, warning=FALSE}
@@ -71,9 +71,7 @@ If you check the dimension of that object you will understand what I mean
 
 ```{r}
 data_dir <- system.file("extdata", package = "accessibility")
-
 travel_matrix <- readRDS(file.path(data_dir, "travel_matrix.rds")) 
-
 head(travel_matrix)
 ```
 
@@ -142,15 +140,17 @@ or, in other words, potential accessibility indicators. This is the same measure
 as the example we discussed during the [class](https://etranos.info/urban_analytics_city_science/src/transport_geography.html#/spatial-interactions-and-the-gravity-model-2){target="_blank"}.
 The intuition is that the furthest away each opportunity is, the less important
 it becomes. So, the accessibility of a location $i$ is equal to the sum of all
-opportunities available divided -- in other words discounted -- by the distance or 
-the cost to reach them. The `negative_exp` function can take different decay functions
+opportunities available in reachable destinations $j$ discounted by a function of 
+the distance, or in other words, the cost to reach them. 
+
+$Acc_{i} = \sum_j \frac{W_j}{F(d_{ij})}$
+
+The `decay_function` function can take different decay functions
 (see [here](https://cran.r-project.org/web/packages/accessibility/vignettes/decay_functions.html)).
 We know from previous studies that the exponential function represents better shorter
 interactions (e.g. within cities) while the power function works better for longer distance
 interactions (e.g. migrations flows) [@fotheringham1989spatial, see also discussions
 in @oshan2021spatial].
-
-$Acc_{i} = \sum_j \frac{W_j}{d_{ij}^2}$
 
 
 ```{r}
@@ -167,7 +167,7 @@ head(negative_exp)
 
 And now we can plot these metrics. The `grid` object is a toy spatial dataset of 
 the places we calculate the above accessibility indicators. We first load these
-spatial data, merge them with the acessibility indicator we want to plot and then
+spatial data, merge them with the accessibility indicator we want to plot and then
 we plot these data.
 
 ```{r}
@@ -189,13 +189,13 @@ ggplot() +
 ## London example
 
 All the above were based on the data that came together with the `accessibility`
-package. Let's repeat this exercise using some real world data from [data.london.gov.uk](https://data.london.gov.uk/dataset/jobs-and-job-density-borough).
+package. Let's repeat part of this exercise using some real world data from [data.london.gov.uk](https://data.london.gov.uk/dataset/jobs-and-job-density-borough).
 Jobs and population per Local Authority represent the opportunities. 
+
+Below is an example based on `cumulative_cutoff()`.
 
 ```{r}
 jobs <- read_csv("https://data.london.gov.uk/download/jobs-and-job-density-borough/79e85749-e38d-4bb6-8327-c60c6be27222/Jobs_and_Job_Density.csv") %>% 
-  # filter(year == 2020) %>%  # I am only using 2020 data. Remove this line 
-  #                           # to see what will happen to the data.
   select(Code, Area, '2020') %>% 
   rename(number_of_jobs = '2020') %>% 
   filter(!is.na(Code)) %>% 
@@ -240,10 +240,6 @@ Why are we doing this? Because we need to calculate distances and accessibility
 metrics for specific points and we will use these points as representative for each
 Local Authority. 
 
-::: callout-tip
-Do you see any problems with this approach?
-:::
-
 ```{r}
 path.shape <- paste0(path, "/data/Local_Authority_Districts_(May_2021)_UK_BFE.geojson")
 
@@ -259,7 +255,7 @@ about routing and before you move forward I would encourage you to read the rele
 section from @lovelace2019geocomputation, which can be found [here](https://geocompr.robinlovelace.net/transport.html#routes).
 
 We are using the `osmr` package which can do routing for us. The details of the `osrm`
-package can be founf [here](https://github.com/riatelab/osrm).
+package can be found [here](https://github.com/riatelab/osrm).
 
 The below code creates a distance table between all the `london.centres`. We are 
 interested in distance measured as time -- i.e. duration -- by car. The `osrm`
@@ -295,7 +291,6 @@ You can, of course, use directly the `odmatrix_to_od()` function.
 
 ```{r}
 help <- dist$durations 
-
 
 rownames(help) <- as.vector(london.centres$LAD21CD)
 colnames(help) <- as.vector(london.centres$LAD21CD)
@@ -339,12 +334,147 @@ ggplot() +
   theme_void()
 ```
 
+### Scenarios: what if...?
+
+So far we calculated the accessibility of London's Local Authorities as it is today. But accessibility indicators are also very useful for asking *what if* questions. Planners do exactly this when they evaluate a new transport link or the relocation of a large employer. The logic is simple: (1) we change something in the *opportunities* or in the *travel costs*, (2) we re-calculate the same indicator with the changed data and (3) we compare it with the baseline.
+
+We will do this twice, for the same Local Authority, so that we can compare the two types of change. We use Croydon, but you can change the `scenario.area` below to any of the London boroughs. Please note that the code *only* changes the data, which is why we keep the original objects (`df` and `dist.df`) untouched and create new ones.
+
+```{r scenario_setup}
+# The Local Authority for which we create the scenarios.
+scenario.area <- "Croydon"
+
+# Its code. Please check that it is only one.
+scenario.id <- df$id[df$Area == scenario.area]
+scenario.id
+
+# The baseline accessibility, which we calculated above. We keep it in a data frame
+# with a more informative name for the accessibility column. Please note the
+# as.character(), because id might be a factor.
+baseline <- mtc %>%
+  mutate(id = as.character(id)) %>%
+  select(id, baseline = number_of_jobs)
+```
+
+#### Scenario 1: more jobs
+
+Let's imagine that a large employer moves to Croydon and increases the number of jobs in the Local Authority by $20\%$. Travel times do not change. What happens to the job accessibility of *all* the Local Authorities? Think about it before you run the code. Who will benefit?
+
+```{r scenario_jobs}
+# Increase the number of jobs in the scenario area by 20%
+df.jobs <- df %>%
+  mutate(number_of_jobs = if_else(id == scenario.id,
+                                  number_of_jobs * 1.2,
+                                  number_of_jobs))
+
+# The same accessibility indicator as before, but with the new data
+mtc.jobs <- cumulative_cutoff(
+  dist.df,
+  df.jobs,
+  opportunity = "number_of_jobs",
+  travel_cost = "travel_time",
+  cutoff = 20
+)
+
+# Compare it with the baseline
+compare.jobs <- mtc.jobs %>%
+  mutate(id = as.character(id)) %>%
+  rename(scenario = number_of_jobs) %>%
+  left_join(baseline, by = "id") %>%
+  mutate(change = scenario - baseline,
+         change.pct = 100 * change / baseline)
+
+summary(compare.jobs$change)
+```
+
+Which Local Authorities benefit? We can see this in a table, but also on a map. We will repeat the map for the second scenario, so it is worth creating a function. A function is a way of saving a set of commands that we want to repeat, with only some elements (here the data and the title) changing. The red outline shows the Local Authority of the scenario.
+
+```{r scenario_function}
+plot_change <- function(data, title) {
+  # data: a data frame with an id and a change column, title: the title of the map
+  map.data <- london %>%
+    select(LAD21CD) %>%
+    left_join(data, by = c("LAD21CD" = "id"))
+
+  ggplot() +
+    geom_sf(data = map.data, aes(fill = change), color = NA) +
+    # The outline of the Local Authority of the scenario
+    geom_sf(data = filter(map.data, LAD21CD == scenario.id),
+            fill = NA, color = "red", linewidth = 0.7) +
+    scale_fill_viridis_c(labels = scales::label_comma()) +
+    labs(title = title, fill = "Change in\naccessible jobs") +
+    theme_void()
+}
+
+plot_change(compare.jobs, paste("More jobs in", scenario.area))
+```
+
+```{r scenario_jobs_table}
+# The Local Authorities with the largest change
+compare.jobs %>%
+  left_join(select(df, id, Area), by = "id") %>%
+  arrange(desc(change)) %>%
+  slice_head(n = 10) %>%
+  select(Area, baseline, scenario, change, change.pct) %>%
+  kbl(digits = 1, caption = "Local Authorities with the largest increase in job accessibility") %>%
+  kable_styling(full_width = F)
+```
+
 ::: callout-tip
-Can you calculate and plot other accessibility metrics for London?
+**Question** Which Local Authorities benefit from the new jobs and which don't? Why do some of them not change at all? (Hint: think about the 20 minutes cut-off.) Is the benefit larger for Croydon itself or for its neighbours? Why?
+:::
+
+#### Scenario 2: faster travel
+
+Now, let's keep the jobs as they are and change the *travel times*. Imagine that a new express road link reduces the travel time by $25\%$ for all the trips from and to Croydon. This is, of course, a simplification. A real link would only affect specific origin-destination pairs. But it is good enough to see how the indicator responds. We only change the rows of the travel time matrix which involve the scenario area. Note that we do not change the trip within the Local Authority (`from_id == to_id`), which has a travel time of $0$ anyway.
+
+```{r scenario_time}
+# Reduce the travel time by 25% for the trips from and to the scenario area
+dist.new <- dist.df %>%
+  mutate(travel_time = if_else((from_id == scenario.id | to_id == scenario.id) &
+                                 from_id != to_id,
+                               travel_time * 0.75,
+                               travel_time))
+
+# The same accessibility indicator, with the original jobs but the new travel times
+mtc.time <- cumulative_cutoff(
+  dist.new,
+  df,
+  opportunity = "number_of_jobs",
+  travel_cost = "travel_time",
+  cutoff = 20
+)
+
+compare.time <- mtc.time %>%
+  mutate(id = as.character(id)) %>%
+  rename(scenario = number_of_jobs) %>%
+  left_join(baseline, by = "id") %>%
+  mutate(change = scenario - baseline,
+         change.pct = 100 * change / baseline)
+
+summary(compare.time$change)
+
+plot_change(compare.time, paste("Faster travel from and to", scenario.area))
+```
+
+Please note that, as we only reduce travel times, no Local Authority can lose accessibility. Most of them will not change at all. This is because the `cumulative_cutoff()` function counts the jobs within $20$ minutes, so only the Local Authorities for which a destination moves from just above to just below this limit gain something.
+
+::: callout-tip
+**Question** Compare the two maps. Which scenario has the larger impact on accessibility? Do the same Local Authorities benefit in both scenarios? What do you think is the main difference between *adding opportunities* and *reducing the travel cost*?
+
+The indicator we use is a cumulative one. It counts all the jobs within $20$ minutes, no matter how far within this limit they are, and nothing outside it. What are the implications for the results? Think about a Local Authority which is $21$ minutes away from a large number of jobs.
 :::
 
 ::: callout-tip
-What do we miss by focusing on London' accessibility?
+**Tasks**
+
+1. Change the `scenario.area` to another Local Authority, e.g. one in the outskirts and one in the centre of London. How do the results change?
+
+2. Repeat the two scenarios with the gravity-based indicator, using the `gravity()` function and the exponential decay function we used above. Is the change in accessibility smoother than with the cumulative indicator?
+
+3. Combine the two scenarios: more jobs *and* faster travel. Is the combined effect the sum of the two separate effects?
+
+4. Change the cut-off to $30$ minutes. Do the conclusions change?
 :::
 
 

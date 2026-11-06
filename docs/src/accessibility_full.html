@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Emmanouil Tranos">
-<meta name="dcterms.date" content="2025-11-15">
+<meta name="dcterms.date" content="2026-11-06">
 
 <title>Accessibility in practice – Urban analytics and city science</title>
 <style>
@@ -345,7 +345,10 @@ window.Quarto = {
   <ul>
   <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
   <li><a href="#aims-of-the-practical" id="toc-aims-of-the-practical" class="nav-link" data-scroll-target="#aims-of-the-practical">Aims of the practical</a></li>
-  <li><a href="#london-example" id="toc-london-example" class="nav-link" data-scroll-target="#london-example">London example</a></li>
+  <li><a href="#london-example" id="toc-london-example" class="nav-link" data-scroll-target="#london-example">London example</a>
+  <ul class="collapse">
+  <li><a href="#scenarios-what-if" id="toc-scenarios-what-if" class="nav-link" data-scroll-target="#scenarios-what-if">Scenarios: what if…?</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -371,7 +374,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 15, 2025</p>
+      <p class="date">November 6, 2026</p>
     </div>
   </div>
   
@@ -385,7 +388,7 @@ window.Quarto = {
 
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<p>To run this pratical you need to have an RStudio project as discussed in the <a href="https://etranos.info/urban_analytics_city_science/src/network_analysis.html">previous practical</a>.</p>
+<p>To run this practical you need to have an RStudio project as discussed in the <a href="https://etranos.info/urban_analytics_city_science/src/network_analysis.html">previous practical</a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(accessibility)</span>
@@ -424,10 +427,8 @@ window.Quarto = {
 <p>The first data object we are using is the travel time matrix between all potential origins and destinations in city of Belo Horizonte, Brazil. As you can see, the matrix is stored in a <em>long format</em> and not as an <span class="math inline">\(n*n\)</span> matrix. If you check the dimension of that object you will understand what I mean (<code>dim(travel_matrix)</code>).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data_dir <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">"extdata"</span>, <span class="at">package =</span> <span class="st">"accessibility"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>travel_matrix <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">file.path</span>(data_dir, <span class="st">"travel_matrix.rds"</span>)) </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(travel_matrix)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>travel_matrix <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">file.path</span>(data_dir, <span class="st">"travel_matrix.rds"</span>)) </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(travel_matrix)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           from_id           to_id travel_time
             &lt;char&gt;          &lt;char&gt;       &lt;num&gt;
@@ -522,8 +523,9 @@ window.Quarto = {
 6: 89a881a5b03ffff      69582</code></pre>
 </div>
 </div>
-<p>Last, but not least we can calculate the gravity-based accessibility indicators, or, in other words, potential accessibility indicators. This is the same measure as the example we discussed during the <a href="https://etranos.info/urban_analytics_city_science/src/transport_geography.html#/spatial-interactions-and-the-gravity-model-2" target="_blank">class</a>. The intuition is that the furthest away each opportunity is, the less important it becomes. So, the accessibility of a location <span class="math inline">\(i\)</span> is equal to the sum of all opportunities available divided – in other words discounted – by the distance or the cost to reach them. The <code>negative_exp</code> function can take different decay functions (see <a href="https://cran.r-project.org/web/packages/accessibility/vignettes/decay_functions.html">here</a>). We know from previous studies that the exponential function represents better shorter interactions (e.g.&nbsp;within cities) while the power function works better for longer distance interactions (e.g.&nbsp;migrations flows) <span class="citation" data-cites="fotheringham1989spatial">Oshan (<a href="#ref-oshan2021spatial" role="doc-biblioref">2021</a>)</span>.</p>
-<p><span class="math inline">\(Acc_{i} = \sum_j \frac{W_j}{d_{ij}^2}\)</span></p>
+<p>Last, but not least we can calculate the gravity-based accessibility indicators, or, in other words, potential accessibility indicators. This is the same measure as the example we discussed during the <a href="https://etranos.info/urban_analytics_city_science/src/transport_geography.html#/spatial-interactions-and-the-gravity-model-2" target="_blank">class</a>. The intuition is that the furthest away each opportunity is, the less important it becomes. So, the accessibility of a location <span class="math inline">\(i\)</span> is equal to the sum of all opportunities available in reachable destinations <span class="math inline">\(j\)</span> discounted by a function of the distance, or in other words, the cost to reach them.</p>
+<p><span class="math inline">\(Acc_{i} = \sum_j \frac{W_j}{F(d_{ij})}\)</span></p>
+<p>The <code>decay_function</code> function can take different decay functions (see <a href="https://cran.r-project.org/web/packages/accessibility/vignettes/decay_functions.html">here</a>). We know from previous studies that the exponential function represents better shorter interactions (e.g.&nbsp;within cities) while the power function works better for longer distance interactions (e.g.&nbsp;migrations flows) <span class="citation" data-cites="fotheringham1989spatial">Oshan (<a href="#ref-oshan2021spatial" role="doc-biblioref">2021</a>)</span>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>negative_exp <span class="ot">&lt;-</span> <span class="fu">gravity</span>(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  travel_matrix,</span>
@@ -545,7 +547,7 @@ window.Quarto = {
 6: 89a88cd90b7ffff 0.95737555</code></pre>
 </div>
 </div>
-<p>And now we can plot these metrics. The <code>grid</code> object is a toy spatial dataset of the places we calculate the above accessibility indicators. We first load these spatial data, merge them with the acessibility indicator we want to plot and then we plot these data.</p>
+<p>And now we can plot these metrics. The <code>grid</code> object is a toy spatial dataset of the places we calculate the above accessibility indicators. We first load these spatial data, merge them with the accessibility indicator we want to plot and then we plot these data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">"extdata/grid_bho.rds"</span>, <span class="at">package =</span> <span class="st">"accessibility"</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(grid)</span>
@@ -571,15 +573,14 @@ window.Quarto = {
 </section>
 <section id="london-example" class="level2">
 <h2 class="anchored" data-anchor-id="london-example">London example</h2>
-<p>All the above were based on the data that came together with the <code>accessibility</code> package. Let’s repeat this exercise using some real world data from <a href="https://data.london.gov.uk/dataset/jobs-and-job-density-borough">data.london.gov.uk</a>. Jobs and population per Local Authority represent the opportunities.</p>
+<p>All the above were based on the data that came together with the <code>accessibility</code> package. Let’s repeat part of this exercise using some real world data from <a href="https://data.london.gov.uk/dataset/jobs-and-job-density-borough">data.london.gov.uk</a>. Jobs and population per Local Authority represent the opportunities.</p>
+<p>Below is an example based on <code>cumulative_cutoff()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>jobs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://data.london.gov.uk/download/jobs-and-job-density-borough/79e85749-e38d-4bb6-8327-c60c6be27222/Jobs_and_Job_Density.csv"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter(year == 2020) %&gt;%  # I am only using 2020 data. Remove this line </span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#                           # to see what will happen to the data.</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Code, Area, <span class="st">'2020'</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">number_of_jobs =</span> <span class="st">'2020'</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Code)) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Code, Area, <span class="st">'2020'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">number_of_jobs =</span> <span class="st">'2020'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Code)) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 49
 Columns: 3
@@ -1106,19 +1107,6 @@ $ Population_per_square_kilometre &lt;dbl&gt; 2770.7, 6047.6, 4693.4, 4208.8, 79
 </div>
 <p>Next, we are bringing the spatial data – that is the polygons – for London’s Local Authorities. We start by downloading all the polygons for all Local Authorities in the country. Please go to this <a href="https://geoportal.statistics.gov.uk/datasets/505b177be82946b284c947cab91eeb31_0/explore?location=54.961226%2C-3.262782%2C6.09">webpage</a>, download the <code>geojson</code> file and save it to the appropriate <code>data</code> folder within your project directory.</p>
 <p>However, we don’t need all the Local Authorities, but instead we only need to ones within London. Therefore we use the <code>filter</code> option to select only the Local Authorities which are included within – this is the <code>%in%</code> operator – the <code>df$id</code> column. Finally, we create a new object which only includes the centroids of these polygons. Why are we doing this? Because we need to calculate distances and accessibility metrics for specific points and we will use these points as representative for each Local Authority.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Do you see any problems with this approach?</p>
-</div>
-</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>path.shape <span class="ot">&lt;-</span> <span class="fu">paste0</span>(path, <span class="st">"/data/Local_Authority_Districts_(May_2021)_UK_BFE.geojson"</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1137,7 +1125,7 @@ Geodetic CRS:  WGS 84</code></pre>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>london.centres <span class="ot">&lt;-</span> <span class="fu">st_centroid</span>(london)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we need to actually calculate the distance matrix. We are going to use a real world road network to perform what is known as <em>routing</em>. There is a great discussion about routing and before you move forward I would encourage you to read the relevant section from <span class="citation" data-cites="lovelace2019geocomputation">Lovelace, Nowosad, and Muenchow (<a href="#ref-lovelace2019geocomputation" role="doc-biblioref">2019</a>)</span>, which can be found <a href="https://geocompr.robinlovelace.net/transport.html#routes">here</a>.</p>
-<p>We are using the <code>osmr</code> package which can do routing for us. The details of the <code>osrm</code> package can be founf <a href="https://github.com/riatelab/osrm">here</a>.</p>
+<p>We are using the <code>osmr</code> package which can do routing for us. The details of the <code>osrm</code> package can be found <a href="https://github.com/riatelab/osrm">here</a>.</p>
 <p>The below code creates a distance table between all the <code>london.centres</code>. We are interested in distance measured as time – i.e.&nbsp;duration – by car. The <code>osrm</code> package offers other options too.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>dist <span class="ot">&lt;-</span> <span class="fu">osrmTable</span>(<span class="at">loc =</span> london.centres, </span>
@@ -1149,11 +1137,10 @@ Geodetic CRS:  WGS 84</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>help <span class="ot">&lt;-</span> dist<span class="sc">$</span>durations </span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(help) <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(london.centres<span class="sc">$</span>LAD21CD)</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(help) <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(london.centres<span class="sc">$</span>LAD21CD)</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(dist<span class="sc">$</span>durations)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(help) <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(london.centres<span class="sc">$</span>LAD21CD)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(help) <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(london.centres<span class="sc">$</span>LAD21CD)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(dist<span class="sc">$</span>durations)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 33 33</code></pre>
 </div>
@@ -1174,7 +1161,7 @@ Geodetic CRS:  WGS 84</code></pre>
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mtc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         id number_of_jobs
-1 E09000001        2973000
+1 E09000001        2798000
 2 E09000002         392000
 3 E09000003         496000
 4 E09000004         187000
@@ -1203,6 +1190,185 @@ Geodetic CRS:  WGS 84</code></pre>
 </div>
 </div>
 </div>
+<section id="scenarios-what-if" class="level3">
+<h3 class="anchored" data-anchor-id="scenarios-what-if">Scenarios: what if…?</h3>
+<p>So far we calculated the accessibility of London’s Local Authorities as it is today. But accessibility indicators are also very useful for asking <em>what if</em> questions. Planners do exactly this when they evaluate a new transport link or the relocation of a large employer. The logic is simple: (1) we change something in the <em>opportunities</em> or in the <em>travel costs</em>, (2) we re-calculate the same indicator with the changed data and (3) we compare it with the baseline.</p>
+<p>We will do this twice, for the same Local Authority, so that we can compare the two types of change. We use Croydon, but you can change the <code>scenario.area</code> below to any of the London boroughs. Please note that the code <em>only</em> changes the data, which is why we keep the original objects (<code>df</code> and <code>dist.df</code>) untouched and create new ones.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The Local Authority for which we create the scenarios.</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>scenario.area <span class="ot">&lt;-</span> <span class="st">"Croydon"</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Its code. Please check that it is only one.</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>scenario.id <span class="ot">&lt;-</span> df<span class="sc">$</span>id[df<span class="sc">$</span>Area <span class="sc">==</span> scenario.area]</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>scenario.id</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "E09000008"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The baseline accessibility, which we calculated above. We keep it in a data frame</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># with a more informative name for the accessibility column. Please note the</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># as.character(), because id might be a factor.</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>baseline <span class="ot">&lt;-</span> mtc <span class="sc">%&gt;%</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">as.character</span>(id)) <span class="sc">%&gt;%</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, <span class="at">baseline =</span> number_of_jobs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="scenario-1-more-jobs" class="level4">
+<h4 class="anchored" data-anchor-id="scenario-1-more-jobs">Scenario 1: more jobs</h4>
+<p>Let’s imagine that a large employer moves to Croydon and increases the number of jobs in the Local Authority by <span class="math inline">\(20\%\)</span>. Travel times do not change. What happens to the job accessibility of <em>all</em> the Local Authorities? Think about it before you run the code. Who will benefit?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Increase the number of jobs in the scenario area by 20%</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>df.jobs <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">number_of_jobs =</span> <span class="fu">if_else</span>(id <span class="sc">==</span> scenario.id,</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>                                  number_of_jobs <span class="sc">*</span> <span class="fl">1.2</span>,</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>                                  number_of_jobs))</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># The same accessibility indicator as before, but with the new data</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>mtc.jobs <span class="ot">&lt;-</span> <span class="fu">cumulative_cutoff</span>(</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  dist.df,</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  df.jobs,</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">opportunity =</span> <span class="st">"number_of_jobs"</span>,</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">travel_cost =</span> <span class="st">"travel_time"</span>,</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">cutoff =</span> <span class="dv">20</span></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare it with the baseline</span></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>compare.jobs <span class="ot">&lt;-</span> mtc.jobs <span class="sc">%&gt;%</span></span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">as.character</span>(id)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">scenario =</span> number_of_jobs) <span class="sc">%&gt;%</span></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(baseline, <span class="at">by =</span> <span class="st">"id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">change =</span> scenario <span class="sc">-</span> baseline,</span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>         <span class="at">change.pct =</span> <span class="dv">100</span> <span class="sc">*</span> change <span class="sc">/</span> baseline)</span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(compare.jobs<span class="sc">$</span>change)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+      0       0       0    2618       0   28800 </code></pre>
+</div>
+</div>
+<p>Which Local Authorities benefit? We can see this in a table, but also on a map. We will repeat the map for the second scenario, so it is worth creating a function. A function is a way of saving a set of commands that we want to repeat, with only some elements (here the data and the title) changing. The red outline shows the Local Authority of the scenario.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>plot_change <span class="ot">&lt;-</span> <span class="cf">function</span>(data, title) {</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># data: a data frame with an id and a change column, title: the title of the map</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  map.data <span class="ot">&lt;-</span> london <span class="sc">%&gt;%</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(LAD21CD) <span class="sc">%&gt;%</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(data, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"LAD21CD"</span> <span class="ot">=</span> <span class="st">"id"</span>))</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">data =</span> map.data, <span class="fu">aes</span>(<span class="at">fill =</span> change), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The outline of the Local Authority of the scenario</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">filter</span>(map.data, LAD21CD <span class="sc">==</span> scenario.id),</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_comma</span>()) <span class="sc">+</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> title, <span class="at">fill =</span> <span class="st">"Change in</span><span class="sc">\n</span><span class="st">accessible jobs"</span>) <span class="sc">+</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_void</span>()</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_change</span>(compare.jobs, <span class="fu">paste</span>(<span class="st">"More jobs in"</span>, scenario.area))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="accessibility_full_files/figure-html/scenario_function-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The Local Authorities with the largest change</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>compare.jobs <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(<span class="fu">select</span>(df, id, Area), <span class="at">by =</span> <span class="st">"id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(change)) <span class="sc">%&gt;%</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Area, baseline, scenario, change, change.pct) <span class="sc">%&gt;%</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">digits =</span> <span class="dv">1</span>, <span class="at">caption =</span> <span class="st">"Local Authorities with the largest increase in job accessibility"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Local Authorities with the largest increase in job accessibility</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Area</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">baseline</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">scenario</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">change</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">change.pct</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Bromley</td>
+<td style="text-align: right;">357000</td>
+<td style="text-align: right;">385800</td>
+<td style="text-align: right;">28800</td>
+<td style="text-align: right;">8.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Croydon</td>
+<td style="text-align: right;">355000</td>
+<td style="text-align: right;">383800</td>
+<td style="text-align: right;">28800</td>
+<td style="text-align: right;">8.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sutton</td>
+<td style="text-align: right;">412000</td>
+<td style="text-align: right;">440800</td>
+<td style="text-align: right;">28800</td>
+<td style="text-align: right;">7.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">City of London</td>
+<td style="text-align: right;">2798000</td>
+<td style="text-align: right;">2798000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Barking and Dagenham</td>
+<td style="text-align: right;">392000</td>
+<td style="text-align: right;">392000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Barnet</td>
+<td style="text-align: right;">496000</td>
+<td style="text-align: right;">496000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Bexley</td>
+<td style="text-align: right;">187000</td>
+<td style="text-align: right;">187000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Brent</td>
+<td style="text-align: right;">562000</td>
+<td style="text-align: right;">562000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Camden</td>
+<td style="text-align: right;">2570000</td>
+<td style="text-align: right;">2570000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ealing</td>
+<td style="text-align: right;">774000</td>
+<td style="text-align: right;">774000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1213,7 +1379,64 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Can you calculate and plot other accessibility metrics for London?</p>
+<p><strong>Question</strong> Which Local Authorities benefit from the new jobs and which don’t? Why do some of them not change at all? (Hint: think about the 20 minutes cut-off.) Is the benefit larger for Croydon itself or for its neighbours? Why?</p>
+</div>
+</div>
+</section>
+<section id="scenario-2-faster-travel" class="level4">
+<h4 class="anchored" data-anchor-id="scenario-2-faster-travel">Scenario 2: faster travel</h4>
+<p>Now, let’s keep the jobs as they are and change the <em>travel times</em>. Imagine that a new express road link reduces the travel time by <span class="math inline">\(25\%\)</span> for all the trips from and to Croydon. This is, of course, a simplification. A real link would only affect specific origin-destination pairs. But it is good enough to see how the indicator responds. We only change the rows of the travel time matrix which involve the scenario area. Note that we do not change the trip within the Local Authority (<code>from_id == to_id</code>), which has a travel time of <span class="math inline">\(0\)</span> anyway.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reduce the travel time by 25% for the trips from and to the scenario area</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>dist.new <span class="ot">&lt;-</span> dist.df <span class="sc">%&gt;%</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">travel_time =</span> <span class="fu">if_else</span>((from_id <span class="sc">==</span> scenario.id <span class="sc">|</span> to_id <span class="sc">==</span> scenario.id) <span class="sc">&amp;</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>                                 from_id <span class="sc">!=</span> to_id,</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>                               travel_time <span class="sc">*</span> <span class="fl">0.75</span>,</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>                               travel_time))</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="co"># The same accessibility indicator, with the original jobs but the new travel times</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>mtc.time <span class="ot">&lt;-</span> <span class="fu">cumulative_cutoff</span>(</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>  dist.new,</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  df,</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">opportunity =</span> <span class="st">"number_of_jobs"</span>,</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">travel_cost =</span> <span class="st">"travel_time"</span>,</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">cutoff =</span> <span class="dv">20</span></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>compare.time <span class="ot">&lt;-</span> mtc.time <span class="sc">%&gt;%</span></span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">as.character</span>(id)) <span class="sc">%&gt;%</span></span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">scenario =</span> number_of_jobs) <span class="sc">%&gt;%</span></span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(baseline, <span class="at">by =</span> <span class="st">"id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">change =</span> scenario <span class="sc">-</span> baseline,</span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>         <span class="at">change.pct =</span> <span class="dv">100</span> <span class="sc">*</span> change <span class="sc">/</span> baseline)</span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(compare.time<span class="sc">$</span>change)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+      0       0       0   23879       0  356000 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_change</span>(compare.time, <span class="fu">paste</span>(<span class="st">"Faster travel from and to"</span>, scenario.area))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="accessibility_full_files/figure-html/scenario_time-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Please note that, as we only reduce travel times, no Local Authority can lose accessibility. Most of them will not change at all. This is because the <code>cumulative_cutoff()</code> function counts the jobs within <span class="math inline">\(20\)</span> minutes, so only the Local Authorities for which a destination moves from just above to just below this limit gain something.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Question</strong> Compare the two maps. Which scenario has the larger impact on accessibility? Do the same Local Authorities benefit in both scenarios? What do you think is the main difference between <em>adding opportunities</em> and <em>reducing the travel cost</em>?</p>
+<p>The indicator we use is a cumulative one. It counts all the jobs within <span class="math inline">\(20\)</span> minutes, no matter how far within this limit they are, and nothing outside it. What are the implications for the results? Think about a Local Authority which is <span class="math inline">\(21\)</span> minutes away from a large number of jobs.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1226,12 +1449,20 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>What do we miss by focusing on London’ accessibility?</p>
+<p><strong>Tasks</strong></p>
+<ol type="1">
+<li><p>Change the <code>scenario.area</code> to another Local Authority, e.g.&nbsp;one in the outskirts and one in the centre of London. How do the results change?</p></li>
+<li><p>Repeat the two scenarios with the gravity-based indicator, using the <code>gravity()</code> function and the exponential decay function we used above. Is the change in accessibility smoother than with the cumulative indicator?</p></li>
+<li><p>Combine the two scenarios: more jobs <em>and</em> faster travel. Is the combined effect the sum of the two separate effects?</p></li>
+<li><p>Change the cut-off to <span class="math inline">\(30\)</span> minutes. Do the conclusions change?</p></li>
+</ol>
 </div>
 </div>
 
 
 
+</section>
+</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
