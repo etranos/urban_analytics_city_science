@@ -90,7 +90,7 @@ bibliography: references.bib
 
 -   Eccentricity: the distance from a given node to the farthest node from it in the network
 
--   Shimbel index, or nodal accessibility, or Fareness (see [Lecture 3](https://etranos.info/urban_analytics_city_science/src/intro_networks.html#/title-slide){target="_blank"}
+-   Shimbel index, or nodal accessibility, or Fareness (see [Lecture 3](https://etranos.info/urban_analytics_city_science/src/intro_networks.html#/closeness-centrality){target="_blank"}
 
     -   $c_𝑖= \sum_j d_{ij}$
 
@@ -151,7 +151,7 @@ bibliography: references.bib
 
 -   $Ti$ is the traffic of all merchandise at a terminal $i$
 
--   $T_{m}$ is the total traffic of all merchandises of type $m$ for all terminals, and
+-   $T_{m}$ is the total traffic of a merchandise $m$ for all terminals, and
 
 -   $T$ is the total of traffic all types of merchandises for all terminals
 
@@ -223,7 +223,7 @@ Conditions for spatial interaction to be materialised
 
 $T_{ij} = f(V_i, W_j, S_{ij})$
 
--   Flows are a function of the attributes of the locations of origin, the attributes of the locations of destination and the friction of distance between the concerned origins and the destinations
+-   Flows are a function of the attributes of the locations of origin, the attributes of the locations of destination and the friction of distance between the concerned origins and destinations
 
 ## Spatial interactions and the gravity model
 
@@ -304,7 +304,7 @@ $T_{ij} = k\frac{V_i^\lambda W_j^\alpha}{d_{ij}^\beta}$
 
 -   $\color{red}{y} = \color{blue}{c} + \lambda \color{green}{x_1} + \alpha \color{orange}{x_2} + \beta \color{purple}{x_3}$
 
--   Multivariate linear regression
+-   Log-log transformation and multivariate linear regression
 :::
 
 ## 2. Estimate $\lambda$, $\alpha$, $\beta$ and $k$

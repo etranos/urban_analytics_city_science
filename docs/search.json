@@ -1309,7 +1309,7 @@
     "href": "src/transport_geography.html#the-location-quotient-coefficient",
     "title": "Methods in transport geography",
     "section": "The Location Quotient Coefficient",
-    "text": "The Location Quotient Coefficient\n\nDegree of concentration of a certain activities\nVery common for regional analysis too\n\\(T_{mi}\\) is the traffic of a merchandise \\(m\\) at a terminal \\(i\\)\n\\(Ti\\) is the traffic of all merchandise at a terminal \\(i\\)\n\\(T_{m}\\) is the total traffic of all merchandises of type \\(m\\) for all terminals, and\n\\(T\\) is the total of traffic all types of merchandises for all terminals",
+    "text": "The Location Quotient Coefficient\n\nDegree of concentration of a certain activities\nVery common for regional analysis too\n\\(T_{mi}\\) is the traffic of a merchandise \\(m\\) at a terminal \\(i\\)\n\\(Ti\\) is the traffic of all merchandise at a terminal \\(i\\)\n\\(T_{m}\\) is the total traffic of a merchandise \\(m\\) for all terminals, and\n\\(T\\) is the total of traffic all types of merchandises for all terminals",
     "crumbs": [
       "Lectures",
       "Methods in transport geography"
@@ -1386,7 +1386,7 @@
     "href": "src/transport_geography.html#spatial-interactions-and-the-gravity-model-3",
     "title": "Methods in transport geography",
     "section": "Spatial interactions and the gravity model",
-    "text": "Spatial interactions and the gravity model\n\\(T_{ij} = f(V_i, W_j, S_{ij})\\)\n\nFlows are a function of the attributes of the locations of origin, the attributes of the locations of destination and the friction of distance between the concerned origins and the destinations",
+    "text": "Spatial interactions and the gravity model\n\\(T_{ij} = f(V_i, W_j, S_{ij})\\)\n\nFlows are a function of the attributes of the locations of origin, the attributes of the locations of destination and the friction of distance between the concerned origins and destinations",
     "crumbs": [
       "Lectures",
       "Methods in transport geography"
@@ -1474,7 +1474,7 @@
     "href": "src/transport_geography.html#estimate-lambda-alpha-beta-and-k-1",
     "title": "Methods in transport geography",
     "section": "2. Estimate \\(\\lambda\\), \\(\\alpha\\), \\(\\beta\\) and \\(k\\)",
-    "text": "2. Estimate \\(\\lambda\\), \\(\\alpha\\), \\(\\beta\\) and \\(k\\)\n\n\n\\(T_{ij} = k\\frac{V_i^\\lambda W_j^\\alpha}{d_{ij}^\\beta}\\)\nLook up properties of logarithms, e.g. here\n\\(T_{ij} = kV_i^\\lambda W_j^\\alpha d_{ij}^{-\\beta}\\)\n\\(ln T_{ij} = ln (kV_i^\\lambda W_j^\\alpha d_{ij}^{-\\beta})\\)\n\\(ln T_{ij} = lnk + lnV_i^\\lambda + ln W_j^\\alpha + lnd_{ij}^{-\\beta}\\)\n\\(\\color{red}{ln T_{ij}} = \\color{blue}{lnk} + \\lambda \\color{green}{lnV_i} + \\alpha \\color{orange}{ln W_j} -\\beta \\color{purple}{lnd_{ij}}\\)\n\\(\\color{red}{y} = \\color{blue}{c} + \\lambda \\color{green}{x_1} + \\alpha \\color{orange}{x_2} + \\beta \\color{purple}{x_3}\\)\nMultivariate linear regression",
+    "text": "2. Estimate \\(\\lambda\\), \\(\\alpha\\), \\(\\beta\\) and \\(k\\)\n\n\n\\(T_{ij} = k\\frac{V_i^\\lambda W_j^\\alpha}{d_{ij}^\\beta}\\)\nLook up properties of logarithms, e.g. here\n\\(T_{ij} = kV_i^\\lambda W_j^\\alpha d_{ij}^{-\\beta}\\)\n\\(ln T_{ij} = ln (kV_i^\\lambda W_j^\\alpha d_{ij}^{-\\beta})\\)\n\\(ln T_{ij} = lnk + lnV_i^\\lambda + ln W_j^\\alpha + lnd_{ij}^{-\\beta}\\)\n\\(\\color{red}{ln T_{ij}} = \\color{blue}{lnk} + \\lambda \\color{green}{lnV_i} + \\alpha \\color{orange}{ln W_j} -\\beta \\color{purple}{lnd_{ij}}\\)\n\\(\\color{red}{y} = \\color{blue}{c} + \\lambda \\color{green}{x_1} + \\alpha \\color{orange}{x_2} + \\beta \\color{purple}{x_3}\\)\nLog-log transformation and multivariate linear regression",
     "crumbs": [
       "Lectures",
       "Methods in transport geography"

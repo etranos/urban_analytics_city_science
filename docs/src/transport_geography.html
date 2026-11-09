@@ -420,7 +420,7 @@
 <ul>
 <li><p>Degree centrality</p></li>
 <li><p>Eccentricity: the distance from a given node to the farthest node from it in the network</p></li>
-<li><p>Shimbel index, or nodal accessibility, or Fareness (see <a href="https://etranos.info/urban_analytics_city_science/src/intro_networks.html#/title-slide" target="_blank">Lecture 3</a></p>
+<li><p>Shimbel index, or nodal accessibility, or Fareness (see <a href="https://etranos.info/urban_analytics_city_science/src/intro_networks.html#/closeness-centrality" target="_blank">Lecture 3</a></p>
 <ul>
 <li><p><span class="math inline">\(c_𝑖= \sum_j d_{ij}\)</span></p></li>
 <li><p>This is a purely topological accessibility metric, remember this for later.</p></li>
@@ -472,7 +472,7 @@
 <li><p>Very common for regional analysis too</p></li>
 <li><p><span class="math inline">\(T_{mi}\)</span> is the traffic of a merchandise <span class="math inline">\(m\)</span> at a terminal <span class="math inline">\(i\)</span></p></li>
 <li><p><span class="math inline">\(Ti\)</span> is the traffic of all merchandise at a terminal <span class="math inline">\(i\)</span></p></li>
-<li><p><span class="math inline">\(T_{m}\)</span> is the total traffic of all merchandises of type <span class="math inline">\(m\)</span> for all terminals, and</p></li>
+<li><p><span class="math inline">\(T_{m}\)</span> is the total traffic of a merchandise <span class="math inline">\(m\)</span> for all terminals, and</p></li>
 <li><p><span class="math inline">\(T\)</span> is the total of traffic all types of merchandises for all terminals</p></li>
 </ul>
 </section>
@@ -534,7 +534,7 @@
 <h2>Spatial interactions and the gravity model</h2>
 <p><span class="math inline">\(T_{ij} = f(V_i, W_j, S_{ij})\)</span></p>
 <ul>
-<li>Flows are a function of the attributes of the locations of origin, the attributes of the locations of destination and the friction of distance between the concerned origins and the destinations</li>
+<li>Flows are a function of the attributes of the locations of origin, the attributes of the locations of destination and the friction of distance between the concerned origins and destinations</li>
 </ul>
 </section>
 <section id="spatial-interactions-and-the-gravity-model-4" class="slide level2">
@@ -609,7 +609,7 @@
 <li class="fragment"><p><span class="math inline">\(ln T_{ij} = lnk + lnV_i^\lambda + ln W_j^\alpha + lnd_{ij}^{-\beta}\)</span></p></li>
 <li class="fragment"><p><span class="math inline">\(\color{red}{ln T_{ij}} = \color{blue}{lnk} + \lambda \color{green}{lnV_i} + \alpha \color{orange}{ln W_j} -\beta \color{purple}{lnd_{ij}}\)</span></p></li>
 <li class="fragment"><p><span class="math inline">\(\color{red}{y} = \color{blue}{c} + \lambda \color{green}{x_1} + \alpha \color{orange}{x_2} + \beta \color{purple}{x_3}\)</span></p></li>
-<li class="fragment"><p>Multivariate linear regression</p></li>
+<li class="fragment"><p>Log-log transformation and multivariate linear regression</p></li>
 </ul>
 </div>
 </section>
