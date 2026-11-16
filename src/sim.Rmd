@@ -588,9 +588,9 @@ Also, have a look at the last two columns. What do they tell us?
 ```{block, type='alert alert-warning'}
 **Tasks**
 
-1. Estimate the *attraction-constrained* model, $T_{ij} = B_j D_j V_i^\lambda D_{ij}^{-\beta}$. Hint: it is the mirror image of the production-constrained one. You need dummies for the destinations (`j`) instead of the origins and the resident population `resident` instead of `workplace`. Which parameters do you estimate? Check that the destination totals are reproduced.
+1. Estimate the *attraction-constrained* model, $$T_{ij} = B_j D_j V_i^\lambda D_{ij}^{-\beta}$$. Hint: it is the mirror image of the production-constrained one. You need dummies for the destinations (`j`) instead of the origins and the resident population `resident` instead of `workplace`. Which parameters do you estimate? Check that the destination totals are reproduced.
 
-2. So far we used a power function for the distance decay: $D_{ij}^{-\beta}$. Another common choice is the exponential function: $e^{-\beta D_{ij}}$. In the Poisson regression this means that you use `distance` in kilometres instead of `log(distance)`. Estimate the production-constrained model with this specification. Which one fits the data better? (Hint: you can use the `evaluate()` function from above.)
+2. So far we used a power function for the distance decay: $$D_{ij}^{-\beta}$$. Another common choice is the exponential function: $$e^{-\beta D_{ij}}$$. In the Poisson regression this means that you use `distance` in kilometres instead of `log(distance)`. Estimate the production-constrained model with this specification. Which one fits the data better? (Hint: you can use the `evaluate()` function from above.)
 
 3. (Advanced) Distance is a crude measure of the cost of commuting. Replace the `distance` variable with public transport travel times between the local authorities. You can calculate such a matrix with the [`r5r`](https://ipeagit.github.io/r5r/){target="_blank"} package, which needs OpenStreetMap and public transport (GTFS) data. Does the fit improve?
 ```
