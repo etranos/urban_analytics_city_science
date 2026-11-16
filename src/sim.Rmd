@@ -510,9 +510,13 @@ max(abs(tapply(fitted(prod.glm), commuting.c$j, sum) - D))
 
 If you are familiar with discrete choice models, this is the same as a multinomial logit model of the choice of destination for the commuters of each origin.
 
-```{block, type='alert alert-warning'}
+<!-- ```{block, type='alert alert-warning'} -->
+
+::: {.alert .alert-warning}
+
 **Question** Compare the estimates of $\alpha$ and $\beta$ with the ones from the Poisson regression above. Are they similar? Why do you think that this is (or is not) the case?
-```
+<!-- ``` -->
+:::
 
 ### Doubly constrained model
 
@@ -544,9 +548,12 @@ max(abs(tapply(fitted(dbl.glm), commuting.c$i, sum) - O))
 max(abs(tapply(fitted(dbl.glm), commuting.c$j, sum) - D))
 ```
 
-```{block, type='alert alert-warning'}
+<!-- ```{block, type='alert alert-warning'} -->
+::: {.alert .alert-warning}
+
 **Question** What is the difference between the estimate of $\beta$ in the production-constrained and in the doubly constrained model? Why do you think that this is the case? (Hint: in which model does the *distance* have to do all the work of explaining how flows are distributed, and in which is it helped by the destination dummies?)
-```
+<!-- ``` -->
+:::
 
 ### Comparing the models
 
