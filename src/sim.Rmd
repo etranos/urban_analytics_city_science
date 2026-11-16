@@ -595,6 +595,7 @@ Also, have a look at the last two columns. What do they tell us?
 
 3. (Advanced) Distance is a crude measure of the cost of commuting. Replace the `distance` variable with public transport travel times between the local authorities. You can calculate such a matrix with the [`r5r`](https://ipeagit.github.io/r5r/){target="_blank"} package, which needs OpenStreetMap and public transport (GTFS) data. Does the fit improve?
 <!-- ``` -->
+:::
 
 ## This is not a Machine Learning introduction...
 
