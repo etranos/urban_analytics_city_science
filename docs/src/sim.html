@@ -353,7 +353,6 @@ window.Quarto = {
   <li><a href="#doubly-constrained-model" id="toc-doubly-constrained-model" class="nav-link" data-scroll-target="#doubly-constrained-model">Doubly constrained model</a></li>
   <li><a href="#comparing-the-models" id="toc-comparing-the-models" class="nav-link" data-scroll-target="#comparing-the-models">Comparing the models</a></li>
   </ul></li>
-  <li><a href="#this-is-not-a-machine-learning-introduction" id="toc-this-is-not-a-machine-learning-introduction" class="nav-link" data-scroll-target="#this-is-not-a-machine-learning-introduction">This is not a Machine Learning introduction…</a></li>
   </ul>
 </nav>
     </div>
@@ -1403,7 +1402,7 @@ F Statistic
 </div>
 </section>
 <section id="comparing-the-models" class="level3">
-<h3 class="anchored" data-anchor-id="comparing-the-models">Comparing the models</h3>
+<h3 class="anchored">Comparing the models</h3>
 <p>Let’s now compare the three models. For the unconstrained model we use the Poisson model we estimated earlier. We use three goodness-of-fit measures: the root mean squared error (RMSE), the <span class="math inline">\(R^2\)</span> (here the squared correlation between observed and predicted flows) and the Sørensen index (also known as the Common Part of Commuters, CPC), which is very popular in the flow literature. It is the proportion of commuters who are correctly allocated to their origin-destination pair. It ranges between <span class="math inline">\(0\)</span> (nothing in common) and <span class="math inline">\(1\)</span> (perfect). For more information about the CPC, have a look at <span class="citation" data-cites="THOMPSON2019102461">Thompson et al. (<a href="#ref-THOMPSON2019102461" role="doc-biblioref">2019</a>)</span>.</p>
 <p><span class="math display">\[CPC = \frac{2\sum_{ij} \min(T_{ij}, \hat{T}_{ij})}{\sum_{ij} T_{ij} + \sum_{ij} \hat{T}_{ij}}\]</span></p>
 <div class="cell">
@@ -1488,32 +1487,14 @@ Also, have a look at the last two columns. What do they tell us?
 </p>
 </div>
 </div>
-<div class="cell" type="alert alert-warning">
+<!-- ```{block, type='alert alert-warning'} -->
 <div class="alert alert-warning">
-<p>
-<strong>Tasks</strong>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-<p>
-Estimate the <em>attraction-constrained</em> model, <span class="math display">[T_{ij} = B_j D_j V_i^ D_{ij}^{-}]</span>. Hint: it is the mirror image of the production-constrained one. You need dummies for the destinations (<code>j</code>) instead of the origins and the resident population <code>resident</code> instead of <code>workplace</code>. Which parameters do you estimate? Check that the destination totals are reproduced.
-</p>
-</li>
-<li>
-<p>
-So far we used a power function for the distance decay: <span class="math display">[D_{ij}^{-}]</span>. Another common choice is the exponential function: <span class="math display">[e^{- D_{ij}}]</span>. In the Poisson regression this means that you use <code>distance</code> in kilometres instead of <code>log(distance)</code>. Estimate the production-constrained model with this specification. Which one fits the data better? (Hint: you can use the <code>evaluate()</code> function from above.)
-</p>
-</li>
-<li>
-<p>
-(Advanced) Distance is a crude measure of the cost of commuting. Replace the <code>distance</code> variable with public transport travel times between the local authorities. You can calculate such a matrix with the <a href="https://ipeagit.github.io/r5r/" target="_blank"><code>r5r</code></a> package, which needs OpenStreetMap and public transport (GTFS) data. Does the fit improve?
-</p>
-</li>
+<p><strong>Tasks</strong></p>
+<ol type="1">
+<li><p>Estimate the <em>attraction-constrained</em> model, <span class="math inline">\(T_{ij} = B_j D_j V_i^\lambda D_{ij}^{-\beta}\)</span>. Hint: it is the mirror image of the production-constrained one. You need dummies for the destinations (<code>j</code>) instead of the origins and the resident population <code>resident</code> instead of <code>workplace</code>. Which parameters do you estimate? Check that the destination totals are reproduced.</p></li>
+<li><p>So far we used a power function for the distance decay: <span class="math inline">\(D_{ij}^{-\beta}\)</span>. Another common choice is the exponential function: <span class="math inline">\(e^{-\beta D_{ij}}\)</span>. In the Poisson regression this means that you use <code>distance</code> in kilometres instead of <code>log(distance)</code>. Estimate the production-constrained model with this specification. Which one fits the data better? (Hint: you can use the <code>evaluate()</code> function from above.)</p></li>
+<li><p>(Advanced) Distance is a crude measure of the cost of commuting. Replace the <code>distance</code> variable with public transport travel times between the local authorities. You can calculate such a matrix with the <a href="https://ipeagit.github.io/r5r/" target="_blank"><code>r5r</code></a> package, which needs OpenStreetMap and public transport (GTFS) data. Does the fit improve? <!-- ``` --></p></li>
 </ol>
-</div>
-</div>
-</section>
-</section>
 <section id="this-is-not-a-machine-learning-introduction" class="level2">
 <h2 class="anchored" data-anchor-id="this-is-not-a-machine-learning-introduction">This is not a Machine Learning introduction…</h2>
 <p>… but maybe a sneak preview of the philosophy behind <em>modern</em> data science approaches to answer computational problems. We are using the <code>caret</code> package to:</p>
@@ -1779,7 +1760,10 @@ And why does it matter that the test data were <em>not</em> used to estimate the
 </div>
 
 
+</section>
+</div>
 
+</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
