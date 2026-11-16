@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Emmanouil Tranos">
-<meta name="dcterms.date" content="2026-11-06">
+<meta name="dcterms.date" content="2026-11-16">
 
 <title>Spatial interaction modelling – Urban analytics and city science</title>
 <style>
@@ -379,7 +379,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 6, 2026</p>
+      <p class="date">November 16, 2026</p>
     </div>
   </div>
   
@@ -1496,12 +1496,12 @@ Also, have a look at the last two columns. What do they tell us?
 <ol style="list-style-type: decimal">
 <li>
 <p>
-Estimate the <em>attraction-constrained</em> model, <span class="math inline">(T_{ij} = B_j D_j V_i^ D_{ij}^{-})</span>. Hint: it is the mirror image of the production-constrained one. You need dummies for the destinations (<code>j</code>) instead of the origins and the resident population <code>resident</code> instead of <code>workplace</code>. Which parameters do you estimate? Check that the destination totals are reproduced.
+Estimate the <em>attraction-constrained</em> model, <span class="math display">[T_{ij} = B_j D_j V_i^ D_{ij}^{-}]</span>. Hint: it is the mirror image of the production-constrained one. You need dummies for the destinations (<code>j</code>) instead of the origins and the resident population <code>resident</code> instead of <code>workplace</code>. Which parameters do you estimate? Check that the destination totals are reproduced.
 </p>
 </li>
 <li>
 <p>
-So far we used a power function for the distance decay: <span class="math inline">(D_{ij}^{-})</span>. Another common choice is the exponential function: <span class="math inline">(e^{- D_{ij}})</span>. In the Poisson regression this means that you use <code>distance</code> in kilometres instead of <code>log(distance)</code>. Estimate the production-constrained model with this specification. Which one fits the data better? (Hint: you can use the <code>evaluate()</code> function from above.)
+So far we used a power function for the distance decay: <span class="math display">[D_{ij}^{-}]</span>. Another common choice is the exponential function: <span class="math display">[e^{- D_{ij}}]</span>. In the Poisson regression this means that you use <code>distance</code> in kilometres instead of <code>log(distance)</code>. Estimate the production-constrained model with this specification. Which one fits the data better? (Hint: you can use the <code>evaluate()</code> function from above.)
 </p>
 </li>
 <li>
