@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Emmanouil Tranos">
-<meta name="dcterms.date" content="2026-11-16">
+<meta name="dcterms.date" content="2026-11-19">
 
 <title>Spatial interaction modelling – Urban analytics and city science</title>
 <style>
@@ -379,7 +379,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 16, 2026</p>
+      <p class="date">November 19, 2026</p>
     </div>
   </div>
   
@@ -804,13 +804,11 @@ All categories: Method of travel to work
 <span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(data.resident, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">'i'</span> <span class="ot">=</span> <span class="st">'Merging.Local.Authority.Code'</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(data.workplace, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">'j'</span> <span class="ot">=</span> <span class="st">'Merging.Local.Authority.Code'</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" type="alert alert-warning">
+<!-- ```{block, type='alert alert-warning'} -->
 <div class="alert alert-warning">
-<p>
-<strong>Question</strong> Are there any redundant columns? Can you remove them?
-</p>
+<p><strong>Questions</strong> Are there any redundant columns? Can you remove them?</p>
 </div>
-</div>
+<!-- ``` -->
 <p>Before we start modelling these flows, let’s plot our variables.</p>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(commuting.si, <span class="fu">aes</span>(<span class="at">x=</span>distance,</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">y=</span><span class="st">`</span><span class="at">All categories: Method of travel to work</span><span class="st">`</span>)) <span class="sc">+</span></span>
@@ -827,12 +825,9 @@ All categories: Method of travel to work
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img src="sim_files/figure-html/si.plots-3.png" class="img-fluid" width="672"></p>
-<div class="cell" type="alert alert-warning">
+<!-- ```{block, type='alert alert-warning'} -->
 <div class="alert alert-warning">
-<p>
-<strong>Question</strong> What do you take from these graphs?
-</p>
-</div>
+<p><strong>Question</strong> What do you take from these graphs? <!-- ``` --></p>
 </div>
 <p>Let’s try now to model these flows. We will start with a simple OLS to estimate the above specifications. Please pay attention to the small trick we did. Because there are non-materialised origin-destination pairs (i.e.&nbsp;with 0 flows), we added a small value (<span class="math inline">\(0.5\)</span>) in the dependent variable. Otherwise we will receive an error as the logarithm of <span class="math inline">\(0\)</span> is not defined.</p>
 <div class="cell">
@@ -1172,12 +1167,9 @@ F Statistic
 </td>
 </tr>
 </tbody></table>
-<div class="cell" type="alert alert-warning">
+<!-- ```{block, type='alert alert-warning'} -->
 <div class="alert alert-warning">
-<p>
-<strong>Question</strong> Can you interpret the regression results?
-</p>
-</div>
+<p><strong>Question</strong> Can you interpret the regression results? <!-- ``` --></p>
 </div>
 </section>
 <section id="constrained-spatial-interaction-models" class="level2">
@@ -1357,8 +1349,7 @@ F Statistic
 <p>If you are familiar with discrete choice models, this is the same as a multinomial logit model of the choice of destination for the commuters of each origin.</p>
 <!-- ```{block, type='alert alert-warning'} -->
 <div class="alert alert-warning">
-<p><strong>Question</strong></p>
-<p>Compare the estimates of <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> with the ones from the Poisson regression above. Are they similar? Why do you think that this is (or is not) the case? <!-- ``` --></p>
+<p><strong>Questions</strong> Compare the estimates of <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> with the ones from the Poisson regression above. Are they similar? Why do you think that this is (or is not) the case? <!-- ``` --></p>
 </div>
 </section>
 <section id="doubly-constrained-model" class="level3">
@@ -1394,7 +1385,7 @@ F Statistic
 </div>
 <!-- ```{block, type='alert alert-warning'} -->
 <div class="alert alert-warning">
-<p><strong>Question</strong> What is the difference between the estimate of <span class="math inline">\(\beta\)</span> in the production-constrained and in the doubly constrained model? Why do you think that this is the case? (Hint: in which model does the <em>distance</em> have to do all the work of explaining how flows are distributed, and in which is it helped by the destination dummies?) <!-- ``` --></p>
+<p><strong>Questions</strong> What is the difference between the estimate of <span class="math inline">\(\beta\)</span> in the production-constrained and in the doubly constrained model? Why do you think that this is the case? (Hint: in which model does the <em>distance</em> have to do all the work of explaining how flows are distributed, and in which is it helped by the destination dummies?) <!-- ``` --></p>
 </div>
 </section>
 <section id="comparing-the-models" class="level3">
@@ -1473,15 +1464,10 @@ F Statistic
 </table>
 </div>
 </div>
-<div class="cell" type="alert alert-warning">
 <div class="alert alert-warning">
-<p>
-<strong>Question</strong> Which model fits the data better? Is this surprising? Please note that the constrained models use information from the <em>observed</em> flows (the totals), while the unconstrained one doesn’t. What does this mean for the comparison? In which cases would it be fair to compare the models like this and in which cases not?
-</p>
-<p>
-Also, have a look at the last two columns. What do they tell us?
-</p>
-</div>
+<!-- ```{block, type='alert alert-warning'} -->
+<p><strong>Questions</strong> Which model fits the data better? Is this surprising? Please note that the constrained models use information from the <em>observed</em> flows (the totals), while the unconstrained one doesn’t. What does this mean for the comparison? In which cases would it be fair to compare the models like this and in which cases not?</p>
+<p>Also, have a look at the last two columns. What do they tell us? <!-- ``` --></p>
 </div>
 <!-- ```{block, type='alert alert-warning'} -->
 <div class="alert alert-warning">
@@ -1618,15 +1604,10 @@ Also, have a look at the last two columns. What do they tell us?
 </table>
 </div>
 </div>
-<div class="cell" type="alert alert-warning">
+<!-- ```{block, type='alert alert-warning'} -->
 <div class="alert alert-warning">
-<p>
-<strong>Question</strong> Which model would you choose? Which model predicts best on the <em>test</em> data? Why do you think this is the case?
-</p>
-<p>
-And why does it matter that the test data were <em>not</em> used to estimate the models? What would have happened to the results if we had trained the models using all the data?
-</p>
-</div>
+<p><strong>Questions</strong> Which model would you choose? Which model predicts best on the <em>test</em> data? Why do you think this is the case?</p>
+<p>And why does it matter that the test data were <em>not</em> used to estimate the models? What would have happened to the results if we had trained the models using all the data? <!-- ``` --></p>
 </div>
 <p>The plots below show the actual versus the predicted flows for the test data. A perfect model would have all the points on the red line. Because most flows are small and a few are very large, we use a transformation of the axes which is similar to a logarithmic one, but works with zeros and negative values.</p>
 <div class="cell">
@@ -1724,12 +1705,9 @@ And why does it matter that the test data were <em>not</em> used to estimate the
 </table>
 </div>
 </div>
-<div class="cell" type="alert alert-warning">
+<!-- ```{block, type='alert alert-warning'} -->
 <div class="alert alert-warning">
-<p>
-<strong>Question</strong> Which model performs a lot better on the training than on the test data? This is called <em>overfitting</em>: the model memorises the noise of the training data instead of learning the general pattern. Why do you think that more flexible models, such as the random forest, are more prone to this? Why can we not detect overfitting if we only look at the training data?
-</p>
-</div>
+<p><strong>Questions</strong> Which model performs a lot better on the training than on the test data? This is called <em>overfitting</em>: the model memorises the noise of the training data instead of learning the general pattern. Why do you think that more flexible models, such as the random forest, are more prone to this? Why can we not detect overfitting if we only look at the training data? <!-- ``` --></p>
 </div>
 <p>Finally, the random forest can also tell us which variables were more useful for making predictions. This is the <em>variable importance</em>. It is not the same as the coefficients of a regression, as it does not tell us the direction of the effect, only how much each variable contributed to the predictions.</p>
 <div class="cell">
@@ -1747,15 +1725,10 @@ And why does it matter that the test data were <em>not</em> used to estimate the
 </div>
 </div>
 </div>
-<div class="cell" type="alert alert-warning">
+<!-- ```{block, type='alert alert-warning'} -->
 <div class="alert alert-warning">
-<p>
-<strong>Question</strong> Which variable is the most important for predicting the commuting flows? Does this match what we found with the gravity models above? Why could it be misleading to treat the importance as the <em>effect</em> of the variable?
-</p>
-<p>
-<strong>Task</strong> Try to improve the predictions of the random forest, e.g.&nbsp;by changing <code>num.trees</code> or <code>min.node.size</code>, or by adding another explanatory variable. Always evaluate the changes using the <em>test</em> data.
-</p>
-</div>
+<p><strong>Questions</strong> Which variable is the most important for predicting the commuting flows? Does this match what we found with the gravity models above? Why could it be misleading to treat the importance as the <em>effect</em> of the variable?</p>
+<p><strong>Task</strong> Try to improve the predictions of the random forest, e.g.&nbsp;by changing <code>num.trees</code> or <code>min.node.size</code>, or by adding another explanatory variable. Always evaluate the changes using the <em>test</em> data. <!-- ``` --></p>
 </div>
 
 

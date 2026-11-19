@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Emmanouil Tranos">
-<meta name="dcterms.date" content="2026-11-06">
+<meta name="dcterms.date" content="2026-11-19">
 
 <title>Accessibility in practice – Urban analytics and city science</title>
 <style>
@@ -374,7 +374,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 6, 2026</p>
+      <p class="date">November 19, 2026</p>
     </div>
   </div>
   
@@ -1369,18 +1369,8 @@ Geodetic CRS:  WGS 84</code></pre>
 
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Question</strong> Which Local Authorities benefit from the new jobs and which don’t? Why do some of them not change at all? (Hint: think about the 20 minutes cut-off.) Is the benefit larger for Croydon itself or for its neighbours? Why?</p>
-</div>
+<div class="alert alert-warning">
+<p><strong>Questions</strong> Which Local Authorities benefit from the new jobs and which don’t? Why do some of them not change at all? (Hint: think about the 20 minutes cut-off.) Is the benefit larger for Croydon itself or for its neighbours? Why?</p>
 </div>
 </section>
 <section id="scenario-2-faster-travel" class="level4">
@@ -1425,30 +1415,11 @@ Tip
 </div>
 </div>
 <p>Please note that, as we only reduce travel times, no Local Authority can lose accessibility. Most of them will not change at all. This is because the <code>cumulative_cutoff()</code> function counts the jobs within <span class="math inline">\(20\)</span> minutes, so only the Local Authorities for which a destination moves from just above to just below this limit gain something.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Question</strong> Compare the two maps. Which scenario has the larger impact on accessibility? Do the same Local Authorities benefit in both scenarios? What do you think is the main difference between <em>adding opportunities</em> and <em>reducing the travel cost</em>?</p>
+<div class="alert alert-warning">
+<p><strong>Questions</strong> Compare the two maps. Which scenario has the larger impact on accessibility? Do the same Local Authorities benefit in both scenarios? What do you think is the main difference between <em>adding opportunities</em> and <em>reducing the travel cost</em>?</p>
 <p>The indicator we use is a cumulative one. It counts all the jobs within <span class="math inline">\(20\)</span> minutes, no matter how far within this limit they are, and nothing outside it. What are the implications for the results? Think about a Local Authority which is <span class="math inline">\(21\)</span> minutes away from a large number of jobs.</p>
 </div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="alert alert-warning">
 <p><strong>Tasks</strong></p>
 <ol type="1">
 <li><p>Change the <code>scenario.area</code> to another Local Authority, e.g.&nbsp;one in the outskirts and one in the centre of London. How do the results change?</p></li>
@@ -1456,7 +1427,6 @@ Tip
 <li><p>Combine the two scenarios: more jobs <em>and</em> faster travel. Is the combined effect the sum of the two separate effects?</p></li>
 <li><p>Change the cut-off to <span class="math inline">\(30\)</span> minutes. Do the conclusions change?</p></li>
 </ol>
-</div>
 </div>
 
 

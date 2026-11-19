@@ -311,10 +311,12 @@ commuting.si <- commuting.si %>%
   left_join(data.workplace, by = c('j' = 'Merging.Local.Authority.Code')) 
 ```
 
-```{block, type='alert alert-warning'}
-**Question** 
+<!-- ```{block, type='alert alert-warning'} -->
+::: {.alert .alert-warning}
+**Questions** 
 Are there any redundant columns? Can you remove them?
-```
+:::
+<!-- ``` -->
 
 Before we start modelling these flows, let's plot our variables.
 
@@ -335,10 +337,12 @@ ggplot(commuting.si, aes(x=workplace,
   geom_smooth(method=lm)
 ```
 
-```{block, type='alert alert-warning'}
+<!-- ```{block, type='alert alert-warning'} -->
+::: {.alert .alert-warning}
 **Question** 
 What do you take from these graphs?
-```
+<!-- ``` -->
+:::
 
 Let's try now to model these flows. We will start with a simple OLS to estimate the above specifications. Please pay attention to the small trick we did. Because there are non-materialised origin-destination pairs (i.e. with 0 flows), we added a small value ($0.5$) in the dependent variable. Otherwise we will receive an error as the logarithm of $0$ is not defined.
 
@@ -384,10 +388,12 @@ The `stargazer` package I use below creates elegant regression tables. Replace `
 stargazer(ols.model, glm.model, type = "html")
 ```
 
-```{block, type='alert alert-warning'}
+<!-- ```{block, type='alert alert-warning'} -->
+::: {.alert .alert-warning}
 **Question** 
 Can you interpret the regression results?
-```
+<!-- ``` -->
+:::
 
 ## Constrained spatial interaction models
 
@@ -514,11 +520,9 @@ max(abs(tapply(fitted(prod.glm), commuting.c$j, sum) - D))
 If you are familiar with discrete choice models, this is the same as a multinomial logit model of the choice of destination for the commuters of each origin.
 
 <!-- ```{block, type='alert alert-warning'} -->
-
 ::: {.alert .alert-warning}
 
-**Question** 
-
+**Questions** 
 Compare the estimates of $\alpha$ and $\beta$ with the ones from the Poisson regression above. Are they similar? Why do you think that this is (or is not) the case?
 <!-- ``` -->
 :::
@@ -556,7 +560,7 @@ max(abs(tapply(fitted(dbl.glm), commuting.c$j, sum) - D))
 <!-- ```{block, type='alert alert-warning'} -->
 ::: {.alert .alert-warning}
 
-**Question** 
+**Questions** 
 What is the difference between the estimate of $\beta$ in the production-constrained and in the doubly constrained model? Why do you think that this is the case? (Hint: in which model does the *distance* have to do all the work of explaining how flows are distributed, and in which is it helped by the destination dummies?)
 <!-- ``` -->
 :::
@@ -591,13 +595,14 @@ map_dfr(models, evaluate, .id = "Model") %>%
   kable(digits = 3, caption = "Comparison of the spatial interaction models")
 ```
 
-```{block, type='alert alert-warning'}
-**Question** 
+::: {.alert .alert-warning}
+<!-- ```{block, type='alert alert-warning'} -->
+**Questions** 
 Which model fits the data better? Is this surprising? Please note that the constrained models use information from the *observed* flows (the totals), while the unconstrained one doesn't. What does this mean for the comparison? In which cases would it be fair to compare the models like this and in which cases not?
 
 Also, have a look at the last two columns. What do they tell us?
-```
-
+<!-- ``` -->
+:::
 
 <!-- ```{block, type='alert alert-warning'} -->
 ::: {.alert .alert-warning}
@@ -704,12 +709,14 @@ map_dfr(predictions, ~ ml_metrics(commuting.test$flow, .x), .id = "Model") %>%
   kable(digits = 3, caption = "Out-of-sample performance (test data)")
 ```
 
-```{block, type='alert alert-warning'}
-**Question** 
+<!-- ```{block, type='alert alert-warning'} -->
+::: {.alert .alert-warning}
+**Questions** 
 Which model would you choose? Which model predicts best on the *test* data? Why do you think this is the case?
 
 And why does it matter that the test data were *not* used to estimate the models? What would have happened to the results if we had trained the models using all the data?
-```
+<!-- ``` -->
+:::
 
 The plots below show the actual versus the predicted flows for the test data. A perfect model would have all the points on the red line. Because most flows are small and a few are very large, we use a transformation of the axes which is similar to a logarithmic one, but works with zeros and negative values.
 
@@ -746,10 +753,12 @@ bind_rows(
   kable(digits = 3, caption = "Performance on the training and the test data")
 ```
 
-```{block, type='alert alert-warning'}
-**Question** 
+<!-- ```{block, type='alert alert-warning'} -->
+::: {.alert .alert-warning}
+**Questions** 
 Which model performs a lot better on the training than on the test data? This is called *overfitting*: the model memorises the noise of the training data instead of learning the general pattern. Why do you think that more flexible models, such as the random forest, are more prone to this? Why can we not detect overfitting if we only look at the training data?
-```
+<!-- ``` -->
+::: 
 
 Finally, the random forest can also tell us which variables were more useful for making predictions. This is the *variable importance*. It is not the same as the coefficients of a regression, as it does not tell us the direction of the effect, only how much each variable contributed to the predictions.
 
@@ -762,9 +771,11 @@ tibble(variable = names(model.rf$finalModel$variable.importance),
   labs(x = NULL, y = "Importance")
 ```
 
-```{block, type='alert alert-warning'}
-**Question** 
+<!-- ```{block, type='alert alert-warning'} -->
+::: {.alert .alert-warning}
+**Questions** 
 Which variable is the most important for predicting the commuting flows? Does this match what we found with the gravity models above? Why could it be misleading to treat the importance as the *effect* of the variable?
 
 **Task** Try to improve the predictions of the random forest, e.g. by changing `num.trees` or `min.node.size`, or by adding another explanatory variable. Always evaluate the changes using the *test* data.
-```
+<!-- ``` -->
+:::

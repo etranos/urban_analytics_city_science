@@ -420,8 +420,9 @@ compare.jobs %>%
   kable_styling(full_width = F)
 ```
 
-::: callout-tip
-**Question** Which Local Authorities benefit from the new jobs and which don't? Why do some of them not change at all? (Hint: think about the 20 minutes cut-off.) Is the benefit larger for Croydon itself or for its neighbours? Why?
+::: {.alert .alert-warning}
+**Questions** 
+Which Local Authorities benefit from the new jobs and which don't? Why do some of them not change at all? (Hint: think about the 20 minutes cut-off.) Is the benefit larger for Croydon itself or for its neighbours? Why?
 :::
 
 #### Scenario 2: faster travel
@@ -459,13 +460,13 @@ plot_change(compare.time, paste("Faster travel from and to", scenario.area))
 
 Please note that, as we only reduce travel times, no Local Authority can lose accessibility. Most of them will not change at all. This is because the `cumulative_cutoff()` function counts the jobs within $20$ minutes, so only the Local Authorities for which a destination moves from just above to just below this limit gain something.
 
-::: callout-tip
-**Question** Compare the two maps. Which scenario has the larger impact on accessibility? Do the same Local Authorities benefit in both scenarios? What do you think is the main difference between *adding opportunities* and *reducing the travel cost*?
+::: {.alert .alert-warning}
+**Questions** Compare the two maps. Which scenario has the larger impact on accessibility? Do the same Local Authorities benefit in both scenarios? What do you think is the main difference between *adding opportunities* and *reducing the travel cost*?
 
 The indicator we use is a cumulative one. It counts all the jobs within $20$ minutes, no matter how far within this limit they are, and nothing outside it. What are the implications for the results? Think about a Local Authority which is $21$ minutes away from a large number of jobs.
 :::
 
-::: callout-tip
+::: {.alert .alert-warning}
 **Tasks**
 
 1. Change the `scenario.area` to another Local Authority, e.g. one in the outskirts and one in the centre of London. How do the results change?
