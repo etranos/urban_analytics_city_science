@@ -149,8 +149,8 @@ The `decay_function` function can take different decay functions
 (see [here](https://cran.r-project.org/web/packages/accessibility/vignettes/decay_functions.html)).
 We know from previous studies that the exponential function represents better shorter
 interactions (e.g. within cities) while the power function works better for longer distance
-interactions (e.g. migrations flows) [@fotheringham1989spatial, see also discussions
-in @oshan2021spatial].
+interactions (e.g. migrations flows) ([@fotheringham1989spatial], see also discussions
+in @oshan2021spatial).
 
 
 ```{r}
@@ -334,7 +334,7 @@ ggplot() +
   theme_void()
 ```
 
-### Scenarios: what if...?
+## Scenarios: what if...?
 
 So far we calculated the accessibility of London's Local Authorities as it is today. But accessibility indicators are also very useful for asking *what if* questions. Planners do exactly this when they evaluate a new transport link or the relocation of a large employer. The logic is simple: (1) we change something in the *opportunities* or in the *travel costs*, (2) we re-calculate the same indicator with the changed data and (3) we compare it with the baseline.
 
@@ -356,7 +356,7 @@ baseline <- mtc %>%
   select(id, baseline = number_of_jobs)
 ```
 
-#### Scenario 1: more jobs
+### Scenario 1: more jobs
 
 Let's imagine that a large employer moves to Croydon and increases the number of jobs in the Local Authority by $20\%$. Travel times do not change. What happens to the job accessibility of *all* the Local Authorities? Think about it before you run the code. Who will benefit?
 
@@ -422,10 +422,11 @@ compare.jobs %>%
 
 ::: {.alert .alert-warning}
 **Questions** 
+
 Which Local Authorities benefit from the new jobs and which don't? Why do some of them not change at all? (Hint: think about the 20 minutes cut-off.) Is the benefit larger for Croydon itself or for its neighbours? Why?
 :::
 
-#### Scenario 2: faster travel
+### Scenario 2: faster travel
 
 Now, let's keep the jobs as they are and change the *travel times*. Imagine that a new express road link reduces the travel time by $25\%$ for all the trips from and to Croydon. This is, of course, a simplification. A real link would only affect specific origin-destination pairs. But it is good enough to see how the indicator responds. We only change the rows of the travel time matrix which involve the scenario area. Note that we do not change the trip within the Local Authority (`from_id == to_id`), which has a travel time of $0$ anyway.
 
@@ -461,7 +462,9 @@ plot_change(compare.time, paste("Faster travel from and to", scenario.area))
 Please note that, as we only reduce travel times, no Local Authority can lose accessibility. Most of them will not change at all. This is because the `cumulative_cutoff()` function counts the jobs within $20$ minutes, so only the Local Authorities for which a destination moves from just above to just below this limit gain something.
 
 ::: {.alert .alert-warning}
-**Questions** Compare the two maps. Which scenario has the larger impact on accessibility? Do the same Local Authorities benefit in both scenarios? What do you think is the main difference between *adding opportunities* and *reducing the travel cost*?
+**Questions** 
+
+Compare the two maps. Which scenario has the larger impact on accessibility? Do the same Local Authorities benefit in both scenarios? What do you think is the main difference between *adding opportunities* and *reducing the travel cost*?
 
 The indicator we use is a cumulative one. It counts all the jobs within $20$ minutes, no matter how far within this limit they are, and nothing outside it. What are the implications for the results? Think about a Local Authority which is $21$ minutes away from a large number of jobs.
 :::
