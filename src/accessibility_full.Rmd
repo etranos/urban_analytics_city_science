@@ -149,7 +149,7 @@ The `decay_function` function can take different decay functions
 (see [here](https://cran.r-project.org/web/packages/accessibility/vignettes/decay_functions.html)).
 We know from previous studies that the exponential function represents better shorter
 interactions (e.g. within cities) while the power function works better for longer distance
-interactions (e.g. migrations flows) ([@fotheringham1989spatial], see also discussions
+interactions (e.g. migrations flows) (see @fotheringham1989spatial and also discussions
 in @oshan2021spatial).
 
 
